@@ -5,7 +5,7 @@
 
 :root{
   --bgcolor: #040403;
-  --txtcolor: #fff;
+  --txtcolor: #E0E0E0;
   --breadcolor: #5B7553;
   --linkcolor: #9ddbad;
   --visitedlinkcolor: #5B7553; 
@@ -15,7 +15,6 @@ html, body{
   font-size: 100%;
   font-family: "Lexend", "Roboto", sans-serif;
   line-height: 1.5em; 
-  
 }
 
 body{
@@ -23,6 +22,7 @@ body{
     color: var(--txtcolor);
     max-width: 1200px;
     margin: auto;
+    overflow: auto; 
 }
 
 a{
@@ -32,6 +32,34 @@ a:visited{
     color: var(--visitedlinkcolor);
 }
 
+header {
+  float: left;
+  padding: 1em 0;
+}
 
+#menu {
+  float: right;
+  padding: 1em 0;
+  padding-top: 0.5em; 
+}
 
+#menu ul {
+  display: flex; /* Rende orizzontali le voci di menu */
+  list-style-type: none;
+  gap: 2em; /* Spazio tra le voci */
+}
 
+#menu ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#menu ul li a:hover {
+  color: var(--txtcolor);
+  text-decoration: underline;
+}
+
+#breadcrumb {
+  clear: both; /*Unica soluzione che ho trovato, serve a dire al breadcrumb di ignorare il float dei due elementi sopra e di iniziare su una nuova riga*/
+}
