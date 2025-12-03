@@ -2,70 +2,108 @@
 <html lang="it">
 
 <head>
-    <title>Il nostro Tè!</title>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8">
+    <title>UniversiTea - Il nostro Tè</title>
     <meta name="description" content="Pagina dedicata alle informazioni sui tè venduti da universitea">
     <meta name="keywords" content="tè, università, tisane, negozio">
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
+    <a href="#content" class="skip-link">Vai al contenuto principale</a>
 
-    <header>
-        <h1>Il nostro Tè</h1>
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo-universitea.png" alt="UniversiTea - Torna alla Home" width="150" height="50">
+            </a>
+        </div>
+
+        <nav id="main-menu" aria-label="Menu principale">
+            <ul>
+                <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
+                <li><a href="tea-info.html" aria-current="page">Il nostro Tè</a></li>
+                <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+            </ul>
+        </nav>
+
+        <nav id="user-actions" aria-label="Menu utente">
+            <ul>
+                <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
+                            src="resources/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
+                <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav id="menu">
-        <ul>
-        <li><a href="index.html"><span lang="en-GB">Home</span></a></li>
-        <li><a href="shop.html"><span lang="en-GB">Shop</span></a>
-        <li>Il nostro Tè</li>
-        <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-        </ul>
+    <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <p>Ti trovi in: <a href="index.html"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page">Il
+                nostro Tè</span></p>
     </nav>
 
-    <nav id="user-actions">
-        <a href="login.html" title="Accedi al profilo">👤</a>
-        <a href="cart.html" title="Visualizza carrello">🛒</a>
-    </nav>
+    <div class="container">
+        <aside id="curiosita">
+            <h2>Lo sapevi che...</h2>
+            <p>…tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>: ciò che li rende diversi — dal
+                verde al
+                nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle foglie.</p>
+            <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in
+                realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
+        </aside>
 
-    <nav id="breadcrumb">
-        <p>Ti trovi in: <a href="index.html"><span lang="en-GB">Home</span></a> >> Il nostro Tè</p>
-    </nav>
+        <main id="content">
+            <h1>Più di una bevanda</h1>
+            <p>Il tè non è solo una bevanda: è il tuo alleato per le sessioni di studio, la pausa rigenerante e, a
+                volte, il
+                segreto per sopravvivere agli esami più intensi!</p>
+            <p>Selezioniamo con cura i nostri tè dai migliori produttori del mondo, così da offrire solo il meglio ai
+                nostri
+                clienti. Scopri qui i diversi tipi di tè che utilizziamo e i loro piccoli superpoteri!</p>
 
-    <aside id="curiosita">
-        <h2>Lo sapevi che...</h2>
-        <p>…tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>: ciò che li rende diversi — dal verde al nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle foglie.</p>
-        <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
-    </aside>
+            <section>
+                <h2>Tè verde</h2>
+                <p>blabla</p>
+                <h3>Tè verde matcha</h3>
+                <p>blablabla</p>
+            </section>
 
-    <main id="content">
-        <h1>Più di una bevanda</h1>
-        <p>Il tè non è solo una bevanda: è il tuo alleato per le sessioni di studio, la pausa rigenerante e, a volte, il segreto per sopravvivere agli esami più intensi!</p>
-        <p>Selezioniamo con cura i nostri tè dai migliori produttori del mondo, così da offrire solo il meglio ai nostri clienti. Scopri qui i diversi tipi di tè che utilizziamo e i loro piccoli superpoteri!</p>
-        <h2>Tè verde</h2>
-        <p>blabla</p>
-        <h3>Tè verde matcha</h3>
-        <p>blablabla</p>
-        <h2>Tè nero</h2>
-        <p>blablablabla</p>
-        <h2>Tè bianco</h2>
-        <p>blablablablabla</p>
-        <h2>Tè oolong</h2>
-        <p>blablablablablabla</p>
-        <h2>Tè Pu-ehr</h2>
-        <p>blablablablablablabla</p>
-    </main>
+            <section>
+                <h2>Tè nero</h2>
+                <p>blablablabla</p>
+            </section>
+
+            <section>
+                <h2>Tè bianco</h2>
+                <p>blablablablabla</p>
+            </section>
+
+            <section>
+                <h2>Tè oolong</h2>
+                <p>blablablablablabla</p>
+            </section>
+
+            <section>
+                <h2>Tè Pu-ehr</h2>
+                <p>blablablablablablabla</p>
+            </section>
+        </main>
+    </div>
 
     <footer>
-        <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a></p>
-        <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span> Tutti i prodotti presentati sono frutto della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
+        <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10"
+                    alt="HTML Valido!"></a></p>
+        <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono
+            frutto
+            della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
         <ul>
-            <li>Email: universitea@gmail.com</li>
-            <li>Telefono: +39 12312390123</li>
+            <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
+            <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
         </ul>
-        <p><a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
+        <p><a href="http://jigsaw.w3.org/css-validator/check/referer"><img
+                    src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
     </footer>
 
 </body>
+
+</html>

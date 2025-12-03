@@ -5,134 +5,191 @@
 }
 
 :root {
-  --bgcolor: #040403;
-  --txtcolor: #E0E0E0;
-  --breadcolor: #5B7553;
-  --linkcolor: #9ddbad;
-  --menu-glass: rgba(30, 30, 30, 0.8); /* Colore semitrasparente menu */
+    --darkbgcolor: #0f0e0e;
+    --graybgcolor: #181717;
+    --lightbgcolor: #fbf5f3;
+    --txtcolor: #E0E0E0;
+    --breadcolor: #5B7553;
+    --linkcolor: #9ddbad;
+
+    --navlink-color: #0b3f3e;
+    --universitea-green: #00d69f;
 }
 
-html, body {
-  font-size: 100%;
-  font-family: "Lexend", "Roboto", sans-serif;
-  line-height: 1.5em;
+html,
+body {
+    font-size: 100%;
+    font-family: "Lexend", "Roboto", sans-serif;
+    line-height: 1.5em;
 }
 
 body {
-    background-color: var(--bgcolor);
+    background-color: var(--darkbgcolor);
     color: var(--txtcolor);
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 400px auto 1fr auto;
-    padding: 0 2em; 
+
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    grid-row: 1 / 2;
-    grid-column: 1 / -1;
-    
-    /* Stile Immagine */
-    background-image: url('../resources/te-nero.jpg');
-    background-size: cover;
-    background-position: center;
-    
-    /* Taglio obliquo tra header e main*/
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-    z-index: -1; 
-  
-    filter: brightness(0.8);
+section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section-dark {
+    background-color: var(--darkbgcolor);
+    color: var(--txtcolor);
+}
+
+.section-gray {
+    background-color: var(--graybgcolor);
+    color: var(--txtcolor);
+
+    background: linear-gradient(to bottom,
+            /* Direzione: dall'alto al basso */
+            var(--darkbgcolor) 0%,
+            /* 1. Inizia col colore della sezione PRECEDENTE */
+            var(--graybgcolor) 15%,
+            /* 2. Sfuma nel grigio entro il 15% dell'altezza */
+            var(--graybgcolor) 85%,
+            /* 3. Rimane grigio fino all'85% */
+            var(--darkbgcolor) 100%
+            /* 4. Sfuma nel colore della sezione SUCCESSIVA */
+        );
 }
 
 /* =========================================
-   POSIZIONAMENTO ELEMENTI NELLA GRIGLIA
+   ELEMENTI (Senza Griglia)
 ========================================= */
 
-/* 1. HEADER (Logo) - Alto Sinistra */
-header {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-    align-self: start;
-    margin-top: 1.5em;
-}
-header h1 { font-size: 2rem; color: #fff; line-height: 1.1; }
-header h2 { font-size: 1rem; color: #ddd; font-weight: 300; }
-
-
-/* 2. MENU - Alto Centro */
-#menu {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-    justify-self: center;
-    align-self: start;
-    margin-top: 2em;
-    
-    background-color: var(--menu-glass);
-    backdrop-filter: blur(8px);
-    padding: 0.8em 2.5em;
-    border-radius: 50px;
-    border: 1px solid rgba(255,255,255,0.2);
+/* HEADER  */
+.main-header {
+    background-color: var(--universitea-green);
+    padding: 1rem 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-#menu ul {
+header h1 {
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.1;
+}
+
+header h2 {
+    font-size: 1rem;
+    color: #ddd;
+    font-weight: 300;
+}
+
+/* MENU */
+
+#main-menu ul {
     display: flex;
     list-style: none;
-    gap: 2em;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
-#menu a {
+#main-menu a {
     text-decoration: none;
-    font-weight: bold;
-    color: #fff;
-    text-transform: uppercase;
+    color: var(--navlink-color);
     font-size: 1rem;
-}
-#menu a:hover { color: var(--linkcolor); }
+    font-weight: 500;
+    position: relative;
 
-
-/* 3. USER ACTIONS - Alto Destra */
-#user-actions {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
-    align-self: start;
-    margin-top: 2em;
-    
-    display: flex;
-    gap: 1em;
+    /*FORMA DEL RIQUADRO CON HOVER*/
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
 }
 
-#user-actions a {
+#main-menu a:hover {
+    background-color: #02ab75;
     text-decoration: none;
-    font-size: 1.5rem;
-    background: rgba(255,255,255,0.1);
-    width: 45px; height: 45px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    transition: 0.3s;
 }
-#user-actions a:hover { background: var(--linkcolor); color: #000; }
+
+/* 3. USER ACTIONS */
+
+#user-actions ul {
+    display: flex;
+    list-style: none;
+    gap: 1em;
+    align-items: center;
+}
 
 
-/* 4. BREADCRUMB - Riga 2 */
+#user-actions a.btn-join {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    background: transparent;
+    text-decoration: none;
+
+    color: var(--darkbgcolor);
+    border: 2px solid var(--darkbgcolor);
+    padding: 0.5em 1.5em;
+    font-weight: 600;
+    font-size: 1rem;
+
+    box-shadow: 4px 4px 0px var(--darkbgcolor);
+
+    transition:
+        box-shadow 0.1s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#user-actions a.btn-join:hover {
+    box-shadow: 8px 8px 0px var(--darkbgcolor);
+    transform: translate(-1px, -1px);
+
+    background-color: transparent;
+    color: var(--darkbgcolor);
+}
+
+#user-actions .cart-link {
+    width: auto;
+    height: auto;
+    background: transparent;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.8rem;
+
+    transition: background-color 0.2s ease;
+}
+
+#user-actions .cart-link img {
+    width: 1.5em;
+    height: auto;
+    display: block;
+}
+
+#user-actions .cart-link:hover {
+    background-color: #02ab75;
+}
+
+/* 4. BREADCRUMB */
 #breadcrumb {
-    grid-row: 2 / 3;
-    grid-column: 1 / -1;
     padding: 1em 0;
 }
 
-/* 5. MAIN - Riga 3 */
-main {
-    grid-row: 3 / 4;
-    grid-column: 1 / -1;
-}
+/* 5. MAIN */
+main {}
 
-/* 6. FOOTER - Riga 4 */
+/* 6. FOOTER */
 footer {
-    grid-row: 4 / 5;
-    grid-column: 1 / -1;
     margin-top: 2em;
+    background-color: var(--lightbgcolor);
+    color: var(--darkbgcolor);
 }
