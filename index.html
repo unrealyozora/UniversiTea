@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./style/style.css">
 
   <!--  ==================================== script per modelli 3d =============================== -->
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
 </head>
 
@@ -21,7 +21,7 @@
 
     <div class="logo">
       <a href="index.html">
-        <img src="logo-universitea.png" alt="UniversiTea - Torna alla Home" width="150" height="50">
+        <img src="resources/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
       </a>
     </div>
 
@@ -48,46 +48,67 @@
   </nav>
 
   <main>
-    <section class="section-dark best-sellers-container">
-    
-      <div id="wipe-effect"></div>
 
-      <div class="grid-layout">
-        
-        <div class="text-content">
-            <h2 class="section-title">I più venduti</h2>
-            
-            <h3 id="tea-name">Tè Verde Matcha</h3>
-            <p id="tea-description">
-                Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.
-            </p>
-
-            <div class="controls">
-                <button onclick="cambiaTe()" class="btn-join" style="cursor: pointer;">
-                    Prossimo Tè →
-                </button>
-            </div>
-        </div>
-
-        <div class="model-content">
-          <model-viewer 
-              id="tea-model"
-              src="resources/Mate.glb"
-              alt="Modello 3D"
-              auto-rotate 
-              camera-controls
-              shadow-intensity="1" 
-              environment-image="neutral"
-              exposure="1"
-              style="width: 100%; height: 400px; border: 1px dashed #00d69f;">
-          </model-viewer>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-gray">
+    <section class="section-dark">
       <h2>Benvenuto su UniversiTea</h2>
       <p>Scopri la nostra vasta gamma di tè e prodotti affini di alta qualità.</p>
+    </section>
+
+    <section class="section-gray best-sellers-container" aria-labelledby="bestsellers-heading">
+
+      <div class="bestsellers-header">
+        <button onclick="cambiaTe(-1)" class="bestsellers-nav-btn prev" id="btn-prev" aria-label="Precedente">
+          <img src="resources/angle-left.svg" alt="Precedente">
+        </button>
+
+        <div class="bestsellers-title-group">
+          <h2 id="bestsellers-heading" class="bestsellers-section-title">I più venduti</h2>
+          <div id="bestsellers-dots" class="bestsellers-dots-container" aria-hidden="true"></div>
+        </div>
+
+        <button onclick="cambiaTe(1)" class="bestsellers-nav-btn next" id="btn-next" aria-label="Successivo">
+          <img src="resources/angle-right.svg" alt="Successivo">
+        </button>
+      </div>
+
+      <div class="bestsellers-content-wrapper">
+
+        <div id="wipe-effect"></div>
+
+        <div class="bestsellers-grid">
+
+          <article class="bestsellers-text-area">
+            <h3 class="bestsellers-product-name" id="tea-name">Tè Verde Matcha</h3>
+            <p id="tea-description">
+              Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.
+            </p>
+            <a href="shop.html" class="bestsellers-cta">Scopri di più</a>
+          </article>
+
+          <div class="bestsellers-model-wrapper" id="model-wrapper">
+            <div id="spotlight-bg"></div>
+
+            <model-viewer id="tea-model" src="resources/Mate.glb" alt="Modello 3D" auto-rotate camera-controls
+              shadow-intensity="1" environment-image="neutral" exposure="1">
+            </model-viewer>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="accessibility-controls">
+        <label class="access-toggle">
+          <input type="checkbox" id="disable-anim" onchange="toggleAnimation()">
+          <span class="switch-graphic"></span>
+          No Animazioni
+        </label>
+        <label class="access-toggle">
+          <input type="checkbox" id="disable-rot" onchange="toggleRotation()">
+          <span class="switch-graphic"></span>
+          Stop Rotazione
+        </label>
+      </div>
+
     </section>
 
     <section class="section-dark">
@@ -110,82 +131,159 @@
           src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
   </footer>
 
-    <script>
+  <script>
     const teaList = [
-        {
-            name: "Tè Verde Matcha",
-            desc: "Un pregiato tè verde giapponese in polvere.",
-            model: "resources/Mate.glb"
-        },
-        {
-            name: "Earl Grey Imperiale",
-            desc: "Il classico tè nero aromatizzato al bergamotto.",
-            model: "resources/tea_container.glb"
-        },
-        {
-            name: "Infuso ai Frutti Rossi",
-            desc: "Una miscela dolce e dissetante.",
-            model: "resources/Mate.glb"
-        }
+      {
+        name: "Tè Verde Matcha",
+        desc: "Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.",
+        model: "resources/Mate.glb"
+      },
+      {
+        name: "Earl Grey Imperiale",
+        desc: "Il classico tè nero aromatizzato al bergamotto, perfetto per il pomeriggio.",
+        model: "resources/tea_container.glb"
+      },
+      {
+        name: "Infuso ai Frutti Rossi",
+        desc: "Una miscela dolce e dissetante, senza teina, ottima sia calda che fredda.",
+        model: "resources/bustina.glb"
+      }
     ];
 
-    let currentIndex = 0; 
-    let isAnimating = false; 
+    let currentIndex = 0;
+    let isAnimating = false;
+    let userPrefersReducedMotion = false;
 
-    function cambiaTe() {
-        if (isAnimating) return;
-        isAnimating = true;
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const modelViewer = document.getElementById('tea-model');
+    const modelWrapper = document.getElementById('model-wrapper');
 
-        const wipe = document.getElementById('wipe-effect');
-        const title = document.getElementById('tea-name');
-        const desc = document.getElementById('tea-description');
-        const model = document.getElementById('tea-model');
+    function initDots() {
+      const container = document.getElementById('bestsellers-dots');
+      container.innerHTML = '';
+      teaList.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('bestsellers-dot');
+        if (index === currentIndex) dot.classList.add('active');
+        container.appendChild(dot);
+      });
+    }
 
-        // 1. PREPARAZIONE: Assicuriamoci che la barra sia a sinistra (-150%)
-        // senza animazioni attive
-        wipe.classList.add('no-transition');
-        wipe.classList.remove('active', 'exit');
-        
-        // TRUCCO: Forziamo il browser a "leggere" la posizione attuale
-        // Senza questa riga, il browser salta direttamente all'animazione
-        void wipe.offsetWidth; 
+    function updateDots() {
+      const dots = document.querySelectorAll('.bestsellers-dot');
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
 
-        // 2. VIA ALL'ANIMAZIONE (Entrata lenta)
-        // Riattiviamo le transizioni
-        wipe.classList.remove('no-transition');
-        
-        // Usiamo un piccolo ritardo per sicurezza
+    function setButtonsState(disabled) {
+      btnPrev.disabled = disabled;
+      btnNext.disabled = disabled;
+    }
+
+    function toggleAnimation() {
+      const checkbox = document.getElementById('disable-anim');
+      userPrefersReducedMotion = checkbox.checked;
+    }
+
+    function toggleRotation() {
+      const checkbox = document.getElementById('disable-rot');
+      if (checkbox.checked) {
+        modelViewer.removeAttribute('auto-rotate');
+      } else {
+        modelViewer.setAttribute('auto-rotate', '');
+      }
+    }
+
+    // --- FUNZIONE CAMBIO TE' CON FIX ARTEFATTI ---
+    function cambiaTe(direction) {
+      if (isAnimating) return;
+      isAnimating = true;
+      setButtonsState(true);
+
+      const wipe = document.getElementById('wipe-effect');
+      const title = document.getElementById('tea-name');
+      const desc = document.getElementById('tea-description');
+
+      let nextIndex = currentIndex + direction;
+      if (nextIndex >= teaList.length) nextIndex = 0;
+      else if (nextIndex < 0) nextIndex = teaList.length - 1;
+
+      // Accessibilità: Cambio istantaneo
+      if (userPrefersReducedMotion) {
+        currentIndex = nextIndex;
+        const nextTea = teaList[currentIndex];
+        title.textContent = nextTea.name;
+        desc.textContent = nextTea.desc;
+        modelViewer.setAttribute('src', nextTea.model);
+        updateDots();
+        isAnimating = false;
+        setButtonsState(false);
+        return;
+      }
+
+      const dirClass = direction === 1 ? 'wipe-dir-next' : 'wipe-dir-prev';
+
+      // Reset
+      wipe.className = '';
+      wipe.id = 'wipe-effect';
+      wipe.classList.add('no-transition');
+      wipe.classList.add(dirClass);
+      wipe.classList.add('start');
+
+      void wipe.offsetWidth;
+
+      // Start Animazione
+      wipe.classList.remove('no-transition');
+      requestAnimationFrame(() => {
+        wipe.classList.remove('start');
+        wipe.classList.add('active');
+      });
+
+      setTimeout(() => {
+
+        modelWrapper.style.visibility = 'hidden';
+
+        currentIndex = nextIndex;
+        const nextTea = teaList[currentIndex];
+        title.textContent = nextTea.name;
+        desc.textContent = nextTea.desc;
+        modelViewer.setAttribute('src', nextTea.model);
+        updateDots();
+
+        // Riattiviamo la visibilità leggermente dopo che il browser ha processato il cambio
         requestAnimationFrame(() => {
-            wipe.classList.add('active'); // La barra va al centro
+          // Piccolo delay per sicurezza
+          setTimeout(() => {
+            modelWrapper.style.visibility = 'visible';
+
+            // Facciamo partire l'uscita SOLO dopo che il modello è pronto
+            wipe.classList.remove('active');
+            wipe.classList.add('end');
+          }, 50);
         });
 
-        // 3. CAMBIO DATI (Quando la barra copre lo schermo)
-        // Tempo aumentato per matchare la lentezza (0.8s = metà di 1.6s circa)
-        setTimeout(() => {
-            
-            currentIndex = (currentIndex + 1);
-            if(currentIndex >= teaList.length) currentIndex = 0;
+      }, 600);
 
-            const nextTea = teaList[currentIndex];
-            title.textContent = nextTea.name;
-            desc.textContent = nextTea.desc;
-            model.setAttribute('src', nextTea.model);
-
-            // 4. USCITA (La barra se ne va a destra)
-            wipe.classList.remove('active'); 
-            wipe.classList.add('exit');      
-
-        }, 1000); // Aspettiamo 1 secondo pieno prima di cambiare e uscire
-
-        // 5. PULIZIA FINALE
-        setTimeout(() => {
-            // Resetta tutto silenziosamente per il prossimo click
-            wipe.classList.add('no-transition');
-            wipe.classList.remove('exit');
-            isAnimating = false;
-        }, 2200); // Tempo totale abbondante
+      setTimeout(() => {
+        wipe.classList.add('no-transition');
+        wipe.classList.remove('end');
+        wipe.classList.remove(dirClass);
+        isAnimating = false;
+        setButtonsState(false);
+      }, 1300);
     }
-</script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initDots();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.getElementById('disable-anim').checked = true;
+        toggleAnimation();
+      }
+    });
+  </script>
 
 </body>
 
