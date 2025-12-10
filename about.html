@@ -3,14 +3,39 @@
 
 <head>
   <title>About Us</title>
-  <meta name="description" content="Pagina dedicata alle informazioni sulla azienda>
+  <meta name="description" content="Pagina dedicata alle informazioni sulla azienda">
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="./style/style.css">
 </head>
-<meta name=" viewport" content="width=device-width" />
 
 <body>
-  <header>
-    <h1>About Us</h1>
+  <header class="main-header">
+
+    <div class="logo">
+      <a href="index.html">
+        <img src="resources/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+      </a>
+    </div>
+
+    <nav id="main-menu" aria-label="Menu principale">
+      <div class="main-menu-pill"></div>
+      <ul>
+        <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
+        <li><a href="tea-info.html">Il nostro Tè</a></li>
+        <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+      </ul>
+    </nav>
+
+    <nav id="user-actions" aria-label="Menu utente">
+      <ul>
+        <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
+              src="resources/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
+        <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+      </ul>
+    </nav>
+
   </header>
+
   <nav id="breadcrumb">
     <p>Ti trovi in: <a href="index.html">Home</a> >> About</p>
   </nav>
@@ -22,5 +47,4 @@
 
 </body>
 
-
-z
+</html>

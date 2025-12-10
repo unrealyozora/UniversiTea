@@ -28,7 +28,6 @@ body {
 body {
     background-color: var(--darkbgcolor);
     color: var(--txtcolor);
-
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -53,10 +52,10 @@ section {
 }
 
 /* =========================================
-   ELEMENTI
+   ELEMENTI HEADER & NAVIGAZIONE
 ========================================= */
 
-/* HEADER  */
+/* HEADER PRINCIPALE */
 .main-header {
     background-color: var(--universitea-green);
     padding: 1rem 5%;
@@ -64,10 +63,9 @@ section {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
-
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 900;
 }
 
 header h1 {
@@ -82,43 +80,30 @@ header h2 {
     font-weight: 300;
 }
 
-/* --- LOGO NELL'HEADER --- */
+/* LOGO */
 .logo a {
     display: block;
     text-decoration: none;
 }
 
 .logo-img {
-    /* Larghezza aumentata per far leggere bene il testo */
     width: 220px;
     height: auto;
     display: block;
-
-    /* Opzionale: un filtro drop-shadow bianco per farlo staccare dallo sfondo verde dell'header */
+    /* Ombra leggera per staccarlo dallo sfondo */
     filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.3));
-
     transition: transform 0.2s ease;
 }
 
-/* Effetto hover */
 .logo a:hover .logo-img {
     transform: scale(1.03);
 }
 
-/* Responsive per cellulare */
-@media (max-width: 768px) {
-    .logo-img {
-        width: 180px;
-        /* Un po' più piccolo su mobile */
-    }
-}
-
-/* MENU */
-
+/* MENU PRINCIPALE */
 #main-menu ul {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 3.5rem;
     margin: 0;
     padding: 0;
 }
@@ -129,8 +114,6 @@ header h2 {
     font-size: 1rem;
     font-weight: 500;
     position: relative;
-
-    /*FORMA DEL RIQUADRO CON HOVER*/
     padding: 0.6rem 1rem;
     border-radius: 8px;
     transition: background-color 0.2s ease;
@@ -138,11 +121,9 @@ header h2 {
 
 #main-menu a:hover {
     background-color: #02ab75;
-    text-decoration: none;
 }
 
-/* 3. USER ACTIONS */
-
+/* MENU UTENTE (User Actions) */
 #user-actions ul {
     display: flex;
     list-style: none;
@@ -150,9 +131,7 @@ header h2 {
     align-items: center;
 }
 
-
 #user-actions a.btn-join {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,23 +140,18 @@ header h2 {
     border-radius: 8px;
     background: transparent;
     text-decoration: none;
-
     color: var(--darkbgcolor);
     border: 2px solid var(--darkbgcolor);
     padding: 0.5em 1.5em;
     font-weight: 600;
     font-size: 1rem;
-
     box-shadow: 4px 4px 0px var(--darkbgcolor);
-
-    transition:
-        box-shadow 0.1s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition: box-shadow 0.1s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 #user-actions a.btn-join:hover {
     box-shadow: 8px 8px 0px var(--darkbgcolor);
     transform: translate(-1px, -1px);
-
     background-color: transparent;
     color: var(--darkbgcolor);
 }
@@ -187,12 +161,10 @@ header h2 {
     height: auto;
     background: transparent;
     border-radius: 8px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 0.8rem;
-
     transition: background-color 0.2s ease;
 }
 
@@ -206,12 +178,12 @@ header h2 {
     background-color: #02ab75;
 }
 
-/* 4. BREADCRUMB */
+/* BREADCRUMB */
 #breadcrumb {
     padding: 1em 0;
 }
 
-/* 6. FOOTER */
+/* FOOTER */
 footer {
     margin-top: 2em;
     background-color: var(--lightbgcolor);
@@ -219,9 +191,173 @@ footer {
 }
 
 /* ===========================================================
-   SEZIONE BEST SELLERS 3D (VERSIONE DEFINITIVA)
-===========================================================
-*/
+   HERO SECTION (Presentazione con Immagine di Sfondo)
+=========================================================== */
+
+/* 1. CONTENITORE PRINCIPALE */
+.hero-section {
+    position: relative;
+    width: 100%;
+    /* Altezza: 85% dello schermo, lasciando spazio all'header sopra */
+    height: 85vh;
+    min-height: 500px;
+    /* Altezza minima di sicurezza */
+
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente il contenuto */
+    justify-content: center;
+    /* Centra orizzontalmente il contenuto */
+    overflow: hidden;
+    background-color: var(--darkbgcolor);
+    /* Colore di fondo mentre carica l'immagine */
+}
+
+/* 2. IMMAGINE DI SFONDO (Livello 0) */
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Fondamentale: copre l'area senza deformarsi */
+    object-position: center;
+    /* Centra il punto focale dell'immagine */
+    z-index: 0;
+    /* Sta sul fondo */
+}
+
+/* 3. OVERLAY SCURO (Livello 1 - Pseudo-elemento) */
+/* Crea un velo semitrasparente sopra l'immagine per far leggere il testo */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Nero al 50% di opacità */
+    z-index: 1;
+    /* Sopra l'immagine */
+    pointer-events: none;
+    /* Non blocca i click */
+}
+
+/* 4. CONTENUTO TESTUALE (Livello 2) */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* Deve stare sopra a tutto (immagine e overlay) */
+
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+    max-width: 900px;
+    /* Evita che il testo si allarghi troppo su schermi giganti */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Animazione di entrata */
+    opacity: 0;
+    /* Parte invisibile */
+    animation: fadeUp 1s ease-out forwards 0.3s;
+    /* Parte con leggero ritardo */
+}
+
+/* STILI TIPOGRAFICI */
+
+/* Il Brand (H1 - Verde) */
+.hero-brand {
+    /* Dimensione fluida: minimo 3rem, preferito 6vw, massimo 5rem */
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    /* Molto grassetto */
+    line-height: 1;
+    /* Compatto */
+    margin-bottom: 0.5rem;
+    color: var(--universitea-green);
+    /* Ombra forte per staccarlo dallo sfondo */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Lo Slogan (P enfatizzato - Bianco) */
+.hero-slogan {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* La Descrizione (P - Grigio chiaro) */
+.hero-description {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: #e0e0e0;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 600px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* 5. BOTTONE CTA (Call to Action) */
+.hero-cta {
+    display: inline-block;
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    /* Forma a pillola */
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.hero-cta:hover {
+    transform: scale(1.05);
+    /* Si ingrandisce leggermente */
+    background-color: #fff;
+    /* Diventa bianco */
+    /* Bagliore verde */
+    box-shadow: 0 0 25px rgba(0, 214, 159, 0.6);
+}
+
+/* 6. ANIMAZIONI E ACCESSIBILITÀ */
+
+/* Definizione dell'animazione di entrata dal basso */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accessibilità: Se l'utente ha richiesto di ridurre i movimenti nel sistema operativo */
+@media (prefers-reduced-motion: reduce) {
+    .hero-content {
+        animation: none;
+        /* Disabilita l'animazione */
+        opacity: 1;
+        /* Assicura che il contenuto sia visibile */
+    }
+}
+
+/* ===========================================================
+   SEZIONE BEST SELLERS (DESIGN MODERNO & INTERATTIVO)
+=========================================================== */
 
 .best-sellers-container {
     position: relative;
@@ -230,7 +366,7 @@ footer {
     background-color: var(--graybgcolor);
 }
 
-/* --- HEADER DELLA SEZIONE --- */
+/* HEADER SEZIONE */
 .bestsellers-header {
     display: flex;
     justify-content: space-between;
@@ -252,18 +388,17 @@ footer {
     flex-grow: 1;
 }
 
-/* TITOLO (Barra verde lunga esattamente quanto il testo) */
+/* TITOLO BESTSELLERS */
 .bestsellers-section-title {
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: 600;
-    color: #888;
+    color: var(--txtcolor);
     margin: 0;
     padding: 0;
     border: none;
     display: inline-block;
-    /* Fondamentale per la larghezza della barra */
     position: relative;
     padding-bottom: 8px;
 }
@@ -279,7 +414,7 @@ footer {
     border-radius: 2px;
 }
 
-/* PALLINI */
+/* PALLINI (Dots) */
 .bestsellers-dots-container {
     display: flex;
     gap: 10px;
@@ -299,7 +434,7 @@ footer {
     transform: scale(1.3);
 }
 
-/* --- PULSANTI DI NAVIGAZIONE --- */
+/* PULSANTI NAVIGAZIONE */
 .bestsellers-nav-btn {
     background-color: var(--universitea-green);
     border: none;
@@ -333,7 +468,7 @@ footer {
     opacity: 0.5;
 }
 
-/* --- WRAPPER CONTENUTO --- */
+/* CONTENITORE PRODOTTO */
 .bestsellers-content-wrapper {
     position: relative;
     min-height: 500px;
@@ -349,13 +484,12 @@ footer {
     padding: 1rem;
 }
 
-/* --- TESTO PRODOTTO --- */
+/* TESTO PRODOTTO (Stile Editoriale) */
 .bestsellers-text-area {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    /* Linea verde verticale decorativa */
     border-left: 4px solid var(--universitea-green);
     padding-left: 2.5rem;
     margin-left: 1rem;
@@ -378,7 +512,7 @@ footer {
     margin-bottom: 2rem;
 }
 
-/* Bottone CTA (Scopri di più) */
+/* CTA BUTTON */
 .bestsellers-cta {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -396,7 +530,7 @@ footer {
     color: #000;
 }
 
-/* --- MODELLO 3D & LUCE --- */
+/* MODELLO 3D & LUCE */
 .bestsellers-model-wrapper {
     position: relative;
     width: 100%;
@@ -407,7 +541,6 @@ footer {
     transition: opacity 0.1s;
 }
 
-/* Luce centrata dietro il modello */
 #spotlight-bg {
     position: absolute;
     top: 50%;
@@ -427,7 +560,7 @@ footer {
     background-color: transparent;
 }
 
-/* --- CONTROLLI ACCESSIBILITÀ (FIX DOPPI TOGGLE) --- */
+/* CONTROLLI ACCESSIBILITÀ (SWITCH) */
 .accessibility-controls {
     position: absolute;
     bottom: 1rem;
@@ -443,10 +576,8 @@ footer {
 
 .access-toggle input {
     display: none;
-    /* Nasconde la checkbox standard */
 }
 
-/* Label del testo */
 .access-toggle {
     display: flex;
     align-items: center;
@@ -463,7 +594,6 @@ footer {
     color: #fff;
 }
 
-/* Disegno dell'interruttore (Switch) */
 .switch-graphic {
     width: 36px;
     height: 20px;
@@ -474,7 +604,6 @@ footer {
     flex-shrink: 0;
 }
 
-/* Il pallino dentro l'interruttore */
 .switch-graphic::after {
     content: '';
     position: absolute;
@@ -488,7 +617,6 @@ footer {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Stati Attivi (Checked) */
 .access-toggle input:checked+.switch-graphic {
     background-color: var(--universitea-green);
 }
@@ -497,7 +625,7 @@ footer {
     transform: translateX(16px);
 }
 
-/* --- WIPE ANIMATION --- */
+/* ANIMAZIONE WIPE (BARRA VERDE) */
 #wipe-effect {
     position: absolute;
     top: 0;
@@ -509,12 +637,11 @@ footer {
     pointer-events: none;
     opacity: 0;
     transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.1s;
-
     will-change: transform;
     backface-visibility: hidden;
 }
 
-/* Direzioni Animazione */
+/* DIREZIONI ANIMAZIONE */
 #wipe-effect.wipe-dir-next.start {
     transform: skewX(-15deg) translateX(-150%);
     opacity: 1;
@@ -549,8 +676,12 @@ footer {
     transition: none !important;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 768px) {
+    .logo-img {
+        width: 180px;
+    }
+
     .bestsellers-grid {
         grid-template-columns: 1fr;
         gap: 2rem;

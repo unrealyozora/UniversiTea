@@ -26,6 +26,7 @@
     </div>
 
     <nav id="main-menu" aria-label="Menu principale">
+      <div class="main-menu-pill"></div>
       <ul>
         <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
         <li><a href="tea-info.html">Il nostro Tè</a></li>
@@ -49,9 +50,25 @@
 
   <main>
 
-    <section class="section-dark">
-      <h2>Benvenuto su UniversiTea</h2>
-      <p>Scopri la nostra vasta gamma di tè e prodotti affini di alta qualità.</p>
+    <section class="hero-section">
+
+      <img src="resources/rd-heroSectionImg.jpg" alt="Atmosfera serale in un campo di tè" class="hero-bg-img">
+
+      <div class="hero-content">
+        <div class="hero-content">
+
+          <h1 class="hero-brand">UniversiTea</h1>
+
+          <p class="hero-slogan">il tè che studia con te</p>
+
+          <p class="hero-description">
+            La selezione premium per le tue sessioni di studio e relax.
+          </p>
+
+          <a href="shop.html" class="hero-cta">Esplora la Collezione</a>
+        </div>
+      </div>
+
     </section>
 
     <section class="section-gray best-sellers-container" aria-labelledby="bestsellers-heading">
@@ -121,7 +138,8 @@
   <footer>
     <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a>
     </p>
-    <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono frutto
+    <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono
+      frutto
       della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
     <ul>
       <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
@@ -281,6 +299,19 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.getElementById('disable-anim').checked = true;
         toggleAnimation();
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+
+      // Se abbiamo scrollato più di 50px
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled'); // Diventa scuro e sfocato
+      } else {
+        header.classList.remove('scrolled'); // Torna trasparente
       }
     });
   </script>
