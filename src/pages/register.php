@@ -26,6 +26,6 @@ $password=$_POST['password']; //aggiungere hashing
 <p><strong>Cognome:</strong> <?php echo htmlspecialchars($cognome);?></p>
 
 <p> L'utente è stato registrato con successo</p>
-<a href="index.html">Torna alla home</a>
+<a href="../../index.html">Torna alla home</a>
 </body>
 </html>

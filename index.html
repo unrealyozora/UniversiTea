@@ -8,7 +8,7 @@
     content="Pagina dedicata al negozio UniversiTea, un negozio che propone una vasta gamma di Te' e prodotti affini di alta qualità">
   <meta name="keywords" content="tè, università, tisane, negozio">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="./src/style/style.css">
 
   <!--  ==================================== script per modelli 3d =============================== -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -21,24 +21,24 @@
 
     <div class="logo">
       <a href="index.html">
-        <img src="resources/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        <img src="assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
       </a>
     </div>
 
     <nav id="main-menu" aria-label="Menu principale">
       <div class="main-menu-pill"></div>
       <ul>
-        <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
-        <li><a href="tea-info.html">Il nostro Tè</a></li>
-        <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+        <li><a href="src/pages/shop.html"><span lang="en-GB">Shop</span></a></li>
+        <li><a href="src/pages/tea-info.html">Il nostro Tè</a></li>
+        <li><a href="src/pages/about.html"><span lang="en-GB">About</span></a></li>
       </ul>
     </nav>
 
     <nav id="user-actions" aria-label="Menu utente">
       <ul>
-        <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
-              src="resources/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
-        <li><a href="register.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+        <li><a href="src/pages/cart.html" class="cart-link" aria-label="Visualizza carrello"><img
+              src="assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
+        <li><a href="src/pages/register.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
       </ul>
     </nav>
 
@@ -52,7 +52,7 @@
 
     <section class="hero-section">
 
-      <img src="resources/rd-heroSectionImg.jpg" alt="Atmosfera serale in un campo di tè" class="hero-bg-img">
+      <img src="assets/images/rd-heroSectionImg.jpg" alt="Atmosfera serale in un campo di tè" class="hero-bg-img">
 
       <div class="hero-content">
         <div class="hero-content">
@@ -75,7 +75,7 @@
 
       <div class="bestsellers-header">
         <button onclick="cambiaTe(-1)" class="bestsellers-nav-btn prev" id="btn-prev" aria-label="Precedente">
-          <img src="resources/angle-left.svg" alt="Precedente">
+          <img src="assets/images/angle-left.svg" alt="Precedente">
         </button>
 
         <div class="bestsellers-title-group">
@@ -84,7 +84,7 @@
         </div>
 
         <button onclick="cambiaTe(1)" class="bestsellers-nav-btn next" id="btn-next" aria-label="Successivo">
-          <img src="resources/angle-right.svg" alt="Successivo">
+          <img src="assets/images/angle-right.svg" alt="Successivo">
         </button>
       </div>
 
@@ -99,13 +99,13 @@
             <p id="tea-description">
               Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.
             </p>
-            <a href="shop.html" class="bestsellers-cta">Scopri di più</a>
+            <a href="./src/pages/shop.html" class="bestsellers-cta">Scopri di più</a>
           </article>
 
           <div class="bestsellers-model-wrapper" id="model-wrapper">
             <div id="spotlight-bg"></div>
 
-            <model-viewer id="tea-model" src="resources/Mate.glb" alt="Modello 3D" auto-rotate camera-controls
+            <model-viewer id="tea-model" src="assets/images/Mate.glb" alt="Modello 3D" auto-rotate camera-controls
               shadow-intensity="1" environment-image="neutral" exposure="1">
             </model-viewer>
           </div>
@@ -154,17 +154,17 @@
       {
         name: "Tè Verde Matcha",
         desc: "Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.",
-        model: "resources/Mate.glb"
+        model: "assets/images/Mate.glb"
       },
       {
         name: "Earl Grey Imperiale",
         desc: "Il classico tè nero aromatizzato al bergamotto, perfetto per il pomeriggio.",
-        model: "resources/tea_container.glb"
+        model: "assets/images/tea_container.glb"
       },
       {
         name: "Infuso ai Frutti Rossi",
         desc: "Una miscela dolce e dissetante, senza teina, ottima sia calda che fredda.",
-        model: "resources/bustina.glb"
+        model: "assets/images/bustina.glb"
       }
     ];
 
