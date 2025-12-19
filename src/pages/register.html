@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <meta charset="utf-8">
   <title>UniversiTea - Login</title>
@@ -9,19 +8,15 @@
   <meta name="keywords" content="tè, università, tisane, negozio, login, signup, registrazione, accesso">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../style/style.css">
-
 </head>
 
 <body>
-
   <header class="main-header">
-
     <div class="logo">
       <a href="../../index.html">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
       </a>
     </div>
-
     <nav id="main-menu" aria-label="Menu principale">
       <ul>
         <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
@@ -29,7 +24,6 @@
         <li><a href="about.html"><span lang="en-GB">About</span></a></li>
       </ul>
     </nav>
-
     <nav id="user-actions" aria-label="Menu utente">
       <ul>
         <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
@@ -37,7 +31,6 @@
         <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
       </ul>
     </nav>
-
   </header>
 
   <nav id="breadcrumb" aria-label="Percorso di navigazione">
@@ -45,55 +38,138 @@
   </nav>
 
   <main>
-
     <h1>Registrati su UniversiTea!</h1>
-    <form method="POST" action = "register.php">
-      <fieldset>
-      	<legend>Informazioni Generali</legend>
-	<div>
-	  <label for="nome">Nome</label>
-	  <input type="text" name="nome" value="[valoreNome]">
-	</div>
+      <p class = "subtitle">Crea il tuo account per iniziare!</p>
+      <div class="success-message" id="successMessage"></div>
+      <form id="register_form">
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" required>
+              <div class = "error-message" id="usernameError"></div>
+          </div>
+          <div class = "form-group">
+              <label for="email">Email</label>
+              <input type="text" id="email" name="email" required>
+              <div class="error-message" id="emailError"></div>
+          </div>
+          <div class = "form-group">
+              <label for="password">Password</label>
+              <input type="text" id="password" name="password" required>
+              <div class="error-message" id="passwordError"></div>
+          </div>
+          <div class = "form-group">
+              <label for="confirm_password">Conferma password</label>
+              <input type="text" id="confirm_password" name="confirm_password" required>
+              <div class="error-message" id="confirmPasswordError"></div>
+          </div>
+          <div class = "form-group">
+              <label for="birthDate">Data di nascita</label>
+              <input type="date" id="birthDate" name="birthDate" required>
+              <div class="error-message" id="birthDateError"></div>
+          </div>
 
-	<div>
-	  <label for="cognome">Cognome</label>
-	  <input type="text" name="cognome" value="[valoreCognome]">
-	</div>
-
-	<p>Genere</p>
-	<div>
-          <input type="radio" name="genere" id="uomo" value="0">
-          <label for="uomo">Uomo</label>
-          <input type="radio" name="genere" id="donna" value="1" checked>
-          <label for="donna">Donna</label>
-	</div>
-
-	<div>
-	  <label for="email">Email</label>
-	  <input type="text" name="email" value="[valoreEmail]">
-	</div>
-
-	<div>
-	  <label for="dataNascita">Data di nascita</label>
-	  <input type="text" name="dataNascita" value="[valoreDataNascita]">
-	</div>
-
-	<div>
-	  <label for="password">Password</label>
-	  <input type="text" name="password" value="[valorePassword]"> <!--Verificare quando serve hash-->
-	</div>
-
-	<fieldset>
-	  <legend>Bottoni</legend>
-            <input type="submit" id="submit" name="submit" class="margineSinistro" value="Registrati" >
-            <input type="reset" id="reset" class="margineSinistro" value="Cancella tutto" >
-        </fieldset>
-
-      </fieldset>
-    </form>
-
-
+          <button type="submit" class="submit-btn" id="submitBtn">Registrati</button>
+      </form>
   </main>
+  <script>
+      const form = document.getElementById('register_form');
+      const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
+
+      form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          console.log("debug");
+          clearErrors();
+          const formData = {
+              username: document.getElementById('username').value.trim(),
+              email: document.getElementById('email').value.trim(),
+              password: document.getElementById('password').value,
+              confirm_password: document.getElementById('confirm_password').value,
+              birthDate: document.getElementById('birthDate').value,
+          };
+
+          let isValid = true;
+          if (formData.username.length < 3){
+              showError('username', 'Username deve essere almeno 3 caratteri');
+              isValid = false;
+          }
+          if (!isValidEmail(formData.email)){
+              showError('email', 'Email non valida');
+              isValid = false;
+          }
+          if (formData.password.length < 6){
+              showError('password', 'Password deve essere almeno 6 caratteri');
+              isValid = false;
+          }
+          if (formData.confirm_password !== formData.password){
+              showError('confirm_password', 'Le password non coincidono');
+              isValid = false;
+          }
+          // TODO aggiungere controllo data
+
+          if (!isValid){
+              console.log("not valid");
+              return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Registrazione in corso...';
+
+          try {
+              const response = await fetch('../config/register.php', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(formData)
+              });
+              const data = await response.json();
+              if (data.success){
+                  successMessage.textContent = data.message + ' - Reindirizzamento ... ';
+                  successMessage.classList.add("show");
+                  form.reset();
+
+                  setTimeout(()=> {
+                      window.location.href="/login.html";
+                  }, 2000);
+              }else{
+                  showError('email', data.message);
+              }
+          }catch (error){
+              console.log("iniziando");
+              showError('email', "Errore di connessione al server");
+          }finally {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Registrati';
+          }
+      });
+
+      function showError(field, message){
+          const input = document.getElementById(field);
+          const errorDiv = document.getElementById(field+'Error');
+
+          input.classList.add('error');
+          errorDiv.textContent = message;
+          errorDiv.classList.add('show');
+      }
+
+      function clearErrors(){
+          const inputs = form.querySelectorAll('input');
+          const errorMessages = form.querySelectorAll('.error-message');
+
+          inputs.forEach(input =>input.classList.remove('error'));
+          errorMessages.forEach(msg=>{
+              msg.classList.remove('show');
+              msg.textContent = '';
+          });
+          successMessage.classList.remove('show');
+      }
+
+      function isValidEmail(email){
+          //TODO da verificare regex
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+  </script>
 
   <footer>
     <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a>
