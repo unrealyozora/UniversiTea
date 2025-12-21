@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="Pagina dedicata all'accesso di un utente esistente">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="tè, università, tisane, negozio, login, signup, registrazione, accesso">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>UniversiTea - Login</title>
+</head>
+<body>
+<header class="main-header">
+    <div class="logo">
+        <a href="../../index.html">
+            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        </a>
+    </div>
+    <nav id="main-menu" aria-label="Menu principale">
+        <ul>
+            <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
+            <li><a href="tea-info.html">Il nostro Tè</a></li>
+            <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+        </ul>
+    </nav>
+    <nav id="user-actions" aria-label="Menu utente">
+        <ul>
+            <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
+                    src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
+            <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<nav id="breadcrumb" aria-label="Percorso di navigazione">
+    <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
+</nav>
+
+<main>
+    <h1>Accedi</h1>
+    <p class="subtitle">Benvenuto, accedi al tuo account per continuare!</p>
+
+    <form id="loginForm">
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="form-group">
+            <label for="username">Username o Email</label>
+            <input type="text" id="username" name="username" required aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" required aria-required="true">
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Accedi</button>
+    </form>
+
+    <div class="register-link">
+        Non hai un account? <a href="register.html">Registrati ora!</a>
+    </div>
+</main>
+</div>
+
+<script>
+    const form = document.getElementById('loginForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorMessage.classList.remove('show');
+
+        const formData = {
+            username: document.getElementById('username').value.trim(),
+            password: document.getElementById('password').value,
+        };
+
+        if (!formData.username || !formData.password) {
+            showError('Inserisci username e password');
+            return
+        }
+
+        submitBtn.diabled = true;
+        submitBtn.textContent = 'Accesso in corso...';
+        try {
+            const response = await fetch('../config/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (data.success) {
+                //TODO SISTEMARE QUI
+                window.location.href = 'index.html';
+            } else {
+                showError(data.message);
+            }
+        } catch (error) {
+            showError(error.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Accedi';
+        }
+    });
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add('show');
+
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => input.classList.add('error'));
+        setTimeout(() => {
+            inputs.forEach(input => input.classList.remove('error'));
+        }, 2000);
+    }
+</script>
+
+<footer>
+    <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a>
+    </p>
+    <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono frutto
+        della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
+    <ul>
+        <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
+        <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
+    </ul>
+    <p><a href="http://jigsaw.w3.org/css-validator/check/referer"><img
+            src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
+</footer>
+</body>
+</html>
