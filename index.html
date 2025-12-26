@@ -26,7 +26,6 @@
     </div>
 
     <nav id="main-menu" aria-label="Menu principale">
-      <div class="main-menu-pill"></div>
       <ul>
         <li><a href="src/pages/shop.html"><span lang="en-GB">Shop</span></a></li>
         <li><a href="src/pages/tea-info.html">Il nostro Tè</a></li>
@@ -36,9 +35,16 @@
 
     <nav id="user-actions" aria-label="Menu utente">
       <ul>
-        <li><a href="src/pages/cart.html" class="cart-link" aria-label="Visualizza carrello"><img
-              src="assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
-        <li><a href="src/pages/register.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+        <li>
+          <a href="src/pages/cart.html" class="cart-link" aria-label="Visualizza carrello">
+            <img src="assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+          </a>
+        </li>
+        <li>
+          <a href="src/pages/register.html" class="btn-join" aria-label="Accedi al profilo">
+            <span lang="en-GB">Join Now</span>
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -52,78 +58,93 @@
 
     <section class="hero-section">
 
-      <img src="assets/images/rd-heroSectionImg.jpg" alt="Atmosfera serale in un campo di tè" class="hero-bg-img">
+      <img src="assets/images/rd-heroSectionImg.jpg" alt="" class="hero-bg-img">
 
       <div class="hero-content">
-        <div class="hero-content">
-
           <h1 class="hero-brand">UniversiTea</h1>
-
           <p class="hero-slogan">il tè che studia con te</p>
-
           <p class="hero-description">
-            La selezione premium per le tue sessioni di studio e relax.
+            La selezione <span lang="en-GB">premium</span> per le tue sessioni di studio e relax.
           </p>
-
           <a href="shop.html" class="hero-cta">Esplora la Collezione</a>
-        </div>
       </div>
 
     </section>
 
     <section class="section-gray best-sellers-container" aria-labelledby="bestsellers-heading">
 
-      <div class="bestsellers-header">
-        <button onclick="cambiaTe(-1)" class="bestsellers-nav-btn prev" id="btn-prev" aria-label="Precedente">
-          <img src="assets/images/angle-left.svg" alt="Precedente">
-        </button>
-
-        <div class="bestsellers-title-group">
+      <header class="bestsellers-header">
+        
+        <div class="header-left-group">
           <h2 id="bestsellers-heading" class="bestsellers-section-title">I più venduti</h2>
-          <div id="bestsellers-dots" class="bestsellers-dots-container" aria-hidden="true"></div>
+          
+          <div class="bestsellers-nav">
+            <button class="bestsellers-nav-btn prev" id="btn-prev" type="button" 
+                    aria-label="Vedi prodotto precedente" 
+                    aria-controls="bestsellers-content">
+              <img src="assets/images/angle-left.svg" alt="" aria-hidden="true">
+            </button>
+
+            <button class="bestsellers-nav-btn next" id="btn-next" type="button" 
+                    aria-label="Vedi prodotto successivo"
+                    aria-controls="bestsellers-content">
+              <img src="assets/images/angle-right.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
         </div>
 
-        <button onclick="cambiaTe(1)" class="bestsellers-nav-btn next" id="btn-next" aria-label="Successivo">
-          <img src="assets/images/angle-right.svg" alt="Successivo">
-        </button>
-      </div>
+        <ul id="bestsellers-dots" class="bestsellers-dots-container" aria-hidden="true">
+          </ul>
 
-      <div class="bestsellers-content-wrapper">
+        <span id="slide-status" class="sr-only" aria-live="polite"></span>
 
-        <div id="wipe-effect"></div>
+        <form class="accessibility-controls">
+            <fieldset>
+                <legend>Opzioni di visualizzazione</legend>
+                
+                <label class="access-toggle" title="Disabilita animazioni di transizione">
+                  <input type="checkbox" id="disable-anim" name="disable-anim">
+                  No Animazione
+                </label>
+    
+                <label class="access-toggle" title="Disabilita rotazione automatica 3D">
+                  <input type="checkbox" id="disable-rot" name="disable-rot">
+                  No Rotazione
+                </label>
+            </fieldset>
+        </form>
 
-        <div class="bestsellers-grid">
+      </header>
 
-          <article class="bestsellers-text-area">
-            <h3 class="bestsellers-product-name" id="tea-name">Tè Verde Matcha</h3>
-            <p id="tea-description">
-              Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.
+      <div class="bestsellers-content-wrapper" id="bestsellers-content" aria-live="polite" aria-atomic="true">
+
+          <article class="bestsellers-info">
+            <h3 class="bestsellers-product-name">Tè Verde Matcha</h3>
+            
+            <p>
+              Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo "oro verde" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami, ideale per la cerimonia tradizionale o per dare un tocco raffinato alle tue bevande moderne.
             </p>
-            <a href="./src/pages/shop.html" class="bestsellers-cta">Scopri di più</a>
+            
+            <a href="src/pages/shop.html" class="bestsellers-cta">Scopri di più</a>
           </article>
 
-          <div class="bestsellers-model-wrapper" id="model-wrapper">
-            <div id="spotlight-bg"></div>
+          <figure class="bestsellers-visual">
+             
+             <model-viewer 
+                id="tea-model"
+                src="assets/images/Mate.glb" 
+                alt="Modello 3D interattivo della tazza di Tè Verde Matcha" 
+                auto-rotate 
+                camera-controls 
+                shadow-intensity="1"
+                disable-zoom
+                aria-describedby="model-caption"> 
+             </model-viewer>
 
-            <model-viewer id="tea-model" src="assets/images/Mate.glb" alt="Modello 3D" auto-rotate camera-controls
-              shadow-intensity="1" environment-image="neutral" exposure="1">
-            </model-viewer>
-          </div>
+             <figcaption id="model-caption">Ruota il modello per esplorare i dettagli</figcaption>
 
-        </div>
-      </div>
+          </figure>
 
-      <div class="accessibility-controls">
-        <label class="access-toggle">
-          <input type="checkbox" id="disable-anim" onchange="toggleAnimation()">
-          <span class="switch-graphic"></span>
-          No Animazioni
-        </label>
-        <label class="access-toggle">
-          <input type="checkbox" id="disable-rot" onchange="toggleRotation()">
-          <span class="switch-graphic"></span>
-          Stop Rotazione
-        </label>
       </div>
 
     </section>
@@ -136,172 +157,174 @@
   </main>
 
   <footer>
-    <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a>
+    <p>
+      <a href="https://validator.w3.org/nu/">
+        <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!" width="88" height="31">
+      </a>
     </p>
-    <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono
-      frutto
-      della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
+    <p>
+      <span lang="en-GB">Copyright</span>© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono frutto della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.
+    </p>
     <ul>
       <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
       <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
     </ul>
-    <p><a href="http://jigsaw.w3.org/css-validator/check/referer"><img
-          src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
+    <p>
+      <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!" width="88" height="31">
+      </a>
+    </p>
   </footer>
 
-  <script>
+<script>
+    // --- DATI ---
     const teaList = [
       {
         name: "Tè Verde Matcha",
-        desc: "Un pregiato tè verde giapponese in polvere, ricco di antiossidanti e dal gusto intenso e vegetale.",
+        desc: "Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo \"oro verde\" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami.",
         model: "assets/images/Mate.glb"
       },
       {
         name: "Earl Grey Imperiale",
-        desc: "Il classico tè nero aromatizzato al bergamotto, perfetto per il pomeriggio.",
+        desc: "Il classico tè nero aromatizzato con vero olio essenziale di bergamotto calabrese. Un blend aristocratico e profumato, perfetto per il pomeriggio, capace di trasformare ogni pausa in un momento di pura eleganza britannica.",
         model: "assets/images/tea_container.glb"
       },
       {
         name: "Infuso ai Frutti Rossi",
-        desc: "Una miscela dolce e dissetante, senza teina, ottima sia calda che fredda.",
+        desc: "Una miscela dolce e dissetante, totalmente priva di teina. L'esplosione di fragole, lamponi e karkadè la rende perfetta sia come bevanda calda rinvigorente d'inverno, sia come dissetante tè freddo d'estate.",
         model: "assets/images/bustina.glb"
       }
     ];
 
+    // --- VARIABILI ---
     let currentIndex = 0;
     let isAnimating = false;
-    let userPrefersReducedMotion = false;
+    
+    // Configurazione Tempi (Tweak qui per regolare la reattività)
+    // CSS Transition è 0.8s (800ms). Mettiamo JS a 700ms per sbloccare prima.
+    const ANIMATION_DURATION = 700; 
 
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-    const modelViewer = document.getElementById('tea-model');
-    const modelWrapper = document.getElementById('model-wrapper');
+    // --- SELETTORI ---
+    const wrapper = document.querySelector('.bestsellers-content-wrapper');
+    const productName = document.querySelector('.bestsellers-product-name');
+    const productDesc = document.querySelector('.bestsellers-info p');
+    const modelViewer = document.querySelector('model-viewer');
+    const btnPrev = document.querySelector('.bestsellers-nav-btn.prev');
+    const btnNext = document.querySelector('.bestsellers-nav-btn.next');
+    const dotsContainer = document.getElementById('bestsellers-dots');
+    const animCheckbox = document.getElementById('disable-anim');
+    const rotCheckbox = document.getElementById('disable-rot');
 
-    function initDots() {
-      const container = document.getElementById('bestsellers-dots');
-      container.innerHTML = '';
-      teaList.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('bestsellers-dot');
-        if (index === currentIndex) dot.classList.add('active');
-        container.appendChild(dot);
-      });
+    // --- UTILS ---
+    function toggleButtons(enable) {
+        if(enable) {
+            btnPrev.disabled = false;
+            btnNext.disabled = false;
+            isAnimating = false;
+        } else {
+            btnPrev.disabled = true;
+            btnNext.disabled = true;
+            isAnimating = true;
+        }
     }
 
-    function updateDots() {
-      const dots = document.querySelectorAll('.bestsellers-dot');
-      dots.forEach((dot, index) => {
-        if (index === currentIndex) dot.classList.add('active');
-        else dot.classList.remove('active');
-      });
-    }
+    // --- INIT ---
+    function init() {
+        wrapper.setAttribute('data-direction', 'next');
 
-    function setButtonsState(disabled) {
-      btnPrev.disabled = disabled;
-      btnNext.disabled = disabled;
-    }
-
-    function toggleAnimation() {
-      const checkbox = document.getElementById('disable-anim');
-      userPrefersReducedMotion = checkbox.checked;
-    }
-
-    function toggleRotation() {
-      const checkbox = document.getElementById('disable-rot');
-      if (checkbox.checked) {
-        modelViewer.removeAttribute('auto-rotate');
-      } else {
-        modelViewer.setAttribute('auto-rotate', '');
-      }
-    }
-
-    // --- FUNZIONE CAMBIO TE' CON FIX ARTEFATTI ---
-    function cambiaTe(direction) {
-      if (isAnimating) return;
-      isAnimating = true;
-      setButtonsState(true);
-
-      const wipe = document.getElementById('wipe-effect');
-      const title = document.getElementById('tea-name');
-      const desc = document.getElementById('tea-description');
-
-      let nextIndex = currentIndex + direction;
-      if (nextIndex >= teaList.length) nextIndex = 0;
-      else if (nextIndex < 0) nextIndex = teaList.length - 1;
-
-      // Accessibilità: Cambio istantaneo
-      if (userPrefersReducedMotion) {
-        currentIndex = nextIndex;
-        const nextTea = teaList[currentIndex];
-        title.textContent = nextTea.name;
-        desc.textContent = nextTea.desc;
-        modelViewer.setAttribute('src', nextTea.model);
-        updateDots();
-        isAnimating = false;
-        setButtonsState(false);
-        return;
-      }
-
-      const dirClass = direction === 1 ? 'wipe-dir-next' : 'wipe-dir-prev';
-
-      // Reset
-      wipe.className = '';
-      wipe.id = 'wipe-effect';
-      wipe.classList.add('no-transition');
-      wipe.classList.add(dirClass);
-      wipe.classList.add('start');
-
-      void wipe.offsetWidth;
-
-      // Start Animazione
-      wipe.classList.remove('no-transition');
-      requestAnimationFrame(() => {
-        wipe.classList.remove('start');
-        wipe.classList.add('active');
-      });
-
-      setTimeout(() => {
-
-        modelWrapper.style.visibility = 'hidden';
-
-        currentIndex = nextIndex;
-        const nextTea = teaList[currentIndex];
-        title.textContent = nextTea.name;
-        desc.textContent = nextTea.desc;
-        modelViewer.setAttribute('src', nextTea.model);
-        updateDots();
-
-        // Riattiviamo la visibilità leggermente dopo che il browser ha processato il cambio
-        requestAnimationFrame(() => {
-          // Piccolo delay per sicurezza
-          setTimeout(() => {
-            modelWrapper.style.visibility = 'visible';
-
-            // Facciamo partire l'uscita SOLO dopo che il modello è pronto
-            wipe.classList.remove('active');
-            wipe.classList.add('end');
-          }, 50);
+        dotsContainer.innerHTML = '';
+        teaList.forEach((_, index) => {
+            const dot = document.createElement('li');
+            dot.classList.add('bestsellers-dot');
+            if (index === currentIndex) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
         });
 
-      }, 600);
+        btnPrev.addEventListener('click', () => changeTea(-1));
+        btnNext.addEventListener('click', () => changeTea(1));
 
-      setTimeout(() => {
-        wipe.classList.add('no-transition');
-        wipe.classList.remove('end');
-        wipe.classList.remove(dirClass);
-        isAnimating = false;
-        setButtonsState(false);
-      }, 1300);
+        if(rotCheckbox) {
+            rotCheckbox.addEventListener('change', (e) => {
+                if(e.target.checked) modelViewer.removeAttribute('auto-rotate');
+                else modelViewer.setAttribute('auto-rotate', '');
+            });
+        }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      initDots();
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.getElementById('disable-anim').checked = true;
-        toggleAnimation();
-      }
-    });
-  </script>
+    // --- CORE LOGIC ---
+    function changeTea(direction) {
+        if (isAnimating) return;
+
+        const reduceMotion = animCheckbox && animCheckbox.checked;
+
+        let nextIndex = currentIndex + direction;
+        if (nextIndex >= teaList.length) nextIndex = 0;
+        else if (nextIndex < 0) nextIndex = teaList.length - 1;
+
+        if (reduceMotion) {
+            updateContent(nextIndex);
+            return;
+        }
+
+        // 1. BLOCCO TASTI
+        toggleButtons(false); 
+
+        // 2. PREPARAZIONE RESET
+        wrapper.classList.add('no-transition'); 
+        wrapper.classList.remove('animating-in', 'animating-out');
+        
+        const dirString = direction === 1 ? 'next' : 'prev';
+        wrapper.setAttribute('data-direction', dirString);
+        
+        void wrapper.offsetWidth; // Forzo il calcolo così si aggiorna lo stato e si posiziona nel punto giusto
+
+        // 3. AVVIO ENTRATA
+        wrapper.classList.remove('no-transition'); 
+        
+        requestAnimationFrame(() => {
+            wrapper.classList.add('animating-in'); 
+        });
+
+        // 4. CAMBIO CONTENUTO (Aspetto che la tenda copra)
+        setTimeout(() => {
+            updateContent(nextIndex);
+
+            // 5. AVVIO USCITA
+            wrapper.classList.remove('animating-in');
+            wrapper.classList.add('animating-out'); 
+
+            // 6. SBLOCCO TASTI
+            setTimeout(() => {
+                // Reset silenzioso
+                wrapper.classList.add('no-transition'); 
+                wrapper.classList.remove('animating-out'); 
+                void wrapper.offsetWidth; 
+                wrapper.classList.remove('no-transition'); 
+
+                // SBLOCCO IMMEDIATO
+                toggleButtons(true); 
+            }, ANIMATION_DURATION); 
+
+        }, ANIMATION_DURATION); 
+    }
+
+    function updateContent(index) {
+        currentIndex = index;
+        const data = teaList[index];
+
+        if(productName) productName.textContent = data.name;
+        if(productDesc) productDesc.textContent = data.desc;
+        if(modelViewer) modelViewer.setAttribute('src', data.model);
+
+        const dots = document.querySelectorAll('.bestsellers-dot');
+        dots.forEach((dot, i) => {
+            if (i === index) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+</script>
 
 </body>
 
