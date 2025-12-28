@@ -36,7 +36,7 @@
     <nav id="user-actions" aria-label="Menu utente">
       <ul>
         <li>
-          <a href="src/pages/cart.html" class="cart-link" aria-label="Visualizza carrello">
+          <a href="src/pages/cart.html" class="nav-text-link" aria-label="Visualizza carrello">
             <img src="assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
           </a>
         </li>
@@ -50,28 +50,50 @@
 
   </header>
 
-  <nav id="breadcrumb" aria-label="Percorso di navigazione">
-    <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
-  </nav>
-
   <main>
 
-    <section class="hero-section">
+    <section class="hero-section" aria-label="Benvenuto in UniversiTea">
 
-      <img src="assets/images/rd-heroSectionImg.jpg" alt="" class="hero-bg-img">
+      <div class="parallax-scene">
+          <img src="assets/images/layer-1.svg" class="parallax-layer layer-1" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-2.svg" class="parallax-layer layer-2" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-3.svg" class="parallax-layer layer-3" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-4.svg" class="parallax-layer layer-4" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-5.svg" class="parallax-layer layer-5" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-6.svg" class="parallax-layer layer-6" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-7.svg" class="parallax-layer layer-7" alt="" aria-hidden="true">
+          
+          <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="" aria-hidden="true">
+      </div>
 
-      <div class="hero-content">
-          <h1 class="hero-brand">UniversiTea</h1>
-          <p class="hero-slogan">il tè che studia con te</p>
-          <p class="hero-description">
-            La selezione <span lang="en-GB">premium</span> per le tue sessioni di studio e relax.
-          </p>
-          <a href="shop.html" class="hero-cta">Esplora la Collezione</a>
+      <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
+      </nav>
+
+      <div class="hero-ui-content">
+
+          <div class="hero-text-box">
+              <h1 class="hero-brand">UniversiTea</h1>
+              <p class="hero-slogan">il tè che studia con te</p>
+              <p class="hero-description">
+                Dalla natura incontaminata, direttamente nella tua tazza. Una selezione di Tè <span lang="en-GB">premium</span> per le tue sessioni di studio e relax
+              </p>
+              <a href="src/pages/register.html" class="hero-cta">
+                <span lang="en-GB">Join Now for Free</span>
+              </a>
+          </div>
+
       </div>
 
     </section>
 
-    <section class="section-gray best-sellers-container" aria-labelledby="bestsellers-heading">
+    <section class="section-dark best-sellers-container" aria-labelledby="bestsellers-heading">
 
       <header class="bestsellers-header">
         
@@ -149,7 +171,7 @@
 
     </section>
 
-    <section class="section-dark">
+    <section class="section-gray">
       <h2>Benvenuto su UniversiTea</h2>
       <p>Scopri la nostra vasta gamma di tè e prodotti affini di alta qualità.</p>
     </section>
@@ -324,6 +346,125 @@
     }
 
     document.addEventListener('DOMContentLoaded', init);
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* --- 1. SETUP MENU MOBILE --- */
+    const header = document.querySelector('.main-header');
+    
+    // Tasto Hamburger
+    const hamburgerBtn = document.createElement('button');
+    hamburgerBtn.className = 'hamburger-btn';
+    hamburgerBtn.setAttribute('aria-label', 'Apri Menu');
+    hamburgerBtn.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span>';
+    header.appendChild(hamburgerBtn);
+
+    // Overlay (con TASTO CHIUDI ESPLICITO)
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-menu-overlay';
+    overlay.innerHTML = `
+        <button class="close-menu-btn" aria-label="Chiudi Menu">&times;</button>
+        <nav class="mobile-nav-content">
+            <ul>
+                <li><a href="index.html" class="mobile-link">Home</a></li>
+                <li><a href="src/pages/shop.html" class="mobile-link">Shop</a></li>
+                <li><a href="src/pages/tea-info.html" class="mobile-link">Il Nostro Tè</a></li>
+                <li><a href="src/pages/about.html" class="mobile-link">About</a></li>
+                <li style="height: 20px;"></li> 
+                <li><a href="src/pages/register.html" class="mobile-link" style="color:var(--universitea-green)">Join Now</a></li>
+            </ul>
+        </nav>
+    `;
+    document.body.appendChild(overlay);
+
+
+    /* --- 2. LOGICA APERTURA/CHIUSURA --- */
+    hamburgerBtn.addEventListener('click', () => {
+        document.body.classList.add('menu-open');
+    });
+
+    // Selezioniamo il tasto X appena creato
+    const closeBtn = overlay.querySelector('.close-menu-btn');
+    closeBtn.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            document.body.classList.remove('menu-open');
+        });
+    });
+
+
+    /* --- 3. HEADER COLOR CHANGE --- */
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 800) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+
+    /* --- 4. PARALLASSE & HERO FADE FIX --- */
+    const layers = document.querySelectorAll('.parallax-layer');
+    const heroSection = document.querySelector('.hero-section');
+    const heroContent = document.querySelector('.hero-ui-content');
+    
+    // VELOCITÀ
+    const layerSpeeds = [0.85, 0.75, 0.65, 0.30, 0.35, 0.25, 0.15, 0.0];
+    
+    let ticking = false;
+
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        
+        // Ottimizzazione: ferma calcoli se non siamo nella hero
+        if (scrollY > heroSection.offsetHeight) { ticking = false; return; }
+
+        // A. Movimento Immagini (Parallasse)
+        layers.forEach((layer, index) => {
+            if (index < layerSpeeds.length) {
+                const speed = layerSpeeds[index];
+                
+                // VERIFICA: Layer 4 e 7 sono ancorati a sinistra (left: 0) -> Muovi solo Y
+                if (layer.classList.contains('layer-4') || layer.classList.contains('layer-7')) {
+                    layer.style.transform = `translateY(${scrollY * speed}px)`;
+                } else {
+                    // Gli altri sono centrati -> serve translateX(-50%)
+                    layer.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
+                }
+            }
+        });
+
+        // B. Gestione Fade del Box Testo (FIX TONALITÀ)
+        if (heroContent) {
+            // SE SIAMO IN CIMA (0-5px): Resetta tutto.
+            // Rimuovendo lo stile inline, torna a comandare il CSS originale (colore vetro scuro).
+            if (scrollY <= 5) {
+                heroContent.style.opacity = '';
+                heroContent.style.transform = '';
+            } else {
+                // SE SCROLLIAMO: Applica l'effetto dissolvenza
+                // Ho messo 700 invece di 500 per renderlo più graduale
+                const opacity = 1 - (scrollY / 700); 
+                heroContent.style.transform = `translateY(${scrollY * 0.5}px)`;
+                heroContent.style.opacity = opacity > 0 ? opacity : 0;
+            }
+        }
+        
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    });
+});
 </script>
 
 </body>
