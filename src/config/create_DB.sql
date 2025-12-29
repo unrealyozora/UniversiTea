@@ -53,7 +53,7 @@ CREATE TYPE tipologia_march AS ENUM (
    'Prodotti per la casa'
 );
 
-/*------------------------------------------------------ TABELLE -----------------------------------------------------------*/
+/*------------------------------------------------------ TABELLE ------------------------------------------------------------*/
 DROP TABLE  IF EXISTS Università CASCADE;
 CREATE TABLE Università (
                             nome text NOT NULL,
