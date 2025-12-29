@@ -637,6 +637,43 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     display: block;
 }
 
+/*ERRORPAGES*/
+.errorpage {
+    display: flex;
+    flex-direction: column; /*Mette gli elementi uno sotto l'altro.*/
+    justify-content: center; /*Centra verticalmente rispetto al contenitore.*/
+    align-items: center; /*Centra orizzontalmente tutto il contenuto.*/
+    text-align: center; /*Forza il testo dei paragrafi al centro.*/
+    
+    min-height: 100vh; /*Occupa tutta l'altezza dello schermo.*/
+    width: 100%; /*Occupa tutta la larghezza.*/
+    padding: 20px;
+    box-sizing: border-box; /*Evita problemi di padding.*/
+}
+
+.errorpage h1 {
+    font-size: 8rem;     
+    margin: 0;         
+    line-height: 1;       
+    color: var(--universitea-green);
+}
+
+/*Stile per paragrafi normali*/
+.errorpage p {
+    font-size: 1.1rem;   
+    color: var(--txtcolor);        
+    max-width: 500px;
+}
+
+/*Stile per paragrafo highlight*/
+.errorpage p.highlight {
+    font-size: 2rem;        
+    font-weight: bold;      
+    color: var(--lightbgcolor);       
+    margin-bottom: 30px;   
+    line-height: 1.2;
+}
+
 
 /* --- RESPONSIVE MOBILE --- */
 /* Le regole qui sotto sovrascrivono quelle sopra grazie alla cascata CSS */
