@@ -72,6 +72,7 @@ function loginUser(): void
         $_SESSION['email'] = $result['email'];
         $_SESSION['username'] = $result['username'];
         $_SESSION['logged_in'] = true;
+        $_SESSION['last_activity'] = time();
 
         session_regenerate_id(true);
 
