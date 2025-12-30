@@ -1,4 +1,5 @@
-/*---------------------------------------------------- TIPI PER TABELLE -------------------------------------------------------*/
+USE tceron;
+
 drop type IF exists livello_urgenza CASCADE;
 create type livello_urgenza as ENUM(
   'Molto basso',

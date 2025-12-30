@@ -54,6 +54,11 @@
             <div class="error-message" id="emailError"></div>
         </div>
         <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="text" id="phone" name="phone" required aria-required="true">
+            <div class="error-message" id="phoneError"></div>
+        </div>
+        <div class="form-group">
             <label for="password">Password</label>
             <input type="text" id="password" name="password" required aria-required="true">
             <div class="error-message" id="passwordError"></div>
@@ -62,11 +67,6 @@
             <label for="confirm_password">Conferma password</label>
             <input type="text" id="confirm_password" name="confirm_password" required aria-required="true">
             <div class="error-message" id="confirmPasswordError"></div>
-        </div>
-        <div class="form-group">
-            <label for="birthDate">Data di nascita</label>
-            <input type="date" id="birthDate" name="birthDate" required aria-required="true">
-            <div class="error-message" id="birthDateError"></div>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">Registrati</button>
@@ -79,14 +79,14 @@
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log("debug");
         clearErrors();
         const formData = {
             username: document.getElementById('username').value.trim(),
             email: document.getElementById('email').value.trim(),
             password: document.getElementById('password').value,
             confirm_password: document.getElementById('confirm_password').value,
-            birthDate: document.getElementById('birthDate').value,
+            //address: document.getElementById('address').value,
+            phone: document.getElementById('phone').value,
         };
 
         let isValid = true;
@@ -137,7 +137,7 @@
                 showError('email', data.message);
             }
         } catch (error) {
-            console.log("iniziando");
+            console.log(error);
             showError('email', "Errore di connessione al server");
         } finally {
             submitBtn.disabled = false;
