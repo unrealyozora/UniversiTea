@@ -61,7 +61,7 @@
   // Indice
   // Personalizziamo anche il titolo dell'indice
   show outline.entry: it => text(font: "Lato", it)
-  outline(title: text(font: "Playfair Display", fill: tea-dark)[Indice dei Contenuti], indent: auto)
+  outline(title: text(font: "Lato", fill: tea-dark)[Indice dei Contenuti], indent: auto)
   pagebreak()
 
   body

@@ -55,7 +55,9 @@ section {
    1. HEADER PRINCIPALE (Desktop - Cart Style Unificato)
 ========================================================================== */
 .main-header {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
+    padding:0em 1em;
+    margin: 1em;
+    text-align: center;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.8rem 5%; 
     box-sizing: border-box; transition: all 0.4s ease;
@@ -301,7 +303,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 
 /* BREADCRUMB DESKTOP */
 #breadcrumb {
-    position: absolute; top: auto; right: auto; height: auto; width: max-content;
+    position: relative; top: auto; right: auto; height: auto; width: max-content;
     bottom: 25px; left: 5%; z-index: 20;
     background: rgba(15, 14, 14, 0.6); padding: 8px 20px; border-radius: 50px;
     backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
