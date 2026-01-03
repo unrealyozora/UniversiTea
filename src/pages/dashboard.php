@@ -64,5 +64,18 @@ $user = getCurrentUser();
         Ultima attività: <?php echo date('d/m/Y H:i:s', $_SESSION['last_activity'] ?? time()); ?><br>
         Timeout: 30 minuti di inattività
     </div>
+    <footer>
+        <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a>
+        </p>
+        <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono
+            frutto
+            della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
+        <ul>
+            <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
+            <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
+        </ul>
+        <p><a href="http://jigsaw.w3.org/css-validator/check/referer"><img
+                        src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
+    </footer>
 </body>
 </html>

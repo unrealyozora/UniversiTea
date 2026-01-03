@@ -8,11 +8,11 @@ enum UserType: int
 
 class User
 {
-    private $username;
-    private $password;
-    private $confirmPassword;
-    private $email;
-    private $phone;
+    private string $username;
+    private string $password;
+    private string $confirmPassword;
+    private string $email;
+    private string $phone;
 
     public function getUsername(): string
     {
@@ -63,6 +63,4 @@ class User
     {
         $this->phone = $phone;
     }
-
-
 }
