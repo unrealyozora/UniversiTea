@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Nome del Tè - UniversiTea</title> <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    
+<header class="main-header">
+
+    <div class="logo">
+        <a href="../../index.html">
+            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        </a>
+    </div>
+
+    <nav id="main-menu" aria-label="Menu principale">
+        <ul>
+            <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
+            <li><a href="tea-info.html">Il nostro Tè</a></li>
+            <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+            <li><a href="dashboard.php">Il tuo profilo</a></li>
+        </ul>
+    </nav>
+
+    <nav id="user-actions" aria-label="Menu utente">
+        <ul>
+            <li>
+                <a href="cart.html" class="nav-text-link" aria-label="Visualizza carrello">
+                    <img src="../../assets/images/cart.png" alt="" width="48" height="48" aria-hidden="true">
+                </a>
+            </li>
+            <li>
+                <a href="register.html" class="btn-join" aria-label="Accedi al profilo">
+                    <span lang="en-GB">Join Now</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</header>
+
+    <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <p>Ti trovi in: 
+            <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt; 
+            <a href="shop.html"><span lang="en-GB">Shop</span></a> &gt; 
+            <span aria-current="page">Nome del Tè</span>
+        </p>
+    </nav>
+
+    <main>
+        <section class="product-detail-container">
+            <h1>Test aggiornamento server</h1>
+            
+            <div class="product-gallery">
+                <img src="../../assets/images/shopping-cart.png"
+                     alt="Foglie di tè verde Sencha essiccate in tazza di ceramica">
+            </div>
+
+            <div class="product-info">
+                <h1>Tè Verde Sencha</h1>
+                
+                <p class="product-description">
+                    Un classico tè verde giapponese dal sapore fresco e vegetale. 
+                    Ricco di antiossidanti, perfetto per la concentrazione durante lo studio.
+                </p>
+                
+                <div class="product-meta">
+                    <p class="price" aria-label="Prezzo: 15 euro e 99 centesimi">€15,99</p>
+                    <p class="availability available"><span aria-hidden="true">●</span> Disponibile</p>
+                </div>
+
+                <form class="add-to-cart-form">
+                    <label for="quantity">Quantità:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                    
+                    <button type="submit" class="btn-join btn-add-cart">
+                        Aggiungi al carrello
+                    </button>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <g transform="translate(15, 25)">
+    <path d="M5 10 H55 Q60 35 30 35 Q0 35 5 10 Z" fill="#0f3d3e"/>
+    <ellipse cx="30" cy="10" rx="25" ry="5" fill="#0f3d3e" stroke="#ffffff" stroke-width="1"/>
+    <path d="M55 12 Q70 12 70 20 Q70 28 55 28" stroke="#0f3d3e" stroke-width="5" fill="none"/>
+    <path d="M0 40 Q30 50 60 40" stroke="#0f3d3e" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#0f3d3e">
+    <path d="M40 0 L42 8 L50 10 L42 12 L40 20 L38 12 L30 10 L38 8 Z" transform="scale(0.7) translate(40, 10)"/>
+    <path d="M40 0 L42 8 L50 10 L42 12 L40 20 L38 12 L30 10 L38 8 Z" transform="scale(0.5) translate(55, 30)"/>
+    <path d="M40 0 L42 8 L50 10 L42 12 L40 20 L38 12 L30 10 L38 8 Z" transform="scale(0.5) translate(95, 25)"/>
+  </g>
+
+  <text x="95" y="55" font-family="sans-serif" font-weight="900" font-size="38" fill="#0f3d3e" letter-spacing="-1">
+    universitea
+  </text>
+</svg>
