@@ -90,7 +90,7 @@ $user = getCurrentUser();
     // Carica carrello dal server
     async function loadCart() {
         try {
-            const response = await fetch('../config/cart_api/get_cart.php');
+            const response = await fetch('../config/cart_api/cart_get.php');
             const data = await response.json();
 
             if (data.success) {
@@ -149,7 +149,7 @@ $user = getCurrentUser();
                                     <button class="quantity-btn" onclick="updateQuantity(${item.product_id}, ${parseInt(item.quantity) + 1})"
                                             ${parseInt(item.quantity) >= item.stock ? 'disabled' : ''}>+</button>
                                 </div>
-                                <button class="remove-btn" onclick="removeItem(${item.product_id})">🗑️ Rimuovi</button>
+                                <button class="remove-btn" onclick="removeItem('${item.product_id}')">🗑️ Rimuovi</button>
                             </div>
                         </div>
                     `).join('')}
@@ -208,7 +208,7 @@ $user = getCurrentUser();
         if (!confirm('Vuoi rimuovere questo prodotto dal carrello?')) return;
 
         try {
-            const response = await fetch('api/cart_remove.php', {
+            const response = await fetch('../config/cart_api/cart_remove.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
