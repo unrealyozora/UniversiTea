@@ -642,38 +642,139 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 /*ERRORPAGES*/
 .errorpage {
     display: flex;
-    flex-direction: column; /*Mette gli elementi uno sotto l'altro.*/
-    justify-content: center; /*Centra verticalmente rispetto al contenitore.*/
-    align-items: center; /*Centra orizzontalmente tutto il contenuto.*/
-    text-align: center; /*Forza il testo dei paragrafi al centro.*/
-    
-    min-height: 100vh; /*Occupa tutta l'altezza dello schermo.*/
-    width: 100%; /*Occupa tutta la larghezza.*/
-    padding: 20px;
-    box-sizing: border-box; /*Evita problemi di padding.*/
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1.25em;
+    box-sizing: border-box;
+    position: relative; /*Fondamentale per contenere le immagini absolute.*/
+    overflow: hidden; 
 }
 
 .errorpage h1 {
-    font-size: 8rem;     
-    margin: 0;         
-    line-height: 1;       
+    font-size: 8rem;
+    margin: 0;
+    line-height: 1;
     color: var(--universitea-green);
+    position: relative;
+    z-index: 2;
 }
 
-/*Stile per paragrafi normali*/
-.errorpage p {
-    font-size: 1.1rem;   
-    color: var(--txtcolor);        
-    max-width: 500px;
-}
-
-/*Stile per paragrafo highlight*/
-.errorpage p.highlight {
-    font-size: 2rem;        
-    font-weight: bold;      
-    color: var(--lightbgcolor);       
-    margin-bottom: 30px;   
+.errorpage h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--lightbgcolor);
+    margin-bottom: 1.5em;
     line-height: 1.2;
+}
+
+.errorpage p {
+    font-size: 1.1rem;
+    color: var(--txtcolor);
+    max-width: 31.25em;
+    position: relative;
+    z-index: 2;
+}
+
+/*Per vedere meglio il link usando tab per scorrere la pagina, per accessibilità*/
+.errorpage a:focus {
+    outline: 3px solid var(--universitea-green);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.error-image {
+    position: absolute;
+    z-index: 1; /*Immagine sta sempre dietro al testo.*/
+    pointer-events: none; /*Immagine non coprirà mai i link*/
+}
+
+.error-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0.9em 1.5em rgba(0,0,0,0.15));
+}
+
+.is-403 {
+    width: 17.5em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-150%, -60%); 
+}
+
+.is-403 img { 
+    transform: rotate(5deg); 
+}
+
+.is-404 {
+    width: 28em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-120%, -50%); /*Regola questi numeri per spostare e non top e left.*/
+}
+
+.is-404 img { 
+    transform: rotate(-10deg); 
+}
+
+.is-500 {
+    width: 30em;
+    top: 40%; /*usa il transform!!!*/
+    left: 45%;
+    transform: translate(-130%, -40%);
+}
+
+.is-503 {
+    width: 25em;
+    top: 40%;
+    left: 37%;
+    transform: translate(-130%, -40%);
+}
+
+@media (max-width: 1024px) {
+
+    .errorpage .error-image {
+        position: relative; 
+        transform: none; 
+        left: auto; 
+        top: auto;
+        width: 18em; /* Dimensione per tablet */
+        margin-bottom: 1.5em;
+        z-index: 2; 
+    }
+
+    .errorpage .error-image img {
+        transform: rotate(0deg); 
+    }
+
+    .errorpage h1 {
+        font-size: 6rem;
+        margin-top: 0;
+    }
+
+    .errorpage h2 {
+        font-size: 1.7rem;
+    }
+}
+
+/*Mobile*/
+/*Qui modifichiamo solo ciò che deve cambiare ulteriormente rispetto al tablet.*/
+@media (max-width: 768px) {
+    .errorpage .error-image {
+        width: 14em; 
+    }
+
+    .errorpage h1 {
+        font-size: 4.5rem; 
+    }
+
+    .errorpage h2 {
+        font-size: 1.5rem;
+    }
 }
 
 
