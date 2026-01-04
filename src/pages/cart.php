@@ -13,6 +13,8 @@ $user = getCurrentUser();
     <meta name="keywords" content="tè, università, tisane, carrello , negozio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../style/style.css">
+
+    <link rel="stylesheet" href="../style/print.css" media="print">
 </head>
 <body>
 <header class="main-header">

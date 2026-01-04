@@ -1,0 +1,300 @@
+/* ==========================================================================
+   STILE DI STAMPA (PRINT STYLESHEET)
+   ========================================================================== */
+
+@media print {
+    :root {
+        --darkbgcolor: #ffffff !important;
+        --graybgcolor: #ffffff !important;
+        --lightbgcolor: #ffffff !important;
+        --txtcolor: #000000 !important;
+        --card-bg-color: transparent !important;
+        --card-border-color: #000000 !important;
+        --universitea-green: #006400 !important; /* Verde scuro per contrasto su carta */
+        --linkcolor: #000000 !important;
+    }
+
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        filter: none !important; /* Rimuove invert o blur */
+        backdrop-filter: none !important;
+    }
+
+    html, body {
+        font-size: 12pt;
+        line-height: 1.5;
+        font-family: Georgia, "Times New Roman", serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        width: 100%;
+        overflow: visible;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #000;
+        font-weight: bold;
+    }
+
+    /* Mostra href dopo il link, escluso breadcrumb, loghi e link interni (#) */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+        font-weight: normal;
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript"]:after,
+    .logo a:after,
+    #breadcrumb a:after,
+    .product-card a:after {
+        content: "";
+    }
+
+    /* 3. NASCONDERE ELEMENTI INUTILI
+       Nascondiamo menu, pulsanti interattivi, carrelli, video, parallasse, ecc.
+    */
+    nav#main-menu,
+    nav#user-actions,
+    .mobile-menu-overlay,
+    .hamburger-btn,
+    .skip-link,
+    .parallax-scene,         /* Rimuove lo sfondo animato della home */
+    .hero-cta,               /* Rimuove bottoni "Join Now" */
+    .bestsellers-nav,        /* Rimuove frecce carosello */
+    .bestsellers-dots-container,
+    .accessibility-controls,
+    .btn-add,                /* Rimuove bottoni aggiungi al carrello */
+    .btn-join,
+    .submit-btn,
+    .filter-section,         /* Rimuove filtri shop */
+    model-viewer,            /* I modelli 3D non si stampano */
+    form,                    /* Nasconde form di login/registrazione */
+    iframe,
+    footer ul,               /* Nasconde link ridondanti nel footer */
+    footer p a img           /* Nasconde i badge di validazione W3C */
+    {
+        display: none !important;
+    }
+
+    .parallax-scene,
+    .parallax-layer,
+    img.parallax-layer,
+    .hero-section .parallax-scene {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        opacity: 0 !important;
+        position: absolute !important; /* Toglie dal flusso se display fallisce */
+        z-index: -9999 !important;
+    }
+
+    .accessibility-controls,
+    form.accessibility-controls,
+    .access-toggle,
+    .bestsellers-header .accessibility-controls {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* 4. LAYOUT GENERALE */
+
+    /* Header semplificato */
+    .main-header,
+    .main-header.scrolled {
+        position: static; /* Non più fixed */
+        background: none;
+        border-bottom: 2px solid #000;
+        padding: 20px 0;
+        display: block;
+        text-align: center;
+        height: auto;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo-img {
+        width: 200px; /* Logo più piccolo e definito */
+        height: auto;
+        margin: 0 auto;
+        filter: grayscale(100%) brightness(0); /* Logo nero puro */
+    }
+
+    /* Breadcrumb */
+    #breadcrumb {
+        position: static;
+        background: none;
+        border: none;
+        color: #000;
+        padding: 10px 0;
+        margin: 0;
+        font-size: 0.9rem;
+        backdrop-filter: none;
+    }
+
+    #breadcrumb span[aria-current="page"] {
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    /* Main Content Reset */
+    main {
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    section {
+        page-break-inside: avoid; /* Evita di tagliare una sezione a metà pagina */
+        padding: 20px 0 !important;
+    }
+
+    /* Titoli */
+    h1, h2, h3 {
+        color: #000 !important;
+        page-break-after: avoid; /* Tiene il titolo attaccato al paragrafo */
+        text-align: left;
+    }
+
+    h1 { font-size: 24pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
+    h2 { font-size: 18pt; margin-top: 30px; }
+
+    /* 5. STILI SPECIFICI PER PAGINA */
+
+    /* --- HOME --- */
+    .hero-section {
+        height: auto;
+        background: none;
+        display: block;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .hero-ui-content {
+        position: static;
+        padding: 0;
+    }
+
+    .hero-text-box {
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+        text-align: left;
+        color: #000;
+        animation: none;
+    }
+
+    .hero-brand { font-size: 30pt; color: #000; }
+    .hero-slogan { color: #333; font-style: italic; }
+    .hero-description { color: #000; max-width: 100%; font-size: 12pt; }
+
+    /* Best Sellers (Layout Lineare invece di Slider) */
+    .bestsellers-content-wrapper {
+        display: block; /* Linearizza il contenuto */
+        transform: none !important; /* Rimuove skew e traslazioni */
+    }
+
+    .bestsellers-content-wrapper:after { display: none; } /* Rimuove tendina verde */
+
+    .bestsellers-info {
+        border-left: 4px solid #000; /* Bordo nero invece di verde */
+        margin: 0;
+        padding-left: 20px;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+
+    .bestsellers-visual {
+        display: none; /* Nasconde l'area 3D */
+    }
+
+    /* --- SHOP --- */
+    .product-list {
+        display: block; /* Lista verticale per stampa ordinata */
+    }
+
+    .product-card {
+        border: 1px solid #ccc;
+        border-radius: 0;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+        display: flex;
+        flex-direction: row; /* Immagine a sx, testo a dx */
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .product-card:hover { transform: none; box-shadow: none; }
+
+    .product-card img {
+        width: 100px;
+        height: auto;
+        border: 1px solid #eee;
+        margin-right: 20px;
+        align-self: flex-start;
+    }
+
+    .product-info {
+        padding: 0;
+        display: block;
+    }
+
+    .product-info h3 { margin-top: 0; font-size: 14pt; }
+    .product-info .description { -webkit-line-clamp: unset; overflow: visible; color: #000; }
+    .product-info .price { font-weight: bold; font-size: 14pt; margin-top: 10px; display: block;}
+
+    /* --- TEA INFO --- */
+    #tea-content .container {
+        display: block; /* Rimuove la griglia */
+    }
+
+    .aside-container {
+        padding-top: 20px;
+        page-break-inside: avoid;
+    }
+
+    .curiosita {
+        background: #f0f0f0 !important; /* Grigio chiarissimo per distinguere il box */
+        border: 1px solid #000;
+        color: #000;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .teiera { display: none; } /* Nasconde immagine decorativa */
+
+    /* --- PRODUCT DETAIL --- */
+    .product-detail-container {
+        display: block;
+    }
+
+    .product-gallery img {
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .add-to-cart-form { display: none; } /* Nasconde il form di acquisto */
+
+    /* --- FOOTER --- */
+    footer {
+        border-top: 2px solid #000;
+        margin-top: 50px;
+        padding-top: 20px;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    footer p {
+        margin: 5px 0;
+    }
+}
