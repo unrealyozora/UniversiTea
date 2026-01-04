@@ -3,13 +3,14 @@
 <meta charset="utf-8">
 
 <head>
-    <title>About Us</title>
-    <meta name="description" content="Pagina dedicata alle informazioni sulla azienda">
+    <title lang="en">Shop</title>
+    <meta name="description" content="Vetrina dei prodotti in vendita su UniversiTea">
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
+    <a href="#content" class="skip-link">Salta al contenuto principale</a>
     <header class="main-header">
 
         <div class="logo">
@@ -30,7 +31,7 @@
         <nav id="user-actions" aria-label="Menu utente">
             <ul>
                 <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
-                            src="../../assets/images/cart.png" alt="Carrello" width="48" height="48"></a></li>
+                            src="../../assets/images/cart.png" alt="" width="48" height="48"></a></li>
                 <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
             </ul>
         </nav>
@@ -38,13 +39,55 @@
     </header>
 
     <nav id="breadcrumb">
-        <p>Ti trovi in: <a href="../../index.html">Home</a> >> About</p>
+        <p>Ti trovi in: <a href="../../index.html"><span lang="en">Home</span></a> <span aria-hidden="true"> &gt; </span> <span lang="en">Shop</span></p>
     </nav>
-    <main id="content">
-        <section>
-            Siamo un'azienda incredibile, chinotti a tutto spiano ecc...
-        </section>
-    </main>
+    <main id="shop-content">
 
+        <section id="content">
+            <h1>I nostri prodotti</h1>
+            <p>In questa pagina potrai consultare il vasto catalogo di UniversiTea, tra té, <span lang="en">merchandising</span>
+                i servizi universitari. Solo qui trovi una scelta così ambia e a prezzi così conveniente.</p>
+            <p>Se per caso tu stessi cercando solo un tipo in particolare di prodotto, non ti preoccupare.
+                Scegli dal menù di seguito l'opzione che più ti aggrada tra Bevande, <span lang="en">Merchandising</span>
+                e Servizi e il negozio si aggiornerà per mostrarti solo ciò che ti interessa. </p>
+        </section>
+        <section class="filter-section">
+            <form id="filter-form">
+                <fieldset class="filter-group">
+                    <legend>Filtra per categoria:</legend>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="cat-tutti" name="category" value="tutti" checked>
+                        <label for="cat-tutti">Tutti</label>
+                    </div>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="cat-bevande" name="category" value="bevande">
+                        <label for="cat-bevande">Bevande</label>
+                    </div>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="cat-merch" name="category" value="merchandising">
+                        <label for="cat-merch">Merchandising</label>
+                    </div>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="cat-servizi" name="category" value="servizi">
+                        <label for="cat-servizi">Servizi</label>
+                    </div>
+                    <div class="radio-wrapper">
+                        <input type="radio" id="cat-bundle" name="category" value="bundle">
+                        <label for="cat-bundle" lang="en">Bundle</label>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+        <section aria-live="polite" aria-atomic="true">
+            <h2>Prodotti nello <span lang="en">Shop</span></h2>
+
+            <p id="status-msg"></p>
+
+            <ul class="product-list" id="product-list">
+            </ul>
+        </section>
+
+    </main>
+    <script src="../config/shop.js"></script>
 </body>
 </html>
