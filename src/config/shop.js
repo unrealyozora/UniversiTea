@@ -1,9 +1,4 @@
-// shop.js
-
 const API_URL = '../config/api_prodotti.php';
-// NOTA: Assicurati che api_prodotti.php sia nella stessa cartella di shop.html,
-// altrimenti aggiusta il percorso (es: '../api/api_prodotti.php')
-
 document.addEventListener('DOMContentLoaded', () => {
     // Carica tutti i prodotti all'avvio
     fetchProducts();
@@ -71,10 +66,13 @@ async function fetchProducts(category = 'tutti') {
             return `
             <li class="product-item">
                 <article class="product-card">
-                    <img src="${imgPath}" alt="Immagine di ${nome}" loading="lazy">
+                <a aria-label="vai alla pagina di ${nome}" href="product.html?id=${id}">
+                    <img src="${imgPath}" alt="" loading="lazy">
+                </a>
                     <div class="product-info">
                         <h3>${nome}</h3>
                         <p class="category-tag">${product.categoria}</p>
+                        <p>${id}</p>
                         <p class="description">${desc}</p>
                         <p class="price">€ ${prezzo}</p>
                         <button class="btn-add" 

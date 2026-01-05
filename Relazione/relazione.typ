@@ -167,7 +167,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ),
   ..wcag-row(
     "1.4.3 Contrasto minimo", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "WCAG Contrast Checker",
     "Testo su sfondo scuro verificato (Ratio > 4.5:1 per testo normale)."
   ),
   ..wcag-row(
@@ -268,7 +268,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
 
   ..wcag-row(
     "4.1.1 Parsing", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "PHPStorm Validator",
     "Codice validato W3C, ID univoci garantiti."
   ),
   ..wcag-row(

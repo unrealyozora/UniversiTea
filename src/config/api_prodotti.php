@@ -10,6 +10,7 @@ try {
 
     // Recuperiamo il filtro dalla URL (?cat=bevande)
     $filtroCategoria = $_GET['cat'] ?? null;
+    $filtroId = $_GET['id'] ?? null;
 
     // QUERY DINAMICA
     // Selezioniamo i dati comuni e "calcoliamo" la categoria al volo
@@ -19,6 +20,16 @@ try {
                 P.descrizione, 
                 P.prezzo, 
                 P.disponibilità,
+                -- Campi specifici per BEVANDE
+                B.temp_consigliata,
+                B.tipologia_bevanda,
+                B.scoop,
+                -- Campi specifici per MERCHANDISING
+                M.Materiale,
+                M.tipologia_march,
+                -- Campi specifici per SERVIZI
+                S.tipologia_servizi,
+                S.livello_urgenza,
                 CASE 
                     WHEN B.id IS NOT NULL THEN 'bevande'
                     WHEN M.id IS NOT NULL THEN 'merchandising' -- March_Bevande
@@ -32,10 +43,11 @@ try {
             LEFT JOIN Servizi S ON P.id = S.id
             LEFT JOIN Bundle BU ON P.id = BU.id_bundle
             WHERE 1=1";
-    // 1=1 serve per concatenare facilmente le condizioni successive
 
-    // Applicazione Filtro Backend (se richiesto)
-    if ($filtroCategoria && $filtroCategoria !== 'tutti') {
+    if($filtroId){
+        $sql .= " AND P.id = :id";
+    }
+    elseif ($filtroCategoria && $filtroCategoria !== 'tutti') {
         if ($filtroCategoria === 'bevande') {
             $sql .= " AND B.id IS NOT NULL";
         } elseif ($filtroCategoria === 'merchandising') {
@@ -52,6 +64,11 @@ try {
     $sql .= " ORDER BY P.nome ASC";
 
     $stmt = $conn->prepare($sql);
+
+    if($filtroId){
+        $stmt->bindParam(":id", $filtroId, PDO::PARAM_STR);
+    }
+
     $stmt->execute();
 
     $prodotti = $stmt->fetchAll(PDO::FETCH_ASSOC);

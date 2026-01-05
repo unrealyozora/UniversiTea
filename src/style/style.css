@@ -710,25 +710,21 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 }
 
 /* --- SEZIONE FILTRI --- */
-.filter-section {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    display: flex;
-    justify-content: center;
-}
+
 
 .filter-group {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     border: none;
     display: flex;
     gap: 1rem;
-    padding: 0;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .filter-group legend {
     color: #888;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -780,6 +776,131 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 
 .radio-wrapper label:hover {
     border-color: var(--universitea-green);
+}
+
+/* =========================================
+   STILE PAGINA PRODOTTO (WCAG AA & STICKY)
+========================================= */
+
+/* Layout Griglia: 50% Immagine - 50% Testo */
+.product-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 2rem auto 6rem auto;
+    padding: 0 5%;
+    align-items: start; /* Fondamentale per l'effetto sticky */
+}
+
+/* Colonna Destra "Sticky" */
+.product-info-sticky {
+    position: sticky;
+    top: 130px; /* Si ferma sotto l'header */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03); /* Effetto vetro scuro */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+}
+
+/* Tipografia e Contrasto */
+.product-info-sticky h1 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    color: #fff;
+    margin: 0.5rem 0;
+}
+
+.category-tag {
+    font-size: 0.8rem;
+    color: var(--universitea-green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Testo Descrizione: Colore chiaro per contrasto su sfondo scuro */
+.product-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #d0d0d0;
+}
+
+/* Prezzo e Status */
+.product-meta {
+    display: flex; align-items: center; gap: 2rem; margin-top: 1rem;
+}
+.price {
+    font-size: 2rem; font-weight: 700; color: var(--universitea-green);
+}
+.availability {
+    font-size: 0.9rem; font-weight: 600; color: #e0e0e0;
+    display: flex; align-items: center; gap: 8px;
+}
+.status-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background-color: var(--universitea-green);
+    box-shadow: 0 0 8px var(--universitea-green);
+}
+/* Variante non disponibile */
+.availability.out-of-stock .status-dot { background-color: #ff4444; box-shadow: 0 0 8px #ff4444; }
+
+/* Immagine */
+.product-gallery img {
+    width: 100%; height: auto;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Form Acquisto */
+.add-to-cart-form {
+    display: grid; grid-template-columns: 80px 1fr; gap: 15px;
+    margin-top: 1rem;
+}
+.qty-label {
+    display: block; font-size: 0.7rem; color: #aaa; text-transform: uppercase; margin-bottom: 5px;
+}
+.qty-input {
+    width: 100%; padding: 10px; text-align: center; font-size: 1.1rem;
+    background: transparent; border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px; color: #fff;
+}
+.btn-add-cart {
+    width: 100%; height: auto; cursor: pointer; border: none; font-size: 1rem;
+}
+/* Disabilita bottone se esaurito */
+.btn-add-cart:disabled {
+    opacity: 0.5; cursor: not-allowed; background-color: #333; color: #fff; border-color: #333;
+}
+
+/* Specifiche Tecniche */
+.product-specs {
+    background: rgba(0, 214, 159, 0.1);
+    border-left: 4px solid var(--universitea-green);
+    padding: 1.2rem;
+    border-radius: 0 12px 12px 0;
+    margin-top: 1rem;
+}
+.spec-item { margin-bottom: 0.5rem; color: #fff; }
+
+/* Separatore */
+.separator { border: 0; height: 1px; background: rgba(255,255,255,0.1); width: 100%; }
+
+/* FOCUS VISIBILE (Accessibilità Tastiera) */
+a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 3px solid #fff; outline-offset: 4px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+    .product-detail-container { grid-template-columns: 1fr; gap: 2rem; }
+    .product-info-sticky { position: static; padding: 1.5rem; }
+    .product-gallery { order: -1; }
 }
 
 
