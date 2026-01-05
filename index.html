@@ -2,236 +2,237 @@
 <html lang="it">
 
 <head>
-  <meta charset="utf-8">
-  <title>UniversiTea - Home</title>
-  <meta name="description"
-    content="Pagina dedicata al negozio UniversiTea, un negozio che propone una vasta gamma di Te' e prodotti affini di alta qualità">
-  <meta name="keywords" content="tè, università, tisane, negozio">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./src/style/style.css">
+    <meta charset="utf-8">
+    <title>UniversiTea - Home</title>
+    <meta name="description"
+          content="Pagina dedicata al negozio UniversiTea, un negozio che propone una vasta gamma di Te' e prodotti affini di alta qualità">
+    <meta name="keywords" content="tè, università, tisane, negozio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./src/style/style.css">
+    <link rel="stylesheet" href="../style/print.css" media="print">
 
-  <!--  ==================================== script per modelli 3d =============================== -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <!--  ==================================== script per modelli 3d =============================== -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
 </head>
 
 <body>
 
-  <header class="main-header">
+<header class="main-header">
 
     <div class="logo">
-      <a href="index.html">
-        <img src="assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
-      </a>
+        <a href="index.html">
+            <img src="assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        </a>
     </div>
 
     <nav id="main-menu" aria-label="Menu principale">
-      <ul>
-        <li><a href="src/pages/tè.html">I nostri Tè</a></li>
-        <li><a href="src/pages/favori.html">I favori</a></li>
-        <li><a href="src/pages/merch.html"><span lang="en-GB">Merchandising</span></a></li>
-        <li><a href="src/pages/about.html"><span lang="en-GB">About</span></a></li>
-        <li><a href="src/pages/shop.html">Area Venditori</a></li>
-      </ul>
+        <ul>
+            <li><a href="src/pages/shop.html"><span lang="en-GB">Shop</span></a></li>
+            <li><a href="src/pages/tea-info.html">Il nostro Tè</a></li>
+            <li><a href="src/pages/about.html"><span lang="en-GB">About</span></a></li>
+            <li><a href="src/pages/dashboard.php">Il tuo profilo</a></li>
+        </ul>
     </nav>
 
     <nav id="user-actions" aria-label="Menu utente">
-      <ul>
-        <li>
-          <a href="src/pages/cart.html" class="nav-text-link" aria-label="Visualizza preferiti">
-            <img src="assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
-          </a>
-        </li>
-        <li>
-          <a href="src/pages/cart.html" class="nav-text-link" aria-label="Visualizza carrello">
-            <img src="assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
-          </a>
-        </li>
-        <li>
-          <a href="src/pages/register.html" class="btn-join" aria-label="Accedi al profilo">
-            <span lang="en-GB">Join Now</span>
-          </a>
-        </li>
-      </ul>
+        <ul>
+            <li>
+                <a href="src/pages/cart.php" class="nav-text-link" aria-label="Visualizza carrello">
+                    <img src="assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+                </a>
+            </li>
+            <li>
+                <a href="src/pages/register.html" class="btn-join" aria-label="Accedi al profilo">
+                    <span lang="en-GB">Join Now</span>
+                </a>
+            </li>
+        </ul>
     </nav>
 
-  </header>
+</header>
 
-  <main>
+<main>
 
     <section class="hero-section" aria-label="Benvenuto in UniversiTea">
 
-      <div class="parallax-scene">
-          <img src="assets/images/layer-1.svg" class="parallax-layer layer-1" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-2.svg" class="parallax-layer layer-2" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-3.svg" class="parallax-layer layer-3" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-4.svg" class="parallax-layer layer-4" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-5.svg" class="parallax-layer layer-5" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-6.svg" class="parallax-layer layer-6" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-7.svg" class="parallax-layer layer-7" alt="" aria-hidden="true">
-          
-          <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="" aria-hidden="true">
-      </div>
+        <div class="parallax-scene">
+            <img src="assets/images/layer-1.svg" class="parallax-layer layer-1" alt="" aria-hidden="true">
 
-      <nav id="breadcrumb" aria-label="Percorso di navigazione">
-        <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
-      </nav>
+            <img src="assets/images/layer-2.svg" class="parallax-layer layer-2" alt="" aria-hidden="true">
 
-      <div class="hero-ui-content">
+            <img src="assets/images/layer-3.svg" class="parallax-layer layer-3" alt="" aria-hidden="true">
 
-          <div class="hero-text-box">
-              <h1 class="hero-brand">UniversiTea</h1>
-              <p class="hero-slogan">il tè che studia con te</p>
-              <p class="hero-description">
-                Dalla natura incontaminata, direttamente nella tua tazza. Una selezione di Tè <span lang="en-GB">premium</span> per le tue sessioni di studio e relax
-              </p>
-              <a href="src/pages/register.html" class="hero-cta">
-                <span lang="en-GB">Join Now for Free</span>
-              </a>
-          </div>
+            <img src="assets/images/layer-4.svg" class="parallax-layer layer-4" alt="" aria-hidden="true">
 
-      </div>
+            <img src="assets/images/layer-5.svg" class="parallax-layer layer-5" alt="" aria-hidden="true">
+
+            <img src="assets/images/layer-6.svg" class="parallax-layer layer-6" alt="" aria-hidden="true">
+
+            <img src="assets/images/layer-7.svg" class="parallax-layer layer-7" alt="" aria-hidden="true">
+
+            <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="" aria-hidden="true">
+        </div>
+
+        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+            <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
+        </nav>
+
+        <div class="hero-ui-content">
+
+            <div class="hero-text-box">
+                <h1 class="hero-brand">UniversiTea</h1>
+                <p class="hero-slogan">il tè che studia con te</p>
+                <p class="hero-description">
+                    Dalla natura incontaminata, direttamente nella tua tazza. Una selezione di Tè <span lang="en-GB">premium</span>
+                    per le tue sessioni di studio e relax
+                </p>
+                <a href="src/pages/register.html" class="hero-cta">
+                    <span lang="en-GB">Join Now for Free</span>
+                </a>
+            </div>
+
+        </div>
 
     </section>
 
     <section class="section-dark best-sellers-container" aria-labelledby="bestsellers-heading">
 
-      <header class="bestsellers-header">
-        
-        <div class="header-left-group">
-          <h2 id="bestsellers-heading" class="bestsellers-section-title">I più venduti</h2>
-          
-          <div class="bestsellers-nav">
-            <button class="bestsellers-nav-btn prev" id="btn-prev" type="button" 
-                    aria-label="Vedi prodotto precedente" 
-                    aria-controls="bestsellers-content">
-              <img src="assets/images/angle-left.svg" alt="" aria-hidden="true">
-            </button>
+        <header class="bestsellers-header">
 
-            <button class="bestsellers-nav-btn next" id="btn-next" type="button" 
-                    aria-label="Vedi prodotto successivo"
-                    aria-controls="bestsellers-content">
-              <img src="assets/images/angle-right.svg" alt="" aria-hidden="true">
-            </button>
-          </div>
+            <div class="header-left-group">
+                <h2 id="bestsellers-heading" class="bestsellers-section-title">I più venduti</h2>
+
+                <div class="bestsellers-nav">
+                    <button class="bestsellers-nav-btn prev" id="btn-prev" type="button"
+                            aria-label="Vedi prodotto precedente"
+                            aria-controls="bestsellers-content">
+                        <img src="assets/images/angle-left.svg" alt="" aria-hidden="true">
+                    </button>
+
+                    <button class="bestsellers-nav-btn next" id="btn-next" type="button"
+                            aria-label="Vedi prodotto successivo"
+                            aria-controls="bestsellers-content">
+                        <img src="assets/images/angle-right.svg" alt="" aria-hidden="true">
+                    </button>
+                </div>
+            </div>
+
+            <ul id="bestsellers-dots" class="bestsellers-dots-container" aria-hidden="true">
+            </ul>
+
+            <span id="slide-status" class="sr-only" aria-live="polite"></span>
+
+            <form class="accessibility-controls">
+                <fieldset>
+                    <legend>Opzioni di visualizzazione</legend>
+
+                    <label class="access-toggle" title="Disabilita animazioni di transizione">
+                        <input type="checkbox" id="disable-anim" name="disable-anim">
+                        No Animazione
+                    </label>
+
+                    <label class="access-toggle" title="Disabilita rotazione automatica 3D">
+                        <input type="checkbox" id="disable-rot" name="disable-rot">
+                        No Rotazione
+                    </label>
+                </fieldset>
+            </form>
+
+        </header>
+
+        <div class="bestsellers-content-wrapper" id="bestsellers-content" aria-live="polite" aria-atomic="true">
+
+            <article class="bestsellers-info">
+                <h3 class="bestsellers-product-name">Tè Verde Matcha</h3>
+
+                <p>
+                    Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più
+                    pregiate coltivate in ombra, questo "oro verde" offre un concentrato ineguagliabile di
+                    antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami, ideale per
+                    la cerimonia tradizionale o per dare un tocco raffinato alle tue bevande moderne.
+                </p>
+
+                <a href="src/pages/shop.html" class="bestsellers-cta">Scopri di più</a>
+            </article>
+
+            <figure class="bestsellers-visual">
+
+                <model-viewer
+                        id="tea-model"
+                        src="assets/images/Mate.glb"
+                        alt="Modello 3D interattivo della tazza di Tè Verde Matcha"
+                        auto-rotate
+                        camera-controls
+                        shadow-intensity="1"
+                        disable-zoom
+                        aria-describedby="model-caption">
+                </model-viewer>
+
+                <figcaption id="model-caption">Ruota il modello per esplorare i dettagli</figcaption>
+
+            </figure>
+
         </div>
-
-        <ul id="bestsellers-dots" class="bestsellers-dots-container" aria-hidden="true">
-          </ul>
-
-        <span id="slide-status" class="sr-only" aria-live="polite"></span>
-
-        <form class="accessibility-controls">
-            <fieldset>
-                <legend>Opzioni di visualizzazione</legend>
-                
-                <label class="access-toggle" title="Disabilita animazioni di transizione">
-                  <input type="checkbox" id="disable-anim" name="disable-anim">
-                  No Animazione
-                </label>
-    
-                <label class="access-toggle" title="Disabilita rotazione automatica 3D">
-                  <input type="checkbox" id="disable-rot" name="disable-rot">
-                  No Rotazione
-                </label>
-            </fieldset>
-        </form>
-
-      </header>
-
-      <div class="bestsellers-content-wrapper" id="bestsellers-content" aria-live="polite" aria-atomic="true">
-
-          <article class="bestsellers-info">
-            <h3 class="bestsellers-product-name">Tè Verde Matcha</h3>
-            
-            <p>
-              Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo "oro verde" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami, ideale per la cerimonia tradizionale o per dare un tocco raffinato alle tue bevande moderne.
-            </p>
-            
-            <a href="src/pages/shop.html" class="bestsellers-cta">Scopri di più</a>
-          </article>
-
-          <figure class="bestsellers-visual">
-             
-             <model-viewer 
-                id="tea-model"
-                src="assets/images/Mate.glb" 
-                alt="Modello 3D interattivo della tazza di Tè Verde Matcha" 
-                auto-rotate 
-                camera-controls 
-                shadow-intensity="1"
-                disable-zoom
-                aria-describedby="model-caption"> 
-             </model-viewer>
-
-             <figcaption id="model-caption">Ruota il modello per esplorare i dettagli</figcaption>
-
-          </figure>
-
-      </div>
 
     </section>
 
     <section class="section-gray">
-      <h2>Benvenuto su UniversiTea</h2>
-      <p>Scopri la nostra vasta gamma di tè e prodotti affini di alta qualità.</p>
+        <h2>Benvenuto su UniversiTea</h2>
+        <p>Scopri la nostra vasta gamma di tè e prodotti affini di alta qualità.</p>
     </section>
 
-  </main>
+</main>
 
-  <footer>
+<footer>
     <p>
-      <a href="https://validator.w3.org/nu/">
-        <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!" width="88" height="31">
-      </a>
+        <a href="https://validator.w3.org/nu/">
+            <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!" width="88" height="31">
+        </a>
     </p>
     <p>
-      <span lang="en-GB">Copyright</span>© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono frutto della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.
+        <span lang="en-GB">Copyright</span>© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i
+        prodotti presentati sono frutto della nostra immaginazione e ogni riferimento a persone o cose realmente
+        esistenti è casuale.
     </p>
     <ul>
-      <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
-      <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
+        <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
+        <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
     </ul>
     <p>
-      <a href="http://jigsaw.w3.org/css-validator/check/referer">
-        <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!" width="88" height="31">
-      </a>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!" width="88" height="31">
+        </a>
     </p>
-  </footer>
+</footer>
 
 <script>
     // --- DATI ---
     const teaList = [
-      {
-        name: "Tè Verde Matcha",
-        desc: "Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo \"oro verde\" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami.",
-        model: "assets/images/Mate.glb"
-      },
-      {
-        name: "Earl Grey Imperiale",
-        desc: "Il classico tè nero aromatizzato con vero olio essenziale di bergamotto calabrese. Un blend aristocratico e profumato, perfetto per il pomeriggio, capace di trasformare ogni pausa in un momento di pura eleganza britannica.",
-        model: "assets/images/tea_container.glb"
-      },
-      {
-        name: "Infuso ai Frutti Rossi",
-        desc: "Una miscela dolce e dissetante, totalmente priva di teina. L'esplosione di fragole, lamponi e karkadè la rende perfetta sia come bevanda calda rinvigorente d'inverno, sia come dissetante tè freddo d'estate.",
-        model: "assets/images/bustina.glb"
-      }
+        {
+            name: "Tè Verde Matcha",
+            desc: "Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo \"oro verde\" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami.",
+            model: "assets/images/Mate.glb"
+        },
+        {
+            name: "Earl Grey Imperiale",
+            desc: "Il classico tè nero aromatizzato con vero olio essenziale di bergamotto calabrese. Un blend aristocratico e profumato, perfetto per il pomeriggio, capace di trasformare ogni pausa in un momento di pura eleganza britannica.",
+            model: "assets/images/tea_container.glb"
+        },
+        {
+            name: "Infuso ai Frutti Rossi",
+            desc: "Una miscela dolce e dissetante, totalmente priva di teina. L'esplosione di fragole, lamponi e karkadè la rende perfetta sia come bevanda calda rinvigorente d'inverno, sia come dissetante tè freddo d'estate.",
+            model: "assets/images/bustina.glb"
+        }
     ];
 
     // --- VARIABILI ---
     let currentIndex = 0;
     let isAnimating = false;
-    
+
     // Configurazione Tempi (Tweak qui per regolare la reattività)
     // CSS Transition è 0.8s (800ms). Mettiamo JS a 700ms per sbloccare prima.
-    const ANIMATION_DURATION = 700; 
+    const ANIMATION_DURATION = 700;
 
     // --- SELETTORI ---
     const wrapper = document.querySelector('.bestsellers-content-wrapper');
@@ -246,7 +247,7 @@
 
     // --- UTILS ---
     function toggleButtons(enable) {
-        if(enable) {
+        if (enable) {
             btnPrev.disabled = false;
             btnNext.disabled = false;
             isAnimating = false;
@@ -272,9 +273,9 @@
         btnPrev.addEventListener('click', () => changeTea(-1));
         btnNext.addEventListener('click', () => changeTea(1));
 
-        if(rotCheckbox) {
+        if (rotCheckbox) {
             rotCheckbox.addEventListener('change', (e) => {
-                if(e.target.checked) modelViewer.removeAttribute('auto-rotate');
+                if (e.target.checked) modelViewer.removeAttribute('auto-rotate');
                 else modelViewer.setAttribute('auto-rotate', '');
             });
         }
@@ -296,22 +297,22 @@
         }
 
         // 1. BLOCCO TASTI
-        toggleButtons(false); 
+        toggleButtons(false);
 
         // 2. PREPARAZIONE RESET
-        wrapper.classList.add('no-transition'); 
+        wrapper.classList.add('no-transition');
         wrapper.classList.remove('animating-in', 'animating-out');
-        
+
         const dirString = direction === 1 ? 'next' : 'prev';
         wrapper.setAttribute('data-direction', dirString);
-        
+
         void wrapper.offsetWidth; // Forzo il calcolo così si aggiorna lo stato e si posiziona nel punto giusto
 
         // 3. AVVIO ENTRATA
-        wrapper.classList.remove('no-transition'); 
-        
+        wrapper.classList.remove('no-transition');
+
         requestAnimationFrame(() => {
-            wrapper.classList.add('animating-in'); 
+            wrapper.classList.add('animating-in');
         });
 
         // 4. CAMBIO CONTENUTO (Aspetto che la tenda copra)
@@ -320,30 +321,30 @@
 
             // 5. AVVIO USCITA
             wrapper.classList.remove('animating-in');
-            wrapper.classList.add('animating-out'); 
+            wrapper.classList.add('animating-out');
 
             // 6. SBLOCCO TASTI
             setTimeout(() => {
                 // Reset silenzioso
-                wrapper.classList.add('no-transition'); 
-                wrapper.classList.remove('animating-out'); 
-                void wrapper.offsetWidth; 
-                wrapper.classList.remove('no-transition'); 
+                wrapper.classList.add('no-transition');
+                wrapper.classList.remove('animating-out');
+                void wrapper.offsetWidth;
+                wrapper.classList.remove('no-transition');
 
                 // SBLOCCO IMMEDIATO
-                toggleButtons(true); 
-            }, ANIMATION_DURATION); 
+                toggleButtons(true);
+            }, ANIMATION_DURATION);
 
-        }, ANIMATION_DURATION); 
+        }, ANIMATION_DURATION);
     }
 
     function updateContent(index) {
         currentIndex = index;
         const data = teaList[index];
 
-        if(productName) productName.textContent = data.name;
-        if(productDesc) productDesc.textContent = data.desc;
-        if(modelViewer) modelViewer.setAttribute('src', data.model);
+        if (productName) productName.textContent = data.name;
+        if (productDesc) productDesc.textContent = data.desc;
+        if (modelViewer) modelViewer.setAttribute('src', data.model);
 
         const dots = document.querySelectorAll('.bestsellers-dot');
         dots.forEach((dot, i) => {
@@ -356,22 +357,22 @@
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- 1. SETUP MENU MOBILE --- */
-    const header = document.querySelector('.main-header');
-    
-    // Tasto Hamburger
-    const hamburgerBtn = document.createElement('button');
-    hamburgerBtn.className = 'hamburger-btn';
-    hamburgerBtn.setAttribute('aria-label', 'Apri Menu');
-    hamburgerBtn.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span>';
-    header.appendChild(hamburgerBtn);
+        /* --- 1. SETUP MENU MOBILE --- */
+        const header = document.querySelector('.main-header');
 
-    // Overlay (con TASTO CHIUDI ESPLICITO)
-    const overlay = document.createElement('div');
-    overlay.className = 'mobile-menu-overlay';
-    overlay.innerHTML = `
+        // Tasto Hamburger
+        const hamburgerBtn = document.createElement('button');
+        hamburgerBtn.className = 'hamburger-btn';
+        hamburgerBtn.setAttribute('aria-label', 'Apri Menu');
+        hamburgerBtn.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span>';
+        header.appendChild(hamburgerBtn);
+
+        // Overlay (con TASTO CHIUDI ESPLICITO)
+        const overlay = document.createElement('div');
+        overlay.className = 'mobile-menu-overlay';
+        overlay.innerHTML = `
         <button class="close-menu-btn" aria-label="Chiudi Menu">&times;</button>
         <nav class="mobile-nav-content">
             <ul>
@@ -384,94 +385,97 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
         </nav>
     `;
-    document.body.appendChild(overlay);
+        document.body.appendChild(overlay);
 
 
-    /* --- 2. LOGICA APERTURA/CHIUSURA --- */
-    hamburgerBtn.addEventListener('click', () => {
-        document.body.classList.add('menu-open');
-    });
+        /* --- 2. LOGICA APERTURA/CHIUSURA --- */
+        hamburgerBtn.addEventListener('click', () => {
+            document.body.classList.add('menu-open');
+        });
 
-    // Selezioniamo il tasto X appena creato
-    const closeBtn = overlay.querySelector('.close-menu-btn');
-    closeBtn.addEventListener('click', () => {
-        document.body.classList.remove('menu-open');
-    });
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
+        // Selezioniamo il tasto X appena creato
+        const closeBtn = overlay.querySelector('.close-menu-btn');
+        closeBtn.addEventListener('click', () => {
             document.body.classList.remove('menu-open');
         });
-    });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.body.classList.remove('menu-open');
+            });
+        });
 
 
-    /* --- 3. HEADER COLOR CHANGE --- */
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 800) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-
-    /* --- 4. PARALLASSE & HERO FADE FIX --- */
-    const layers = document.querySelectorAll('.parallax-layer');
-    const heroSection = document.querySelector('.hero-section');
-    const heroContent = document.querySelector('.hero-ui-content');
-    
-    // VELOCITÀ
-    const layerSpeeds = [0.85, 0.75, 0.65, 0.30, 0.35, 0.25, 0.15, 0.0];
-    
-    let ticking = false;
-
-    function updateParallax() {
-        const scrollY = window.scrollY;
-        
-        // Ottimizzazione: ferma calcoli se non siamo nella hero
-        if (scrollY > heroSection.offsetHeight) { ticking = false; return; }
-
-        // A. Movimento Immagini (Parallasse)
-        layers.forEach((layer, index) => {
-            if (index < layerSpeeds.length) {
-                const speed = layerSpeeds[index];
-                
-                // VERIFICA: Layer 4 e 7 sono ancorati a sinistra (left: 0) -> Muovi solo Y
-                if (layer.classList.contains('layer-4') || layer.classList.contains('layer-7')) {
-                    layer.style.transform = `translateY(${scrollY * speed}px)`;
-                } else {
-                    // Gli altri sono centrati -> serve translateX(-50%)
-                    layer.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
-                }
+        /* --- 3. HEADER COLOR CHANGE --- */
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 800) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
 
-        // B. Gestione Fade del Box Testo (FIX TONALITÀ)
-        if (heroContent) {
-            // SE SIAMO IN CIMA (0-5px): Resetta tutto.
-            // Rimuovendo lo stile inline, torna a comandare il CSS originale (colore vetro scuro).
-            if (scrollY <= 5) {
-                heroContent.style.opacity = '';
-                heroContent.style.transform = '';
-            } else {
-                // SE SCROLLIAMO: Applica l'effetto dissolvenza
-                // Ho messo 700 invece di 500 per renderlo più graduale
-                const opacity = 1 - (scrollY / 700); 
-                heroContent.style.transform = `translateY(${scrollY * 0.5}px)`;
-                heroContent.style.opacity = opacity > 0 ? opacity : 0;
-            }
-        }
-        
-        ticking = false;
-    }
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateParallax);
-            ticking = true;
+        /* --- 4. PARALLASSE & HERO FADE FIX --- */
+        const layers = document.querySelectorAll('.parallax-layer');
+        const heroSection = document.querySelector('.hero-section');
+        const heroContent = document.querySelector('.hero-ui-content');
+
+        // VELOCITÀ
+        const layerSpeeds = [0.85, 0.75, 0.65, 0.30, 0.35, 0.25, 0.15, 0.0];
+
+        let ticking = false;
+
+        function updateParallax() {
+            const scrollY = window.scrollY;
+
+            // Ottimizzazione: ferma calcoli se non siamo nella hero
+            if (scrollY > heroSection.offsetHeight) {
+                ticking = false;
+                return;
+            }
+
+            // A. Movimento Immagini (Parallasse)
+            layers.forEach((layer, index) => {
+                if (index < layerSpeeds.length) {
+                    const speed = layerSpeeds[index];
+
+                    // VERIFICA: Layer 4 e 7 sono ancorati a sinistra (left: 0) -> Muovi solo Y
+                    if (layer.classList.contains('layer-4') || layer.classList.contains('layer-7')) {
+                        layer.style.transform = `translateY(${scrollY * speed}px)`;
+                    } else {
+                        // Gli altri sono centrati -> serve translateX(-50%)
+                        layer.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
+                    }
+                }
+            });
+
+            // B. Gestione Fade del Box Testo (FIX TONALITÀ)
+            if (heroContent) {
+                // SE SIAMO IN CIMA (0-5px): Resetta tutto.
+                // Rimuovendo lo stile inline, torna a comandare il CSS originale (colore vetro scuro).
+                if (scrollY <= 5) {
+                    heroContent.style.opacity = '';
+                    heroContent.style.transform = '';
+                } else {
+                    // SE SCROLLIAMO: Applica l'effetto dissolvenza
+                    // Ho messo 700 invece di 500 per renderlo più graduale
+                    const opacity = 1 - (scrollY / 700);
+                    heroContent.style.transform = `translateY(${scrollY * 0.5}px)`;
+                    heroContent.style.opacity = opacity > 0 ? opacity : 0;
+                }
+            }
+
+            ticking = false;
         }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
     });
-});
 </script>
 
 </body>

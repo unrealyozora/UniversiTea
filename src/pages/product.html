@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Dettaglio Prodotto - UniversiTea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/print.css" media="print">
+</head>
+
+<body>
+<a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+<header class="main-header">
+    <div class="logo">
+        <a href="../../index.html">
+            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        </a>
+    </div>
+    <nav id="main-menu" aria-label="Menu principale">
+        <ul>
+            <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
+            <li><a href="tea-info.html">Il nostro Tè</a></li>
+            <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+            <li><a href="dashboard.php">Il tuo profilo</a></li>
+        </ul>
+    </nav>
+    <nav id="user-actions" aria-label="Menu utente">
+        <ul>
+            <li>
+                <a href="cart.html" class="nav-text-link" aria-label="Visualizza carrello">
+                    <img src="../../assets/images/cart.png" alt="" width="48" height="48" aria-hidden="true">
+                </a>
+            </li>
+            <li>
+                <a href="register.html" class="btn-join" aria-label="Accedi al profilo">
+                    <span lang="en-GB">Join Now</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<nav id="breadcrumb" aria-label="Percorso di navigazione">
+    <p>Ti trovi in:
+        <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt;
+        <a href="shop.html"><span lang="en-GB">Shop</span></a> &gt;
+        <span aria-current="page" id="breadcrumb-current">Prodotto</span>
+    </p>
+</nav>
+
+<main id="main-content">
+    <section class="product-detail-container">
+
+        <div class="product-gallery">
+            <img src="" alt="" id="product-img-main">
+        </div>
+
+        <div class="product-info-sticky">
+
+            <header class="product-header-group">
+                <span class="category-tag" id="product-category"></span>
+
+                <h1 id="product-title">Caricamento...</h1>
+
+                <div class="product-meta">
+                    <p class="price" id="product-price">--,--</p>
+
+                    <p class="availability available" id="product-availability">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span class="text">Verifica disponibilità...</span>
+                    </p>
+                </div>
+            </header>
+
+            <hr class="separator" aria-hidden="true">
+
+            <div class="description-box">
+                <p class="product-description" id="product-desc">...</p>
+            </div>
+
+            <form class="add-to-cart-form">
+                <div class="qty-wrapper">
+                    <label for="quantity" class="qty-label">Quantità</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" class="qty-input">
+                </div>
+
+                <button type="submit" class="btn-join btn-add-cart">
+                    Aggiungi al carrello
+                </button>
+            </form>
+
+            <div id="specs-placeholder"></div>
+
+        </div>
+    </section>
+</main>
+
+<script src="../config/product.js"></script>
+</body>
+</html>
