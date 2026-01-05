@@ -19,7 +19,7 @@ try {
                 P.nome, 
                 P.descrizione, 
                 P.prezzo, 
-                P.disponibilità,
+                P.disponibilita,
                 -- Campi specifici per BEVANDE
                 B.temp_consigliata,
                 B.tipologia_bevanda,
@@ -44,18 +44,16 @@ try {
             LEFT JOIN Bundle BU ON P.id = BU.id_bundle
             WHERE 1=1";
 
-    if($filtroId){
+    if ($filtroId) {
         $sql .= " AND P.id = :id";
-    }
-    elseif ($filtroCategoria && $filtroCategoria !== 'tutti') {
+    } elseif ($filtroCategoria && $filtroCategoria !== 'tutti') {
         if ($filtroCategoria === 'bevande') {
             $sql .= " AND B.id IS NOT NULL";
         } elseif ($filtroCategoria === 'merchandising') {
             $sql .= " AND M.id IS NOT NULL";
         } elseif ($filtroCategoria === 'servizi') {
             $sql .= " AND S.id IS NOT NULL";
-        }
-        elseif ($filtroCategoria === 'bundle'){
+        } elseif ($filtroCategoria === 'bundle') {
             $sql .= " AND BU.id_bundle IS NOT NULL";
         }
     }
@@ -65,7 +63,7 @@ try {
 
     $stmt = $conn->prepare($sql);
 
-    if($filtroId){
+    if ($filtroId) {
         $stmt->bindParam(":id", $filtroId, PDO::PARAM_STR);
     }
 
