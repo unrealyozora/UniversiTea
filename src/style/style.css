@@ -20,7 +20,6 @@
 
 html,
 body {
-    padding-top:4em;
     font-size: 100%;
     font-family: "Lexend", "Roboto", sans-serif;
     line-height: 1.5em;
@@ -33,6 +32,10 @@ body {
     max-width: 100%;
     margin: 0;
     overflow-x: hidden;
+}
+
+body.homepage {
+    padding-top: 0;
 }
 
 a{
@@ -66,12 +69,17 @@ section {
    1. HEADER PRINCIPALE (Desktop - Cart Style Unificato)
 ========================================================================== */
 .main-header {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
+    position: sticky; top: 0; left: 0; width: 100%; z-index: 10000;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.8rem 5%; 
     box-sizing: border-box; transition: all 0.4s ease;
-    background: rgba(15, 14, 14, 0.85); backdrop-filter: blur(10px);
+    background: rgba(15, 14, 14, 0.95); backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.homepage .main-header {
+    position: fixed;
+    background: rgba(15, 14, 14, 0.85); /* Più trasparente per effetto estetico */
 }
 
 .main-header.scrolled {
