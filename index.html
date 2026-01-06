@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body class="homepage">
 
 <header class="main-header">
 
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="src/pages/register.html" class="btn-join" aria-label="Accedi al profilo">
+                <a href="src/pages/register.html" class="btn-join">
                     <span lang="en-GB">Join Now</span>
                 </a>
             </li>
@@ -53,30 +53,22 @@
 </header>
 
 <main>
+    <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
+    </nav>
 
     <section class="hero-section" aria-label="Benvenuto in UniversiTea">
 
-        <div class="parallax-scene">
-            <img src="assets/images/layer-1.svg" class="parallax-layer layer-1" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-2.svg" class="parallax-layer layer-2" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-3.svg" class="parallax-layer layer-3" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-4.svg" class="parallax-layer layer-4" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-5.svg" class="parallax-layer layer-5" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-6.svg" class="parallax-layer layer-6" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-7.svg" class="parallax-layer layer-7" alt="" aria-hidden="true">
-
-            <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="" aria-hidden="true">
+        <div class="parallax-scene" aria-hidden="true">
+            <img src="assets/images/layer-1.svg" class="parallax-layer layer-1" alt="">
+            <img src="assets/images/layer-2.svg" class="parallax-layer layer-2" alt="">
+            <img src="assets/images/layer-3.svg" class="parallax-layer layer-3" alt="">
+            <img src="assets/images/layer-4.svg" class="parallax-layer layer-4" alt="">
+            <img src="assets/images/layer-5.svg" class="parallax-layer layer-5" alt="">
+            <img src="assets/images/layer-6.svg" class="parallax-layer layer-6" alt="">
+            <img src="assets/images/layer-7.svg" class="parallax-layer layer-7" alt="">
+            <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="">
         </div>
-
-        <nav id="breadcrumb" aria-label="Percorso di navigazione">
-            <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
-        </nav>
 
         <div class="hero-ui-content">
 
@@ -87,13 +79,89 @@
                     Dalla natura incontaminata, direttamente nella tua tazza. Una selezione di Tè <span lang="en-GB">premium</span>
                     per le tue sessioni di studio e relax
                 </p>
-                <a href="src/pages/register.html" class="hero-cta">
-                    <span lang="en-GB">Join Now for Free</span>
-                </a>
+                
+                <div class="hero-buttons">
+                    <a href="src/pages/register.html" class="hero-cta">
+                        <span lang="en-GB">Accedi ora gratuitamente</span>
+                    </a>
+                    
+                    <a href="src/pages/shop.html" class="hero-cta-outline">
+                        <span lang="en-GB">Esplora la collezione</span>
+                    </a>
+                </div>
             </div>
 
         </div>
 
+    </section>
+
+    <section class="values-section" aria-labelledby="values-heading">
+        <h2 id="values-heading" class="section-title">Perché scegliere <span lang="en-GB">UniversiTea</span></h2>
+        
+        <ul class="values-list">
+            <li class="value-item">
+                <img src="assets/images/brain_icon.svg" alt="" aria-hidden="true" width="50" height="50" class="value-icon">
+                <h3><span lang="en-GB">Focus Boost</span></h3>
+                <p>Miscele studiate per massimizzare la tua concentrazione durante lo studio.</p>
+            </li>
+
+            <li class="value-item">
+                <img src="assets/images/leaf_icon.svg" alt="" aria-hidden="true" width="50" height="50" class="value-icon">
+                <h3>100% Naturale</h3>
+                <p>Foglie intere e ingredienti biologici. Niente chimica, solo natura.</p>
+            </li>
+
+            <li class="value-item">
+                <img src="assets/images/student_icon.svg" alt="" aria-hidden="true" width="50" height="50" class="value-icon">
+                <h3><span lang="en-GB">Student Friendly</span></h3>
+                <p>Prezzi e offerte pensati per chi vive di esami e scadenze.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="categories-section" aria-labelledby="categories-heading">
+        <header class="section-header">
+            <h2 id="categories-heading" class="section-title">Esplora la Collezione</h2>
+            <p class="section-subtitle">Tutto quello che ti serve per sopravvivere alla sessione</p>
+        </header>
+
+        <ul class="categories-grid">
+            <li>
+                <a href="src/pages/shop.html?category=tea" class="category-link">
+                    <article class="category-card">
+                        <img src="assets/images/cat.jpg" alt="Selezione di tè sfusi e in bustina" class="category-img">
+                        <div class="category-content">
+                            <h3>I Nostri Tè</h3>
+                            <p>Verdi, Neri, Infusi e Tisane</p>
+                        </div>
+                    </article>
+                </a>
+            </li>
+
+            <li>
+                <a href="src/pages/shop.html?category=merch" class="category-link">
+                    <article class="category-card">
+                        <img src="assets/images/cat_merch.jpg" alt="Tazze, teiere e abbigliamento con logo" class="category-img">
+                        <div class="category-content">
+                            <h3><span lang="en-GB">Merch</span> & Accessori</h3>
+                            <p>Tazze, Teiere e stile</p>
+                        </div>
+                    </article>
+                </a>
+            </li>
+
+            <li>
+                <a href="src/pages/shop.html?category=favors" class="category-link">
+                    <article class="category-card special-card">
+                        <img src="assets/images/cat_favors.jpg" alt="Una stretta di mano misteriosa in penombra" class="category-img">
+                        <div class="category-content">
+                            <h3>I Favori</h3>
+                            <p>Quando il tè non basta</p>
+                        </div>
+                    </article>
+                </a>
+            </li>
+        </ul>
     </section>
 
     <section class="section-dark best-sellers-container" aria-labelledby="bestsellers-heading">
@@ -177,9 +245,68 @@
 
     </section>
 
-    <section class="section-gray">
-        <h2>Benvenuto su UniversiTea</h2>
-        <p>Scopri la nostra vasta gamma di tè e prodotti affini di alta qualità.</p>
+    <section class="spotlight-section" aria-labelledby="spotlight-heading">
+        <article class="spotlight-content">
+            <hgroup class="spotlight-header">
+                <p class="eyebrow">Servizi Speciali</p>
+                <h2 id="spotlight-heading">Non solo Tè</h2>
+            </hgroup>
+            
+            <p class="spotlight-desc">
+                A volte una tazza calda non è sufficiente per passare l'esame. 
+                Per questo abbiamo creato il <strong>Mercato dei Favori</strong>. 
+                Acquista appunti, ripetizioni rapide o servizi... <em>unici</em>.
+            </p>
+            
+            <a href="src/pages/shop.html?category=favors" class="btn-spotlight">Esplora i Favori</a>
+        </article>
+
+        <figure class="spotlight-visual">
+            <img src="assets/images/handshake_favor.png" alt="Illustrazione stilizzata di due mani che si scambiano un favore">
+        </figure>
+    </section>
+
+    <section class="loyalty-section" aria-labelledby="loyalty-heading">
+        <header class="section-header">
+            <h2 id="loyalty-heading" class="section-title">Raccolta Punti <span lang="en-GB">UniversiTea</span></h2>
+            <p class="section-subtitle">Più bevi, più risparmi (e forse ti laurei)</p>
+        </header>
+
+        <ol class="loyalty-steps">
+            <li>
+                <article class="step-card">
+                    <header>
+                        <span class="step-number">01</span>
+                        <h3>Acquista</h3>
+                    </header>
+                    <p>Ogni euro speso nello shop vale <strong>1 Punto Foglia</strong>.</p>
+                </article>
+            </li>
+            
+            <li>
+                <article class="step-card">
+                    <header>
+                        <span class="step-number">02</span>
+                        <h3>Accumula</h3>
+                    </header>
+                    <p>Controlla il saldo punti nel tuo <a href="src/pages/dashboard.php">Profilo</a>.</p>
+                </article>
+            </li>
+
+            <li>
+                <article class="step-card">
+                    <header>
+                        <span class="step-number">03</span>
+                        <h3>Riscatta</h3>
+                    </header>
+                    <p>Usa i punti per sconti reali o prodotti esclusivi.</p>
+                </article>
+            </li>
+        </ol>
+        
+        <footer class="loyalty-footer">
+            <a href="src/pages/register.html" class="btn-loyalty">Inizia a raccogliere</a>
+        </footer>
     </section>
 
 </main>

@@ -20,7 +20,6 @@
 
 html,
 body {
-    padding-top:4em;
     font-size: 100%;
     font-family: "Lexend", "Roboto", sans-serif;
     line-height: 1.5em;
@@ -33,6 +32,10 @@ body {
     max-width: 100%;
     margin: 0;
     overflow-x: hidden;
+}
+
+body.homepage {
+    padding-top: 0;
 }
 
 a{
@@ -66,15 +69,20 @@ section {
    1. HEADER PRINCIPALE (Desktop - Cart Style Unificato)
 ========================================================================== */
 .main-header {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
+    position: sticky; top: 0; left: 0; width: 100%; z-index: 10000;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.8rem 5%; 
     box-sizing: border-box; transition: all 0.4s ease;
-    background: rgba(15, 14, 14, 0.85); backdrop-filter: blur(10px);
+    background: rgba(15, 14, 14, 0.95); backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.main-header.scrolled {
+body.homepage .main-header {
+    position: fixed;
+    background: rgba(15, 14, 14, 0.85); /* Più trasparente per effetto estetico */
+}
+
+.main-header.scrolled, body.homepage .main-header.scrolled {
     background: var(--universitea-green); 
     padding: 1rem 5%;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-bottom: none;
@@ -146,7 +154,7 @@ section {
 /* Quando l'header è verde, testo e linee diventano neri */
 .main-header.scrolled #main-menu a,
 .main-header.scrolled .nav-text-link { 
-    color: #0f0e0e; 
+    color: #0f0e0e;
     text-shadow: none;
 }
 
@@ -246,7 +254,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     bottom: 13%; z-index: 3; 
 }
 
-/* LAYER 4 (Sinistra) */
+/* LAYER 4 */
 .layer-4 { 
     left: 0; 
     transform: none; /* FONDAMENTALE: Annulla la centratura */
@@ -255,19 +263,19 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     z-index: 4; 
 }
 
-/* LAYER 5 (Centrale) */
+/* LAYER 5 */
 .layer-5 { 
     width: 100%; height: auto; 
     bottom: 5%; z-index: 5; 
 }
 
-/* LAYER 6 (Centrale) */
+/* LAYER 6 */
 .layer-6 { 
     width: 100%; height: auto; 
     bottom: 0%; z-index: 6; 
 }
 
-/* LAYER 7 (Sinistra - FIXATO) */
+/* LAYER 7 */
 .layer-7 { 
     left: 0; 
     transform: none; /* FONDAMENTALE: Senza questo, metà immagine esce a sinistra! */
@@ -277,7 +285,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     z-index: 7; 
 }
 
-/* LAYER 8 (Centrale - Primo Piano) */
+/* LAYER 8 Alberi in Primo Piano */
 .layer-8 { 
     width: 100%; height: auto; 
     bottom: -2px; z-index: 8; 
@@ -292,6 +300,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     padding: 0 20px 80px 20px;
 }
+
 .hero-text-box {
     width: 100%; max-width: 900px; padding: 3.5rem 4rem;
     background: rgba(15, 14, 14, 0.65); backdrop-filter: blur(12px);
@@ -299,28 +308,114 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); text-align: center;
     animation: fadeInScale 1.2s ease-out forwards;
 }
+
 .hero-brand { font-size: clamp(3.5rem, 6vw, 6rem); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 0.5rem; }
 .hero-slogan { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--universitea-green); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 1.5rem; }
 .hero-description { color: #e0e0e0; font-size: 1.15rem; line-height: 1.6; max-width: 80%; margin: 0 auto 2.5rem auto; font-weight: 300; }
+
+/* --- PULSANTI --- */
+
+/* Contenitore per affiancare i pulsanti */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem; /* Spazio tra i pulsanti */
+    flex-wrap: wrap; /* Su mobile vanno a capo se serve */
+}
+
+/* STILE COMUNE AI PULSANTI */
+.hero-cta, 
+.hero-cta-outline {
+    display: inline-block;
+    font-weight: 700; 
+    text-decoration: none; 
+    padding: 0.9rem 2.5rem; /* Padding leggermente ridotto per bilanciare il bordo */
+    border-radius: 50px;
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    transition: all 0.3s ease;
+    font-size: 1rem; /* Assicuriamo dimensione font uguale */
+    cursor: pointer;
+}
+
+/* 1. PULSANTE PIENO (Join Now) */
 .hero-cta {
-    display: inline-block; background-color: var(--universitea-green); color: #0f0e0e;
-    font-weight: 700; text-decoration: none; padding: 1rem 2.5rem; border-radius: 50px;
-    text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+    background-color: var(--universitea-green); 
+    color: #0f0e0e;
+    /* Aggiungo bordo trasparente per pareggiare l'altezza con l'altro bottone */
+    border: 2px solid transparent; 
     box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
 }
-.hero-cta:hover { background-color: #fff; color: #00d69f; transform: translateY(-3px); }
 
-/* BREADCRUMB DESKTOP */
-#breadcrumb {
-    margin-top: 1rem;
-    position: absolute; top: auto; right: auto; height: auto; width: max-content;
-    bottom: 25px; left: 5%; z-index: 20;
-    background: rgba(15, 14, 14, 0.6); padding: 8px 20px; border-radius: 50px;
-    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.8rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px;
+.hero-cta:hover { 
+    background-color: #fff; 
+    color: #00d69f; /* Verde chiaro per testo hover */
+    border-color: #fff; /* Bordo diventa bianco */
+    transform: translateY(-3px); 
 }
+
+/* 2. PULSANTE OUTLINE (Shop) */
+.hero-cta-outline {
+    background-color: transparent; 
+    color: var(--universitea-green);
+    border: 2px solid var(--universitea-green);
+}
+
+.hero-cta-outline:hover {
+    background-color: #fff; 
+    color: var(--universitea-green); /* O #00d69f se vuoi lo stesso verde acceso */
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3); /* Ombra bianca */
+}
+
+/* ==========================================================================
+   BREADCRUMB (Configurazione Unificata)
+========================================================================== */
+
+/* 1. STILE BASE (Per Shop, Cart, Login, ecc.) 
+   Qui la breadcrumb occupa spazio fisico e spinge giù il contenuto */
+#breadcrumb {
+    /* Posizionamento */
+    position: relative; /* Resta nel flusso della pagina */
+    display: inline-block;
+    width: max-content;
+    z-index: 20;
+
+    /* Spaziatura */
+    margin-top: 1.5rem;    /* Spazio dall'header sticky */
+    margin-left: 1%;       /* Allineato col logo */
+    margin-bottom: 2rem;   /* Spazio prima del contenuto sotto */
+
+    /* Stile Estetico (Invariato) */
+    background: rgba(15, 14, 14, 0.6); 
+    padding: 8px 20px; 
+    border-radius: 50px;
+    backdrop-filter: blur(5px); 
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem; 
+    color: rgba(255,255,255,0.8); 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
 #breadcrumb p { margin: 0; padding: 0; line-height: 1; }
 #breadcrumb span[aria-current="page"] { color: var(--universitea-green); font-weight: 700; margin-left: 5px; }
+
+/* 2. ECCEZIONE HOMEPAGE (Solo per la Home) 
+   Qui deve galleggiare sopra la Hero Section senza spostare le montagne */
+body.homepage #breadcrumb {
+    position: absolute;
+    
+    /* Calcolo posizione: Header (~120px) + aria */
+    top: 150px;
+    left: 5%;
+    
+    /* Resettiamo i margini e bottom che non servono in absolute */
+    margin: 0;
+    bottom: auto; 
+    right: auto;
+}
 
 @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
@@ -346,22 +441,439 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     /* Fix Layer 4 Mobile */
     .layer-4 { 
         width: 100%; left: 0; transform: none; 
-        bottom: 5%; /* Su mobile parte da terra */
+        bottom: 5%; 
     }
 
     .layer-7 { bottom: -2%; }
-
     .layer-8 { bottom: 0; }
 
-    /* Breadcrumb Mobile: MOLTO BASSA */
+    /* BREADCRUMB MOBILE */
     #breadcrumb {
-        left: 50%; transform: translateX(-50%);
-        bottom: 10px; /* Quasi a terra */
-        padding: 6px 15px; font-size: 0.75rem; white-space: nowrap;
+        font-size: 0.75rem;
+        padding: 6px 15px;
+        white-space: nowrap;
+        /* Riduciamo margini su mobile */
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* BREADCRUMB MOBILE (SOLO HOME) */
+    /* Deve salire un po' perché l'header mobile è più basso */
+    body.homepage #breadcrumb {
+        top: 15%; 
+        left: 5%;
+        /* Rimuoviamo la vecchia centratura (transform) e il bottom */
+        transform: none; 
+        bottom: auto; 
     }
 
     .hero-text-box { padding: 2rem 1.5rem; width: 95%; }
     .hero-brand { font-size: 3rem; }
+}
+
+/* ==========================================================================
+   SEZIONI AGGIUNTIVE HOME (Values, Categories, Spotlight, Loyalty)
+========================================================================== */
+
+/* --- TITOLI DI SEZIONE COMUNI --- */
+.section-title {
+    font-size: 2.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #aaa;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+/* =========================================
+   3. VALUES SECTION (Perché sceglierci)
+========================================= */
+.values-section {
+    padding: 5rem 5%;
+    background-color: var(--darkbgcolor); /* Nero profondo */
+    text-align: center;
+}
+
+.values-list {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0 0;
+    flex-wrap: wrap; /* Per mobile */
+}
+
+.value-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    /* Rende le icone nere bianche/verdi se sono SVG semplici */
+    filter: invert(1) brightness(2); 
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: invert(81%) sepia(34%) saturate(762%) hue-rotate(106deg) brightness(96%) contrast(101%); /* Diventa verde UniversiTea */
+}
+
+.value-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.value-item p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* =========================================
+   4. CATEGORIES SECTION (Griglia)
+========================================= */
+.categories-section {
+    padding: 4rem 5% 6rem 5%;
+    background-color: var(--graybgcolor); /* Leggero stacco dal nero */
+}
+
+.categories-grid {
+    display: grid;
+    /* 3 colonne responsive */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.category-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.category-card {
+    position: relative;
+    height: 400px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: brightness(0.7); /* Scurisce l'immagine per leggere il testo */
+}
+
+.category-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    z-index: 2;
+    transform: translateY(10px);
+    transition: transform 0.4s ease;
+}
+
+.category-content h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.category-content p {
+    color: var(--universitea-green);
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover Effects Categorie */
+.category-link:hover .category-card {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 214, 159, 0.15);
+    border-color: var(--universitea-green);
+}
+
+.category-link:hover .category-img {
+    transform: scale(1.1);
+    filter: brightness(0.9); /* Torna luminosa */
+}
+
+.category-link:hover .category-content {
+    transform: translateY(0);
+}
+
+.category-link:hover .category-content p {
+    opacity: 1;
+}
+
+/* Stile speciale per la card "Favori" (Opzionale: bordo diverso o ombra viola?) */
+.special-card {
+    /* Manteniamo coerenza col verde, ma magari più scura */
+    background: #000;
+}
+
+
+/* =========================================
+   5. SPOTLIGHT SECTION (Non solo Tè)
+========================================= */
+.spotlight-section {
+    padding: 6rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    background: linear-gradient(135deg, var(--darkbgcolor) 0%, #051a15 100%); /* Sfumatura verde scurissimo */
+    overflow: hidden;
+}
+
+.spotlight-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.spotlight-header .eyebrow {
+    color: var(--universitea-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.spotlight-header h2 {
+    font-size: 3.5rem;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.spotlight-desc {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.spotlight-desc strong {
+    color: #fff;
+}
+
+.spotlight-desc em {
+    color: var(--universitea-green);
+    font-style: normal;
+}
+
+/* Bottone speciale */
+.btn-spotlight {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--universitea-green);
+    color: var(--universitea-green);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-spotlight:hover {
+    background-color: var(--universitea-green);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 214, 159, 0.4);
+}
+
+.spotlight-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.spotlight-visual img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    /* Animazione leggera di galleggiamento */
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+
+/* =========================================
+   6. LOYALTY SECTION (Punti)
+========================================= */
+.loyalty-section {
+    padding: 6rem 5%;
+    text-align: center;
+    background-color: var(--darkbgcolor);
+    position: relative;
+}
+
+.loyalty-section::before {
+    /* Linea decorativa sottile in alto */
+    content: ''; position: absolute; top: 0; left: 5%; width: 90%; 
+    height: 1px; background: rgba(255,255,255,0.05);
+}
+
+.loyalty-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 4rem 0;
+    counter-reset: steps;
+}
+
+.step-card {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    transition: transform 0.3s ease;
+    text-align: left; /* Allineamento interno a sinistra per pulizia */
+    position: relative;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.step-number {
+    display: block;
+    font-size: 4rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.05); /* Numero gigante e quasi invisibile */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+}
+
+.step-card h3 {
+    font-size: 1.5rem;
+    color: var(--universitea-green);
+    margin-bottom: 1rem;
+    position: relative; /* Per stare sopra al numero */
+}
+
+.step-card p {
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+}
+
+.loyalty-footer {
+    margin-top: 3rem;
+}
+
+.btn-loyalty {
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-loyalty:hover {
+    background-color: var(--universitea-green);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 214, 159, 0.3);
+}
+
+
+/* =========================================
+   MEDIA QUERIES (ADATTAMENTI MOBILE)
+========================================= */
+@media (max-width: 900px) {
+    
+    /* Values: Incolonnati */
+    .values-list {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    /* Categories: 1 colonna */
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    .category-card {
+        height: 300px; /* Un po' più basse su mobile */
+    }
+    
+    /* Spotlight: Incolonnati e ordine inverso (Img sopra o sotto?) */
+    .spotlight-section {
+        flex-direction: column-reverse; /* Img sopra, testo sotto */
+        text-align: center;
+        padding: 4rem 5%;
+        gap: 3rem;
+    }
+    
+    .spotlight-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    /* Loyalty: Steps uno sotto l'altro */
+    .loyalty-steps {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .step-card {
+        text-align: center; /* Centriamo su mobile */
+        padding: 2rem;
+    }
+    
+    .step-number {
+        position: static; /* Non più assoluto */
+        margin-bottom: 0.5rem;
+        font-size: 3rem;
+        color: var(--universitea-green);
+        opacity: 0.2;
+    }
 }
 
 /* ===========================================================
@@ -714,70 +1226,106 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 
 /*STILE PAGINA IL NOSTRO TE'*/
+.tea-content {
+    max-width: 60rem; 
+    margin: 0 auto;
+    padding: 0 1.25em; 
+}
 
-/*METTO OVUNQUE L'#TEA-CONTENT O NO?*/
-
-#tea-content h1 {
+.tea-content h1 {
     text-align: center;
-    margin-top: 40px; /*Crea spazio sopra il titolo, così non sembra appiccicato al menu o ai paragrafi.*/
-    margin-bottom: 40px; /*Crea spazio sotto il titolo, così non sembra appiccicato al menu o ai paragrafi.*/
-    font-size: 2.5rem; /*rem è un'unità di misura flessibile basata sulla dimensione del testo del browser*/
+    margin-top: 0.6em; 
+    margin-bottom: 1.5em; 
+    font-size: 2.7rem; 
     width: 100%;
 }
 
-#tea-content .container {
-    display: grid; /*Attiva il sistema a griglia, il modo più moderno per gestire i layout.*/
-    grid-template-columns: 1.2fr 1fr; /*Divide lo spazio in 2.2 parti totali: la prima colonna (testo) prende 1.2 parti, la seconda (aside) prende 1 parte.*/
-    gap: 60px; /*Crea un corridoio di spazio vuoto tra le due colonne affinché non si tocchino.*/
-    align-items: start;
-    margin: 40px auto; /*Centra il tutto e dà margine sopra/sotto*/
-    max-width: 1200px; /*Impedisce all'aside di andare troppo lontano a destra*/
-    padding: 0 20px; /*Margine di sicurezza per i bordi dello schermo*/
-}
-
-.intro-container p {
-    font-size: 1.25rem;
-    line-height: 1.7; /*Aumenta lo spazio tra una riga e l'altra dello stesso paragrafo.*/
-    color: var(--lightbgcolor); 
-    margin-bottom: 1.5rem;
-}
-
-.aside-container {
+.tea-intro {
     position: relative;
-    padding-top: 65px; /*Un po' più di spazio per la teiera.*/
+    z-index: 1;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    padding: 3.5em 2.5em;   
+    background: transparent;
+    margin-top: 3em; 
+    margin-bottom: 7em; /*margine sotto per non coprire paragrafi.*/ 
 }
 
-.curiosita {
-    background-color: var(--linkcolor);
+.tea-intro p {
+    max-width: 100%;    
+    font-size: 1.3rem;
+    line-height: 1.7;
     color: var(--darkbgcolor);
-    padding: 1.8em 2.5em;
-    border-radius: 2em; /*Arrotonda gli angoli del box per dargli un look moderno e morbido.*/
-    position: relative;
-    z-index: 1; /*Sta sotto la teiera.*/
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /*Ombra leggera del box stesso.*/
+    margin-bottom: 1.2em;
+    position: relative; 
+    z-index: 2;
 }
 
-.curiosita h2 {
-    font-size: 1.4rem; /*Più grande del testo sotto*/
-    margin-bottom: 0.8rem;
-    color: var(--darkbgcolor);
+/*Getto di tè, no animazioni*/
+.tea-intro::before {
+    content: "";
+    position: absolute;
+    top: -4.3em; 
+    right: 11.5em;
+    width: 1.5em;
+    height: 4.1em; 
+    background: var(--universitea-green);
+    border-radius: 2em;
+    z-index: 1;
 }
 
+/*immagine svg. animiamo solo la parte sotto*/
+.liquid-svg {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 120%;
+    z-index: -1; 
+    overflow: visible;
+}
+
+.liquid-svg path {
+    transform-origin: top;
+    animation: drip-only 5s ease-in-out infinite;
+}
+
+.liquid-svg rect {
+    animation: none;
+}
+
+@keyframes drip-only {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.04); }
+}
+
+/*teiera leggermente animata*/
 .teiera {
     position: absolute;
-    top: -15px; /*Sovrappone leggermente il bordo superiore dell'aside.*/
-    right: 30px; /*La sposta un po' verso l'interno dell'aside.*/
-    width: 140px;
-    z-index: 10; /*Deve stare SOPRA l'aside.*/
+    top: -8.7em; 
+    right: 1.7em; 
+    width: 12em;
+    z-index: 10;
     transform: rotate(-15deg);
-    filter: drop-shadow(4px 8px 6px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0.25em 0.5em 0.37em rgba(0, 0, 0, 0.2));
+    animation: teapot-tilt 4s ease-in-out infinite;
+}
+
+@keyframes teapot-tilt {
+    0%, 100% { transform: rotate(-15deg); }
+    50% { transform: rotate(-16deg); }
 }
 
 .teiera img {
     width: 100%; 
-    height: auto; /*Mantiene le proporzioni.*/
+    height: auto;
     display: block;
 }
+
 
 /*ERRORPAGES*/
 .errorpage {
