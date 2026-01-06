@@ -471,6 +471,411 @@ body.homepage #breadcrumb {
     .hero-brand { font-size: 3rem; }
 }
 
+/* ==========================================================================
+   SEZIONI AGGIUNTIVE HOME (Values, Categories, Spotlight, Loyalty)
+========================================================================== */
+
+/* --- TITOLI DI SEZIONE COMUNI --- */
+.section-title {
+    font-size: 2.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #aaa;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+/* =========================================
+   3. VALUES SECTION (Perché sceglierci)
+========================================= */
+.values-section {
+    padding: 5rem 5%;
+    background-color: var(--darkbgcolor); /* Nero profondo */
+    text-align: center;
+}
+
+.values-list {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0 0;
+    flex-wrap: wrap; /* Per mobile */
+}
+
+.value-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    /* Rende le icone nere bianche/verdi se sono SVG semplici */
+    filter: invert(1) brightness(2); 
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: invert(81%) sepia(34%) saturate(762%) hue-rotate(106deg) brightness(96%) contrast(101%); /* Diventa verde UniversiTea */
+}
+
+.value-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.value-item p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* =========================================
+   4. CATEGORIES SECTION (Griglia)
+========================================= */
+.categories-section {
+    padding: 4rem 5% 6rem 5%;
+    background-color: var(--graybgcolor); /* Leggero stacco dal nero */
+}
+
+.categories-grid {
+    display: grid;
+    /* 3 colonne responsive */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.category-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.category-card {
+    position: relative;
+    height: 400px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: brightness(0.7); /* Scurisce l'immagine per leggere il testo */
+}
+
+.category-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    z-index: 2;
+    transform: translateY(10px);
+    transition: transform 0.4s ease;
+}
+
+.category-content h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.category-content p {
+    color: var(--universitea-green);
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover Effects Categorie */
+.category-link:hover .category-card {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 214, 159, 0.15);
+    border-color: var(--universitea-green);
+}
+
+.category-link:hover .category-img {
+    transform: scale(1.1);
+    filter: brightness(0.9); /* Torna luminosa */
+}
+
+.category-link:hover .category-content {
+    transform: translateY(0);
+}
+
+.category-link:hover .category-content p {
+    opacity: 1;
+}
+
+/* Stile speciale per la card "Favori" (Opzionale: bordo diverso o ombra viola?) */
+.special-card {
+    /* Manteniamo coerenza col verde, ma magari più scura */
+    background: #000;
+}
+
+
+/* =========================================
+   5. SPOTLIGHT SECTION (Non solo Tè)
+========================================= */
+.spotlight-section {
+    padding: 6rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    background: linear-gradient(135deg, var(--darkbgcolor) 0%, #051a15 100%); /* Sfumatura verde scurissimo */
+    overflow: hidden;
+}
+
+.spotlight-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.spotlight-header .eyebrow {
+    color: var(--universitea-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.spotlight-header h2 {
+    font-size: 3.5rem;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.spotlight-desc {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.spotlight-desc strong {
+    color: #fff;
+}
+
+.spotlight-desc em {
+    color: var(--universitea-green);
+    font-style: normal;
+}
+
+/* Bottone speciale */
+.btn-spotlight {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--universitea-green);
+    color: var(--universitea-green);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-spotlight:hover {
+    background-color: var(--universitea-green);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 214, 159, 0.4);
+}
+
+.spotlight-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.spotlight-visual img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    /* Animazione leggera di galleggiamento */
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+
+/* =========================================
+   6. LOYALTY SECTION (Punti)
+========================================= */
+.loyalty-section {
+    padding: 6rem 5%;
+    text-align: center;
+    background-color: var(--darkbgcolor);
+    position: relative;
+}
+
+.loyalty-section::before {
+    /* Linea decorativa sottile in alto */
+    content: ''; position: absolute; top: 0; left: 5%; width: 90%; 
+    height: 1px; background: rgba(255,255,255,0.05);
+}
+
+.loyalty-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 4rem 0;
+    counter-reset: steps;
+}
+
+.step-card {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    transition: transform 0.3s ease;
+    text-align: left; /* Allineamento interno a sinistra per pulizia */
+    position: relative;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.step-number {
+    display: block;
+    font-size: 4rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.05); /* Numero gigante e quasi invisibile */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+}
+
+.step-card h3 {
+    font-size: 1.5rem;
+    color: var(--universitea-green);
+    margin-bottom: 1rem;
+    position: relative; /* Per stare sopra al numero */
+}
+
+.step-card p {
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+}
+
+.loyalty-footer {
+    margin-top: 3rem;
+}
+
+.btn-loyalty {
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-loyalty:hover {
+    background-color: var(--universitea-green);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 214, 159, 0.3);
+}
+
+
+/* =========================================
+   MEDIA QUERIES (ADATTAMENTI MOBILE)
+========================================= */
+@media (max-width: 900px) {
+    
+    /* Values: Incolonnati */
+    .values-list {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    /* Categories: 1 colonna */
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    .category-card {
+        height: 300px; /* Un po' più basse su mobile */
+    }
+    
+    /* Spotlight: Incolonnati e ordine inverso (Img sopra o sotto?) */
+    .spotlight-section {
+        flex-direction: column-reverse; /* Img sopra, testo sotto */
+        text-align: center;
+        padding: 4rem 5%;
+        gap: 3rem;
+    }
+    
+    .spotlight-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    /* Loyalty: Steps uno sotto l'altro */
+    .loyalty-steps {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .step-card {
+        text-align: center; /* Centriamo su mobile */
+        padding: 2rem;
+    }
+    
+    .step-number {
+        position: static; /* Non più assoluto */
+        margin-bottom: 0.5rem;
+        font-size: 3rem;
+        color: var(--universitea-green);
+        opacity: 0.2;
+    }
+}
+
 /* ===========================================================
    SEZIONE BEST SELLERS - FIXED & CLEAN
 =========================================================== */
