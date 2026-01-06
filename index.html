@@ -53,6 +53,9 @@
 </header>
 
 <main>
+    <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
+    </nav>
 
     <section class="hero-section" aria-label="Benvenuto in UniversiTea">
 
@@ -74,10 +77,6 @@
             <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="" aria-hidden="true">
         </div>
 
-        <nav id="breadcrumb" aria-label="Percorso di navigazione">
-            <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
-        </nav>
-
         <div class="hero-ui-content">
 
             <div class="hero-text-box">
@@ -87,9 +86,14 @@
                     Dalla natura incontaminata, direttamente nella tua tazza. Una selezione di Tè <span lang="en-GB">premium</span>
                     per le tue sessioni di studio e relax
                 </p>
-                <a href="src/pages/register.html" class="hero-cta">
-                    <span lang="en-GB">Join Now for Free</span>
-                </a>
+                <div class="hero-buttons">
+                    <a href="src/pages/register.html" class="hero-cta" aria-label="Login">
+                        <span lang="en-GB">Accedi ora gratuitamente</span>
+                    </a>
+                    <a href="src/pages/shop.html" class="hero-cta-outline" aria-label="Visualizza shop">
+                        <span lang="en-GB">Esplora la collezione</span>
+                    </a>
+                </div>
             </div>
 
         </div>

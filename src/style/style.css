@@ -82,7 +82,7 @@ body.homepage .main-header {
     background: rgba(15, 14, 14, 0.85); /* Più trasparente per effetto estetico */
 }
 
-.main-header.scrolled {
+.main-header.scrolled, body.homepage .main-header.scrolled {
     background: var(--universitea-green); 
     padding: 1rem 5%;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-bottom: none;
@@ -154,7 +154,7 @@ body.homepage .main-header {
 /* Quando l'header è verde, testo e linee diventano neri */
 .main-header.scrolled #main-menu a,
 .main-header.scrolled .nav-text-link { 
-    color: #0f0e0e; 
+    color: #0f0e0e;
     text-shadow: none;
 }
 
@@ -254,7 +254,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     bottom: 13%; z-index: 3; 
 }
 
-/* LAYER 4 (Sinistra) */
+/* LAYER 4 */
 .layer-4 { 
     left: 0; 
     transform: none; /* FONDAMENTALE: Annulla la centratura */
@@ -263,19 +263,19 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     z-index: 4; 
 }
 
-/* LAYER 5 (Centrale) */
+/* LAYER 5 */
 .layer-5 { 
     width: 100%; height: auto; 
     bottom: 5%; z-index: 5; 
 }
 
-/* LAYER 6 (Centrale) */
+/* LAYER 6 */
 .layer-6 { 
     width: 100%; height: auto; 
     bottom: 0%; z-index: 6; 
 }
 
-/* LAYER 7 (Sinistra - FIXATO) */
+/* LAYER 7 */
 .layer-7 { 
     left: 0; 
     transform: none; /* FONDAMENTALE: Senza questo, metà immagine esce a sinistra! */
@@ -285,7 +285,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     z-index: 7; 
 }
 
-/* LAYER 8 (Centrale - Primo Piano) */
+/* LAYER 8 Alberi in Primo Piano */
 .layer-8 { 
     width: 100%; height: auto; 
     bottom: -2px; z-index: 8; 
@@ -300,6 +300,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     padding: 0 20px 80px 20px;
 }
+
 .hero-text-box {
     width: 100%; max-width: 900px; padding: 3.5rem 4rem;
     background: rgba(15, 14, 14, 0.65); backdrop-filter: blur(12px);
@@ -307,28 +308,114 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); text-align: center;
     animation: fadeInScale 1.2s ease-out forwards;
 }
+
 .hero-brand { font-size: clamp(3.5rem, 6vw, 6rem); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 0.5rem; }
 .hero-slogan { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--universitea-green); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 1.5rem; }
 .hero-description { color: #e0e0e0; font-size: 1.15rem; line-height: 1.6; max-width: 80%; margin: 0 auto 2.5rem auto; font-weight: 300; }
+
+/* --- PULSANTI --- */
+
+/* Contenitore per affiancare i pulsanti */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem; /* Spazio tra i pulsanti */
+    flex-wrap: wrap; /* Su mobile vanno a capo se serve */
+}
+
+/* STILE COMUNE AI PULSANTI */
+.hero-cta, 
+.hero-cta-outline {
+    display: inline-block;
+    font-weight: 700; 
+    text-decoration: none; 
+    padding: 0.9rem 2.5rem; /* Padding leggermente ridotto per bilanciare il bordo */
+    border-radius: 50px;
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    transition: all 0.3s ease;
+    font-size: 1rem; /* Assicuriamo dimensione font uguale */
+    cursor: pointer;
+}
+
+/* 1. PULSANTE PIENO (Join Now) */
 .hero-cta {
-    display: inline-block; background-color: var(--universitea-green); color: #0f0e0e;
-    font-weight: 700; text-decoration: none; padding: 1rem 2.5rem; border-radius: 50px;
-    text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+    background-color: var(--universitea-green); 
+    color: #0f0e0e;
+    /* Aggiungo bordo trasparente per pareggiare l'altezza con l'altro bottone */
+    border: 2px solid transparent; 
     box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
 }
-.hero-cta:hover { background-color: #fff; color: #00d69f; transform: translateY(-3px); }
 
-/* BREADCRUMB DESKTOP */
-#breadcrumb {
-    margin-top: 1rem;
-    position: absolute; top: auto; right: auto; height: auto; width: max-content;
-    bottom: 25px; left: 5%; z-index: 20;
-    background: rgba(15, 14, 14, 0.6); padding: 8px 20px; border-radius: 50px;
-    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.8rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px;
+.hero-cta:hover { 
+    background-color: #fff; 
+    color: #00d69f; /* Verde chiaro per testo hover */
+    border-color: #fff; /* Bordo diventa bianco */
+    transform: translateY(-3px); 
 }
+
+/* 2. PULSANTE OUTLINE (Shop) */
+.hero-cta-outline {
+    background-color: transparent; 
+    color: var(--universitea-green);
+    border: 2px solid var(--universitea-green);
+}
+
+.hero-cta-outline:hover {
+    background-color: #fff; 
+    color: var(--universitea-green); /* O #00d69f se vuoi lo stesso verde acceso */
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3); /* Ombra bianca */
+}
+
+/* ==========================================================================
+   BREADCRUMB (Configurazione Unificata)
+========================================================================== */
+
+/* 1. STILE BASE (Per Shop, Cart, Login, ecc.) 
+   Qui la breadcrumb occupa spazio fisico e spinge giù il contenuto */
+#breadcrumb {
+    /* Posizionamento */
+    position: relative; /* Resta nel flusso della pagina */
+    display: inline-block;
+    width: max-content;
+    z-index: 20;
+
+    /* Spaziatura */
+    margin-top: 1.5rem;    /* Spazio dall'header sticky */
+    margin-left: 1%;       /* Allineato col logo */
+    margin-bottom: 2rem;   /* Spazio prima del contenuto sotto */
+
+    /* Stile Estetico (Invariato) */
+    background: rgba(15, 14, 14, 0.6); 
+    padding: 8px 20px; 
+    border-radius: 50px;
+    backdrop-filter: blur(5px); 
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem; 
+    color: rgba(255,255,255,0.8); 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
 #breadcrumb p { margin: 0; padding: 0; line-height: 1; }
 #breadcrumb span[aria-current="page"] { color: var(--universitea-green); font-weight: 700; margin-left: 5px; }
+
+/* 2. ECCEZIONE HOMEPAGE (Solo per la Home) 
+   Qui deve galleggiare sopra la Hero Section senza spostare le montagne */
+body.homepage #breadcrumb {
+    position: absolute;
+    
+    /* Calcolo posizione: Header (~120px) + aria */
+    top: 150px;
+    left: 5%;
+    
+    /* Resettiamo i margini e bottom che non servono in absolute */
+    margin: 0;
+    bottom: auto; 
+    right: auto;
+}
 
 @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
@@ -354,18 +441,30 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     /* Fix Layer 4 Mobile */
     .layer-4 { 
         width: 100%; left: 0; transform: none; 
-        bottom: 5%; /* Su mobile parte da terra */
+        bottom: 5%; 
     }
 
     .layer-7 { bottom: -2%; }
-
     .layer-8 { bottom: 0; }
 
-    /* Breadcrumb Mobile: MOLTO BASSA */
+    /* BREADCRUMB MOBILE */
     #breadcrumb {
-        left: 50%; transform: translateX(-50%);
-        bottom: 10px; /* Quasi a terra */
-        padding: 6px 15px; font-size: 0.75rem; white-space: nowrap;
+        font-size: 0.75rem;
+        padding: 6px 15px;
+        white-space: nowrap;
+        /* Riduciamo margini su mobile */
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* BREADCRUMB MOBILE (SOLO HOME) */
+    /* Deve salire un po' perché l'header mobile è più basso */
+    body.homepage #breadcrumb {
+        top: 15%; 
+        left: 5%;
+        /* Rimuoviamo la vecchia centratura (transform) e il bottom */
+        transform: none; 
+        bottom: auto; 
     }
 
     .hero-text-box { padding: 2rem 1.5rem; width: 95%; }
