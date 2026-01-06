@@ -19,7 +19,7 @@ try {
                 P.nome, 
                 P.descrizione, 
                 P.prezzo, 
-                P.disponibilità,
+                P.disponibilita,
                 -- Campi specifici per BEVANDE
                 B.temp_consigliata,
                 B.tipologia_bevanda,

@@ -114,3 +114,27 @@ function escapeHtml(text) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Seleziona gli elementi
+    const priceRange = document.getElementById('price-range');
+    const priceValue = document.getElementById('price-value');
+
+    // Verifica che gli elementi esistano nella pagina per evitare errori
+    if (priceRange && priceValue) {
+
+        // 2. Aggiungi l'ascoltatore dell'evento "input"
+        priceRange.addEventListener('input', (e) => {
+
+            // A. Prendi il valore corrente dello slider
+            const currentValue = e.target.value;
+
+            // B. Aggiorna il testo dello span
+            priceValue.textContent = currentValue + '€';
+
+            // C. (Opzionale) Se vuoi filtrare i prodotti in tempo reale:
+            // filterProducts();
+        });
+    }
+});

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/print.css" media="print">
+    <link rel="stylesheet" href="../style/shop.css">
 </head>
 
 <body>
@@ -52,8 +53,15 @@
                 Scegli dal menù di seguito l'opzione che più ti aggrada tra Bevande, <span lang="en">Merchandising</span>
                 e Servizi e il negozio si aggiornerà per mostrarti solo ciò che ti interessa. </p>
         </section>
-        
+
+        <aside id="shop-filter-section">
         <form id="filter-form">
+            <h2>Filtri di Ricerca</h2>
+            <div class="filter-search">
+                <label for="search-input">Cerca prodotto:</label>
+                <input type="search" id="search-input" name="search" placeholder="Es. Tè verde...">
+            </div>
+
             <fieldset class="filter-group">
                 <legend>Filtra per categoria:</legend>
                 <div class="radio-wrapper">
@@ -77,8 +85,23 @@
                     <label for="cat-bundle" lang="en">Bundle</label>
                 </div>
             </fieldset>
+
+            <div class="filter-settings">
+                <fieldset class="filter-group price-group">
+                    <legend>Max: <span id="price-value">50€</span></legend>
+                    <div class="range-wrapper">
+                        <input type="range" id="price-range" name="max-price" min="0" max="100" value="50" step="1">
+                    </div>
+                </fieldset>
+
+                <div class="filter-toggle">
+                    <input type="checkbox" id="avail-toggle" name="availability">
+                    <label for="avail-toggle">Mostra solo i prodotti disponibili</label>
+                </div>
+            </div>
         </form>
-       
+        </aside>
+
         <section aria-live="polite" aria-atomic="true">
             <h2>Prodotti nello <span lang="en">Shop</span></h2>
 
