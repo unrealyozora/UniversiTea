@@ -23,7 +23,7 @@ async function fetchProductDetails(id) {
 
         // Se l'array è vuoto
         if (data.length === 0) {
-            document.querySelector('main').innerHTML = "<div class='section-dark' style='text-align:center; padding: 4em;'><h2>Prodotto non trovato</h2><a href='shop.html' class='btn-join'>Torna allo shop</a></div>";
+            document.querySelector('main').innerHTML = "<div class='section-dark' style='text-align:center; padding: 4em;'><h2>Prodotto non trovato</h2><a href='shop.php' class='btn-join'>Torna allo shop</a></div>";
             return;
         }
 

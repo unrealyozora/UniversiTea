@@ -119,10 +119,11 @@ $user = getCurrentUser();
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <li><a href="shop.html?category=tea">Tè & Infusi</a></li>
-                <li><a href="shop.html?category=merch"><span lang="en-GB">Merch</span> & Accessori</a></li>
-                <li><a href="shop.html?category=favors">I Favori</a></li>
-                <li><a href="shop.html?filter=bestseller">I più venduti</a></li>
+                <<li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
+                <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
+                <li><a href="shop.php?category=servizi">I Servizi</a></li>
+                <li><a href="shop.php?category=bundle">I Bundle</a></li>
+                <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
                 <li><a href="register.html">Programma Fedeltà</a></li>
             </ul>
         </nav>

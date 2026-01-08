@@ -11,6 +11,7 @@
     --txtcolor: #E0E0E0;
     --breadcolor: #5B7553;
     --linkcolor: #9ddbad;
+    --link-visited: #ff9b03;/*#cc2569;*/
 
     --navlink-color: #0b3f3e;
     --universitea-green: #00d69f;
@@ -40,6 +41,10 @@ body.homepage {
 
 a{
     color: var(--universitea-green);
+}
+
+a:visited{
+    color: var(--link-visited);
 }
 
 .skip-link {
@@ -107,8 +112,9 @@ body.homepage .main-header {
 #main-menu ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 3rem; }
 #user-actions ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 1.5rem; align-items: center; }
 
-#main-menu a, 
-.nav-text-link {
+#main-menu a,
+#main-menu li,
+.nav-text-link{
     text-decoration: none; 
     color: #fff; 
     font-size: 0.95rem; 
@@ -120,6 +126,11 @@ body.homepage .main-header {
     transition: color 0.3s ease, text-shadow 0.3s ease;
     display: flex; /* Aggiunto per allineare icona e testo se presenti */
     align-items: center;
+}
+
+#main-menu a:visited,
+.nav-text-link:visited {
+    color: var(--link-visited);
 }
 
 /* --- MODIFICA SPECIFICA PER IL CARRELLO --- */
