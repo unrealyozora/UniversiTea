@@ -79,3 +79,57 @@ try {
     http_response_code(500);
     echo json_encode(["error" => "Errore nel database: " . $e->getMessage()]);
 }
+
+$cardTemplate ='<li class="product-item">
+            <article class="product-card">
+            <a aria-label="vai alla pagina di ${nome}" href="product.html?id=${id}">
+                <img src="${imgPath}" alt="" loading="lazy">
+            </a>
+                <div class="product-info">
+                    <h3>${nome}</h3>
+                    <p class="category-tag">${product.categoria}</p>
+                    <p class="description">${desc}</p>
+                    <p class="price">€ ${prezzo}</p>
+                    <button class="btn-add-cart" 
+                            data-id="${id}"
+                            aria-label="Aggiungi ${nome} al carrello">
+                        Aggiungi al carrello
+                    </button>
+                    <button class="btn-add-preferiti" 
+                            data-id="${id}"
+                            aria-label="Aggiungi ${nome} ai Preferiti">
+                        Aggiungi ai Preferiti
+                    </button>
+                </div>
+            </article>
+        </li>';
+
+$listaHtml = "";
+foreach ($prodotti as $p) {
+    // Sostituzione dei dati nella stringa
+    $listaHtml .= str_replace(
+        ['{{ID}}', '{{NOME}}', '{{PREZZO}}'],
+        [$p['id'], htmlspecialchars($p['nome']), number_format($p['prezzo'], 2)],
+        $cardTemplate
+    );
+}
+
+$layout = file_get_contents('shop.html');
+echo str_replace('{{LISTA_PRODOTTI}}', $listaHtml, $layout);
+
+$finalOutput = preg_replace('/{{CHECKED_[A-Z]+}}/', '', $finalOutput);
+
+echo $finalOutput;
+
+
+
+// Funzione helper portata da shop.js a PHP
+function getImagePlaceholder($categoria) {
+    $basePath = '../../assets/images/';
+    switch ($categoria) {
+        case 'bevande': return $basePath . 'placeholder_tea.svg';
+        case 'merchandising': return $basePath . 'placeholder_merch.jpg';
+        case 'servizi': return $basePath . 'placeholder_service.svg';
+        default: return $basePath . 'placeholder_generic.jpg';
+    }
+}

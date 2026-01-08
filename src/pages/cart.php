@@ -12,6 +12,7 @@ $user = getCurrentUser();
           content="Pagina dedicata al tuo carrello.">
     <meta name="keywords" content="tè, università, tisane, carrello , negozio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
 
     <link rel="stylesheet" href="../style/print.css" media="print">
@@ -31,6 +32,7 @@ $user = getCurrentUser();
             <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
             <li><a href="tea-info.html">Il nostro Tè</a></li>
             <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+            <li><a href="dashboard.php">Il tuo profilo</a></li>
         </ul>
     </nav>
 
