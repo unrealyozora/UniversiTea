@@ -59,128 +59,124 @@ section {
     padding: 4rem max(5%, 20px);
 }
 
-.section-gray {
-    background-color: var(--graybgcolor);
-    color: var(--txtcolor);
-    padding: 4rem max(5%, 20px);
-}
+
 
 /* ==========================================================================
-   1. HEADER PRINCIPALE (Desktop - Cart Style Unificato)
+   1. HEADER PRINCIPALE (Logica Anti-Scatto)
 ========================================================================== */
+
 .main-header {
-    position: sticky; top: 0; left: 0; width: 100%; z-index: 10000;
+    position: sticky; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 10000;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1.8rem 5%; 
-    box-sizing: border-box; transition: all 0.4s ease;
-    background: rgba(15, 14, 14, 0.95); backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--universitea-green); 
+    padding: 1rem 5%; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); 
+    box-sizing: border-box; 
+    transition: all 0.4s ease;
 }
 
 body.homepage .main-header {
     position: fixed;
-    background: rgba(15, 14, 14, 0.85); /* Più trasparente per effetto estetico */
 }
 
-.main-header.scrolled, body.homepage .main-header.scrolled {
-    background: var(--universitea-green); 
-    padding: 1rem 5%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-bottom: none;
+body.homepage .main-header:not(.scrolled) {
+    background: rgba(15, 14, 14, 0.85); 
+    padding: 1.8rem 5%;
+    box-shadow: none;
+    backdrop-filter: blur(10px);
 }
 
-/* LOGO */
-.logo a { display: block; text-decoration: none; }
+.logo-link { 
+    display: block; 
+    text-decoration: none; 
+}
+
+img.logo, 
 .logo-img { 
-    width: 160px; height: auto; display: block; 
+    width: 160px; 
+    height: auto; 
+    display: block; 
     transition: all 0.3s ease; 
+    filter: invert(1) brightness(0); 
+}
+
+.logo-link:hover .logo-img { 
+    transform: scale(1.03); 
+}
+
+body.homepage .main-header:not(.scrolled) img.logo {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
 }
-.logo a:hover .logo-img { transform: scale(1.03); }
-.main-header.scrolled .logo-img { filter: invert(1) brightness(0); }
 
-
-/* --- NAVIGAZIONE & CARRELLO (Stile Unico) --- */
-
+/* --- MENU LINKS & CARRELLO --- */
 #main-menu ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 3rem; }
 #user-actions ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 1.5rem; align-items: center; }
 
 #main-menu a, 
 .nav-text-link {
     text-decoration: none; 
-    color: #fff; 
-    font-size: 0.95rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.01em;
-    padding: 5px 0;
-    position: relative; 
+    color: #0f0e0e; /* Default: Nero */
+    font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em;
+    padding: 5px 0; position: relative; 
     transition: color 0.3s ease, text-shadow 0.3s ease;
-    display: flex; /* Aggiunto per allineare icona e testo se presenti */
-    align-items: center;
+    display: flex; align-items: center;
 }
 
-/* --- MODIFICA SPECIFICA PER IL CARRELLO --- */
-/* Di base l'header è scuro e il PNG è nero. 
-   Qui lo invertiamo per farlo diventare BIANCO. */
-.nav-text-link img {
-    filter: brightness(0) invert(1);
-    transition: filter 0.3s ease;
-}
+/* Icona Carrello (Default: Nera) */
+.nav-text-link img { filter: none; transition: filter 0.3s ease; }
 
-/* ANIMAZIONE LINEA SOTTO */
-#main-menu a::after,
-.nav-text-link::after {
-    content: '';
-    position: absolute;
-    width: 0; height: 2px;
-    bottom: 0; left: 0;
-    background-color: var(--universitea-green);
+/* Linea sotto (Default: Nera) */
+#main-menu a::after, .nav-text-link::after {
+    content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+    background-color: #0f0e0e; 
     transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+#main-menu a:hover, .nav-text-link:hover { text-shadow: none; }
+#main-menu a:hover::after, .nav-text-link:hover::after { width: 100%; }
 
-/* Effetto Hover */
-#main-menu a:hover,
-.nav-text-link:hover { 
-    text-shadow: 0 0 12px rgba(0, 214, 159, 0.6);
-}
-#main-menu a:hover::after,
-.nav-text-link:hover::after {
-    width: 100%; 
-}
-
-
-/* --- ADATTAMENTO ALLO SCROLL (Sfondo Verde) --- */
-
-/* Quando l'header è verde, testo e linee diventano neri */
-.main-header.scrolled #main-menu a,
-.main-header.scrolled .nav-text-link { 
-    color: #0f0e0e;
-    text-shadow: none;
-}
-
-/* --- MODIFICA SPECIFICA PER IL CARRELLO (SCROLLED) --- */
-/* Quando scrolli e lo sfondo è verde, togliamo il filtro.
-   L'icona torna al suo colore originale (NERO). */
-.main-header.scrolled .nav-text-link img {
-    filter: none;
-}
-
-.main-header.scrolled #main-menu a::after,
-.main-header.scrolled .nav-text-link::after {
-    background-color: #0f0e0e; 
-}
-
-
-/* --- BOTTONE JOIN (Rimane un bottone distinto) --- */
+/* Bottone Join (Default: Nero) */
 .btn-join {
     display: inline-flex; justify-content: center; align-items: center; text-decoration: none;
-    background-color: var(--universitea-green); color: #0f0e0e; border: 2px solid var(--universitea-green);
+    background-color: #0f0e0e; color: #fff; border: 2px solid #0f0e0e;
     border-radius: 50px; padding: 0.6em 1.8em; font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
-    transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
+    transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-.btn-join:hover { background-color: #fff; border-color: #fff; color: var(--universitea-green); transform: translateY(-2px); }
-.main-header.scrolled .btn-join { background-color: #0f0e0e; border-color: #0f0e0e; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.main-header.scrolled .btn-join:hover { background-color: #fff; border-color: #fff; color: #0f0e0e; }
+.btn-join:hover { background-color: #fff; border-color: #fff; color: #0f0e0e; }
+
+
+/* ==========================================================================
+   D. ECCEZIONI COLORI HOME (Non scrollato)
+   Quando siamo in cima alla Home, cambiamo i colori in Bianco/Verde
+========================================================================== */
+
+/* Logo Bianco */
+body.homepage .main-header:not(.scrolled) .logo-img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+
+/* Testi Bianchi */
+body.homepage .main-header:not(.scrolled) #main-menu a,
+body.homepage .main-header:not(.scrolled) .nav-text-link { color: #fff; }
+
+/* Icona Carrello Bianca */
+body.homepage .main-header:not(.scrolled) .nav-text-link img { filter: brightness(0) invert(1); }
+
+/* Linea e Hover Verde Neon */
+body.homepage .main-header:not(.scrolled) #main-menu a::after,
+body.homepage .main-header:not(.scrolled) .nav-text-link::after { background-color: var(--universitea-green); }
+body.homepage .main-header:not(.scrolled) #main-menu a:hover,
+body.homepage .main-header:not(.scrolled) .nav-text-link:hover { text-shadow: 0 0 12px rgba(0, 214, 159, 0.6); }
+
+/* Bottone Join Verde */
+body.homepage .main-header:not(.scrolled) .btn-join {
+    background-color: var(--universitea-green); color: #0f0e0e; border-color: var(--universitea-green);
+    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
+}
+body.homepage .main-header:not(.scrolled) .btn-join:hover {
+    background-color: #fff; border-color: #fff; color: var(--universitea-green);
+}
 /* ==========================================================================
    2. ELEMENTI MOBILE (Hamburger & Overlay)
 ========================================================================== */
@@ -293,7 +289,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 
 
 /* ==========================================================================
-   4. HERO UI & BREADCRUMB
+   4. HERO UI
 ========================================================================== */
 .hero-ui-content {
     position: relative; z-index: 10; width: 100%; height: 100%;
@@ -558,9 +554,9 @@ body.homepage #breadcrumb {
 
 .categories-grid {
     display: grid;
-    /* 3 colonne responsive */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    justify-content: center;
+    gap: 3rem;
     list-style: none;
     padding: 0;
 }
@@ -1084,7 +1080,7 @@ body.homepage #breadcrumb {
 /* Didascalia */
 .bestsellers-visual figcaption {
     margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 10px;
-    font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); font-weight: 500;
+    font-size: 0.75rem; color: var(--txtcolor); font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase;
     cursor: default; user-select: none; pointer-events: none;
 }
