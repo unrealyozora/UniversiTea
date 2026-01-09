@@ -101,4 +101,3 @@ try {
     // In caso di errore DB, meglio usare codice 500
     loadErrorPage(500);
 }
-?>

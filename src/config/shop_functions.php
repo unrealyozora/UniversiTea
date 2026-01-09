@@ -66,11 +66,11 @@ function loadErrorPage($code) {
 
 // ADATTA QUESTO PERCORSO:
 // Supponiamo che le pagine siano tipo: pages/404.php, pages/500.php
-    $path = __DIR__ . "/../pages/{$code}.html";
+    $path = __DIR__ . "/../pages/$code.html";
 
 // Se sono .html cambia l'estensione qui sotto:
     if (!file_exists($path)) {
-        $path = __DIR__ . "/../pages/{$code}.php";
+        $path = __DIR__ . "/../pages/$code.php";
     }
 
     if (file_exists($path)) {
@@ -81,7 +81,3 @@ function loadErrorPage($code) {
     }
     exit; // Importante: ferma l'esecuzione dello script!
 }
-?>
-
-?>
-

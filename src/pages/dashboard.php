@@ -73,7 +73,7 @@ $user = getCurrentUser();
 
             <!-- Colonna Brand -->
             <div class="footer-column brand-col">
-                <img src="assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
+                <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
                 <p class="footer-tagline">
                     Il tè che studia con te. Dalla natura incontaminata, direttamente nella tua tazza.
                 </p>

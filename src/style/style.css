@@ -286,7 +286,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 /* LAYER 6 */
 .layer-6 { 
     width: 100%; height: auto; 
-    bottom: 0%; z-index: 6; 
+    bottom: 0; z-index: 6;
 }
 
 /* LAYER 7 */

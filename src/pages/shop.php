@@ -16,22 +16,22 @@ function renderProductCard($product) {
     return <<<HTML
         <li class="product-item">
             <article class="product-card">
-                <a aria-label="vai alla pagina di {$nome}" href="product.php?id={$id}">
-                    <img src="{$imgPath}" alt="" loading="lazy">
+                <a aria-label="vai alla pagina di $nome" href="product.php?id=$id">
+                    <img src="$imgPath" alt="" loading="lazy">
                 </a>
                 <div class="product-info">
-                    <h3>{$nome}</h3>
-                    <p class="category-tag">{$categoria}</p>
-                    <p class="description">{$descrizione}</p>
-                    <p class="price">€ {$prezzo}</p>
+                    <h3>$nome</h3>
+                    <p class="category-tag">$categoria</p>
+                    <p class="description">$descrizione</p>
+                    <p class="price">€ $prezzo</p>
                     <button class="btn-add-cart" 
-                            data-id="{$id}"
-                            aria-label="Aggiungi {$nome} al carrello">
+                            data-id="$id"
+                            aria-label="Aggiungi $nome al carrello">
                         Aggiungi al carrello
                     </button>
                     <button class="btn-add-preferiti" 
-                            data-id="{$id}"
-                            aria-label="Aggiungi {$nome} ai Preferiti">
+                            data-id="$id"
+                            aria-label="Aggiungi $nome ai Preferiti">
                         Aggiungi ai Preferiti
                     </button>
                 </div>

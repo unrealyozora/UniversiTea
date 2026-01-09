@@ -68,7 +68,7 @@ function renderProduct(product) {
     const btnAdd = document.querySelector('.btn-add-cart');
 
     if (availContainer && availText) {
-        const isAvailable = parseInt(product.disponibilità) > 0;
+        const isAvailable = parseInt(product.disponibilita) > 0;
 
         if (isAvailable) {
             availText.textContent = "Disponibile";
