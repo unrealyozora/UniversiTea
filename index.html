@@ -125,7 +125,7 @@
             <li>
                 <a href="src/pages/shop.html?category=tea" class="category-link">
                     <article class="category-card">
-                        <img src="assets/images/cat.jpg" alt="Selezione di tè sfusi e in bustina" class="category-img">
+                        <img src="assets/images/category-card-tea.jpg" alt="" class="category-img">
                         <div class="category-content">
                             <h3>I Nostri Tè</h3>
                             <p>Verdi, Neri, Infusi e Tisane</p>
@@ -137,7 +137,7 @@
             <li>
                 <a href="src/pages/shop.html?category=merch" class="category-link">
                     <article class="category-card">
-                        <img src="assets/images/cat_merch.jpg" alt="Tazze, teiere e abbigliamento con logo" class="category-img">
+                        <img src="assets/images/category-card-merch.jpg" alt="" class="category-img">
                         <div class="category-content">
                             <h3><span lang="en-GB">Merch</span> & Accessori</h3>
                             <p>Tazze, Teiere e stile</p>
@@ -480,7 +480,7 @@
         hamburgerBtn.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span>';
         header.appendChild(hamburgerBtn);
 
-        // Overlay (con TASTO CHIUDI ESPLICITO)
+        // Overlay
         const overlay = document.createElement('div');
         overlay.className = 'mobile-menu-overlay';
         overlay.innerHTML = `
@@ -504,7 +504,6 @@
             document.body.classList.add('menu-open');
         });
 
-        // Selezioniamo il tasto X appena creato
         const closeBtn = overlay.querySelector('.close-menu-btn');
         closeBtn.addEventListener('click', () => {
             document.body.classList.remove('menu-open');
@@ -517,31 +516,42 @@
         });
 
 
-        /* --- 3. HEADER COLOR CHANGE --- */
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 800) {
+        /* --- 3. HEADER COLOR CHANGE (DINAMICO) --- */
+        function updateHeaderColor() {
+            // Cambio colore all'85% dell'altezza schermo
+            const triggerPoint = window.innerHeight * 0.85;
+
+            if (window.scrollY > triggerPoint) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        });
+        }
+        window.addEventListener('scroll', updateHeaderColor);
 
 
-        /* --- 4. PARALLASSE & HERO FADE FIX --- */
+        /* --- 4. PARALLASSE & HERO FADE FIX (VERSIONE CORRETTA) --- */
+        
         const layers = document.querySelectorAll('.parallax-layer');
         const heroSection = document.querySelector('.hero-section');
-        const heroContent = document.querySelector('.hero-ui-content');
+        
+        // TARGET: Puntiamo direttamente alla BOX per gestire il blur
+        const heroContent = document.querySelector('.hero-text-box');
 
-        // VELOCITÀ
+        // Velocità dei vari layer
         const layerSpeeds = [0.85, 0.75, 0.65, 0.30, 0.35, 0.25, 0.15, 0.0];
+
+        // Calcolo dinamico della velocità di dissolvenza
+        // Più dividiamo, più lento svanisce. (window.innerHeight / 1.5 è un buon equilibrio)
+        const fadeDivisor = window.innerHeight / 1.5;
 
         let ticking = false;
 
         function updateParallax() {
             const scrollY = window.scrollY;
 
-            // Ottimizzazione: ferma calcoli se non siamo nella hero
-            if (scrollY > heroSection.offsetHeight) {
+            // Ottimizzazione: se siamo oltre la hero, fermiamo i calcoli
+            if (heroSection && scrollY > heroSection.offsetHeight) {
                 ticking = false;
                 return;
             }
@@ -550,29 +560,29 @@
             layers.forEach((layer, index) => {
                 if (index < layerSpeeds.length) {
                     const speed = layerSpeeds[index];
-
-                    // VERIFICA: Layer 4 e 7 sono ancorati a sinistra (left: 0) -> Muovi solo Y
                     if (layer.classList.contains('layer-4') || layer.classList.contains('layer-7')) {
                         layer.style.transform = `translateY(${scrollY * speed}px)`;
                     } else {
-                        // Gli altri sono centrati -> serve translateX(-50%)
                         layer.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
                     }
                 }
             });
 
-            // B. Gestione Fade del Box Testo (FIX TONALITÀ)
+            // B. GESTIONE FADE (FIX DEFINITIVO)
             if (heroContent) {
-                // SE SIAMO IN CIMA (0-5px): Resetta tutto.
-                // Rimuovendo lo stile inline, torna a comandare il CSS originale (colore vetro scuro).
-                if (scrollY <= 5) {
-                    heroContent.style.opacity = '';
-                    heroContent.style.transform = '';
-                } else {
-                    // SE SCROLLIAMO: Applica l'effetto dissolvenza
-                    // Ho messo 700 invece di 500 per renderlo più graduale
-                    const opacity = 1 - (scrollY / 700);
-                    heroContent.style.transform = `translateY(${scrollY * 0.5}px)`;
+                // 1. ZONA SICURA (Scroll in cima < 10px): RESET TOTALE
+                // Questo comando rimuove l'attributo 'style', costringendo il browser
+                // a ricaricare il CSS originale (con il blur perfetto).
+                if (scrollY < 10) {
+                    heroContent.style.opacity = ''; 
+                    heroContent.style.filter = '';  
+                } 
+                // 2. DISSOLVENZA (Scroll in giù)
+                else {
+                    // Calcolo matematico dell'opacità
+                    const opacity = 1 - (scrollY / fadeDivisor);
+                    
+                    // Applichiamo il valore (assicurandoci che non vada sotto 0)
                     heroContent.style.opacity = opacity > 0 ? opacity : 0;
                 }
             }
