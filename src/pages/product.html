@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="utf-8">
-    <title>Dettaglio Prodotto - UniversiTea</title>
+    <title>{{NAME}} - UniversiTea</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/print.css" media="print">
@@ -46,7 +46,7 @@
     <p>Ti trovi in:
         <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt;
         <a href="shop.php"><span lang="en-GB">Shop</span></a> &gt;
-        <span aria-current="page" id="breadcrumb-current">Prodotto</span>
+        <span aria-current="page" id="breadcrumb-current">{{NAME}}</span>
     </p>
 </nav>
 
@@ -54,22 +54,22 @@
     <section class="product-detail-container">
 
         <div class="product-gallery">
-            <img src="" alt="" id="product-img-main">
+            <img src="{{IMG_SRC}}" alt="" id="product-img-main">
         </div>
 
         <div class="product-info-sticky">
 
             <header class="product-header-group">
-                <span class="category-tag" id="product-category"></span>
+                <span class="category-tag" id="product-category">{{CATEGORY}}</span>
 
-                <h1 id="product-title">Caricamento...</h1>
+                <h1 id="product-title">{{NAME}}</h1>
 
                 <div class="product-meta">
-                    <p class="price" id="product-price">--,--</p>
+                    <p class="price" id="product-price">{{PRICE}}</p>
 
-                    <p class="availability available" id="product-availability">
+                    <p class="availability {{AVAILABILITY_CLASS}}" id="product-availability">
                         <span class="status-dot" aria-hidden="true"></span>
-                        <span class="text">Verifica disponibilità...</span>
+                        <span class="text">{{AVAILABILITY_TEXT}}</span>
                     </p>
                 </div>
             </header>
@@ -77,8 +77,10 @@
             <hr class="separator" aria-hidden="true">
 
             <div class="description-box">
-                <p class="product-description" id="product-desc">...</p>
+                <p class="product-description" id="product-desc">{{DESCRIPTION}}</p>
             </div>
+
+            <div id="specs-placeholder">{{SPECS}}</div>
 
             <form class="add-to-cart-form">
                 <div class="qty-wrapper">
@@ -86,12 +88,10 @@
                     <input type="number" id="quantity" name="quantity" min="1" value="1" class="qty-input">
                 </div>
 
-                <button type="submit" class="btn-join btn-add-cart">
-                    Aggiungi al carrello
+                <button type="submit" class="btn-join btn-add-cart" {{BTN_DISABLED}}>
+                    {{BTN_TEXT}}
                 </button>
             </form>
-
-            <div id="specs-placeholder"></div>
 
         </div>
     </section>
@@ -145,7 +145,7 @@
             <nav class="footer-column" aria-label="Categorie prodotti">
                 <h3>Prodotti</h3>
                 <ul>
-                    <<li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
+                    <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
                     <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
                     <li><a href="shop.php?category=servizi">I Servizi</a></li>
                     <li><a href="shop.php?category=bundle">I Bundle</a></li>
@@ -197,6 +197,6 @@
     </footer>
 </main>
 
-<script src="../config/product.js"></script>
+<!---<script src="../config/product.js"></script>-->
 </body>
 </html>

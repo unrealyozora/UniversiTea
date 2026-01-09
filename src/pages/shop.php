@@ -1,24 +1,6 @@
 <?php
 require_once '../config/database_conn.php';
-
-// ==================== FUNZIONI HELPER ====================
-
-/**
- * Restituisce il path dell'immagine placeholder in base alla categoria
- */
-function getImagePlaceholder($categoria) {
-    $basePath = '../../assets/images/';
-    switch ($categoria) {
-        case 'bevande':
-            return $basePath . 'placeholder_tea.svg';
-        case 'merchandising':
-            return $basePath . 'placeholder_merch.jpg';
-        case 'servizi':
-            return $basePath . 'placeholder_service.svg';
-        default:
-            return $basePath . 'placeholder_generic.jpg';
-    }
-}
+require_once '../config/shop_functions.php';
 
 /**
  * Genera HTML di una singola card prodotto
@@ -34,7 +16,7 @@ function renderProductCard($product) {
     return <<<HTML
         <li class="product-item">
             <article class="product-card">
-                <a aria-label="vai alla pagina di {$nome}" href="product.html?id={$id}">
+                <a aria-label="vai alla pagina di {$nome}" href="product.php?id={$id}">
                     <img src="{$imgPath}" alt="" loading="lazy">
                 </a>
                 <div class="product-info">
