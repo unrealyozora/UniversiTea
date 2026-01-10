@@ -80,6 +80,20 @@ section {
 /* --- 1. PULSANTE PRIMARIO (Solo Hero "Join Now" e Header "Join" Iniziale) --- 
    Stile: Verde pieno -> Hover: Bianco */
 
+.btn-join {
+    display: inline-flex; justify-content: center; align-items: center; text-decoration: none;
+    background-color: var(--universitea-green); color: #0f0e0e; border: 2px solid var(--universitea-green);
+    border-radius: 50px; padding: 0.6em 1.8em; font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
+    transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
+}
+.btn-join:hover { 
+    background-color: #fff; 
+    border-color: #fff; 
+    color: var(--universitea-green); 
+    transform: translateY(-2px); 
+}
+
+
 .hero-cta,
 body.homepage .main-header:not(.scrolled) .btn-join {
     display: inline-flex; justify-content: center; align-items: center;
