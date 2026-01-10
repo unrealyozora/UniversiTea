@@ -1,6 +1,64 @@
 /* --- LAYOUT PAGINA SHOP --- */
 
 /* Wrapper principale per affiancare filtri e prodotti su desktop */
+/* Messaggi di feedback (Successo/Errore) */
+.success-msg, .error-msg {
+    align-self: center;
+    padding: 2em;
+    margin-bottom: 1.2em;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    width: 40%;
+    box-sizing: border-box;
+    animation: fadeAndCollapse 3s forwards;
+}
+
+.success-msg {
+    background-color: var(--universitea-green);
+    color: var(--lightbgcolor);
+    border: 2px solid #0b3f3e;
+}
+
+.error-msg {
+    background-color: #721c24;
+    color: var(--lightbgcolor);
+    border: 1px solid #ff4444;
+}
+
+@keyframes fadeAndCollapse {
+    0% {
+        opacity: 1;
+        max-height: 100px; /* Altezza sufficiente a contenerlo */
+        margin-bottom: 20px;
+        padding: 15px;
+        opacity: 1;
+    }
+    70% {
+        /* Resta visibile fino al 70% del tempo (circa 3.5 secondi) */
+        opacity: 1;
+        max-height: 100px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+    85% {
+        /* Inizia a svanire */
+        opacity: 0;
+        max-height: 100px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+    100% {
+        /* Sparito completamente e collassa lo spazio */
+        opacity: 0;
+        max-height: 0;
+        margin-bottom: 0;
+        padding: 0;
+        border: 0;
+    }
+}
+
+
 .shop-layout {
     display: grid;
     grid-template-columns: 280px 1fr; /* Colonna filtri fissa, prodotti flessibile */
