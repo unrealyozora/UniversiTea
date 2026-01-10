@@ -7,31 +7,30 @@
     <meta name="description" content="Pagina dedicata alle informazioni sui tè venduti da universitea">
     <meta name="keywords" content="tè, università, tisane, negozio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/print.css" media="print">
 </head>
 
 <body>
     
     <header class="main-header">
-        <div class="logo">
-            <a href="../../index.html">
-                <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
-            </a>
-        </div>
+        <a href="../../index.html" class="logo-link">
+            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        </a>
 
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
-                <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
-                <li><a href="tea-info.html" aria-current="page">Il nostro Tè</a></li>
+                <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
+                <li>Il nostro Tè</li>
                 <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="dashboard.php">Il tuo profilo</a></li>
             </ul>
         </nav>
 
         <nav id="user-actions" aria-label="Menu utente">
             <ul>
                 <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello">
-                    <img src="../../assets/images/cart.png" alt="Carrello" width="48" height="48"></a></li>
+                    <img src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
                 <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
             </ul>
         </nav>
@@ -41,35 +40,34 @@
         <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page">Il nostro Tè</span></p>
     </nav>
 
-    <main id="tea-content">
-        <h1>Più di una bevanda</h1>
-        <div class="container">
+    <main class="tea-content">
+        <h1>Più di una bevanda!</h1>
 
-            <div class="intro-container">
-                <p>Il tè non è solo una bevanda: è il tuo alleato per le sessioni di studio, la pausa rigenerante e, a
-                    volte, il
-                    segreto per sopravvivere agli esami più intensi!</p>
-                <p>Selezioniamo con cura i nostri tè dai migliori produttori del mondo, così da offrire solo il meglio ai
-                    nostri
-                    clienti. Scopri qui i diversi tipi di tè che utilizziamo e i loro piccoli superpoteri!</p>
+        <section class = "tea-intro">
+            <div class="teiera">
+                <img src="../../assets/images/teiera.png" alt="Illustrazione di una teiera inclinata che versa il tè nel box delle curiosità">
             </div>
-            
-            <div class= "aside-container">
-                <div class="teiera">
-                    <img src="../../assets/images/teiera.png" alt="Illustrazione di una teiera inclinata che versa il tè nel box delle curiosità">
-                </div>
-                <aside class="curiosita">  <!--class o id??-->
-                    <h2>Lo sapevi che...</h2>
-                    <p>…tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>: ciò che li rende diversi — dal
-                        verde al
-                        nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle foglie.</p>
-                    <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in
-                        realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
-                </aside>
-            </div>
-        </div>
+
+            <svg class = "liquid-svg" viewBox="0 0 238 216" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.522854" width="232" height="159" rx="56" fill="#00D69F"/>
+                <path d="M1.64685 190.052C1.06285 185.305 0.64382 178.084 1.43725 165.551C1.44365 164.476 1.59245 158.38 2.02285 158.06C2.45325 157.74 4.37485 156.031 4.91085 155.871C7.04685 155.282 9.17605 154.219 11.3109 153.257C13.4468 152.294 15.5258 151.145 17.4437 150.11C19.5268 148.985 21.8535 146.836 24.0565 144.934C26.0357 143.225 32.657 140.223 38.4101 137.681C42.0421 136.076 45.1021 132.961 53.4068 130.639C58.3621 129.254 62.9918 127.04 72.0101 126.263C78.3109 125.721 89.9355 124.862 97.2037 124.132C110.944 122.751 113.518 122.686 116.328 122.164C119.476 121.58 123.774 121.518 129.938 120.831L129.995 120.825C132.907 120.5 140.247 119.682 154.759 121.873C163.757 123.231 175.69 125.766 183.452 127.74C191.213 129.714 194.698 131.087 198.943 133.025C203.188 134.962 208.138 137.239 212.541 140.02C221.05 145.394 226.182 148.89 228.111 152.258C229.978 155.519 231.509 158 231.509 158C231.509 158 232.238 171.652 232.523 174C232.846 176.667 233.333 184.202 234.023 186.5C234.664 188.636 235.513 194.325 236.023 197C236.45 199.242 237.023 200.566 236.023 207.5C235.708 209.684 235.186 212.552 231.023 213.5C226.023 214.638 227.023 214.5 227.023 214.5C227.023 214.5 226.523 214.944 216.023 214.5C214.025 214.416 212.523 213.352 211.523 213C209.39 212.25 208.023 209 208.023 209C208.023 209 206.566 205.232 206.023 202.5C205.439 199.562 204.817 196.787 204.523 193.566C203.926 187.041 202.076 183 198.943 181.214C197.359 180.31 190.681 179.352 189.023 181.214C186.343 184.223 186.123 184.495 185.023 186.5C183.197 189.828 181.023 202.5 181.023 202.5C181.023 202.5 179.427 208.813 177.023 209.5C173.523 210.5 162.523 211.923 156.523 207.5C154.708 206.162 154.133 205.001 153.023 202.5C151.319 198.662 153.023 202.5 151.023 197.5C150.099 195.19 149.81 179.489 146.919 176.716C142.523 172.5 138.523 172 134.023 176.716C132.172 178.655 130.023 191 124.023 194C116.812 197.606 109.48 194.602 107.023 191C104.023 186.602 104.543 179.161 103.023 176.716C101.023 173.5 94.5229 175 94.5229 175C94.5229 175 89.5229 175 88.5229 180.5C87.5229 186 87.5229 191 85.5229 197L85.4787 197.132C83.5079 203.045 82.486 206.112 77.5229 211C74.3603 214.115 64.0229 212.5 61.5229 209.5C59.9446 207.606 57.0229 197.614 57.0229 195C57.0229 187.5 51.0229 184.398 51.0229 184.398C51.0229 184.398 43.0229 182 40.0229 185.5C37.0229 189 39.5229 186.172 37.0229 190.052C36.8074 190.386 35.4124 196.503 34.6445 199.5C34.0557 201.798 32.9272 204.002 31.7733 205.925C30.2733 208.425 27.6442 211.001 25.5229 211C18.3404 210.997 18.6542 210.318 16.5229 209.5C14.0125 208.537 10.8227 205.653 9.16365 203.546C7.77645 201.785 6.08027 199.557 4.95244 197.359C3.82764 195.167 1.94566 192.481 1.64685 190.052Z" fill="#00D69F"/>
+                <path d="M2.02285 158.06C1.91725 159.014 1.70285 161.356 1.43725 165.551M2.02285 158.06C2.45325 157.74 4.37485 156.031 4.91085 155.871C7.04685 155.282 9.17605 154.219 11.3109 153.257C13.4468 152.294 15.5258 151.145 17.4437 150.11C19.5268 148.985 21.8535 146.836 24.0565 144.934C26.0357 143.225 32.657 140.223 38.4101 137.681C42.0421 136.076 45.1021 132.961 53.4068 130.639C58.3621 129.254 62.9918 127.04 72.0101 126.263C78.3109 125.721 89.9355 124.862 97.2037 124.132C110.944 122.751 113.518 122.686 116.328 122.164C119.476 121.58 123.774 121.518 129.938 120.831C132.81 120.511 140.151 119.668 154.759 121.873C163.757 123.231 175.69 125.766 183.452 127.74C191.213 129.714 194.698 131.087 198.943 133.025C203.188 134.962 208.138 137.239 212.541 140.02C221.05 145.394 226.182 148.89 228.111 152.258C229.978 155.519 231.509 158 231.509 158C231.509 158 232.238 171.652 232.523 174C232.846 176.667 233.333 184.202 234.023 186.5C234.664 188.636 235.513 194.325 236.023 197C236.45 199.242 237.023 200.566 236.023 207.5C235.708 209.684 235.186 212.552 231.023 213.5C226.023 214.638 227.023 214.5 227.023 214.5C227.023 214.5 226.523 214.944 216.023 214.5C214.025 214.416 212.523 213.352 211.523 213C209.39 212.25 208.023 209 208.023 209C208.023 209 206.566 205.232 206.023 202.5C205.439 199.562 204.817 196.787 204.523 193.566C203.926 187.041 202.076 183 198.943 181.214C197.359 180.31 190.681 179.352 189.023 181.214C186.343 184.223 186.123 184.495 185.023 186.5C183.197 189.828 181.023 202.5 181.023 202.5C181.023 202.5 179.427 208.813 177.023 209.5C173.523 210.5 162.523 211.923 156.523 207.5C154.708 206.162 154.133 205.001 153.023 202.5C151.319 198.662 153.023 202.5 151.023 197.5C150.099 195.19 149.81 179.489 146.919 176.716C142.523 172.5 138.523 172 134.023 176.716C132.172 178.655 130.023 191 124.023 194C116.812 197.606 109.48 194.602 107.023 191C104.023 186.602 104.543 179.161 103.023 176.716C101.023 173.5 94.5229 175 94.5229 175C94.5229 175 89.5229 175 88.5229 180.5C87.5229 186 87.5229 191 85.5229 197C83.5229 203 82.5229 206.075 77.5229 211C74.3603 214.115 64.0229 212.5 61.5229 209.5C59.9446 207.606 57.0229 197.614 57.0229 195C57.0229 187.5 51.0229 184.398 51.0229 184.398C51.0229 184.398 43.0229 182 40.0229 185.5C37.0229 189 39.5229 186.172 37.0229 190.052C36.8074 190.386 35.4124 196.503 34.6445 199.5C34.0557 201.798 32.9272 204.002 31.7733 205.925C30.2733 208.425 27.6442 211.001 25.5229 211C18.3404 210.997 18.6542 210.318 16.5229 209.5C14.0125 208.537 10.8227 205.653 9.16365 203.546C7.77645 201.785 6.08027 199.557 4.95244 197.359C3.82764 195.167 1.94566 192.481 1.64685 190.052C1.06285 185.305 0.64382 178.084 1.43725 165.551M2.02285 158.06C1.59245 158.38 1.44365 164.476 1.43725 165.551" stroke="#00D69F" stroke-width="2" stroke-linecap="round"/>
+                <rect x="0.522854" y="100" width="232" height="67" fill="#00D69F"/>
+            </svg>
+
+            <p>Il tè non è solo una bevanda: è il tuo alleato per le sessioni di studio, la pausa rigenerante e, a volte, il segreto per sopravvivere agli esami più intensi!</p>
+            <p>Selezioniamo con cura i nostri tè dai migliori produttori del mondo, così da offrire solo il meglio ai nostri clienti. Scopri qui i diversi tipi di tè che utilizziamo e i loro piccoli superpoteri!</p>
+
+        </section>
+
+        <section class="curiosita">
+            <h2>Lo sapevi che...</h2>
+            <p>…tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>: ciò che li rende diversi — dal verde al nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle foglie.</p>
+            <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
+        </section>
 
         <section>
+            <img src="../../assets/images/teverde.png" alt="Tazza riempita di tè verde circondata da foglie di tè verde">
             <h2>Tè verde</h2>
             <p>blabla</p>
             <h3>Tè verde matcha</h3>
@@ -77,11 +75,13 @@
         </section>
 
         <section>
+            <img src="../../assets/images/tenero.png" alt="Tazza riempita di tè nero circondata da foglie di tè nero">
             <h2>Tè nero</h2>
             <p>blablablabla</p>
         </section>
 
         <section>
+            <img src="../../assets/images/tebianco.png" alt="Tazza riempita di tè bianco circondata da foglie di tè bianco">
             <h2>Tè bianco</h2>
             <p>blablablablabla</p>
         </section>
@@ -98,18 +98,104 @@
 
     </main>
 
-    <footer>
-        <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10"
-                    alt="HTML Valido!"></a></p>
-        <p>Copyright© 2025 by PCMS - <span lang="en-GB">All rights reserved</span>. Tutti i prodotti presentati sono
-            frutto
-            della nostra immaginazione e ogni riferimento a persone o cose realmente esistenti è casuale.</p>
-        <ul>
-            <li>Email: <a href="mailto:universitea@gmail.com">universitea@gmail.com</a></li>
-            <li>Telefono: <a href="tel:+3912312390123">+39 12312390123</a></li>
-        </ul>
-        <p><a href="https://jigsaw.w3.org/css-validator/check/referer"><img
-                    src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido!"></a></p>
+
+    <footer class="main-footer-area">
+        <div class="footer-container">
+
+            <!-- Colonna Brand -->
+            <div class="footer-column brand-col">
+                <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
+                <p class="footer-tagline">
+                    Il tè che studia con te. Dalla natura incontaminata, direttamente nella tua tazza.
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="Seguici su Facebook" class="social-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Seguici su Instagram" class="social-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Seguici su Twitter" class="social-icon">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mappa del Sito -->
+            <nav class="footer-column" aria-label="Mappa del sito">
+                <h3>Naviga</h3>
+                <ul>
+                    <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
+                    <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
+                    <li><a href="tea-info.html">Il nostro Tè (Ti trovi qui ora)</a></li>
+                    <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+                    <li><a href="dashboard.php">Il tuo profilo</a></li>
+                    <li><a href="preferiti.php">Preferiti</a></li>
+                    <li><a href="cart.php">Carrello</a></li>
+                    <li><a href="register.html">Registrati</a></li>
+                    <li><a href="login.html">Accedi</a></li>
+                </ul>
+            </nav>
+
+            <!-- Categorie Prodotti -->
+            <nav class="footer-column" aria-label="Categorie prodotti">
+                <h3>Prodotti</h3>
+                <ul>
+                    <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
+                    <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
+                    <li><a href="shop.php?category=servizi">I Servizi</a></li>
+                    <li><a href="shop.php?category=bundle">I Bundle</a></li>
+                    <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
+                    <li><a href="register.html">Programma Fedeltà</a></li>
+                </ul>
+            </nav>
+
+            <!-- Contatti & Supporto -->
+            <div class="footer-column">
+                <h3>Contatti</h3>
+                <ul class="contact-list">
+                    <li>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:info@universitea.it">info@universitea.it</a>
+                    </li>
+                    <li>
+                        <strong>Telefono:</strong><br>
+                        <a href="tel:+3912312390123">+39 123 123 90123</a>
+                    </li>
+                    <li>
+                        <strong>Orari Assistenza:</strong><br>
+                        Lun-Ven: 9:00 - 18:00<br>
+                        Sab: 10:00 - 16:00
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Fascia Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="legal-info">
+                    <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span lang="en-GB">All rights reserved</span>.</p>
+                    <p class="disclaimer">Questo sito è un progetto accademico realizzato per scopi didattici.</p>
+                </div>
+
+                <div class="validators">
+                    <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
+                    </a>
+                    <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                        <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88" height="31">
+                    </a>
+                </div>
+            </div>
+        </div>
     </footer>
 
 </body>

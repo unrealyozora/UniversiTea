@@ -1,0 +1,361 @@
+/* --- LAYOUT PAGINA SHOP --- */
+
+/* Wrapper principale per affiancare filtri e prodotti su desktop */
+.shop-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Colonna filtri fissa, prodotti flessibile */
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.shop-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 1rem auto 3rem auto;
+}
+
+.shop-header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.shop-header p {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- FILTRI (ASIDE) --- */
+#shop-filter-section {
+    background: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 24px;
+    padding: 2rem;
+    height: fit-content;
+    backdrop-filter: blur(5px);
+    margin-left: 1rem;
+}
+
+#filter-form h2 {
+    font-size: 1.2rem;
+    color: var(--universitea-green);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input Ricerca */
+.filter-group-vertical input[type="search"] {
+    width: 100%;
+    padding: 0.8em 1em;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none; /* Rimuove lo stile di default */
+    height: 24px;
+    width: 24px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='red'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
+    cursor: pointer;
+}
+
+
+/* FOCUS VISIBILE (Accessibilità) */
+.filter-group-vertical input[type="search"]:focus {
+    border-color: var(--universitea-green);
+    box-shadow: 0 0 0 3px rgba(0, 214, 159, 0.2);
+}
+
+/* Gruppi Filtri */
+.filter-group {
+    border: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.filter-group legend {
+    color: #888;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+/* Radio Buttons stilizzati */
+.radio-wrapper {
+    position: relative;
+}
+
+.radio-wrapper input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.radio-wrapper label {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Stati Radio Button */
+.radio-wrapper input[type="radio"]:checked + label {
+    background-color: var(--universitea-green);
+    border-color: var(--universitea-green);
+    color: var(--darkbgcolor); /* Testo scuro su sfondo verde per contrasto */
+}
+
+/* Focus da tastiera sui radio */
+.radio-wrapper input[type="radio"]:focus-visible + label {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+    border-color: var(--universitea-green);
+}
+
+.radio-wrapper label:hover {
+    border-color: var(--universitea-green);
+}
+
+/* Range Slider e Checkbox */
+.filter-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#price-range {
+    -webkit-appearance: none; /* Rimuove lo stile di default */
+    width: 100%;
+    height: 8px;
+    background: #ddd; /* Colore della parte non selezionata */
+    border-radius: 5px;
+    outline: none;
+}
+
+/* 2. Stile del cursore (Thumb) per Chrome, Safari, Edge */
+#price-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #00d69f; /* Il tuo colore verde */
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #ffffff; /* Un bordino bianco lo fa risaltare */
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+/* 3. Stile del cursore per Firefox */
+#price-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #00d69f;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+.filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #ddd;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.filter-toggle input[type="checkbox"] {
+    accent-color: var(--universitea-green);
+    width: 1.2em;
+    height: 1.2em;
+    cursor: pointer;
+}
+
+/* --- GRIGLIA PRODOTTI --- */
+.product-list {
+    display: grid;
+    /* Grid responsive robusta */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 1em;
+    transition: opacity 0.3s ease;
+}
+.product-list.loading-fade {
+    opacity: 0.4;
+    pointer-events: none; /* Impedisce click accidentali durante il caricamento */
+}
+
+/* --- CARD PRODOTTO --- */
+.product-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Assicura altezza uniforme nella riga */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 214, 159, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Immagine */
+.product-card img {
+    width: 100%;
+    height: 220px; /* Altezza fissa per allineamento visivo */
+    object-fit: contain; /* Contain evita il taglio dei prodotti */
+    padding: 1.5rem;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.08);
+}
+
+/* Info Prodotto */
+.product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.category-tag {
+    color: var(--universitea-green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.product-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.8rem 0;
+    line-height: 1.3;
+}
+
+.product-info .description {
+    font-size: 0.95rem;
+    color: #bbb;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.product-info .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: auto;
+    margin-bottom: 1.2rem;
+}
+
+/* Bottone Action */
+.btn-add-cart {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: transparent;
+    border: 2px solid var(--universitea-green);
+    color: var(--universitea-green);
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5em;
+}
+
+.btn-add-cart:hover {
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
+    box-shadow: 0 0 15px rgba(0, 214, 159, 0.4);
+}
+
+.btn-add-cart:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+.btn-add-preferiti {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: transparent;
+    border: 2px solid #fc03ad;
+    color: #fc03ad;
+    border-radius: 50px;
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5em;
+}
+
+.btn-add-preferiti:hover {
+    background-color: #fc03ad;
+    color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
+    box-shadow: 0 0 15px #5c1044;
+}
+
+.btn-add-preferiti:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .shop-layout {
+        grid-template-columns: 1fr; /* Colonna singola su mobile */
+        gap: 2rem;
+    }
+
+
+    /* Layout orizzontale dei filtri su mobile per risparmiare spazio */
+    .filter-group-vertical {
+        margin-bottom: 1rem;
+    }
+}

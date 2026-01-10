@@ -11,6 +11,7 @@
     --txtcolor: #E0E0E0;
     --breadcolor: #5B7553;
     --linkcolor: #9ddbad;
+    --link-visited: #ff9b03;/*#cc2569;*/
 
     --navlink-color: #0b3f3e;
     --universitea-green: #00d69f;
@@ -20,7 +21,6 @@
 
 html,
 body {
-    padding-top:4em;
     font-size: 100%;
     font-family: "Lexend", "Roboto", sans-serif;
     line-height: 1.5em;
@@ -35,15 +35,26 @@ body {
     overflow-x: hidden;
 }
 
+body.homepage {
+    padding-top: 0;
+}
+
 a{
     color: var(--universitea-green);
 }
 
-.skip-link {
-    position: absolute; top: -40px; left: 0; background: #000; color: #fff;
-    padding: 8px; z-index: 10001; text-decoration: none; transition: top 0.3s;
+a:visited{
+    color: var(--link-visited);
 }
-.skip-link:focus { top: 0; }
+
+.skip-link {
+    position: absolute; top: 0; left: 0; background: var(--darkbgcolor); color: var(--txtcolor);
+    padding: 8px; z-index: 10001; text-decoration: none;
+    text-indent: -999em;
+}
+.skip-link:focus {
+    text-indent: 0;
+}
 
 section {
     width: 100%;
@@ -63,116 +74,238 @@ section {
 }
 
 /* ==========================================================================
-   1. HEADER PRINCIPALE (Desktop - Cart Style Unificato)
+   GLOBAL BUTTONS STYLES (Classi Unificate)
 ========================================================================== */
-.main-header {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.8rem 5%; 
-    box-sizing: border-box; transition: all 0.4s ease;
-    background: rgba(15, 14, 14, 0.85); backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
 
-.main-header.scrolled {
-    background: var(--universitea-green); 
-    padding: 1rem 5%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-bottom: none;
-}
+/* --- 1. PULSANTE PRIMARIO (Solo Hero "Join Now" e Header "Join" Iniziale) --- 
+   Stile: Verde pieno -> Hover: Bianco */
 
-/* LOGO */
-.logo a { display: block; text-decoration: none; }
-.logo-img { 
-    width: 160px; height: auto; display: block; 
-    transition: all 0.3s ease; 
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
-}
-.logo a:hover .logo-img { transform: scale(1.03); }
-.main-header.scrolled .logo-img { filter: invert(1) brightness(0); }
-
-
-/* --- NAVIGAZIONE & CARRELLO (Stile Unico) --- */
-
-#main-menu ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 3rem; }
-#user-actions ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 1.5rem; align-items: center; }
-
-#main-menu a, 
-.nav-text-link {
-    text-decoration: none; 
-    color: #fff; 
-    font-size: 0.95rem; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    letter-spacing: 0.01em;
-    padding: 5px 0;
-    position: relative; 
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    display: flex; /* Aggiunto per allineare icona e testo se presenti */
-    align-items: center;
-}
-
-/* --- MODIFICA SPECIFICA PER IL CARRELLO --- */
-/* Di base l'header è scuro e il PNG è nero. 
-   Qui lo invertiamo per farlo diventare BIANCO. */
-.nav-text-link img {
-    filter: brightness(0) invert(1);
-    transition: filter 0.3s ease;
-}
-
-/* ANIMAZIONE LINEA SOTTO */
-#main-menu a::after,
-.nav-text-link::after {
-    content: '';
-    position: absolute;
-    width: 0; height: 2px;
-    bottom: 0; left: 0;
-    background-color: var(--universitea-green);
-    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* Effetto Hover */
-#main-menu a:hover,
-.nav-text-link:hover { 
-    text-shadow: 0 0 12px rgba(0, 214, 159, 0.6);
-}
-#main-menu a:hover::after,
-.nav-text-link:hover::after {
-    width: 100%; 
-}
-
-
-/* --- ADATTAMENTO ALLO SCROLL (Sfondo Verde) --- */
-
-/* Quando l'header è verde, testo e linee diventano neri */
-.main-header.scrolled #main-menu a,
-.main-header.scrolled .nav-text-link { 
-    color: #0f0e0e; 
-    text-shadow: none;
-}
-
-/* --- MODIFICA SPECIFICA PER IL CARRELLO (SCROLLED) --- */
-/* Quando scrolli e lo sfondo è verde, togliamo il filtro.
-   L'icona torna al suo colore originale (NERO). */
-.main-header.scrolled .nav-text-link img {
-    filter: none;
-}
-
-.main-header.scrolled #main-menu a::after,
-.main-header.scrolled .nav-text-link::after {
-    background-color: #0f0e0e; 
-}
-
-
-/* --- BOTTONE JOIN (Rimane un bottone distinto) --- */
 .btn-join {
     display: inline-flex; justify-content: center; align-items: center; text-decoration: none;
     background-color: var(--universitea-green); color: #0f0e0e; border: 2px solid var(--universitea-green);
     border-radius: 50px; padding: 0.6em 1.8em; font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
     transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
 }
-.btn-join:hover { background-color: #fff; border-color: #fff; color: var(--universitea-green); transform: translateY(-2px); }
-.main-header.scrolled .btn-join { background-color: #0f0e0e; border-color: #0f0e0e; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.main-header.scrolled .btn-join:hover { background-color: #fff; border-color: #fff; color: #0f0e0e; }
+.btn-join:hover { 
+    background-color: #fff; 
+    border-color: #fff; 
+    color: var(--universitea-green); 
+    transform: translateY(-2px); 
+}
+
+
+.hero-cta,
+body.homepage .main-header:not(.scrolled) .btn-join {
+    display: inline-flex; justify-content: center; align-items: center;
+    text-decoration: none;
+    
+    /* BASE: Verde Pieno, Scritta Nera */
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    border: 2px solid var(--universitea-green);
+    
+    /* Geometria */
+    border-radius: 50px;
+    padding: 0.8em 2.2em;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    
+    /* Animazioni */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
+}
+
+/* HOVER: Diventa Bianco, Scritta Verde, Sale su */
+.hero-cta:hover,
+body.homepage .main-header:not(.scrolled) .btn-join:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: var(--universitea-green);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 214, 159, 0.4);
+}
+
+
+/* --- 2. PULSANTI SECONDARI / OUTLINE (Best Sellers, Esplora, Shop, Favori, Loyalty) --- 
+   Stile: Trasparente con Bordo -> Hover: Verde Pieno */
+
+.bestsellers-cta,
+.hero-cta-outline,
+.btn-primary-outline,
+.btn-spotlight,
+.btn-loyalty {
+    display: inline-flex; justify-content: center; align-items: center;
+    text-decoration: none;
+    
+    /* BASE: Trasparente, Bordo Verde, Scritta Verde */
+    background-color: transparent;
+    color: var(--universitea-green);
+    border: 2px solid var(--universitea-green);
+    
+    /* Geometria */
+    border-radius: 50px;
+    padding: 0.8em 2.2em;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    
+    /* Animazioni */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* HOVER: Diventa Verde Pieno, Scritta Nera, Sale su */
+.bestsellers-cta:hover,
+.hero-cta-outline:hover,
+.btn-primary-outline:hover,
+.btn-spotlight:hover,
+.btn-loyalty:hover {
+    background-color: var(--universitea-green);
+    border-color: var(--universitea-green);
+    color: #0f0e0e; /* Nero per contrasto */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.4);
+}
+
+
+/* --- 3. ECCEZIONE HEADER SCROLLATO (Sfondo Verde) --- 
+   Il bottone "Join" qui diventa Nero -> Bianco per essere visibile */
+
+.main-header.scrolled .btn-join,
+.main-header .btn-join { /* Default per pagine interne */
+    display: inline-flex; justify-content: center; align-items: center;
+    text-decoration: none;
+    
+    background-color: #0f0e0e; 
+    color: #fff; 
+    border: 2px solid #0f0e0e;
+    
+    border-radius: 50px; padding: 0.8em 2.2em; font-weight: 800; text-transform: uppercase; font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.main-header.scrolled .btn-join:hover,
+.main-header .btn-join:hover {
+    background-color: #fff; 
+    border-color: #fff; 
+    color: #0f0e0e; 
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   1. HEADER PRINCIPALE
+========================================================================== */
+
+.main-header {
+    position: sticky; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 10000;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--universitea-green); 
+    padding: 1rem 5%; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); 
+    box-sizing: border-box; 
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+body.homepage .main-header {
+    position: fixed;
+}
+
+body.homepage .main-header:not(.scrolled) {
+    background: rgba(15, 14, 14, 0.85); 
+    
+    /* IMPORTANTE: Manteniamo lo STESSO padding di base */
+    padding: 1rem 5%; 
+    
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-link { 
+    display: block; 
+    text-decoration: none; 
+}
+
+img.logo, 
+.logo-img { 
+    width: 130px; 
+    height: auto; 
+    display: block; 
+    transition: filter 0.4s ease, transform 0.3s ease;
+    filter: invert(1) brightness(0); /* Logo Nero (Default) */
+}
+
+.logo-link:hover .logo-img { 
+    transform: scale(1.03); 
+}
+
+body.homepage .main-header:not(.scrolled) img.logo {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Logo Bianco (Home Top) */
+}
+
+/* --- MENU LINKS & CARRELLO --- */
+#main-menu ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 3rem; }
+#user-actions ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 1.5rem; align-items: center; }
+
+#main-menu a, 
+.nav-text-link {
+    text-decoration: none; 
+    color: #0f0e0e; /* Default: Nero */
+    font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em;
+    padding: 5px 0; position: relative; 
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: flex; align-items: center;
+}
+
+#main-menu a:visited, .nav-text-link:visited { color: var(--link-visited); }
+
+/* Icona Carrello (Default: Nera) */
+.nav-text-link img { filter: none; transition: filter 0.3s ease; }
+
+/* Linea sotto (Default: Nera) */
+#main-menu a::after, .nav-text-link::after {
+    content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+    background-color: #0f0e0e; 
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#main-menu a:hover, .nav-text-link:hover { text-shadow: none; }
+#main-menu a:hover::after, .nav-text-link:hover::after { width: 100%; }
+
+/* NOTA: Lo stile di .btn-join è stato spostato nella sezione GLOBAL BUTTONS */
+
+
+/* ==========================================================================
+   D. ECCEZIONI COLORI HOME (Non scrollato)
+   Quando siamo in cima alla Home, cambiamo i colori in Bianco/Verde
+========================================================================== */
+
+/* Logo Bianco */
+body.homepage .main-header:not(.scrolled) .logo-img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+
+/* Testi Bianchi */
+body.homepage .main-header:not(.scrolled) #main-menu a,
+body.homepage .main-header:not(.scrolled) .nav-text-link { color: #fff; }
+
+/* Icona Carrello Bianca */
+body.homepage .main-header:not(.scrolled) .nav-text-link img { filter: brightness(0) invert(1); }
+
+/* Linea e Hover Verde Neon */
+body.homepage .main-header:not(.scrolled) #main-menu a::after,
+body.homepage .main-header:not(.scrolled) .nav-text-link::after { background-color: var(--universitea-green); }
+body.homepage .main-header:not(.scrolled) #main-menu a:hover,
+body.homepage .main-header:not(.scrolled) .nav-text-link:hover { text-shadow: 0 0 12px rgba(0, 214, 159, 0.6); }
+
+/* NOTA: L'eccezione di colore per .btn-join nella home è gestita in GLOBAL BUTTONS */
+
+
 /* ==========================================================================
    2. ELEMENTI MOBILE (Hamburger & Overlay)
 ========================================================================== */
@@ -246,7 +379,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     bottom: 13%; z-index: 3; 
 }
 
-/* LAYER 4 (Sinistra) */
+/* LAYER 4 */
 .layer-4 { 
     left: 0; 
     transform: none; /* FONDAMENTALE: Annulla la centratura */
@@ -255,19 +388,19 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     z-index: 4; 
 }
 
-/* LAYER 5 (Centrale) */
+/* LAYER 5 */
 .layer-5 { 
     width: 100%; height: auto; 
     bottom: 5%; z-index: 5; 
 }
 
-/* LAYER 6 (Centrale) */
+/* LAYER 6 */
 .layer-6 { 
     width: 100%; height: auto; 
     bottom: 0%; z-index: 6; 
 }
 
-/* LAYER 7 (Sinistra - FIXATO) */
+/* LAYER 7 */
 .layer-7 { 
     left: 0; 
     transform: none; /* FONDAMENTALE: Senza questo, metà immagine esce a sinistra! */
@@ -277,50 +410,135 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     z-index: 7; 
 }
 
-/* LAYER 8 (Centrale - Primo Piano) */
+/* LAYER 8 Alberi in Primo Piano */
 .layer-8 { 
     width: 100%; height: auto; 
     bottom: -2px; z-index: 8; 
 }
 
+/* ==========================================================================
+   4. HERO UI
+========================================================================== */
+
+.hero-ui-content {
+    position: relative; 
+    z-index: 10; 
+    width: 100%; 
+    
+    /* 1. ALTEZZA FLUIDA: Usa dvh per gestire le barre del browser mobile */
+    min-height: 100dvh; 
+    
+    /* 2. LAYOUT: Flexbox per centrare */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    
+    /* 3. SPAZIO DI SICUREZZA FLUIDO (Il fix vero) */
+    /* Diciamo al contenuto: "Centrati, ma considera che i primi 15% dello schermo
+       sono zona proibita (header + breadcrumb)". */
+    padding-top: max(100px, 15vh); 
+    
+    /* Padding di sicurezza laterale e inferiore */
+    padding-bottom: 5vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    
+    box-sizing: border-box;
+}
+
+.hero-text-box {
+    width: 100%; max-width: 800px; padding: 2rem 2rem;
+    
+    /* SFONDO E BLUR */
+    background: rgba(15, 14, 14, 0.65); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Per Safari */
+    
+    border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); text-align: center;
+    
+    /* Animazione Ingresso */
+    animation: fadeInScale 1.2s ease-out forwards;
+    
+    /* Importante: assicuriamo che l'opacità sia gestibile da JS */
+    will-change: opacity, transform;
+}
+
+.hero-brand { font-size: clamp(2.5rem, 6vw, 6rem); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 0.5rem; }
+.hero-slogan { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--universitea-green); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 1.5rem; }
+.hero-description { color: #e0e0e0; font-size: 1rem; line-height: 1.6; max-width: 90%; margin: 0 auto 2.5rem auto; font-weight: 300; }
+
+/* --- PULSANTI --- */
+
+/* Contenitore per affiancare i pulsanti */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem; /* Spazio tra i pulsanti */
+    flex-wrap: wrap; /* Su mobile vanno a capo se serve */
+}
+
+/* NOTA: Lo stile visivo di .hero-cta e .hero-cta-outline 
+   è ora gestito interamente nella sezione GLOBAL BUTTONS. */
+
 
 /* ==========================================================================
-   4. HERO UI & BREADCRUMB
+   BREADCRUMB (Configurazione Fluida & Unificata)
 ========================================================================== */
-.hero-ui-content {
-    position: relative; z-index: 10; width: 100%; height: 100%;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 0 20px 80px 20px;
-}
-.hero-text-box {
-    width: 100%; max-width: 900px; padding: 3.5rem 4rem;
-    background: rgba(15, 14, 14, 0.65); backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); text-align: center;
-    animation: fadeInScale 1.2s ease-out forwards;
-}
-.hero-brand { font-size: clamp(3.5rem, 6vw, 6rem); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 0.5rem; }
-.hero-slogan { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--universitea-green); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 1.5rem; }
-.hero-description { color: #e0e0e0; font-size: 1.15rem; line-height: 1.6; max-width: 80%; margin: 0 auto 2.5rem auto; font-weight: 300; }
-.hero-cta {
-    display: inline-block; background-color: var(--universitea-green); color: #0f0e0e;
-    font-weight: 700; text-decoration: none; padding: 1rem 2.5rem; border-radius: 50px;
-    text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
-}
-.hero-cta:hover { background-color: #fff; color: #00d69f; transform: translateY(-3px); }
 
-/* BREADCRUMB DESKTOP */
+/* 1. STILE BASE (Per Shop, Cart, Login, ecc.) 
+   Qui la breadcrumb occupa spazio fisico e spinge giù il contenuto. */
 #breadcrumb {
-    margin-top: 1rem;
-    position: absolute; top: auto; right: auto; height: auto; width: max-content;
-    bottom: 25px; left: 5%; z-index: 20;
-    background: rgba(15, 14, 14, 0.6); padding: 8px 20px; border-radius: 50px;
-    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.8rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px;
+    /* Posizionamento */
+    position: relative; 
+    display: inline-block;
+    width: max-content;
+    z-index: 20;
+
+    /* Spaziatura */
+    margin-top: 1.5rem;    
+    margin-left: 5%;       /* Allineato al 5% globale */
+    margin-bottom: 2rem; 
+
+    /* Stile Estetico */
+    background: rgba(15, 14, 14, 0.6); 
+    padding: 8px 20px; 
+    border-radius: 50px;
+    backdrop-filter: blur(5px); 
+    border: 1px solid rgba(255,255,255,0.1);
+    
+    /* Tipografia */
+    font-size: 0.8rem; 
+    color: rgba(255,255,255,0.8); 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    line-height: 1;
 }
-#breadcrumb p { margin: 0; padding: 0; line-height: 1; }
+
+#breadcrumb p { margin: 0; padding: 0; }
 #breadcrumb span[aria-current="page"] { color: var(--universitea-green); font-weight: 700; margin-left: 5px; }
+
+
+/* 2. ECCEZIONE HOMEPAGE (Galleggiante sulla Hero) */
+body.homepage #breadcrumb {
+    position: absolute;
+    
+    /* LOGICA CLAMP:
+       - Minimo 90px: Altezza fisica Header + aria (non va mai sotto il menu)
+       - Ideale 12vh: Si adatta all'altezza dello schermo
+       - Massimo 140px: Non scende troppo su schermi giganti
+    */
+    top: clamp(90px, 12vh, 140px);
+    
+    left: 5%;
+    margin: 0;
+    z-index: 20;
+    
+    /* Riduciamo un pelo la scala per eleganza sulla home */
+    transform: scale(0.95);
+    transform-origin: left top;
+}
 
 @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
@@ -346,26 +564,434 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     /* Fix Layer 4 Mobile */
     .layer-4 { 
         width: 100%; left: 0; transform: none; 
-        bottom: 5%; /* Su mobile parte da terra */
+        bottom: 5%; 
     }
 
     .layer-7 { bottom: -2%; }
-
     .layer-8 { bottom: 0; }
 
-    /* Breadcrumb Mobile: MOLTO BASSA */
+    /* BREADCRUMB MOBILE */
     #breadcrumb {
-        left: 50%; transform: translateX(-50%);
-        bottom: 10px; /* Quasi a terra */
-        padding: 6px 15px; font-size: 0.75rem; white-space: nowrap;
+        font-size: 0.75rem;
+        padding: 6px 15px;
+        white-space: nowrap;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        margin-left: 5%; /* Manteniamo coerenza */
+    }
+
+    /* BREADCRUMB MOBILE (SOLO HOME) */
+    body.homepage #breadcrumb {
+        /* Su mobile l'header è piccolo, fissiamo una posizione sicura */
+        top: 85px; 
+        left: 5%;
+        transform: none; 
+        bottom: auto; 
     }
 
     .hero-text-box { padding: 2rem 1.5rem; width: 95%; }
     .hero-brand { font-size: 3rem; }
 }
 
+
+/* ==========================================================================
+   MEDIA QUERY "LAPTOP" (Per schermi bassi)
+========================================================================== */
+@media (max-height: 850px) {
+    
+    /* 1. BREADCRUMB: La forziamo in alto per lasciare spazio */
+    body.homepage #breadcrumb {
+        top: 85px; /* Appena sotto l'header */
+        transform: scale(0.9); /* Ancora più piccola */
+    }
+
+    /* 2. UI Content: Meno spazio sopra */
+    .hero-ui-content {
+        padding-top: 100px; 
+    }
+
+    /* 3. Hero Box: Compressione */
+    .hero-text-box {
+        padding: 1.5rem 2rem;
+        max-width: 750px;
+    }
+
+    /* 4. Tipografia ridotta */
+    .hero-brand { font-size: 2.8rem; margin-bottom: 0; }
+    .hero-slogan { font-size: 1rem; margin-bottom: 0.8rem; }
+    .hero-description { 
+        font-size: 0.95rem; 
+        margin-bottom: 1.5rem; 
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+    
+    /* 5. Bottoni */
+    .hero-buttons { gap: 1rem; }
+    .hero-cta, .hero-cta-outline { padding: 0.6rem 1.5rem; }
+
+    .main-header,
+    body.homepage .main-header:not(.scrolled) {
+        padding: 0.8rem 5%;
+    }
+    
+    /* Logo leggermente più piccolo sui laptop, ma fisso */
+    img.logo, .logo-img {
+        width: 110px;
+    }
+}
+
+/* =========================================
+   GENERIC: STILE TITOLI SEZIONI
+   (Vale per Values, Categories, Loyalty, Spotlight)
+========================================= */
+
+/* Regola base per le sezioni standard */
+.values-section,
+.categories-section,
+.spotlight-section,
+.loyalty-section {
+    padding: 6rem 5%;
+    position: relative;
+    /* Assicuriamo che i titoli siano centrati */
+    text-align: center; 
+}
+
+/* Stile del Titolo H2 */
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* Sottotitolo (nel tag <header>) */
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--universitea-green);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0 auto 4rem auto; /* Margine sotto per staccare dal contenuto */
+    max-width: 600px;
+}
+
+/* Caso specifico: Values ha l'H2 diretto, gli diamo spazio sotto */
+.values-section > .section-title {
+    margin-bottom: 4rem;
+}
+
+
+/* =========================================
+   1. VALUES SECTION (Sfondo NERO)
+   CLEAN: Niente card, niente hover movements
+========================================= */
+.values-section {
+    background-color: var(--darkbgcolor); /* NERO */
+}
+
+.values-list {
+    display: grid;
+    /* 3 Colonne automatiche */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.value-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra icona e testo */
+    padding: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover {
+    transform: none; /* Nessun movimento */
+}
+
+.value-icon {
+    margin-bottom: 1.5rem;
+    filter: invert(1); /* Rende le icone SVG bianche se sono nere */
+    width: 65px; height: 65px;
+}
+
+.value-item h3 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.value-item p {
+    color: #aaa;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* =========================================
+   2. CATEGORIES SECTION (Sfondo GRIGIO)
+========================================= */
+.categories-section {
+    background-color: var(--graybgcolor); /* GRIGIO */
+}
+
+.categories-grid {
+    display: grid;
+    /* Due card centrate, larghezza controllata */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+    justify-content: center;
+    gap: 3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-link {
+    text-decoration: none;
+    display: block;
+}
+
+/* --- STILE CARD AGGIORNATO --- */
+.category-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3; /* Formato rettangolare */
+    
+    /* 1. BORDO VISIBILE (Grigio chiaro inizialmente) */
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    
+    /* Transizione fluida */
+    transition: all 0.3s ease;
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease; /* Zoom lento */
+}
+
+/* --- HOVER EFFECTS (Glow + Zoom, No Lift) --- */
+.category-card:hover {
+    /* Il bordo diventa VERDE */
+    border-color: var(--universitea-green);
+    /* GLOW: Emette luce verde attorno invece di alzarsi */
+    box-shadow: 0 0 30px rgba(0, 214, 159, 0.3);
+}
+
+.category-card:hover .category-img {
+    transform: scale(1.05); /* L'immagine si ingrandisce */
+}
+
+/* --- OVERLAY SFUMATO (Versione Coprente Aggressiva) --- */
+.category-content {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    
+    /* 2. GRADIENTE AGGRESSIVO (Nero solido fino a metà) */
+    background: linear-gradient(
+        to top, 
+        rgba(15, 14, 14, 1) 0%,    /* Nero assoluto */
+        rgba(15, 14, 14, 1) 50%,    /* Nero solido fino a metà */
+        rgba(15, 14, 14, 0.8) 75%,  /* Sfumatura scura sopra il titolo */
+        transparent 100%            /* Trasparente in cima */
+    );
+    
+    padding: 5rem 2rem 1.5rem 2rem; /* Molto spazio sopra per la sfumatura */
+    color: #fff;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.category-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+}
+
+.category-content p {
+    color: var(--universitea-green);
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   3. BEST SELLERS (Sfondo NERO)
+   (Il CSS è gestito nella sezione successiva)
+========================================= */
+
+
+/* =========================================
+   4. SECTION FAVORI (Spotlight)
+   Sfondo GRIGIO
+========================================= */
+.spotlight-section {
+    display: grid;
+    /* Grid a 2 colonne */
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5rem;
+    padding: 6rem 5%;
+    
+    /* CAMBIO COLORE: Da Dark a Gray per alternanza */
+    background-color: var(--graybgcolor); 
+    
+    overflow: hidden; 
+}
+
+/* GESTIONE ORDINE INVERSO VISIVO */
+.spotlight-visual {
+    grid-column: 1;      /* Immagine a Sinistra */
+    grid-row: 1;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.spotlight-content {
+    grid-column: 2;      /* Testo a Destra */
+    grid-row: 1;
+    text-align: left;
+    
+    /* MODIFICA: Linea Verde Verticale (Stile Bestsellers) */
+    border-left: 4px solid var(--universitea-green);
+    padding-left: 2rem; /* Spazio dal bordo */
+}
+
+/* Stili specifici Spotlight */
+.spotlight-visual img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(0, 214, 159, 0.15));
+    transform: scale(1.1);
+}
+
+.spotlight-header .eyebrow {
+    color: var(--universitea-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.spotlight-header h2 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.spotlight-desc {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+/* =========================================
+   5. LOYALTY SECTION (Raccolta Punti)
+   Sfondo NERO (Alternanza corretta)
+========================================= */
+.loyalty-section {
+    background-color: var(--darkbgcolor); 
+}
+
+.loyalty-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 4rem auto;
+    max-width: 1200px;
+    counter-reset: step-counter;
+}
+
+.step-card {
+    background: rgba(255,255,255,0.02);
+    padding: 2rem;
+    border-radius: 15px;
+    height: 100%;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.step-card header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+}
+
+.step-card h3 {
+    color: var(--universitea-green);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.step-card p {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.loyalty-footer {
+    text-align: center;
+}
+
+/* NOTA: Rimosso .btn-loyalty perché ora è gestito da GLOBAL BUTTONS */
+
+
+/* =========================================
+   MEDIA QUERIES (Mobile Adjustment)
+========================================= */
+@media (max-width: 900px) {
+    /* Resettiamo il grid della Spotlight per metterlo in colonna */
+    .spotlight-section {
+        grid-template-columns: 1fr;
+        padding: 4rem 5%;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .spotlight-visual, .spotlight-content {
+        grid-column: auto;
+        grid-row: auto;
+        text-align: center;
+    }
+    
+    /* Su mobile rimuoviamo la linea laterale verde e il padding */
+    .spotlight-content {
+        border-left: none;
+        padding-left: 0;
+    }
+    
+    .spotlight-desc { margin: 0 auto 2rem auto; }
+}
+
 /* ===========================================================
    SEZIONE BEST SELLERS - FIXED & CLEAN
+   Sfondo NERO
 =========================================================== */
 
 .best-sellers-container {
@@ -373,6 +999,8 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     padding: 4rem 5%;
     overflow: hidden; /* Taglia la "tenda" verde quando esce dai bordi */
     box-sizing: border-box;
+    /* AGGIUNTO: Sfondo Nero per sicurezza alternanza */
+    background-color: var(--darkbgcolor);
 }
 
 /* --- 1. HEADER SEZIONE --- */
@@ -550,13 +1178,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     margin-bottom: 2.5rem; max-width: 100%;
 }
 
-.bestsellers-cta {
-    display: inline-block; padding: 0.8rem 2.5rem;
-    background-color: var(--universitea-green); color: #000; border-radius: 50px;
-    font-weight: 700; text-transform: uppercase; text-decoration: none;
-    transition: transform 0.2s; white-space: nowrap;
-}
-.bestsellers-cta:hover { transform: scale(1.05); background: #fff; }
+/* NOTA: Rimosso .bestsellers-cta perché ora è gestito da GLOBAL BUTTONS */
 
 .bestsellers-visual {
     flex: 1; min-width: 0;
@@ -572,7 +1194,7 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
 /* Didascalia */
 .bestsellers-visual figcaption {
     margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 10px;
-    font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); font-weight: 500;
+    font-size: 0.75rem; color: var(--txtcolor); font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase;
     cursor: default; user-select: none; pointer-events: none;
 }
@@ -582,201 +1204,10 @@ body.menu-open .mobile-nav-content ul { transform: translateY(0); opacity: 1; }
     box-shadow: 0 0 5px var(--universitea-green); 
 }
 
-/*STILE PAGINA SHOP*/
-#shop-content {
-    margin: 1em;
-}
-/* --- PAGINA SHOP: LAYOUT GRIGLIA --- */
-.product-list {
-    display: grid;
-    /* Crea colonne automatiche che non scendono sotto i 280px */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2.5rem;
-    list-style: none;
-    padding: 0;
-    margin-top: 2rem;
-}
 
-/* Assicuriamoci che l'elemento li riempia lo spazio della griglia */
-.product-item {
-    display: flex;
-    height: 100%;
-}
-
-/* --- CARD PRODOTTO (Stile Glass/Dark) --- */
-.product-card {
-    background-color: var(--card-bg-color); /* Definito nel tuo :root */
-    border: 1px solid var(--card-border-color);
-    border-radius: 24px; /* Stessa stondatura dei box nella Home */
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    backdrop-filter: blur(5px);
-}
-
-/* Effetto Hover: la card si alza e il bordo diventa verde */
-.product-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 214, 159, 0.4);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Immagine Prodotto */
-.product-card img {
-    width: 60%;
-    align-self: center;
-    height: 12em; /* Altezza fissa per allineare le card */
-    object-fit: cover;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.5s ease;
-}
-
-.product-card:hover img {
-    transform: scale(1.05); /* Leggero zoom dell'immagine all'hover */
-}
-
-/* Contenitore Testi */
-.product-info {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Spinge il bottone sempre in fondo */
-}
-
-/* Categoria (es. BEVANDE) - Stile etichetta */
-.category-tag {
-    color: var(--universitea-green);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-}
-
-/* Nome Prodotto */
-.product-info h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0 0 0.8rem 0;
-    line-height: 1.2;
-}
-
-/* Descrizione (Tagliata dopo 3 righe per ordine) */
-.product-info .description {
-    font-size: 0.95rem;
-    color: #bbb;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Prezzo */
-.product-info .price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    margin-top: auto; /* Spinge verso il basso prima del bottone */
-    margin-bottom: 1rem;
-}
-
-/* Bottone Action */
-.btn-add {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: transparent;
-    border: 2px solid var(--universitea-green);
-    color: var(--universitea-green);
-    border-radius: 50px;
-    font-family: "Lexend", sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-add:hover {
-    background-color: var(--universitea-green);
-    color: var(--darkbgcolor); /* Testo scuro su sfondo verde */
-    box-shadow: 0 0 15px rgba(0, 214, 159, 0.4);
-}
-
-/* --- SEZIONE FILTRI --- */
+/*====================================================================================================================================================
 
 
-.filter-group {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    border: none;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.filter-group legend {
-    color: #888;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    width: 100%;
-    text-align: center;
-}
-
-.radio-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-.radio-wrapper input[type="radio"] {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 1px;
-    margin: 0;
-    z-index: -1; /* Sta sotto, ma c'è */
-}
-
-/* Stilizziamo la label come se fosse un bottone */
-.radio-wrapper label {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-/* Stato Checked: diventa verde */
-.radio-wrapper input[type="radio"]:checked + label {
-    background-color: var(--universitea-green);
-    border-color: var(--universitea-green);
-}
-
-.radio-wrapper input[type="radio"]:focus + label {
-    outline-offset: 4px;          /* Spaziato dalla pillola */
-    border-color: var(--universitea-green);
-    background-color: rgba(0, 214, 159, 0.1);
-}
-
-.radio-wrapper label:hover {
-    border-color: var(--universitea-green);
-}
 
 /* =========================================
    STILE PAGINA PRODOTTO (WCAG AA & STICKY)
@@ -905,70 +1336,106 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 
 /*STILE PAGINA IL NOSTRO TE'*/
+.tea-content {
+    max-width: 60rem; 
+    margin: 0 auto;
+    padding: 0 1.25em; 
+}
 
-/*METTO OVUNQUE L'#TEA-CONTENT O NO?*/
-
-#tea-content h1 {
+.tea-content h1 {
     text-align: center;
-    margin-top: 40px; /*Crea spazio sopra il titolo, così non sembra appiccicato al menu o ai paragrafi.*/
-    margin-bottom: 40px; /*Crea spazio sotto il titolo, così non sembra appiccicato al menu o ai paragrafi.*/
-    font-size: 2.5rem; /*rem è un'unità di misura flessibile basata sulla dimensione del testo del browser*/
+    margin-top: 0.6em; 
+    margin-bottom: 1.5em; 
+    font-size: 2.7rem; 
     width: 100%;
 }
 
-#tea-content .container {
-    display: grid; /*Attiva il sistema a griglia, il modo più moderno per gestire i layout.*/
-    grid-template-columns: 1.2fr 1fr; /*Divide lo spazio in 2.2 parti totali: la prima colonna (testo) prende 1.2 parti, la seconda (aside) prende 1 parte.*/
-    gap: 60px; /*Crea un corridoio di spazio vuoto tra le due colonne affinché non si tocchino.*/
-    align-items: start;
-    margin: 40px auto; /*Centra il tutto e dà margine sopra/sotto*/
-    max-width: 1200px; /*Impedisce all'aside di andare troppo lontano a destra*/
-    padding: 0 20px; /*Margine di sicurezza per i bordi dello schermo*/
-}
-
-.intro-container p {
-    font-size: 1.25rem;
-    line-height: 1.7; /*Aumenta lo spazio tra una riga e l'altra dello stesso paragrafo.*/
-    color: var(--lightbgcolor); 
-    margin-bottom: 1.5rem;
-}
-
-.aside-container {
+.tea-intro {
     position: relative;
-    padding-top: 65px; /*Un po' più di spazio per la teiera.*/
+    z-index: 1;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    padding: 3.5em 2.5em;   
+    background: transparent;
+    margin-top: 3em; 
+    margin-bottom: 7em; /*margine sotto per non coprire paragrafi.*/ 
 }
 
-.curiosita {
-    background-color: var(--linkcolor);
+.tea-intro p {
+    max-width: 100%;    
+    font-size: 1.3rem;
+    line-height: 1.7;
     color: var(--darkbgcolor);
-    padding: 1.8em 2.5em;
-    border-radius: 2em; /*Arrotonda gli angoli del box per dargli un look moderno e morbido.*/
-    position: relative;
-    z-index: 1; /*Sta sotto la teiera.*/
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /*Ombra leggera del box stesso.*/
+    margin-bottom: 1.2em;
+    position: relative; 
+    z-index: 2;
 }
 
-.curiosita h2 {
-    font-size: 1.4rem; /*Più grande del testo sotto*/
-    margin-bottom: 0.8rem;
-    color: var(--darkbgcolor);
+/*Getto di tè, no animazioni*/
+.tea-intro::before {
+    content: "";
+    position: absolute;
+    top: -4.3em; 
+    right: 11.5em;
+    width: 1.5em;
+    height: 4.1em; 
+    background: var(--universitea-green);
+    border-radius: 2em;
+    z-index: 1;
 }
 
+/*immagine svg. animiamo solo la parte sotto*/
+.liquid-svg {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 120%;
+    z-index: -1; 
+    overflow: visible;
+}
+
+.liquid-svg path {
+    transform-origin: top;
+    animation: drip-only 5s ease-in-out infinite;
+}
+
+.liquid-svg rect {
+    animation: none;
+}
+
+@keyframes drip-only {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.04); }
+}
+
+/*teiera leggermente animata*/
 .teiera {
     position: absolute;
-    top: -15px; /*Sovrappone leggermente il bordo superiore dell'aside.*/
-    right: 30px; /*La sposta un po' verso l'interno dell'aside.*/
-    width: 140px;
-    z-index: 10; /*Deve stare SOPRA l'aside.*/
+    top: -8.7em; 
+    right: 1.7em; 
+    width: 12em;
+    z-index: 10;
     transform: rotate(-15deg);
-    filter: drop-shadow(4px 8px 6px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0.25em 0.5em 0.37em rgba(0, 0, 0, 0.2));
+    animation: teapot-tilt 4s ease-in-out infinite;
+}
+
+@keyframes teapot-tilt {
+    0%, 100% { transform: rotate(-15deg); }
+    50% { transform: rotate(-16deg); }
 }
 
 .teiera img {
     width: 100%; 
-    height: auto; /*Mantiene le proporzioni.*/
+    height: auto;
     display: block;
 }
+
 
 /*ERRORPAGES*/
 .errorpage {
@@ -1136,6 +1603,166 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     .bestsellers-visual { order: 2; width: 100%; margin: 0; display: block; height: auto; min-height: auto; position: relative; }
     .bestsellers-visual model-viewer { width: 100%; height: 350px; display: block; }
     .bestsellers-visual figcaption { margin-top: 1rem; justify-content: center; }
+}
+
+/* --- FOOTER --- */
+/* =========================================
+   RE-STYLING FOOTER
+========================================= */
+.main-footer-area {
+    background-color: #0a0a0a; /* Leggermente più scuro del body per profondità */
+    color: #ccc;
+    padding: 5rem 0 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+}
+
+.footer-column h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--universitea-green);
+}
+
+/* Colonna Logo */
+.footer-logo {
+    width: 180px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.footer-tagline {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #888;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    transform: translateY(-3px);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+}
 
 
+/* Fascia Bottom */
+.footer-bottom {
+    background-color: #000;
+    margin-top: 4rem;
+    padding: 2rem 5%;
+}
+
+.footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.legal-info p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.disclaimer {
+    opacity: 0.5;
+    font-style: italic;
+    margin-top: 5px !important;
+}
+
+.validators {
+    display: flex;
+    gap: 15px;
+    filter: grayscale(1) opacity(0.6);
+    transition: 0.3s;
+}
+
+.validators:hover {
+    filter: grayscale(0) opacity(1);
+}
+
+/* Responsività Mobile */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+
+    .brand-col {
+        grid-column: span 2;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    .brand-col {
+        grid-column: span 1;
+    }
 }

@@ -1,234 +1,161 @@
-const API_URL = '../config/api_prodotti.php';
 document.addEventListener('DOMContentLoaded', () => {
-    // Carica tutti i prodotti all'avvio
-    fetchProducts();
-
     const filterForm = document.getElementById('filter-form');
+    const productArea = document.querySelector('.product-list');
+    const statusMsg = document.getElementById('status-msg');
+    const searchInput = document.getElementById('search-input');
+    const availToggle = document.getElementById('avail-toggle');
 
-    // 1. Selezioniamo tutti i radio button che hanno name="category"
-    const radioButtons = document.querySelectorAll('input[name="category"]');
+    // Elementi per l'aggiornamento dinamico del prezzo
+    const priceRange = document.getElementById('price-range');
+    const priceValue = document.getElementById('price-value');
 
-    // 2. Aggiungiamo un "orecchio" (listener) a ciascuno di essi
-    radioButtons.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            // Appena un radio cambia stato (viene selezionato), prendiamo il suo valore
-            const selectedCategory = e.target.value;
+    let debounceTimer;
 
-            // E ricarichiamo subito i prodotti
-            fetchProducts(selectedCategory);
+    /**
+     * Aggiorna il testo del prezzo mentre si sposta lo slider
+     */
+    if (priceRange && priceValue) {
+        priceRange.addEventListener('input', () => {
+            priceValue.textContent = `${priceRange.value}€`;
         });
+    }
+
+    /**
+     * Collega gli eventi ai bottoni "Aggiungi al carrello/preferiti"
+     * Necessario chiamarla ogni volta che il contenuto della lista cambia
+     */
+    const attachProductEvents = () => {
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.onclick = () => addToCart(btn.dataset.id);
+        });
+        document.querySelectorAll('.btn-add-preferiti').forEach(btn => {
+            btn.onclick = () => addToFavorites(btn.dataset.id);
+        });
+    };
+
+    /**
+     * Esegue la chiamata AJAX per filtrare i prodotti
+     */
+    /**
+     * Esegue la chiamata AJAX con feedback di caricamento
+     */
+    const updateProducts = () => {
+        const formData = new FormData(filterForm);
+        const params = new URLSearchParams(formData).toString();
+
+        // Feedback visivo: aggiungiamo una classe per opacizzare l'area
+        productArea.classList.add('loading-fade');
+
+        fetch(`shop.php?${params}`, {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                const newList = doc.querySelector('.product-list').innerHTML;
+                const newStatus = doc.querySelector('#status-msg').textContent;
+
+                productArea.innerHTML = newList;
+                statusMsg.textContent = newStatus;
+
+                // Rimuoviamo il feedback visivo
+                productArea.classList.remove('loading-fade');
+
+                attachProductEvents();
+            })
+            .catch(error => {
+                console.error('Errore nel filtraggio:', error);
+                productArea.classList.remove('loading-fade');
+            });
+    };
+
+    // Listener per la ricerca con debounce (400ms)
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(updateProducts, 400);
+        });
+    }
+
+    // Listener per Categorie, Range Prezzo e Checkbox Disponibilità
+    filterForm.querySelectorAll('input[type="radio"], input[type="range"], input[type="checkbox"]')
+        .forEach(input => {
+            input.addEventListener('change', updateProducts);
+        });
+
+    // Gestione invio manuale del form
+    filterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        updateProducts();
     });
 
-    // 3. (Opzionale) Se il form esiste, evitiamo che faccia il reload se uno preme invio per sbaglio
-    if (filterForm) {
-        filterForm.addEventListener('submit', (e) => e.preventDefault());
-    }
+    // Inizializzazione al primo caricamento
+    attachProductEvents();
+    updateCartBadge();
 });
 
-async function fetchProducts(category = 'tutti') {
-    const listContainer = document.getElementById('product-list');
-    const statusMsg = document.getElementById('status-msg');
+// --- FUNZIONI GLOBALI (CARRELLO E NOTIFICHE) ---
 
-    // Controllo di sicurezza: se l'HTML non è aggiornato, evita errori in console
-    if (!listContainer || !statusMsg) {
-        console.error("Errore: Elementi DOM 'product-list' o 'status-msg' non trovati.");
+function addToCart(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: productId,
+            quantity: 1,
+            addedAt: new Date().toISOString()
+        });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    showNotification('Prodotto aggiunto al carrello!', 'success');
+    updateCartBadge();
+}
+
+function addToFavorites(productId) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.includes(productId)) {
+        showNotification('Questo prodotto è già nei tuoi preferiti!', 'info');
         return;
     }
-
-    statusMsg.textContent = "Caricamento prodotti in corso...";
-    listContainer.innerHTML = '';
-
-    try {
-        const url = category === 'tutti' ? API_URL : `${API_URL}?cat=${category}`;
-        const response = await fetch(url);
-
-        if (!response.ok) throw new Error('Errore nella risposta del server');
-
-        const products = await response.json();
-
-        if (products.length === 0) {
-            statusMsg.textContent = "Nessun prodotto trovato per questa categoria.";
-            listContainer.innerHTML = '<li class="no-results">Nessun prodotto disponibile.</li>';
-            listContainer.innerHTML = '<li class="no-results">Prova a selezionare un\'altra categoria.</li>';
-            return;
-        }
-
-        statusMsg.textContent = `Trovati ${products.length} prodotti.`;
-
-        const productsHtml = products.map(product => {
-            const nome = escapeHtml(product.nome);
-            const desc = escapeHtml(product.descrizione);
-            const prezzo = parseFloat(product.prezzo).toFixed(2);
-            const id = product.id;
-
-            const imgPath = getImagePlaceholder(product.categoria);
-
-            return `
-            <li class="product-item">
-                <article class="product-card">
-                <a aria-label="vai alla pagina di ${nome}" href="product.html?id=${id}">
-                    <img src="${imgPath}" alt="" loading="lazy">
-                </a>
-                    <div class="product-info">
-                        <h3>${nome}</h3>
-                        <p class="category-tag">${product.categoria}</p>
-                        <p>${id}</p>
-                        <p class="description">${desc}</p>
-                        <p class="price">€ ${prezzo}</p>
-                        <button class="btn-add" 
-                                data-id="${id}"
-                                aria-label="Aggiungi ${nome} al carrello">
-                            Aggiungi al carrello
-                        </button>
-                    </div>
-                </article>
-            </li>
-            `;
-        }).join('');
-
-        listContainer.innerHTML = productsHtml;
-
-        attachCartButtons();
-
-    } catch (error) {
-        console.error(error);
-        statusMsg.textContent = "Accidenti, nel retrobottega hanno rovesciato del té, prova a ricaricare la pagina e se l'errore persiste contattaci.";
-        listContainer.innerHTML = '<li class = "no-results">Si è verificato un errore. Riprova più tardi. </li>';
-    }
-}
-
-function attachCartButtons() {
-    const buttons = document.querySelectorAll('.btn-add');
-
-    buttons.forEach(button => {
-        button.addEventListener('click', async function (e) {
-            e.preventDefault();
-
-            const productId = this.getAttribute('data-id');
-
-            this.classList.add('loading');
-            this.disabled = true;
-
-            const success = await addToCart(productId);
-
-            this.classList.remove('loading');
-            this.disabled = false;
-
-            if (success) {
-                const originalText = this.textContent;
-                this.textContent = 'Aggiunto!';
-
-                setTimeout(() => {
-                    this.textContent = originalText;
-                }, 2000);
-            }
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-});
-
-async function addToCart(productId) {
-    try {
-        const response = await fetch('../config/cart_api/cart_add.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: 1
-            })
-        });
-        const data = await response.json();
-
-        if (data.success) {
-            console.log("data success");
-            showNotification('Prodotto aggiunto al carrello!', 'success');
-            await updateCartCount();
-            return true;
-        } else {
-            if (response.status === 401) {
-                showNotification('Devi effettuare il login per aggiungere prodotti', 'warning');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 2000);
-            } else {
-                showNotification('x' + data.message, 'error');
-            }
-            return false;
-        }
-    } catch (error) {
-        console.error('Errore:', error);
-        showNotification('x Errore di connessione al server', 'error');
-        return false;
-    }
-}
-
-async function updateCartCount() {
-    try {
-        const response = await fetch('../config/cart_api/cart_get.php');
-        const data = await response.json();
-
-        if (data.success) {
-            const totalItems = data.cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
-
-            const cartCountElement = document.getElementById('cartCount');
-            if (cartCountElement) {
-                cartCountElement.textContent = totalItems;
-
-                cartCountElement.style.transform = 'scale(1.3)';
-                setTimeout(() => {
-                    cartCountElement.style.transform = 'scale(1)';
-                }, 200);
-            }
-        }
-    } catch (error) {
-        console.error('Errore nel conteggio carrello:', error);
-    }
+    favorites.push(productId);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    showNotification('Prodotto aggiunto ai preferiti!', 'success');
 }
 
 function showNotification(message, type = 'info') {
-    let notification = document.createElement('notification');
-
-    if (!notification) {
-        notification = document.createElement('div');
-        notification.id = 'notification';
-        document.body.appendChild(notification);
-    }
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
 
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 300);
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let badge = document.querySelector('.cart-badge');
+    const cartLink = document.querySelector('.cart-link');
 
-// Funzione helper per le immagini mancanti
-function getImagePlaceholder(categoria) {
-    const basePath = '../../assets/images/';
-    switch (categoria) {
-        case 'bevande':
-            return basePath + 'placeholder_tea.svg';
-        case 'merchandising':
-            return basePath + 'placeholder_merch.jpg';
-        case 'servizi':
-            return basePath + 'placeholder_service.svg';
-        default:
-            return basePath + 'placeholder_generic.jpg';
+    if (!cartLink) return;
+
+    if (totalItems > 0) {
+        if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'cart-badge';
+            cartLink.appendChild(badge);
+        }
+        badge.textContent = totalItems;
+    } else if (badge) {
+        badge.remove();
     }
-}
-
-function escapeHtml(text) {
-    if (!text) return "";
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
 }
