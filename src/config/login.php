@@ -1,22 +1,29 @@
 <?php
-session_start();
-header('Content-Type: application/json');
-
+require_once('user.php');
 require_once 'database_conn.php';
-require_once 'user.php';
+session_start();
+
+//TODO raggruppare in funzione separata
+if (isset($_SESSION['username']) && $_SESSION['logged_in']) {
+    header('Location: ../../index.html');
+    exit();
+}
+
+$error = '';
+$success = '';
 
 $user = new User();
 
-checkMethod('POST');
+checkRequest();
 setUserData();
 checkValidData();
 loginUser();
 
-function checkMethod($Method): void
+
+function checkRequest(): void
 {
-    if ($_SERVER['REQUEST_METHOD'] != $Method) {
-        http_response_code(405);
-        echo json_encode(['success' => false, 'message' => 'Metodo non consentito']);
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['login'])) {
+        header('Location: ../../index.html');
         exit();
     }
 }
@@ -24,19 +31,19 @@ function checkMethod($Method): void
 function setUserData(): void
 {
     global $user;
-    $data = json_decode(file_get_contents('php://input'), true);
 
-    //Qui username è l'identificativo dell'utente in base a cosa ha inserito: può essere username o email
-    $user->setUsername($data['username'] ?? '');
-    $user->setPassword($data['password'] ?? '');
+    $username = trim($_POST['username'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    $user->setUsername($username);
+    $user->setPassword($password);
 }
 
 function checkValidData(): void
 {
     global $user;
     if (empty($user->getUsername()) || empty($user->getPassword())) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Inserire una username e una password']);
+        $error = 'Username e password sono obbligatori';
         exit();
     }
 }
@@ -56,16 +63,15 @@ function loginUser(): void
         $stmt->execute();
 
         if ($stmt->rowCount() === 0) {
-            http_response_code(401);
-            echo json_encode(['success' => false, 'message' => 'Credenziali non valide']);
+            $error = 'Credenziali non valide';
+            header('Location: ../../index.html');
             exit();
         }
 
         $result = $stmt->fetch();
 
         if (!password_verify($user->getPassword(), $result['password'])) {
-            http_response_code(401);
-            echo json_encode(['success' => false, 'message' => 'Credenziali non valide']);
+            $error = 'Credenziali non valide';
             exit();
         }
 
@@ -76,17 +82,12 @@ function loginUser(): void
 
         session_regenerate_id(true);
 
-        echo json_encode([
-            'success' => true,
-            'message' => 'Login effettuato',
-            'user' => [
-                'id' => $result['id'],
-                'username' => $result['username'],
-                'email' => $result['email']
-            ]
-        ]);
+        header('Location: ../../index.html');
+        exit();
+
     } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        $error = 'Errore del server: ' . $e->getMessage();
     }
 }
+
+?>
