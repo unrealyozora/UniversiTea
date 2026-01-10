@@ -23,7 +23,7 @@ async function fetchProductDetails(id) {
 
         // Se l'array è vuoto
         if (data.length === 0) {
-            document.querySelector('main').innerHTML = "<div class='section-dark' style='text-align:center; padding: 4em;'><h2>Prodotto non trovato</h2><a href='shop.html' class='btn-join'>Torna allo shop</a></div>";
+            document.querySelector('main').innerHTML = "<div class='section-dark' style='text-align:center; padding: 4em;'><h2>Prodotto non trovato</h2><a href='shop.php' class='btn-join'>Torna allo shop</a></div>";
             return;
         }
 
@@ -68,7 +68,7 @@ function renderProduct(product) {
     const btnAdd = document.querySelector('.btn-add-cart');
 
     if (availContainer && availText) {
-        const isAvailable = parseInt(product.disponibilità) > 0;
+        const isAvailable = parseInt(product.disponibilita) > 0;
 
         if (isAvailable) {
             availText.textContent = "Disponibile";

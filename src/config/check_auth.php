@@ -73,4 +73,3 @@ if (isLoggedIn() && isSessionExpired()) {
     header('Location: login.html?timeout=1');
     exit();
 }
-?>
