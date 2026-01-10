@@ -2,6 +2,10 @@
 require_once '../config/database_conn.php';
 require_once '../config/shop_functions.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 /**
  * Genera HTML di una singola card prodotto
  */
@@ -24,11 +28,13 @@ function renderProductCard($product) {
                     <p class="category-tag">$categoria</p>
                     <p class="description">$descrizione</p>
                     <p class="price">€ $prezzo</p>
-                    <button class="btn-add-cart" 
-                            data-id="$id"
-                            aria-label="Aggiungi $nome al carrello">
-                        Aggiungi al carrello
-                    </button>
+                    
+                    <form action="../config/add_to_cart.php" method="POST" >
+                        <input type="hidden" name="product_id" value="$id">
+                        <button type="submit" class="btn-add-cart" aria-label="Aggiungi $nome al carrello">
+                            Aggiungi al carrello
+                        </button>
+                    </form>
                     <button class="btn-add-preferiti" 
                             data-id="$id"
                             aria-label="Aggiungi $nome ai Preferiti">
@@ -164,6 +170,17 @@ try {
     $checkedBevande = '';
     $checkedMerch = '';
     $checkedServizi = '';
+}
+
+$userFeedback = '';
+if (isset($_SESSION['msg_content'])) {
+    $msgClass = ($_SESSION['msg_type'] == 'success') ? 'success-msg' : 'error-msg';
+    // Inseriamo il messaggio subito prima della lista prodotti o in alto
+    $userFeedback = '<div class="' . $msgClass . '" role="alert">' . htmlspecialchars($_SESSION['msg_content']) . '</div>';
+
+    // Pulizia messaggio dopo la visualizzazione
+    unset($_SESSION['msg_type']);
+    unset($_SESSION['msg_content']);
 }
 
 // ==================== CARICA HTML ====================
