@@ -43,7 +43,7 @@
     <p class="login-prompt">Hai già un account? <a href="login.html">Accedi qui</a></p>
     <p class="subtitle">Crea il tuo account per iniziare!</p>
     <div class="success-message" id="successMessage"></div>
-    <form id="register_form">
+    <form method="POST" action="../config/register.php" id="registerForm">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required aria-required="true">
@@ -70,109 +70,9 @@
             <div class="error-message" id="confirmPasswordError"></div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">Registrati</button>
+        <button type="submit" name="register" class="submit-btn" id="submitBtn">Registrati</button>
     </form>
 </main>
-<script>
-    const form = document.getElementById('register_form');
-    const submitBtn = document.getElementById('submitBtn');
-    const successMessage = document.getElementById('successMessage');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        clearErrors();
-        const formData = {
-            username: document.getElementById('username').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            password: document.getElementById('password').value,
-            confirm_password: document.getElementById('confirm_password').value,
-            //address: document.getElementById('address').value,
-            phone: document.getElementById('phone').value,
-        };
-
-        let isValid = true;
-        if (formData.username.length < 3) {
-            showError('username', 'Username deve essere almeno 3 caratteri');
-            isValid = false;
-        }
-        if (!isValidEmail(formData.email)) {
-            showError('email', 'Email non valida');
-            isValid = false;
-        }
-        if (formData.password.length < 6) {
-            showError('password', 'Password deve essere almeno 6 caratteri');
-            isValid = false;
-        }
-        if (formData.confirm_password !== formData.password) {
-            showError('confirm_password', 'Le password non coincidono');
-            isValid = false;
-        }
-        // TODO aggiungere controllo data
-
-        if (!isValid) {
-            console.log("not valid");
-            return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Registrazione in corso...';
-
-        try {
-            const response = await fetch('../config/register.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-            const data = await response.json();
-            if (data.success) {
-                successMessage.textContent = data.message + ' - Reindirizzamento ... ';
-                successMessage.classList.add("show");
-                form.reset();
-
-                setTimeout(() => {
-                    window.location.href = "/login.html";
-                }, 2000);
-            } else {
-                showError('email', data.message);
-            }
-        } catch (error) {
-            console.log(error);
-            showError('email', "Errore di connessione al server");
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Registrati';
-        }
-    });
-
-    function showError(field, message) {
-        const input = document.getElementById(field);
-        const errorDiv = document.getElementById(field + 'Error');
-
-        input.classList.add('error');
-        errorDiv.textContent = message;
-        errorDiv.classList.add('show');
-    }
-
-    function clearErrors() {
-        const inputs = form.querySelectorAll('input');
-        const errorMessages = form.querySelectorAll('.error-message');
-
-        inputs.forEach(input => input.classList.remove('error'));
-        errorMessages.forEach(msg => {
-            msg.classList.remove('show');
-            msg.textContent = '';
-        });
-        successMessage.classList.remove('show');
-    }
-
-    function isValidEmail(email) {
-        //TODO da verificare regex
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-</script>
-
 <footer>
     <p><a href="https://validator.w3.org/nu/"><img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido!"></a>
     </p>

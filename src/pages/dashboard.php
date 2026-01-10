@@ -45,10 +45,15 @@ $user = getCurrentUser();
 <div class="dashboard-card">
     <h1>Il Tuo Profilo</h1>
 
-    <div style="text-align: center; margin-bottom: 30px;">
-        <span class="status-badge">✓ Account Attivo</span>
+    <div class="status-badge">
+        <span class="status-badge">Account Attivo</span>
     </div>
 
+    <div class="nav-links">
+        <form action="../config/logout.php" method="POST">
+            <button type="submit" name='logout' class="submit-btn">Logout</button>
+        </form>
+    </div>
     <div class="info-row">
         <span class="info-label">Username:</span>
         <span class="info-value"><?php echo htmlspecialchars($user['username']); ?></span>

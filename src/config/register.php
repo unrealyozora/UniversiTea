@@ -1,14 +1,12 @@
 <?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-
 require_once 'database_conn.php';
 require_once 'user.php';
 
+$error = '';
+$success = '';
 $user = new User();
 
-checkMethod('POST');
+checkRequest();
 setUserData();
 checkValidData();
 checkValidEmail();
@@ -18,11 +16,10 @@ try {
 }
 
 
-function checkMethod($Method): void
+function checkRequest(): void
 {
-    if ($_SERVER['REQUEST_METHOD'] != $Method) {
-        http_response_code(405);
-        echo json_encode(['success' => false, 'message' => 'Metodo non consentito']);
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['register'])) {
+        //header('Location: ../../index.html');
         exit();
     }
 }
@@ -30,13 +27,12 @@ function checkMethod($Method): void
 function setUserData(): void
 {
     global $user;
-    $data = json_decode(file_get_contents("php://input"), true);
 
-    $user->setUsername(trim($data["username"] ?? ''));
-    $user->setEmail(trim($data["email"] ?? ''));
-    $user->setPhone(trim($data["phone"] ?? ''));
-    $user->setPassword(trim($data["password"] ?? ''));
-    $user->setConfirmPassword(trim($data["confirm_password"] ?? ''));
+    $user->setUsername(trim($_POST['username'] ?? ''));
+    $user->setEmail(trim($_POST['email'] ?? ''));
+    $user->setPhone(trim($_POST['phone'] ?? ''));
+    $user->setPassword(trim($_POST['password'] ?? ''));
+    $user->setConfirmPassword(trim($_POST['confirm_password'] ?? ''));
 }
 
 function checkValidData(): void
@@ -44,28 +40,28 @@ function checkValidData(): void
     global $user;
 
     if (empty($user->getUsername()) || empty($user->getEmail()) || empty($user->getPassword()) || empty($user->getConfirmPassword()) || empty($user->getPhone())) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Inserire i campi obbligatori']);
+        $error = 'Inserire tutti i campi obbligatori';
+        header('Location: ../../index.html');
         exit();
     }
     if (strlen($user->getUsername()) < 3 || strlen($user->getUsername()) > 32) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Username minimi 3 caratteri e massimo 32 caratteri']);
+        $error = 'Username deve essere compreso tra 3 e 32 caratteri';
+        header('Location: ../../index.html');
         exit();
     }
-    if (strlen($user->getPassword()) < 6) {
-        http_response_code(400);
-        echo json_encode(["success" => false, "message" => "Password minimi 10 caratteri"]);
+    if (strlen($user->getPassword()) < 6 || strlen($user->getPassword()) > 32) {
+        $error = "La password deve essere compresa tra 6 e 32 caratteri";
+        //header('Location: ../../index.html');
         exit();
     }
     if ($user->getPassword() != $user->getConfirmPassword()) {
-        http_response_code(400);
-        echo json_encode(["success" => false, "message" => "Le due password non corrispondono"]);
+        $error = "Le due password non corrispondono";
+        //header('Location: ../../index.html');
         exit();
     }
     if ((strlen($user->getPhone()) != 9) && (strlen($user->getPhone()) != 10)) {
-        http_response_code(400);
-        echo json_encode(["success" => false, "message" => "Numero di telefono non valido"]);
+        $error = "Numero di telefono non valido";
+        //header('Location: ../../index.html');
         exit();
     }
 }
@@ -74,8 +70,7 @@ function checkValidEmail(): void
 {
     global $user;
     if (!filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
-        http_response_code(400);
-        echo json_encode(["success" => false, "message" => "Email non valida"]);
+        $error = "Email non valida";
         exit();
     }
 }
@@ -100,8 +95,7 @@ function RegisterUser(): void
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            http_response_code(409);
-            echo json_encode(["success" => false, "message" => "Username  o email già esistente"]);
+            $error = "Utente già esistente";
             exit();
         }
 
@@ -118,14 +112,15 @@ function RegisterUser(): void
         $stmt->bindValue(':user_type', $user_type);
 
         if ($stmt->execute()) {
-            http_response_code(201);
-            echo json_encode(["success" => true, "message" => "Utente inserito", "user_id" => $db->lastInsertId()]);
+            $success = "Utente registrato con successo";
+            header('Location: ../../index.html');
             exit();
         } else {
             throw new Exception("Errore durante la registrazione");
         }
     } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(["success" => false, "message" => $e->getMessage()]);
+        $error = 'Errore del server: ' . $e->getMessage();
     }
 }
+
+?>

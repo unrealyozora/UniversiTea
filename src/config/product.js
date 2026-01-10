@@ -11,6 +11,35 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProductDetails(productId);
 });
 
+function attachCartButtons() {
+    const buttons = document.querySelectorAll('.btn-add-cart');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            const productId = this.getAttribute('id');
+
+            this.classList.add('loading');
+            this.disabled = true;
+
+            const success = await addToCart(productId);
+
+            this.classList.remove('loading');
+            this.disabled = false;
+
+            if (success) {
+                const originalText = this.textContent;
+                this.textContent = 'Aggiunto!';
+
+                setTimeout(() => {
+                    this.textContent = originalText;
+                }, 2000);
+            }
+        });
+    });
+}
+
 async function fetchProductDetails(id) {
     // Aggiungo timestamp per evitare cache browser
     const apiUrl = `../config/api_prodotti.php?id=${id}&t=${new Date().getTime()}`;
@@ -28,6 +57,7 @@ async function fetchProductDetails(id) {
         }
 
         renderProduct(data[0]);
+        attachCartButtons();
 
     } catch (error) {
         console.error("Errore fetch:", error);
@@ -68,13 +98,13 @@ function renderProduct(product) {
     const btnAdd = document.querySelector('.btn-add-cart');
 
     if (availContainer && availText) {
-        const isAvailable = parseInt(product.disponibilità) > 0;
+        const isAvailable = parseInt(product.disponibilita) > 0;
 
         if (isAvailable) {
             availText.textContent = "Disponibile";
             availContainer.classList.remove('out-of-stock');
             availContainer.classList.add('available');
-            if(btnAdd) {
+            if (btnAdd) {
                 btnAdd.disabled = false;
                 btnAdd.textContent = "Aggiungi al carrello";
             }
@@ -82,7 +112,7 @@ function renderProduct(product) {
             availText.textContent = "Non disponibile";
             availContainer.classList.remove('available');
             availContainer.classList.add('out-of-stock');
-            if(btnAdd) {
+            if (btnAdd) {
                 btnAdd.disabled = true;
                 btnAdd.textContent = "Esaurito";
             }
@@ -141,13 +171,78 @@ function renderSpecs(product) {
     }
 }
 
+async function addToCart(productId) {
+    try {
+        const response = await fetch('../config/cart_api/cart_add.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: 1
+            })
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            console.log("data success");
+            showNotification('Prodotto aggiunto al carrello!', 'success');
+            await updateCartCount();
+            return true;
+        } else {
+            if (response.status === 401) {
+                showNotification('Devi effettuare il login per aggiungere prodotti', 'warning');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            } else {
+                showNotification('x' + data.message, 'error');
+            }
+            return false;
+        }
+    } catch (error) {
+        console.error('Errore:', error);
+        showNotification('x Errore di connessione al server', 'error');
+        return false;
+    }
+}
+
+async function updateCartCount() {
+    try {
+        const response = await fetch('../config/cart_api/cart_get.php');
+        const data = await response.json();
+
+        if (data.success) {
+            const totalItems = data.cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
+
+            const cartCountElement = document.getElementById('cartCount');
+            if (cartCountElement) {
+                cartCountElement.textContent = totalItems;
+
+                cartCountElement.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    cartCountElement.style.transform = 'scale(1)';
+                }, 200);
+            }
+        }
+    } catch (error) {
+        console.error('Errore nel conteggio carrello:', error);
+    }
+}
+
+
 // Funzione Helper Immagini
 function getImagePlaceholder(categoria) {
     const basePath = '../../assets/images/';
     switch (categoria) {
-        case 'bevande': return basePath + 'placeholder_tea.svg';
-        case 'merchandising': return basePath + 'placeholder_merch.jpg';
-        case 'servizi': return basePath + 'placeholder_service.svg';
-        default: return basePath + 'placeholder_generic.jpg';
+        case 'bevande':
+            return basePath + 'placeholder_tea.svg';
+        case 'merchandising':
+            return basePath + 'placeholder_merch.jpg';
+        case 'servizi':
+            return basePath + 'placeholder_service.svg';
+        default:
+            return basePath + 'placeholder_generic.jpg';
     }
 }
