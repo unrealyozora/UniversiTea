@@ -1335,14 +1335,22 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 
 
+/*--------------------------*/
 /*STILE PAGINA IL NOSTRO TE'*/
+/*--------------------------*/
+.tea-info-page {
+    background-color: var(--graybgcolor);
+}
+
 .tea-content {
-    max-width: 60rem; 
+    position: relative;
+    max-width: 95%; 
     margin: 0 auto;
     padding: 0 1.25em; 
 }
 
 .tea-content h1 {
+    color: #FFA632;
     text-align: center;
     margin-top: 0.6em; 
     margin-bottom: 1.5em; 
@@ -1351,6 +1359,9 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 
 .tea-intro {
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     z-index: 1;
     display: flex;
@@ -1361,14 +1372,14 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     padding: 3.5em 2.5em;   
     background: transparent;
     margin-top: 3em; 
-    margin-bottom: 7em; /*margine sotto per non coprire paragrafi.*/ 
+    margin-bottom: 5em; /*margine sotto per non coprire paragrafi.*/ 
 }
 
 .tea-intro p {
     max-width: 100%;    
     font-size: 1.3rem;
     line-height: 1.7;
-    color: var(--darkbgcolor);
+    color: var(--txtcolor);
     margin-bottom: 1.2em;
     position: relative; 
     z-index: 2;
@@ -1382,9 +1393,22 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     right: 11.5em;
     width: 1.5em;
     height: 4.1em; 
-    background: var(--universitea-green);
-    border-radius: 2em;
+    background: #181717;
+    border-top: 3px solid var(--universitea-green);
+    border-left: 3px solid var(--universitea-green);
+    border-right: 3px solid var(--universitea-green);
+    border-bottom: none; /*per non avere il bordo sotto*/
+    border-radius: 2em 2em 0 0;
     z-index: 1;
+}
+
+/*per gestire colori e stile dell'svg dal css*/
+.liquid-path {
+    fill: none; 
+    stroke: #00D69F;
+    stroke-width: 2.5; 
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /*immagine svg. animiamo solo la parte sotto*/
@@ -1410,10 +1434,10 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 @keyframes drip-only {
     0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(1.04); }
+    50% { transform: scaleY(1.1); }
 }
 
-/*teiera leggermente animata*/
+/*teiera non animata*/
 .teiera {
     position: absolute;
     top: -8.7em; 
@@ -1422,18 +1446,284 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     z-index: 10;
     transform: rotate(-15deg);
     filter: drop-shadow(0.25em 0.5em 0.37em rgba(0, 0, 0, 0.2));
-    animation: teapot-tilt 4s ease-in-out infinite;
-}
-
-@keyframes teapot-tilt {
-    0%, 100% { transform: rotate(-15deg); }
-    50% { transform: rotate(-16deg); }
 }
 
 .teiera img {
     width: 100%; 
     height: auto;
     display: block;
+}
+
+/*opzione no animazioni*/
+.tea-content .accessibility-controls {
+    position: absolute;
+    top: 0;
+    right: 1%; 
+    margin: 0;
+    padding: 0.8rem;
+    border-radius: 12px;
+    z-index: 100;  /*lo tiene sopra a tutto, anche all'SVG*/
+    
+}
+
+.tea-content .accessibility-controls legend {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.tea-content .access-toggle {
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/*LOGICA DI STOP: Ferma tutto per opzione no animazioni*/
+.tea-content.no-anim * {
+    animation-play-state: paused;
+}
+
+/*Titoli H2, stile uguale per tutti*/
+.curiosita-content h2, 
+.tea-process h2, 
+.tea-card h2, 
+.quiz-section h2 {
+    color: var(--universitea-green);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+/*Paragrafi e Descrizioni, stile uguale per tutti*/
+.curiosita-content p, 
+.tea-process p, /*da specificare anche tabledescr o va bene p?*/
+.tea-card p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--txtcolor);
+    margin-bottom: 1.2rem;
+    margin-top: 2rem;
+    text-align: left;
+    max-width: 100%;
+}
+
+.curiosita {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 0; 
+    padding: 2rem 5% 2rem 5%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.curiosita-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.curiosita-image {
+    flex: 0 0 300px;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.curiosita-image img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+}
+
+/*sezione tea-process con tabella*/
+.tea-process {
+    width: 100%;
+    margin-top: 0; 
+    margin-bottom: 4rem; 
+    padding: 4rem 5% 2rem 5%;
+    box-sizing: border-box;
+}
+
+/*contenitore tabella*/
+.tea-process .table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    background-color: white;
+    margin-top: 2rem;
+}
+
+/*.tea-process .table-container:focus {
+    outline: 3px solid #FFA632;
+    outline-offset: 2px;
+}*/
+
+/*tabella effettiva*/
+.tea-process table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.tea-process table thead th {
+    background-color: #007d5d;
+    color: #ffffff;
+    padding: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.tea-process table tbody th {
+    background-color: #f9f9f9;
+    color: var(--darkbgcolor);
+    font-weight: 700;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--navlink-color);
+    border-right: 3px solid #007d5d;
+}
+
+.tea-process table td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--navlink-color);
+    color: var(--graybgcolor);
+}
+
+.tea-process table tbody tr:nth-child(even) {
+    background-color: #f2f7f4;
+}
+
+.tea-process table tbody tr:hover { /*va bene per accessibilità o fastidioso?*/
+    background-color: var(--linkcolor);
+    transition: background-color 0.2s ease;
+}
+
+.tea-card {
+    display: flex;
+    flex-direction: column; /*Default per mobile: uno sopra l'altro*/
+    gap: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+/*Su desktop foto e testo alternati*/
+@media (min-width: 768px) {
+    .tea-card {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    /*Inverte l'ordine per i pari*/
+    .tea-card:nth-of-type(even) {
+        flex-direction: row-reverse;
+    }
+
+    .card-text {
+        flex: 1; 
+    }
+
+    .card-image {
+        flex: 0 0 45%; 
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.tea-card img {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.tea-card img:hover {
+    transform: scale(1.03);
+}
+
+/*quiz*/
+.quiz-section {
+    padding: 3rem 5%;
+    background: var(--navlink-color);
+    border-radius: 15px;
+    margin: 4rem auto;
+    max-width: 800px;
+}
+
+.quiz-section h2 {
+    text-align: center; /* Titolo quiz centrato */
+}
+
+/* Rimuoviamo bordi default dei fieldset */
+fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+#tea-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.question-text {
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: var(--universitea-green);
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+#tea-quiz label {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+/* Feedback visivo per risposte (Accessibilità: non solo colore) */
+#tea-quiz label.correct-answer {
+    border: 3px solid #28a745;
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: bold;
+}
+
+#tea-quiz label.wrong-selection {
+    border: 3px solid #dc3545;
+    background-color: #f8d7da;
+    color: #721c24;
+    text-decoration: line-through;
+}
+
+.hidden { display: none; }
+
+#quiz-result {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 
