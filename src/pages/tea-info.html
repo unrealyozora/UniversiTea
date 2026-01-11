@@ -7,23 +7,23 @@
     <meta name="description" content="Pagina dedicata alle informazioni sui tè venduti da universitea">
     <meta name="keywords" content="tè, università, tisane, negozio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
 </head>
 
-<body>
+<body class = "tea-info-page">
     
     <header class="main-header">
-        <a href="../../index.html" class="logo-link">
-            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
-        </a>
+        <div class="logo">
+            <a href="../../index.html">
+                <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+            </a>
+        </div>
 
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
-                <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
-                <li>Il nostro Tè</li>
+                <li><a href="shop.html"><span lang="en-GB">Shop</span></a></li>
+                <li><a href="tea-info.html" aria-current="page">Il nostro Tè</a></li>
                 <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-                <li><a href="dashboard.php">Il tuo profilo</a></li>
             </ul>
         </nav>
 
@@ -43,16 +43,23 @@
     <main class="tea-content">
         <h1>Più di una bevanda!</h1>
 
+        <form class="accessibility-controls">
+            <fieldset>
+            <legend>Opzioni di visualizzazione</legend>
+            <label class="access-toggle" title="Ferma le animazioni del liquido e della teiera">
+                <input type="checkbox" id="disable-anim" name="disable-anim">
+                No Animazione
+            </label>
+            </fieldset>
+        </form>
+
         <section class = "tea-intro">
             <div class="teiera">
                 <img src="../../assets/images/teiera.png" alt="Illustrazione di una teiera inclinata che versa il tè nel box delle curiosità">
             </div>
 
-            <svg class = "liquid-svg" viewBox="0 0 238 216" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.522854" width="232" height="159" rx="56" fill="#00D69F"/>
-                <path d="M1.64685 190.052C1.06285 185.305 0.64382 178.084 1.43725 165.551C1.44365 164.476 1.59245 158.38 2.02285 158.06C2.45325 157.74 4.37485 156.031 4.91085 155.871C7.04685 155.282 9.17605 154.219 11.3109 153.257C13.4468 152.294 15.5258 151.145 17.4437 150.11C19.5268 148.985 21.8535 146.836 24.0565 144.934C26.0357 143.225 32.657 140.223 38.4101 137.681C42.0421 136.076 45.1021 132.961 53.4068 130.639C58.3621 129.254 62.9918 127.04 72.0101 126.263C78.3109 125.721 89.9355 124.862 97.2037 124.132C110.944 122.751 113.518 122.686 116.328 122.164C119.476 121.58 123.774 121.518 129.938 120.831L129.995 120.825C132.907 120.5 140.247 119.682 154.759 121.873C163.757 123.231 175.69 125.766 183.452 127.74C191.213 129.714 194.698 131.087 198.943 133.025C203.188 134.962 208.138 137.239 212.541 140.02C221.05 145.394 226.182 148.89 228.111 152.258C229.978 155.519 231.509 158 231.509 158C231.509 158 232.238 171.652 232.523 174C232.846 176.667 233.333 184.202 234.023 186.5C234.664 188.636 235.513 194.325 236.023 197C236.45 199.242 237.023 200.566 236.023 207.5C235.708 209.684 235.186 212.552 231.023 213.5C226.023 214.638 227.023 214.5 227.023 214.5C227.023 214.5 226.523 214.944 216.023 214.5C214.025 214.416 212.523 213.352 211.523 213C209.39 212.25 208.023 209 208.023 209C208.023 209 206.566 205.232 206.023 202.5C205.439 199.562 204.817 196.787 204.523 193.566C203.926 187.041 202.076 183 198.943 181.214C197.359 180.31 190.681 179.352 189.023 181.214C186.343 184.223 186.123 184.495 185.023 186.5C183.197 189.828 181.023 202.5 181.023 202.5C181.023 202.5 179.427 208.813 177.023 209.5C173.523 210.5 162.523 211.923 156.523 207.5C154.708 206.162 154.133 205.001 153.023 202.5C151.319 198.662 153.023 202.5 151.023 197.5C150.099 195.19 149.81 179.489 146.919 176.716C142.523 172.5 138.523 172 134.023 176.716C132.172 178.655 130.023 191 124.023 194C116.812 197.606 109.48 194.602 107.023 191C104.023 186.602 104.543 179.161 103.023 176.716C101.023 173.5 94.5229 175 94.5229 175C94.5229 175 89.5229 175 88.5229 180.5C87.5229 186 87.5229 191 85.5229 197L85.4787 197.132C83.5079 203.045 82.486 206.112 77.5229 211C74.3603 214.115 64.0229 212.5 61.5229 209.5C59.9446 207.606 57.0229 197.614 57.0229 195C57.0229 187.5 51.0229 184.398 51.0229 184.398C51.0229 184.398 43.0229 182 40.0229 185.5C37.0229 189 39.5229 186.172 37.0229 190.052C36.8074 190.386 35.4124 196.503 34.6445 199.5C34.0557 201.798 32.9272 204.002 31.7733 205.925C30.2733 208.425 27.6442 211.001 25.5229 211C18.3404 210.997 18.6542 210.318 16.5229 209.5C14.0125 208.537 10.8227 205.653 9.16365 203.546C7.77645 201.785 6.08027 199.557 4.95244 197.359C3.82764 195.167 1.94566 192.481 1.64685 190.052Z" fill="#00D69F"/>
-                <path d="M2.02285 158.06C1.91725 159.014 1.70285 161.356 1.43725 165.551M2.02285 158.06C2.45325 157.74 4.37485 156.031 4.91085 155.871C7.04685 155.282 9.17605 154.219 11.3109 153.257C13.4468 152.294 15.5258 151.145 17.4437 150.11C19.5268 148.985 21.8535 146.836 24.0565 144.934C26.0357 143.225 32.657 140.223 38.4101 137.681C42.0421 136.076 45.1021 132.961 53.4068 130.639C58.3621 129.254 62.9918 127.04 72.0101 126.263C78.3109 125.721 89.9355 124.862 97.2037 124.132C110.944 122.751 113.518 122.686 116.328 122.164C119.476 121.58 123.774 121.518 129.938 120.831C132.81 120.511 140.151 119.668 154.759 121.873C163.757 123.231 175.69 125.766 183.452 127.74C191.213 129.714 194.698 131.087 198.943 133.025C203.188 134.962 208.138 137.239 212.541 140.02C221.05 145.394 226.182 148.89 228.111 152.258C229.978 155.519 231.509 158 231.509 158C231.509 158 232.238 171.652 232.523 174C232.846 176.667 233.333 184.202 234.023 186.5C234.664 188.636 235.513 194.325 236.023 197C236.45 199.242 237.023 200.566 236.023 207.5C235.708 209.684 235.186 212.552 231.023 213.5C226.023 214.638 227.023 214.5 227.023 214.5C227.023 214.5 226.523 214.944 216.023 214.5C214.025 214.416 212.523 213.352 211.523 213C209.39 212.25 208.023 209 208.023 209C208.023 209 206.566 205.232 206.023 202.5C205.439 199.562 204.817 196.787 204.523 193.566C203.926 187.041 202.076 183 198.943 181.214C197.359 180.31 190.681 179.352 189.023 181.214C186.343 184.223 186.123 184.495 185.023 186.5C183.197 189.828 181.023 202.5 181.023 202.5C181.023 202.5 179.427 208.813 177.023 209.5C173.523 210.5 162.523 211.923 156.523 207.5C154.708 206.162 154.133 205.001 153.023 202.5C151.319 198.662 153.023 202.5 151.023 197.5C150.099 195.19 149.81 179.489 146.919 176.716C142.523 172.5 138.523 172 134.023 176.716C132.172 178.655 130.023 191 124.023 194C116.812 197.606 109.48 194.602 107.023 191C104.023 186.602 104.543 179.161 103.023 176.716C101.023 173.5 94.5229 175 94.5229 175C94.5229 175 89.5229 175 88.5229 180.5C87.5229 186 87.5229 191 85.5229 197C83.5229 203 82.5229 206.075 77.5229 211C74.3603 214.115 64.0229 212.5 61.5229 209.5C59.9446 207.606 57.0229 197.614 57.0229 195C57.0229 187.5 51.0229 184.398 51.0229 184.398C51.0229 184.398 43.0229 182 40.0229 185.5C37.0229 189 39.5229 186.172 37.0229 190.052C36.8074 190.386 35.4124 196.503 34.6445 199.5C34.0557 201.798 32.9272 204.002 31.7733 205.925C30.2733 208.425 27.6442 211.001 25.5229 211C18.3404 210.997 18.6542 210.318 16.5229 209.5C14.0125 208.537 10.8227 205.653 9.16365 203.546C7.77645 201.785 6.08027 199.557 4.95244 197.359C3.82764 195.167 1.94566 192.481 1.64685 190.052C1.06285 185.305 0.64382 178.084 1.43725 165.551M2.02285 158.06C1.59245 158.38 1.44365 164.476 1.43725 165.551" stroke="#00D69F" stroke-width="2" stroke-linecap="round"/>
-                <rect x="0.522854" y="100" width="232" height="67" fill="#00D69F"/>
+            <svg class="liquid-svg" viewBox="0 0 441 335" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="liquid-path" d="M55 308.617C58.1342 304.438 59.1477 299.781 60.5 292.117C61.2059 288.117 63.5 283.617 63.5 283.617C68.5 277.617 74.3538 277.617 78 277.617C80.5689 277.617 84.1431 278.374 86 279.117C88.5 280.117 92 281.617 95.5 294.117C97.1773 300.108 96 306.617 104.745 311.113C106.816 312.177 113.446 312.617 115.5 312.617C120 312.617 124.996 312.617 127 310.7C131.761 306.143 132.811 303.698 134.233 300.096C136 295.617 136 286.617 138 275.617L138.055 275.315C139.155 269.254 140.748 260.474 148.5 257.152C152 255.652 165.623 255.928 168 257.759C179 266.228 178.691 278.045 184.5 286.617C188 291.782 188.5 291.782 194 295.617C198.578 298.809 204.5 299.617 211 298.117C213.923 297.443 223.007 295.617 225.5 288.617C230.056 275.824 228 281.51 231 271.117C232.871 264.637 238.159 254.539 245.5 254.117C252.44 253.719 262.058 255.389 264 256.117L264.049 256.136C268.028 257.628 271.432 258.904 273.5 263.617C275.338 267.806 275.375 282.039 277.518 288.749C279.174 293.931 282.08 300.428 285.828 304.934C290.172 310.157 292.762 314.803 298.565 316.512C304.273 318.192 309.75 317.793 313.711 317.06C321.5 315.617 323.403 311.981 324.987 308.119C329.5 297.117 327.23 289.007 335.5 279.663C339.524 275.117 344.803 275.117 350.384 275.117H350.5C357 275.117 363.33 277.627 365.5 279.663C375.066 288.638 372.565 297.098 378.439 311.951C380.658 317.564 381.633 321.543 387.804 326.819C394 332.117 397.613 333.162 403.5 333.117C414.666 333.033 418.312 332.228 421.662 330.581C423.297 329.777 425.059 328.07 425.806 324.842C427.534 317.371 428.722 313.178 427.916 293.098C427.719 288.194 427.337 285.325 427.933 270.346C428.53 255.366 429.848 229.061 431.019 214.857C432.362 198.571 433.013 194.273 434.104 188.155C436.611 174.103 438.049 169.318 439.021 151.92C439.505 143.274 439.887 130.047 439.979 122.695C440.072 115.343 439.825 113.909 439.785 111.139L439.782 110.858C439.687 104.105 439.545 94.0143 435.887 79.4892C433.635 70.5482 430.006 58.915 427.502 51.7028C424.999 44.4906 423.376 41.9461 421.911 38.7851C416.5 27.1172 412.471 22.3297 408.519 18.5368C404.727 14.8981 399.187 10.3922 394.907 7.75595C389 4.11724 385.683 2.61724 372 2.61724L353 2.61724C342.399 2.61724 339.341 1.21439 290.5 2.61723C241.659 4.02008 149.349 -0.332732 103.092 1.42505C56.8362 3.18282 54.926 3.50154 53.4788 3.6609C52.0317 3.82026 51.0583 3.71696 49.3198 3.98445C39.841 5.44282 36.0138 9.05778 33 11.1172C28.2476 14.3648 25.2 18.6172 22.5 21.6172C18 26.6172 17.7917 28.8172 16 33.1172C13.5 39.1172 13.1228 41.8287 12.5915 46.3305C11.7088 53.8107 9.57737 64.9543 9.21386 71.1325C8.82604 77.7242 8.31541 81.5696 7.96065 86.1702C7.66833 89.961 7.27867 98.9861 6.80297 105.163C6.51064 108.959 6.13098 115.067 5.64524 119.247C5.1561 123.455 4.27907 128.567 3.42533 134.304C2.64388 139.555 1.06241 144.989 1.01441 154.453C0.918899 173.282 1.32665 186.697 1.40223 189.686C1.49774 193.462 1.87783 196.682 1.98109 211.574C2.07661 225.349 1.32767 251.03 2.37183 264.983C3.81321 284.244 3.48031 288.743 10.6784 298.902C13.8621 303.396 15.801 306.258 20 309.617C25 313.617 27.621 316.202 42 314.617C50.1039 313.724 52 312.617 55 308.617Z"/>
             </svg>
 
             <p>Il tè non è solo una bevanda: è il tuo alleato per le sessioni di studio, la pausa rigenerante e, a volte, il segreto per sopravvivere agli esami più intensi!</p>
@@ -60,40 +67,136 @@
 
         </section>
 
-        <section class="curiosita">
-            <h2>Lo sapevi che...</h2>
-            <p>…tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>: ciò che li rende diversi — dal verde al nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle foglie.</p>
-            <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
+        <section class="curiosita section-dark">
+            <div class="curiosita-content">
+                <h2>Iniziamo con una curiosità!</h2>
+                <p>Lo sapevi che tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>? Ciò che li rende diversi — dal verde al nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle foglie.</p>
+                <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
+            </div>
+            
+            <div class="curiosita-image">
+                <img src="../../assets/images/lampadina.png" alt="Immagine di una lampadina con dentro un rametto della pianta Camellia sinensis">
+            </div>
         </section>
 
-        <section>
-            <img src="../../assets/images/teverde.png" alt="Tazza riempita di tè verde circondata da foglie di tè verde">
-            <h2>Tè verde</h2>
-            <p>blabla</p>
-            <h3>Tè verde matcha</h3>
-            <p>blablabla</p>
+        <section class="tea-process section-grey">
+                <h2 id="process-title">Dalla Foglia alla Tazza: l'Ossidazione</h2>
+                <p>ciao come va teè teè epekeke kjfjfjf sissiosso fjfjfjf ddhdjf eeieieid fhfms sikdoif fmefo emwc ockdecm elcec reoc verovefkl veoovef vefo vefoivfkev fbnfk brf brfrk bfk vfkoemv rfko vrkeom vfvroe vrobokmb er vreb re.</p>
+                <p id="descr" class="table-description">Questa tabella illustra come la diversa lavorazione e il grado di ossidazione delle foglie cambino il carattere finale dei principali tipi di tè.</p>
+                    
+                <div class="table-container" tabindex="0"> 
+                    <table aria-labelledby="process-title" aria-describedby="descr">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo di Tè</th>
+                                <th scope="col">Ossidazione</th>
+                                <th scope="col">Lavorazione</th>
+                                <th scope="col">Carattere</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Bianco</th>
+                                <td>5-10%</td>
+                                <td>Essiccazione naturale</td>
+                                <td>Delicato e floreale</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Verde</th>
+                                <td>0%</td>
+                                <td>Stabilizzazione al calore</td>
+                                <td>Erbaceo e fresco</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Oolong</th>
+                                <td>15-70%</td>
+                                <td>Ossidazione parziale</td>
+                                <td>Complesso e vellutato</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nero</th>
+                                <td>100%</td>
+                                <td>Ossidazione completa</td>
+                                <td>Deciso e maltato</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
         </section>
 
-        <section>
-            <img src="../../assets/images/tenero.png" alt="Tazza riempita di tè nero circondata da foglie di tè nero">
-            <h2>Tè nero</h2>
-            <p>blablablabla</p>
+        <section class="tea-card section-dark">
+            <div class="card-text">
+                <h2>Tè Verde</h2>
+                <p>Il tè verde è celebre per la sua freschezza e le proprietà antiossidanti. Poiché le foglie non subiscono ossidazione, mantengono il loro colore originale e un profilo aromatico erbaceo.</p>
+            </div>
+            <div class="card-image">
+                <img src="../../assets/images/teverde.png" alt="Tazza di tè verde con foglie fresche">
+            </div>
         </section>
 
-        <section>
-            <img src="../../assets/images/tebianco.png" alt="Tazza riempita di tè bianco circondata da foglie di tè bianco">
-            <h2>Tè bianco</h2>
-            <p>blablablablabla</p>
+        <section class="tea-card section-grey">
+            <div class="card-text">
+                <h2>Tè Nero</h2>
+                <p>Grazie alla sua ossidazione completa, il tè nero offre un gusto deciso e maltato. È perfetto per la colazione e si sposa magnificamente con un goccio di latte.</p>
+            </div>
+            <div class="card-image">
+                <img src="../../assets/images/tenero.png" alt="Tazza di tè nero con foglie fresche">
+            </div>
         </section>
 
-        <section>
-            <h2>Tè oolong</h2>
-            <p>blablablablablabla</p>
+        <section class="tea-card section-dark">
+            <div class="card-text">
+                <h2>Tè Bianco</h2>
+                <p>Il più delicato tra i tè, composto solo dalle gemme più giovani. Subisce una lavorazione minima che preserva un sapore dolce, vellutato e leggermente floreale.</p>
+            </div>
+            <div class="card-image">
+                <img src="../../assets/images/tebianco.png" alt="Tazza di tè bianco con foglie fresche">
+            </div>
         </section>
 
-        <section>
-            <h2>Tè Pu-ehr</h2>
-            <p>blablablablablablabla</p>
+        <section class="tea-card section-grey">
+            <div class="card-text">
+                <h2>Tè Oolong</h2>
+                <p>Un tè a ossidazione parziale che si colloca tra il verde e il nero. Offre una complessità aromatica incredibile, con note che variano dal fruttato al tostato.</p>
+            </div>
+            <div class="card-image">
+                <img src="../../assets/images/teoolong.png" alt="Tazza di tè oolong con foglie fresche">
+            </div>
+        </section>
+
+        <section class="tea-card section-dark">
+            <div class="card-text">
+                <h2>Tè Pu-erh</h2>
+                <p>Un tè post-fermentato unico nel suo genere. Con il tempo migliora come il vino, sviluppando un carattere terroso, profondo e proprietà digestive eccezionali.</p>
+            </div>
+            <div class="card-image">
+                <img src="../../assets/images/tepuehr.png" alt="Tazza di tè Pu-erh con foglie fresche">
+            </div>
+        </section>
+
+        <section class="quiz-section">
+            <h2>Hai letto attentamente?</h2>
+            <p>Vediamo se passi questo esame sui tè!</p>
+            
+            <form id="tea-quiz">
+                <fieldset>
+                    <legend class="question-text">1. Da quale pianta derivano tutti i veri tipi di tè?</legend>
+                    <label for="q1-a"><input type="radio" name="q1" id="q1-a" value="wrong"> Rooibos</label>
+                    <label for="q1-b"><input type="radio" name="q1" id="q1-b" value="correct"> Camellia sinensis</label>
+                    <label for="q1-c"><input type="radio" name="q1" id="q1-c" value="wrong"> Camomilla</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend class="question-text">2. Cosa determina la differenza tra i vari tè?</legend>
+                    <label for="q2-a"><input type="radio" name="q2" id="q2-a" value="wrong"> L'altitudine</label>
+                    <label for="q2-b"><input type="radio" name="q2" id="q2-b" value="correct"> La lavorazione delle foglie</label>
+                    <label for="q2-c"><input type="radio" name="q2" id="q2-c" value="wrong"> Il tipo di acqua</label>
+                </fieldset>
+
+                <button type="button" id="submit-quiz" class="btn-join">Verifica risposte</button>
+            </form>
+
+            <p id="quiz-result" class="hidden" aria-live="polite"></p>
         </section>
 
     </main>
@@ -197,7 +300,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="../config/tea-page.js"></script>
 </body>
 
 </html>
