@@ -6,13 +6,13 @@
           content="Pagina dedicata all'accesso di un utente esistente">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="tè, università, tisane, negozio, login, signup, registrazione, accesso">
-    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
+    <link rel="icon" type="image/svg+xml" href="../../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/print.css" media="print">
     <title>UniversiTea - Login</title>
 </head>
 <body>
-<script src="../config/validation/login_validation.js"></script>
+<script src="../../config/validation/login_validation.js"></script>
 <header class="main-header">
     <a href="../../index.html" class="logo-link">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
@@ -27,9 +27,9 @@
     </nav>
     <nav id="user-actions" aria-label="Menu utente">
         <ul>
-            <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
+            <li><a href="cart.php" class="cart-link" aria-label="Visualizza carrello"><img
                     src="../../assets/images/cart.png" alt="Carrello" width="48" height="48"></a></li>
-            <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+            <li><a href="login.php" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
         </ul>
     </nav>
 </header>
@@ -43,23 +43,24 @@
     <p class="subtitle">Benvenuto, accedi al tuo account per continuare!</p>
 
     <form method="POST" action="../config/login.php" id="loginForm">
-        <div class="error-message" id="errorMessage"></div>
+        {{ERROR_MESSAGE}}
 
         <div class="form-group">
             <label for="username">Username o Email</label>
-            <input type="text" id="username" name="username" aria-required="true">
+            <input type="text" id="username" name="username" aria-required="true"
+                   value="{{USERNAME_VALUE}}">
         </div>
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" id="password" name="password" aria-required="true">
+            <input type="password" id="password" name="password" aria-required="true">
         </div>
 
         <button type="submit" name="login" class="submit-btn" id="submitBtn">Accedi</button>
     </form>
 
     <div class="register-link">
-        Non hai un account? <a href="register.html">Registrati ora!</a>
+        Non hai un account? <a href="register.php">Registrati ora!</a>
     </div>
 </main>
 <footer class="main-footer-area">
@@ -102,7 +103,7 @@
                 <li><a href="preferiti.php">Preferiti</a></li>
                 <li><a href="cart.php">Carrello</a></li>
                 <li><a href="register.html">Registrati</a></li>
-                <li><a href="login.html">Accedi (Ti trovi qui ora)</a></li>
+                <li><a href="login.php">Accedi (Ti trovi qui ora)</a></li>
             </ul>
         </nav>
 
@@ -110,7 +111,6 @@
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <
                 <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
                 <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
                 <li><a href="shop.php?category=servizi">I Servizi</a></li>

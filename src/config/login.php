@@ -4,16 +4,17 @@ require_once('database_conn.php');
 
 session_start();
 
+//TODO controllare variabili $error e $success (sono inutilizzate)
+$error = '';
+$success = '';
+$user = new User();
+
 //TODO raggruppare in funzione separata
 if (isset($_SESSION['username']) && $_SESSION['logged_in']) {
     header('Location: ../../index.html');
     exit();
 }
 
-$error = '';
-$success = '';
-
-$user = new User();
 
 checkRequest();
 setUserData();
@@ -41,8 +42,7 @@ function checkValidData(): void
 {
     global $user;
     if (empty($user->getUsername()) || empty($user->getPassword())) {
-        $error = 'Username e password sono obbligatori';
-        exit();
+        redirectWithError('Username e password sono obbligatorie');
     }
 }
 
@@ -61,15 +61,13 @@ function loginUser(): void
         $stmt->execute();
 
         if ($stmt->rowCount() === 0) {
-            $error = 'Credenziali non valide';
-            exit();
+            redirectWithError('Credenziali non valide');
         }
 
         $result = $stmt->fetch();
 
         if (!password_verify($user->getPassword(), $result['password'])) {
-            $error = 'Credenziali non valide';
-            exit();
+            redirectWithError('Credenziali non valide');
         }
 
         $_SESSION['email'] = $result['email'];
@@ -83,8 +81,16 @@ function loginUser(): void
         exit();
 
     } catch (Exception $e) {
-        $error = 'Errore del server: ' . $e->getMessage();
+        redirectWithError('Si è verificato un errore del server. Riprova più tardi.');
     }
+}
+
+function redirectWithError($errorMessage): void
+{
+    $_SESSION['login_error'] = $errorMessage;
+    $_SESSION['username'] = $_POST['username'] ?? '';
+    header('Location: ../pages/login.php');
+    exit();
 }
 
 ?>

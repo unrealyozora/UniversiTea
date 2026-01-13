@@ -30,7 +30,7 @@ function logout(): void
 
     session_destroy();
 
-    header('Location: ../pages/login.html');
+    header('Location: ../pages/login.php');
     exit();
 }
 

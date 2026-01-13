@@ -1,6 +1,6 @@
 <?php
 require_once '../config/check_auth.php';
-requireAuth('login.html');
+requireAuth('login.php');
 $user = getCurrentUser();
 ?>
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ $user = getCurrentUser();
         <ul>
             <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
                             src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
-            <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+            <li><a href="templates/login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
         </ul>
     </nav>
 </header>
@@ -110,8 +110,8 @@ $user = getCurrentUser();
                 <li><a href="dashboard.php">Il tuo profilo</a></li>
                 <li><a href="preferiti.php">Preferiti</a></li>
                 <li><a href="cart.php">Carrello (Ti trovi qui ora)</a></li>
-                <li><a href="register.html">Registrati</a></li>
-                <li><a href="login.html">Accedi</a></li>
+                <li><a href="register.php">Registrati</a></li>
+                <li><a href="templates/login.html">Accedi</a></li>
             </ul>
         </nav>
 
@@ -119,12 +119,13 @@ $user = getCurrentUser();
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <<li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
+                <
+                <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
                 <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
                 <li><a href="shop.php?category=servizi">I Servizi</a></li>
                 <li><a href="shop.php?category=bundle">I Bundle</a></li>
                 <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
-                <li><a href="register.html">Programma Fedeltà</a></li>
+                <li><a href="register.php">Programma Fedeltà</a></li>
             </ul>
         </nav>
 
@@ -154,7 +155,8 @@ $user = getCurrentUser();
     <div class="footer-bottom">
         <div class="footer-bottom-content">
             <div class="legal-info">
-                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span lang="en-GB">All rights reserved</span>.</p>
+                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span
+                            lang="en-GB">All rights reserved</span>.</p>
                 <p class="disclaimer">Questo sito è un progetto accademico realizzato per scopi didattici.</p>
             </div>
 
@@ -163,7 +165,8 @@ $user = getCurrentUser();
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
                 <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
-                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88" height="31">
+                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                         height="31">
                 </a>
             </div>
         </div>

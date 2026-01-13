@@ -1,62 +1,90 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('loginForm');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    const errorMessage = document.getElementById('errorMessage');
+    const loginForm = document.getElementById('loginForm');
 
-    function showError(message) {
-        errorMessage.textContent = message;
-        errorMessage.style.display = 'block';
+    if (loginForm) {
+        loginForm.addEventListener('submit', validateLoginForm);
+
+        const inputs = loginForm.querySelectorAll('input')
+        inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                clearError();
+                this.classList.add('error');
+            });
+        });
     }
-
-    function hideError() {
-        errorMessage.textContent = '';
-        errorMessage.style.display = 'none';
-    }
-
-    function validateUsername(username) {
-        if (!username || username.trim() === '') {
-            return 'Il campo Username o Email è obbligatorio';
-        }
-        return null;
-    }
-
-    function validatePassword(password) {
-        if (!password || password.trim() === '') {
-            return 'Il campo Password è obbligatorio';
-        }
-        if (password.length < 6) {
-            return 'La password deve contenere almeno 6 caratteri';
-        }
-        return null;
-    }
-
-    form.addEventListener('submit', function (e) {
-        hideError();
-
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value;
-
-        const usernameError = validateUsername(username);
-        if (usernameError) {
-            e.preventDefault();
-            showError(usernameError);
-            usernameInput.focus();
-            return false;
-        }
-
-        const passwordError = validatePassword(password);
-        if (passwordError) {
-            e.preventDefault();
-            showError(passwordError);
-            passwordInput.focus();
-            return false;
-        }
-
-        return true;
-    });
-
-    //Rimuovi il messaggio d'errore quando l'utente inizia a digitare
-    usernameInput.addEventListener('input', hideError);
-    passwordInput.addEventListener('input', hideError);
 });
+
+function validateLoginForm(e) {
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
+
+    // Reset errori precedenti
+    clearError();
+    username.classList.remove('error');
+    password.classList.remove('error');
+
+    // Validazione campi vuoti
+    if (!usernameValue || !passwordValue) {
+        e.preventDefault();
+
+        if (!usernameValue) {
+            username.classList.add('error');
+        }
+        if (!passwordValue) {
+            password.classList.add('error');
+        }
+
+        showError('Username e password sono obbligatori');
+        return false;
+    }
+
+    // Validazione lunghezza minima username
+    if (usernameValue.length < 3) {
+        e.preventDefault();
+        username.classList.add('error');
+        showError('L\'username deve essere di almeno 3 caratteri');
+        return false;
+    }
+
+    // Validazione lunghezza minima password
+    if (passwordValue.length < 6) {
+        e.preventDefault();
+        password.classList.add('error');
+        showError('La password deve essere di almeno 6 caratteri');
+        return false;
+    }
+
+    return true;
+}
+
+function showError(message) {
+    let errorDiv = document.getElementById('errorMessage');
+
+    // Se non esiste, crealo dinamicamente
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = 'errorMessage';
+        errorDiv.className = 'error-message';
+
+        const form = document.getElementById('loginForm');
+        form.insertBefore(errorDiv, form.firstChild);
+    }
+
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+    errorDiv.setAttribute('role', 'alert');
+
+    // Scroll verso l'errore per visibilità
+    errorDiv.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+function clearError() {
+    const errorDiv = document.getElementById('errorMessage');
+    if (errorDiv && !errorDiv.hasAttribute('data-server-error')) {
+        errorDiv.textContent = '';
+        errorDiv.style.display = 'none';
+        errorDiv.removeAttribute('role');
+    }
+}

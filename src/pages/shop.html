@@ -14,7 +14,7 @@
 
 <header class="main-header">
     <a href="../../index.html" class="logo-link">
-      <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
     </a>
 
     <nav id="main-menu" aria-label="Menu principale">
@@ -30,7 +30,7 @@
         <ul>
             <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello">
                 <img src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
-            <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+            <li><a href="login.php" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
         </ul>
     </nav>
 </header>
@@ -39,9 +39,12 @@
     <header class="shop-header">
         <h1>Il nostro Catalogo</h1>
         <section id="intro-text">
-            <p>Consulta il vasto catalogo di UniversiTea: tè pregiati, <span lang="en">merchandising</span> esclusivo, servizi universitari e i convenienti bundle.</p>
+            <p>Consulta il vasto catalogo di UniversiTea: tè pregiati, <span lang="en">merchandising</span> esclusivo,
+                servizi universitari e i convenienti bundle.</p>
             <p>Usa i filtri sottostanti per trovare rapidamente ciò che cerchi tra Bevande, Accessori e Bundle.</p>
-            <p>Potrai affinare ancor di più la ricerca con la barra di ricerca per nome e descrizione dei prodotti, impostando un prezzo massimo o selezionando il filtro per mostrare solo i prodotti attualmente disponibili</p>
+            <p>Potrai affinare ancor di più la ricerca con la barra di ricerca per nome e descrizione dei prodotti,
+                impostando un prezzo massimo o selezionando il filtro per mostrare solo i prodotti attualmente
+                disponibili</p>
         </section>
     </header>
 
@@ -83,8 +86,10 @@
                 </fieldset>
                 <div class="filter-settings">
                     <fieldset class="filter-group price-group">
-                        <label for="price-range" class="visually-hidden">Seleziona prezzo massimo <span id="price-value">{{MAX_PRICE}}€</span></label>
-                        <input type="range" id="price-range" name="max-price" min="0" max="100" value="{{MAX_PRICE}}" step="1">
+                        <label for="price-range" class="visually-hidden">Seleziona prezzo massimo <span
+                                id="price-value">{{MAX_PRICE}}€</span></label>
+                        <input type="range" id="price-range" name="max-price" min="0" max="100" value="{{MAX_PRICE}}"
+                               step="1">
                     </fieldset>
 
                     <div class="filter-toggle">
@@ -148,8 +153,8 @@
                 <li><a href="dashboard.php">Il tuo profilo</a></li>
                 <li><a href="preferiti.php">Preferiti</a></li>
                 <li><a href="cart.php">Carrello</a></li>
-                <li><a href="register.html">Registrati</a></li>
-                <li><a href="login.html">Accedi</a></li>
+                <li><a href="register.php">Registrati</a></li>
+                <li><a href="login.php">Accedi</a></li>
             </ul>
         </nav>
 
@@ -162,7 +167,7 @@
                 <li><a href="shop.php?category=servizi">I Servizi</a></li>
                 <li><a href="shop.php?category=bundle">I Bundle</a></li>
                 <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
-                <li><a href="register.html">Programma Fedeltà</a></li>
+                <li><a href="register.php">Programma Fedeltà</a></li>
             </ul>
         </nav>
 
@@ -192,7 +197,8 @@
     <div class="footer-bottom">
         <div class="footer-bottom-content">
             <div class="legal-info">
-                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span lang="en-GB">All rights reserved</span>.</p>
+                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span
+                        lang="en-GB">All rights reserved</span>.</p>
                 <p class="disclaimer">Questo sito è un progetto accademico realizzato per scopi didattici.</p>
             </div>
 
@@ -201,7 +207,8 @@
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
                 <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
-                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88" height="31">
+                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                         height="31">
                 </a>
             </div>
         </div>

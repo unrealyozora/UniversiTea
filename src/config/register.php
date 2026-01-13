@@ -2,6 +2,8 @@
 require_once 'database_conn.php';
 require_once 'user.php';
 
+session_start();
+
 $error = '';
 $success = '';
 $user = new User();
@@ -10,6 +12,7 @@ checkRequest();
 setUserData();
 checkValidData();
 checkValidEmail();
+
 try {
     registerUser();
 } catch (Exception $e) {
@@ -19,7 +22,7 @@ try {
 function checkRequest(): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['register'])) {
-        //header('Location: ../../index.html');
+        header('Location: ../../index.html');
         exit();
     }
 }
@@ -40,24 +43,19 @@ function checkValidData(): void
     global $user;
 
     if (empty($user->getUsername()) || empty($user->getEmail()) || empty($user->getPassword()) || empty($user->getConfirmPassword()) || empty($user->getPhone())) {
-        $error = 'Inserire tutti i campi obbligatori';
-        exit();
+        redirectWithError("Inserire tutti i campi obbligatori");
     }
     if (strlen($user->getUsername()) < 3 || strlen($user->getUsername()) > 32) {
-        $error = 'Username deve essere compreso tra 3 e 32 caratteri';
-        exit();
+        redirectWithError("Username deve essere compreso tra 3 e 32 caratteri");
     }
     if (strlen($user->getPassword()) < 6 || strlen($user->getPassword()) > 32) {
-        $error = "La password deve essere compresa tra 6 e 32 caratteri";
-        exit();
+        redirectWithError("La password deve essere compresa tra 6 e 32 caratteri");
     }
     if ($user->getPassword() != $user->getConfirmPassword()) {
-        $error = "Le due password non corrispondono";
-        exit();
+        redirectWithError("Le due password non corrispondono");
     }
     if ((strlen($user->getPhone()) != 9) && (strlen($user->getPhone()) != 10)) {
-        $error = "Numero di telefono non valido";
-        exit();
+        redirectWithError("Numero di telefono non valido");
     }
 }
 
@@ -65,8 +63,7 @@ function checkValidEmail(): void
 {
     global $user;
     if (!filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
-        $error = "Email non valida";
-        exit();
+        redirectWithError("Email non valida");
     }
 }
 
@@ -90,8 +87,7 @@ function RegisterUser(): void
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            $error = "Utente già esistente";
-            exit();
+            redirectWithError("Utente già esistente");
         }
 
         $pw_hash = password_hash($user->getPassword(), PASSWORD_BCRYPT);
@@ -114,8 +110,15 @@ function RegisterUser(): void
             throw new Exception("Errore durante la registrazione");
         }
     } catch (Exception $e) {
-        $error = 'Errore del server: ' . $e->getMessage();
+        redirectWithError("Si è verificato un errore del server. Riprova più tardi.");
     }
+}
+
+function redirectWithError($error): void
+{
+    $_SESSION['registration_error'] = $error;
+    header('Location: ../pages/register.php');
+    exit();
 }
 
 ?>
