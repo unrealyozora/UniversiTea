@@ -15,7 +15,7 @@
 <body>
 <header class="main-header">
     <a href="../../index.html" class="logo-link">
-      <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
     </a>
     <nav id="main-menu" aria-label="Menu principale">
         <ul>
@@ -43,7 +43,7 @@
     <p class="login-prompt">Hai già un account? <a href="login.html">Accedi qui</a></p>
     <p class="subtitle">Crea il tuo account per iniziare!</p>
     <div class="success-message" id="successMessage"></div>
-    <form id="register_form">
+    <form method="POST" action="../config/register.php" id="register_form">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required aria-required="true">
@@ -70,110 +70,9 @@
             <div class="error-message" id="confirmPasswordError"></div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">Registrati</button>
+        <button type="submit" name="register" class="submit-btn" id="submitBtn">Registrati</button>
     </form>
 </main>
-<script>
-    const form = document.getElementById('register_form');
-    const submitBtn = document.getElementById('submitBtn');
-    const successMessage = document.getElementById('successMessage');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        clearErrors();
-        const formData = {
-            username: document.getElementById('username').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            password: document.getElementById('password').value,
-            confirm_password: document.getElementById('confirm_password').value,
-            //address: document.getElementById('address').value,
-            phone: document.getElementById('phone').value,
-        };
-
-        let isValid = true;
-        if (formData.username.length < 3) {
-            showError('username', 'Username deve essere almeno 3 caratteri');
-            isValid = false;
-        }
-        if (!isValidEmail(formData.email)) {
-            showError('email', 'Email non valida');
-            isValid = false;
-        }
-        if (formData.password.length < 6) {
-            showError('password', 'Password deve essere almeno 6 caratteri');
-            isValid = false;
-        }
-        if (formData.confirm_password !== formData.password) {
-            showError('confirm_password', 'Le password non coincidono');
-            isValid = false;
-        }
-        // TODO aggiungere controllo data
-
-        if (!isValid) {
-            console.log("not valid");
-            return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Registrazione in corso...';
-
-        try {
-            const response = await fetch('../config/register.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-            const data = await response.json();
-            if (data.success) {
-                successMessage.textContent = data.message + ' - Reindirizzamento ... ';
-                successMessage.classList.add("show");
-                form.reset();
-
-                setTimeout(() => {
-                    window.location.href = "/login.html";
-                }, 2000);
-            } else {
-                showError('email', data.message);
-            }
-        } catch (error) {
-            console.log(error);
-            showError('email', "Errore di connessione al server");
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Registrati';
-        }
-    });
-
-    function showError(field, message) {
-        const input = document.getElementById(field);
-        const errorDiv = document.getElementById(field + 'Error');
-
-        input.classList.add('error');
-        errorDiv.textContent = message;
-        errorDiv.classList.add('show');
-    }
-
-    function clearErrors() {
-        const inputs = form.querySelectorAll('input');
-        const errorMessages = form.querySelectorAll('.error-message');
-
-        inputs.forEach(input => input.classList.remove('error'));
-        errorMessages.forEach(msg => {
-            msg.classList.remove('show');
-            msg.textContent = '';
-        });
-        successMessage.classList.remove('show');
-    }
-
-    function isValidEmail(email) {
-        //TODO da verificare regex
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-</script>
-
-
 <footer class="main-footer-area">
     <div class="footer-container">
 
@@ -221,7 +120,8 @@
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <<li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
+                <
+                <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
                 <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
                 <li><a href="shop.php?category=servizi">I Servizi</a></li>
                 <li><a href="shop.php?category=bundle">I Bundle</a></li>
@@ -256,7 +156,8 @@
     <div class="footer-bottom">
         <div class="footer-bottom-content">
             <div class="legal-info">
-                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span lang="en-GB">All rights reserved</span>.</p>
+                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span
+                        lang="en-GB">All rights reserved</span>.</p>
                 <p class="disclaimer">Questo sito è un progetto accademico realizzato per scopi didattici.</p>
             </div>
 
@@ -265,7 +166,8 @@
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
                 <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
-                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88" height="31">
+                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                         height="31">
                 </a>
             </div>
         </div>

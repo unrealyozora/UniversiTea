@@ -41,27 +41,22 @@ function checkValidData(): void
 
     if (empty($user->getUsername()) || empty($user->getEmail()) || empty($user->getPassword()) || empty($user->getConfirmPassword()) || empty($user->getPhone())) {
         $error = 'Inserire tutti i campi obbligatori';
-        header('Location: ../../index.html');
         exit();
     }
     if (strlen($user->getUsername()) < 3 || strlen($user->getUsername()) > 32) {
         $error = 'Username deve essere compreso tra 3 e 32 caratteri';
-        header('Location: ../../index.html');
         exit();
     }
     if (strlen($user->getPassword()) < 6 || strlen($user->getPassword()) > 32) {
         $error = "La password deve essere compresa tra 6 e 32 caratteri";
-        //header('Location: ../../index.html');
         exit();
     }
     if ($user->getPassword() != $user->getConfirmPassword()) {
         $error = "Le due password non corrispondono";
-        //header('Location: ../../index.html');
         exit();
     }
     if ((strlen($user->getPhone()) != 9) && (strlen($user->getPhone()) != 10)) {
         $error = "Numero di telefono non valido";
-        //header('Location: ../../index.html');
         exit();
     }
 }
