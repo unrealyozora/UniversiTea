@@ -13,6 +13,7 @@
 </head>
 
 <body>
+<script src="../config/validation/register_validation.js"></script>
 <header class="main-header">
     <a href="../../index.html" class="logo-link">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
@@ -46,27 +47,27 @@
     <form method="POST" action="../config/register.php" id="register_form">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required aria-required="true">
+            <input type="text" id="username" name="username" aria-required="true">
             <div class="error-message" id="usernameError"></div>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" required aria-required="true">
+            <input type="text" id="email" name="email" aria-required="true">
             <div class="error-message" id="emailError"></div>
         </div>
         <div class="form-group">
             <label for="phone">Telefono</label>
-            <input type="text" id="phone" name="phone" required aria-required="true">
+            <input type="text" id="phone" name="phone" aria-required="true">
             <div class="error-message" id="phoneError"></div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" id="password" name="password" required aria-required="true">
+            <input type="text" id="password" name="password" aria-required="true">
             <div class="error-message" id="passwordError"></div>
         </div>
         <div class="form-group">
             <label for="confirm_password">Conferma password</label>
-            <input type="text" id="confirm_password" name="confirm_password" required aria-required="true">
+            <input type="text" id="confirm_password" name="confirm_password" aria-required="true">
             <div class="error-message" id="confirmPasswordError"></div>
         </div>
 
