@@ -14,11 +14,14 @@ function isLoggedIn()
 function getCurrentUser()
 {
     if (!isLoggedIn()) {
-        return null;
+        return [
+            'username' => 'not logged',
+            'email' => 'not logged',
+        ];
     }
     return [
-        'username' => $_SESSION['username'] ?? '',
-        'email' => $_SESSION['email'] ?? ''
+        'username' => $_SESSION['username'] ?? 'ERRORE',
+        'email' => $_SESSION['email'] ?? 'ERRORE'
     ];
 }
 

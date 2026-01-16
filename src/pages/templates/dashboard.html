@@ -2,92 +2,73 @@
 <!--suppress HtmlUnknownTarget -->
 <html lang="it">
 <head>
-    <meta charset="utf-8">
-    <title>UniversiTea - Registrazione</title>
+    <meta charset="UTF-8">
+    <title>Il tuo profilo</title>
     <meta name="description"
-          content="Pagina dedicata alla registrazione di un nuovo utente">
-    <meta name="keywords" content="tè, università, tisane, negozio, login, signup, registrazione, accesso">
-    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
+          content="Pagina dedicata al tuo profilo Universitea.">
+    <meta name="keywords" content="tè, università, tisane,profilo, negozio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/print.css" media="print">
 </head>
-
 <body>
-<script src="../config/validation/register_validation.js"></script>
 <header class="main-header">
-    <a href="../../index.html" class="logo-link">
-        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
-    </a>
+
+    <div class="logo">
+        <a href="../../index.html">
+            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+        </a>
+    </div>
+
     <nav id="main-menu" aria-label="Menu principale">
+        <div class="main-menu-pill"></div>
         <ul>
             <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
             <li><a href="tea-info.html">Il nostro Tè</a></li>
             <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-            <li><a href="dashboard.php">Il tuo profilo</a></li>
+            <li>Il tuo profilo</li>
         </ul>
     </nav>
+
     <nav id="user-actions" aria-label="Menu utente">
         <ul>
             <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
-                    src="../../assets/images/cart.png" alt="Carrello" width="48" height="48"></a></li>
-            <li><a href="login.php" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+                    src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
+            <li><a href="templates/login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
         </ul>
     </nav>
+
 </header>
+<div class="dashboard-card">
+    <h1>Il Tuo Profilo</h1>
 
-<nav id="breadcrumb" aria-label="Percorso di navigazione">
-    <p>Ti trovi in: <span lang="en-GB" aria-current="page">Home</span></p>
-</nav>
+    <div class="status-badge">
+        <span class="status-badge">Account Attivo</span>
+    </div>
 
-<main>
-    <h1>Registrati su UniversiTea!</h1>
-    <p class="login-prompt">Hai già un account? <a href="login.php">Accedi qui</a></p>
-    <p class="subtitle">Crea il tuo account per iniziare!</p>
-    <div class="success-message" id="successMessage"></div>
-    <form method="POST" action="../config/auth/register.php" id="registrationForm">
-        {{ERROR_MESSAGE}}
+    <div class="nav-links">
+        <form action="../config/auth/logout.php" method="POST">
+            <button type="submit" name='logout' class="submit-btn">Logout</button>
+        </form>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Username:</span>
+        <span class="info-value">{{USERNAME}}</span>
+    </div>
 
-        <fieldset>
-            <legend>Seleziona una tipologia di utente:</legend>
-            <div>
-                <input type="radio" id="buyer" name="user_type" value="Compratore" checked/>
-                <label for="buyer">Cliente</label>
-            </div>
-            <div>
-                <input type="radio" id="seller" name="user_type" value="Venditore"/>
-                <label for="seller">Venditore</label>
-            </div>
-        </fieldset>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" aria-required="true">
-            <div class="error-message" id="usernameError"></div>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" aria-required="true">
-            <div class="error-message" id="emailError"></div>
-        </div>
-        <div class="form-group">
-            <label for="phone">Telefono</label>
-            <input type="text" id="phone" name="phone" aria-required="true">
-            <div class="error-message" id="phoneError"></div>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="text" id="password" name="password" aria-required="true">
-            <div class="error-message" id="passwordError"></div>
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Conferma password</label>
-            <input type="text" id="confirm_password" name="confirm_password" aria-required="true">
-            <div class="error-message" id="confirmPasswordError"></div>
-        </div>
+    <div class="info-row">
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{EMAIL}}</span>
+    </div>
 
-        <button type="submit" name="register" class="submit-btn" id="submitBtn">Registrati</button>
-    </form>
-</main>
+    <div class="session-info">
+        <strong>Info Sessione:</strong><br>
+        Ultima attività: {{LAST_ACTIVITY}}<br>
+        Timeout: 30 minuti di inattività
+    </div>
+</div>
+
+
 <footer class="main-footer-area">
     <div class="footer-container">
 
@@ -116,24 +97,25 @@
             </div>
         </div>
 
+        <!-- Mappa del Sito -->
         <nav class="footer-column" aria-label="Mappa del sito">
-            <h3>Naviga</h3>
+            <h2>Naviga</h2>
             <ul>
                 <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
                 <li><a href="shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
                 <li><a href="tea-info.html">Il nostro Tè</a></li>
                 <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-                <li><a href="dashboard.php">Il tuo profilo</a></li>
+                <li><a href="dashboard.php">Il tuo profilo (Ti trovi qui ora)</a></li>
                 <li><a href="preferiti.php">Preferiti</a></li>
                 <li><a href="cart.php">Carrello</a></li>
-                <li><a href="register.html">Registrati (Ti trovi qui ora)</a></li>
-                <li><a href="login.php">Accedi</a></li>
+                <li><a href="register.php">Registrati</a></li>
+                <li><a href="templates/login.html">Accedi</a></li>
             </ul>
         </nav>
 
         <!-- Categorie Prodotti -->
         <nav class="footer-column" aria-label="Categorie prodotti">
-            <h3>Prodotti</h3>
+            <h2>Prodotti</h2>
             <ul>
                 <
                 <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
@@ -141,13 +123,13 @@
                 <li><a href="shop.php?category=servizi">I Servizi</a></li>
                 <li><a href="shop.php?category=bundle">I Bundle</a></li>
                 <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
-                <li><a href="register.html">Programma Fedeltà</a></li>
+                <li><a href="register.php">Programma Fedeltà</a></li>
             </ul>
         </nav>
 
         <!-- Contatti & Supporto -->
         <div class="footer-column">
-            <h3>Contatti</h3>
+            <h2>Contatti</h2>
             <ul class="contact-list">
                 <li>
                     <strong>Email:</strong><br>
@@ -180,7 +162,8 @@
                 <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"
+                   rel="noopener noreferrer">
                     <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
                          height="31">
                 </a>
@@ -189,5 +172,4 @@
     </div>
 </footer>
 </body>
-
 </html>
