@@ -6,10 +6,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-/**
- * Genera HTML di una singola card prodotto
- */
-function renderProductCard($product) {
+
+function renderProductCard($product, $templateHtml)
+{
     $id = htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8');
     $nome = htmlspecialchars($product['nome'], ENT_QUOTES, 'UTF-8');
     $descrizione = htmlspecialchars($product['descrizione'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -17,33 +16,15 @@ function renderProductCard($product) {
     $categoria = htmlspecialchars($product['categoria'], ENT_QUOTES, 'UTF-8');
     $imgPath = getImagePlaceholder($categoria);
 
-    return <<<HTML
-        <li class="product-item">
-            <article class="product-card">
-                <a aria-label="vai alla pagina di $nome" href="product.php?id=$id">
-                    <img src="$imgPath" alt="" loading="lazy">
-                </a>
-                <div class="product-info">
-                    <h3>$nome</h3>
-                    <p class="category-tag">$categoria</p>
-                    <p class="description">$descrizione</p>
-                    <p class="price">€ $prezzo</p>
-                    
-                    <form action="../config/add_to_cart.php" method="POST" >
-                        <input type="hidden" name="product_id" value="$id">
-                        <button type="submit" class="btn-add-cart" aria-label="Aggiungi $nome al carrello">
-                            Aggiungi al carrello
-                        </button>
-                    </form>
-                    <button class="btn-add-preferiti" 
-                            data-id="$id"
-                            aria-label="Aggiungi $nome ai Preferiti">
-                        Aggiungi ai Preferiti
-                    </button>
-                </div>
-            </article>
-        </li>
-HTML;
+    $replacements = [
+        '{{ID}}'=> $id,
+        '{{NOME}}'=> $nome,
+        '{{DESCRIZIONE}}'=> $descrizione,
+        '{{PREZZO}}'=> $prezzo,
+        '{{CATEGORIA}}'=> $categoria,
+        '{{IMG_PATH}}'=> $imgPath,
+    ];
+    return str_replace(array_keys($replacements), array_values($replacements), $templateHtml);
 }
 
 // ==================== GESTIONE FILTRI ====================
@@ -144,10 +125,13 @@ try {
     $stmt->execute();
     $prodotti = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $cardTemplate= __DIR__ . '/templates/productCard_template.html';
+    $cardTemplate = file_exists($cardTemplate) ? file_get_contents($cardTemplate) : '<li class="no-result"> Template Prodotto Mancante</li>';
+
     // Genera HTML dei prodotti
     $listaHtml = '';
     foreach ($prodotti as $prodotto) {
-        $listaHtml .= renderProductCard($prodotto);
+        $listaHtml .= renderProductCard($prodotto, $cardTemplate);
     }
 
     // Se non ci sono prodotti
@@ -209,5 +193,4 @@ $finalHtml = str_replace(
     $htmlContent
 );
 
-// Output del HTML finale
 echo $finalHtml;

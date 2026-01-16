@@ -54,13 +54,13 @@ a:visited {
     left: 0;
     background: var(--darkbgcolor);
     color: var(--txtcolor);
-    padding: 8px;
     z-index: 10001;
     text-decoration: none;
     text-indent: -999em;
 }
 
 .skip-link:focus {
+    padding: 1em;
     text-indent: 0;
 }
 
