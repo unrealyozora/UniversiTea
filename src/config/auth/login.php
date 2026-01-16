@@ -53,7 +53,7 @@ function loginUser(): void
         $database = new Database();
         $db = $database->getConnection();
 
-        $query = "SELECT email, username, password FROM Utente WHERE username = :username or email = :email";
+        $query = "SELECT email, username, password, tipo_utente FROM Utente WHERE username = :username or email = :email";
         $stmt = $db->prepare($query);
         $identifier = $user->getUsername();
         $stmt->bindValue(':username', $identifier);
@@ -72,13 +72,17 @@ function loginUser(): void
 
         $_SESSION['email'] = $result['email'];
         $_SESSION['username'] = $result['username'];
+        $_SESSION['tipo_utente'] = $result['tipo_utente'];
         $_SESSION['logged_in'] = true;
         $_SESSION['last_activity'] = time();
 
         session_regenerate_id(true);
 
-        header('Location: ../../../index.html');
-        exit();
+        if ($result['tipo_utente'] === 'Venditore') {
+            header('Location: ../../pages/administrator.php'); // O il percorso corretto
+        } else {
+            header('Location: ../../../index.html');
+        }exit();
 
     } catch (Exception $e) {
         redirectWithError('Si è verificato un errore del server. Riprova più tardi.');

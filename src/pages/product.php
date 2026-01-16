@@ -19,13 +19,10 @@ try {
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // CORREZIONE FONDAMENTALE:
-    // Se $product è false (nessun risultato trovato), mostriamo 404
-    if (!$product) {
-        loadErrorPage(404);
-    }
+   // if (!$product) {
+     //   loadErrorPage(404);
+    //}
 
-    // --- DA QUI IN POI IL CODICE ESEGUE SOLO SE IL PRODOTTO ESISTE ---
 
     // Formattazione Prezzo
     $prezzoF = number_format($product['prezzo'], 2, ',', '.');

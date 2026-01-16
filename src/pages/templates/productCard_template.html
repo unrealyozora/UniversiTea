@@ -1,0 +1,25 @@
+<li class="product-item">
+    <article class="product-card">
+        <a aria-label="vai alla pagina di {{NOME}}" href="product.php?id={{ID}}">
+            <img src="{{IMG_PATH}}" alt="" loading="lazy">
+        </a>
+        <div class="product-info">
+            <h3>{{NOME}}</h3>
+            <p class="category-tag">{{CATEGORIA}}</p>
+            <p class="description">{{DESCRIZIONE}}</p>
+            <p class="price">€ {{PREZZO}}</p>
+
+            <form action="../config/add_to_cart.php" method="POST" >
+                <input type="hidden" name="product_id" value="{{ID}}">
+                <button type="submit" class="btn-add-cart" aria-label="Aggiungi $nome al carrello">
+                    Aggiungi al carrello
+                </button>
+            </form>
+            <button class="btn-add-preferiti"
+                    data-id="{{ID}}"
+                    aria-label="Aggiungi {{NOME}} ai Preferiti">
+                Aggiungi ai Preferiti
+            </button>
+        </div>
+    </article>
+</li>

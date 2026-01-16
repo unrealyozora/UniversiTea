@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Pannello di Controllo | UniversiTea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+
+<a href="#admin-content" class="skip-link">Salta al contenuto principale</a>
+
+
+<header class="main-header">
+    <a href="../../index.html" class="logo-link">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
+    </a>
+
+    <nav id="main-menu" aria-label="Menu principale">
+        <ul>
+            <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
+            <li><a href="tea-info.html">Il nostro Tè</a></li>
+            <li><a href="about.html"><span lang="en-GB">About</span></a></li>
+            <li><a href="dashboard.php">Il tuo profilo</a></li>
+        </ul>
+    </nav>
+
+    <nav id="user-actions" aria-label="Menu utente">
+        <ul>
+            <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello">
+                <img src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
+            <li><a href="login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="admin-content">
+            <h1>Il tuo Pannello di Controllo</h1>
+        <section id="intro-text">
+            <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. Qui potrai vedere e modificare tutti i prodotti da te venduti.</p>
+            <p>Cambia prezzo, disponibilità, descrizione e tutti parametri che vuoi.</p>
+        </section>
+
+        <div class="admin-controls">
+            <a href="edit_product.php" class="btn-add-new">+ Aggiungi Nuovo Prodotto</a>
+        </div>
+
+    {{USER_FEEDBACK}}
+
+    <section class="admin-table-container">
+        <table class="product-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prodotto</th>
+                <th>Prezzo</th>
+                <th>Stock</th>
+                <th>Categoria</th>
+                <th>Azioni</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{LISTA_PRODOTTI_ADMIN}}
+            </tbody>
+        </table>
+    </section>
+</main>
+
+</body>
+</html>

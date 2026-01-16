@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{{TITOLO_PAGINA}} | Admin Panel</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .form-container { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #f9f9f9; border-radius: 8px; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; }
+        .btn-save { background-color: #2e7d32; color: white; border: none; padding: 1rem 2rem; cursor: pointer; font-size: 1rem; width: 100%; margin-top: 1rem;}
+
+        /* Nascondiamo i campi specifici di default */
+        .specific-fields { display: none; padding: 10px; background: #e8f5e9; border-left: 4px solid #2e7d32; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <h1>{{TITOLO_PAGINA}}</h1>
+    <a href="administrator.php" style="margin-left: 20px;">← Torna alla Dashboard</a>
+</header>
+
+<main class="form-container">
+    <form action="../config/save_product.php" method="POST" id="productForm">
+
+        <input type="hidden" name="id" value="{{VAL_ID}}">
+
+        <div class="form-group">
+            <label for="nome">Nome Prodotto:</label>
+            <input type="text" id="nome" name="nome" value="{{VAL_NOME}}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descrizione">Descrizione:</label>
+            <textarea id="descrizione" name="descrizione" rows="3">{{VAL_DESCRIZIONE}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="prezzo">Prezzo (€):</label>
+            <input type="number" id="prezzo" name="prezzo" step="0.01" value="{{VAL_PREZZO}}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="disponibilita">Quantità (Stock):</label>
+            <input type="number" id="disponibilita" name="disponibilita" value="{{VAL_DISPONIBILITA}}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" onchange="toggleFields()" required>
+                <option value="">-- Seleziona --</option>
+                <option value="bevande" {{SELECTED_BEVANDE}}>Bevande</option>
+                <option value="merchandising" {{SELECTED_MERCH}}>Merchandising</option>
+                <option value="servizi" {{SELECTED_SERVIZI}}>Servizi</option>
+            </select>
+        </div>
+
+        <div id="fields-bevande" class="specific-fields">
+            <h4>Dettagli Bevanda</h4>
+            <div class="form-group">
+                <label>Temperatura Consigliata:</label>
+                <input type="text" name="temp_consigliata" value="{{VAL_TEMP}}" placeholder="Es. 80°C">
+            </div>
+            <div class="form-group">
+                <label>Tipologia Bevanda:</label>
+                <input type="text" name="tipologia_bevanda" value="{{VAL_TIPO_BEV}}" placeholder="Es. Tè Verde">
+            </div>
+        </div>
+
+        <div id="fields-merchandising" class="specific-fields">
+            <h4>Dettagli Merch</h4>
+            <div class="form-group">
+                <label>Materiale:</label>
+                <input type="text" name="materiale" value="{{VAL_MATERIALE}}" placeholder="Es. Ceramica">
+            </div>
+            <div class="form-group">
+                <label>Tipologia Merch:</label>
+                <input type="text" name="tipologia_march" value="{{VAL_TIPO_MERCH}}" placeholder="Es. Tazza">
+            </div>
+        </div>
+
+        <div id="fields-servizi" class="specific-fields">
+            <h4>Dettagli Servizio</h4>
+            <div class="form-group">
+                <label>Tipologia Servizio:</label>
+                <input type="text" name="tipologia_servizi" value="{{VAL_TIPO_SERV}}" placeholder="Es. Degustazione">
+            </div>
+            <div class="form-group">
+                <label>Livello Urgenza:</label>
+                <input type="text" name="livello_urgenza" value="{{VAL_URGENZA}}" placeholder="Es. Alto">
+            </div>
+        </div>
+
+        <button type="submit" class="btn-save">{{TESTO_BOTTONE}}</button>
+    </form>
+</main>
+
+<script>
+    function toggleFields() {
+        // 1. Nascondi tutti i campi specifici
+        document.querySelectorAll('.specific-fields').forEach(el => el.style.display = 'none');
+
+        // 2. Prendi il valore selezionato
+        const cat = document.getElementById('categoria').value;
+
+        // 3. Mostra il div corrispondente (es. fields-bevande)
+        const target = document.getElementById('fields-' + cat);
+        if (target) {
+            target.style.display = 'block';
+        }
+    }
+
+    // Esegui al caricamento per mostrare i campi se siamo in modifica
+    document.addEventListener('DOMContentLoaded', toggleFields);
+</script>
+
+</body>
+</html>
