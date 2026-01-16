@@ -67,10 +67,10 @@ function validateRegistrationForm(e) {
         return false;
     }
 
-    if (phoneNumberValue.length !== 9 || phoneNumberValue.length !== 10) {
+    if (phoneNumberValue.length !== 9 && phoneNumberValue.length !== 10) {
         e.preventDefault();
         phoneNumber.classList.add('error');
-        showError("Numero di telefono non valido");
+        showError("Numero di telefono non valido gay");
         return false;
     }
     return true;

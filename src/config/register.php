@@ -36,6 +36,9 @@ function setUserData(): void
     $user->setPhone(trim($_POST['phone'] ?? ''));
     $user->setPassword(trim($_POST['password'] ?? ''));
     $user->setConfirmPassword(trim($_POST['confirm_password'] ?? ''));
+    $userTypeValue = trim($_POST['user_type'] ?? 'Compratore');
+    $userType = UserType::tryFrom($userTypeValue) ?? UserType::Buyer;
+    $user->setUserType($userType);
 }
 
 function checkValidData(): void
@@ -55,7 +58,10 @@ function checkValidData(): void
         redirectWithError("Le due password non corrispondono");
     }
     if ((strlen($user->getPhone()) != 9) && (strlen($user->getPhone()) != 10)) {
-        redirectWithError("Numero di telefono non valido");
+        redirectWithError("Numero di telefono non valido gay");
+    }
+    if (($user->getUserType() !== UserType::Buyer) && $user->getUserType() !== UserType::Seller) {
+        redirectWithError("Tipologia utente non valida");
     }
 }
 
@@ -73,7 +79,7 @@ function checkValidEmail(): void
 function RegisterUser(): void
 {
     global $user;
-    $user_type = UserType::Compratore->value;
+    $user_type = $user->getUserType()->value;
     $start_fid_points = 0;
     $address = "togliereIndirizzo";
     try {

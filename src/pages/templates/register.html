@@ -47,6 +47,17 @@
     <form method="POST" action="../config/register.php" id="registrationForm">
         {{ERROR_MESSAGE}}
 
+        <fieldset>
+            <legend>Seleziona una tipologia di utente:</legend>
+            <div>
+                <input type="radio" id="buyer" name="user_type" value="Compratore" checked/>
+                <label for="buyer">Cliente</label>
+            </div>
+            <div>
+                <input type="radio" id="seller" name="user_type" value="Venditore"/>
+                <label for="seller">Venditore</label>
+            </div>
+        </fieldset>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" aria-required="true">

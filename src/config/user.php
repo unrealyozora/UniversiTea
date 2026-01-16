@@ -1,9 +1,9 @@
 <?php
 
-enum UserType: int
+enum UserType: string
 {
-    case Compratore = 1;
-    case Venditore = 2;
+    case Buyer = "Compratore";
+    case Seller = "Venditore";
 }
 
 class User
@@ -13,6 +13,7 @@ class User
     private string $confirmPassword;
     private string $email;
     private string $phone;
+    private UserType $userType;
 
     public function getUsername(): string
     {
@@ -62,5 +63,15 @@ class User
     public function setPhone($phone): void
     {
         $this->phone = $phone;
+    }
+
+    public function getUserType(): UserType
+    {
+        return $this->userType;
+    }
+
+    public function setUserType(UserType $userType): void
+    {
+        $this->userType = $userType;
     }
 }
