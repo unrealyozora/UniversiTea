@@ -1,5 +1,5 @@
 <?php
-require_once '../config/check_auth.php';
+require_once '../config/auth/check_auth.php';
 requireAuth('login.php');
 $user = getCurrentUser();
 ?>
@@ -51,7 +51,7 @@ $user = getCurrentUser();
     </div>
 
     <div class="nav-links">
-        <form action="../config/logout.php" method="POST">
+        <form action="../config/auth/logout.php" method="POST">
             <button type="submit" name='logout' class="submit-btn">Logout</button>
         </form>
     </div>

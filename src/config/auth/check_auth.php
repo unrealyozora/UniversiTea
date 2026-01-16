@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
 function isLoggedIn()
 {
-    if (isset($_SESSION['username']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+    if (isset($_SESSION['username']) && isset($_SESSION['logged_in'])) {
         return true;
     } else {
         return false;
@@ -22,7 +22,7 @@ function getCurrentUser()
     ];
 }
 
-function requireAuth($redirectUrl = '../pages/login.html')
+function requireAuth($redirectUrl = '../../pages/login.html')
 {
     if (!isLoggedIn()) {
         $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
@@ -31,7 +31,7 @@ function requireAuth($redirectUrl = '../pages/login.html')
     }
 }
 
-function preventAuthAccess($redirectUrl = '../../index.html')
+function preventAuthAccess($redirectUrl = '../../../index.html')
 {
     if (!isLoggedIn()) {
         header('Location: ' . $redirectUrl);
@@ -70,6 +70,6 @@ function isSessionExpired($timeout = 1800)
 
 if (isLoggedIn() && isSessionExpired()) {
     destroySession();
-    header('Location: login.html?timeout=1');
+    header('Location: login.php?timeout=1');
     exit();
 }

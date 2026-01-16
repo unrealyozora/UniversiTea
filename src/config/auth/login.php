@@ -1,6 +1,6 @@
 <?php
 require_once('user.php');
-require_once('database_conn.php');
+require_once('../database/database_conn.php');
 
 session_start();
 
@@ -11,7 +11,7 @@ $user = new User();
 
 //TODO raggruppare in funzione separata
 if (isset($_SESSION['username']) && $_SESSION['logged_in']) {
-    header('Location: ../../index.html');
+    header('Location: ../../../index.html');
     exit();
 }
 
@@ -24,7 +24,7 @@ loginUser();
 function checkRequest(): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['login'])) {
-        header('Location: ../../index.html');
+        header('Location: ../../../index.html');
         exit();
     }
 }
@@ -77,7 +77,7 @@ function loginUser(): void
 
         session_regenerate_id(true);
 
-        header('Location: ../../index.html');
+        header('Location: ../../../index.html');
         exit();
 
     } catch (Exception $e) {
@@ -89,7 +89,7 @@ function redirectWithError($errorMessage): void
 {
     $_SESSION['login_error'] = $errorMessage;
     $_SESSION['username'] = $_POST['username'] ?? '';
-    header('Location: ../pages/login.php');
+    header('Location: ../../pages/login.php');
     exit();
 }
 

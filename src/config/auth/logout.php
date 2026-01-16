@@ -5,7 +5,7 @@ use JetBrains\PhpStorm\NoReturn;
 session_start();
 
 if (!isset($_SESSION['username']) || !$_SESSION['logged_in']) {
-    header('Location: ../../index.html');
+    header('Location: ../../../index.html');
     exit();
 }
 
@@ -15,7 +15,7 @@ logout();
 function checkRequest(): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['logout'])) {
-        header('Location: ../../index.html');
+        header('Location: ../../../index.html');
         exit();
     }
 }
@@ -30,7 +30,7 @@ function logout(): void
 
     session_destroy();
 
-    header('Location: ../pages/login.php');
+    header('Location: ../../pages/login.php');
     exit();
 }
 

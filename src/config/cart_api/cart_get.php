@@ -1,7 +1,7 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-require_once '../database_conn.php';
+require_once '../database/database_conn.php';
 
 if (!isset($_SESSION['username']) || !$_SESSION['logged_in']) {
     http_response_code(401);

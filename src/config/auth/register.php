@@ -1,5 +1,5 @@
 <?php
-require_once 'database_conn.php';
+require_once '../database/database_conn.php';
 require_once 'user.php';
 
 session_start();
@@ -22,7 +22,7 @@ try {
 function checkRequest(): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['register'])) {
-        header('Location: ../../index.html');
+        header('Location: ../../../index.html');
         exit();
     }
 }
@@ -123,7 +123,7 @@ function RegisterUser(): void
 function redirectWithError($error): void
 {
     $_SESSION['registration_error'] = $error;
-    header('Location: ../pages/register.php');
+    header('Location: ../../pages/register.php');
     exit();
 }
 

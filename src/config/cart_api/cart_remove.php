@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once '../database_conn.php';
+require_once '../database/database_conn.php';
 
 // Verifica autenticazione
 if (!isset($_SESSION['username']) || !$_SESSION['logged_in']) {
