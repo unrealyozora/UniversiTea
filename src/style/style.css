@@ -72,13 +72,13 @@ section {
 .section-dark {
     background-color: var(--darkbgcolor);
     color: var(--txtcolor);
-    padding: 4rem max(5%, 20px);
+    padding: 4rem max(5%, 1.25em);
 }
 
 .section-gray {
     background-color: var(--graybgcolor);
     color: var(--txtcolor);
-    padding: 4rem max(5%, 20px);
+    padding: 4rem max(5%, 1.25em);
 }
 
 /* ==========================================================================
@@ -126,12 +126,12 @@ body.homepage .main-header:not(.scrolled) .btn-join {
     border: 2px solid var(--universitea-green);
 
     /* Geometria */
-    border-radius: 50px;
+    border-radius: 3.125em;
     padding: 0.8em 2.2em;
     font-weight: 800;
     text-transform: uppercase;
     font-size: 0.95rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125em;
     cursor: pointer;
 
     /* Animazioni */
@@ -168,12 +168,12 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     border: 2px solid var(--universitea-green);
 
     /* Geometria */
-    border-radius: 50px;
+    border-radius: 3.125em;
     padding: 0.8em 2.2em;
     font-weight: 800;
     text-transform: uppercase;
     font-size: 0.95rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125em;
     cursor: pointer;
 
     /* Animazioni */
@@ -209,10 +209,10 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     color: #fff;
     border: 2px solid #0f0e0e;
 
-    border-radius: 50px;
+    border-radius: 3.125em;
     padding: 0.8em 2.2em;
     font-weight: 800;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125em;
     text-transform: uppercase;
     font-size: 0.95rem;
     transition: all 0.3s ease;
@@ -268,7 +268,7 @@ body.homepage .main-header:not(.scrolled) {
 
 img.logo,
 .logo-img {
-    width: 130px;
+    width: 8.125em;
     height: auto;
     display: block;
     transition: filter 0.4s ease, transform 0.3s ease;
@@ -286,6 +286,19 @@ body.homepage .main-header:not(.scrolled) img.logo {
 }
 
 /* --- MENU LINKS & CARRELLO --- */
+.menu-checkbox,
+.hamburger-btn,
+.close-menu-btn,
+.mobile-only-text {
+    display: none;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
 #main-menu ul {
     display: flex;
     list-style: none;
@@ -312,7 +325,7 @@ body.homepage .main-header:not(.scrolled) img.logo {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.01em;
-    padding: 5px 0;
+    padding: 0.3125em 0;
     position: relative;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     display: flex;
@@ -336,7 +349,7 @@ body.homepage .main-header:not(.scrolled) img.logo {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 0.125em;
     bottom: 0;
     left: 0;
     background-color: #0f0e0e;
@@ -396,6 +409,27 @@ body.homepage .main-header:not(.scrolled) .nav-text-link:hover {
 ========================================================================== */
 .hamburger-btn {
     display: none;
+    position: relative;
+    width: 3.125em;
+    height: 2.5em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10003;
+}
+
+.hamburger-btn .bar {
+    display: block;
+    width: 100%;
+    height: 0.25em;
+    background-color: #0f0e0e;
+    margin: 0.5em 0;
+    transition: all 0.3s ease;
+    border-radius: 0.125em;
+}
+
+body.homepage .main-header:not(.scrolled) .hamburger-btn .bar {
+    background-color: #fff;
 }
 
 /* Nascosto su desktop */
@@ -430,7 +464,7 @@ body.menu-open {
 /* TASTO CHIUDI (X) */
 .close-menu-btn {
     position: absolute;
-    top: 25px;
+    top: 1.5625em;
     right: 5%;
     background: transparent;
     border: none;
@@ -440,7 +474,7 @@ body.menu-open {
     cursor: pointer;
     z-index: 10005;
     /* Molto alto */
-    padding: 10px;
+    padding: 0.625em;
 }
 
 .mobile-nav-content {
@@ -458,7 +492,7 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    transform: translateY(20px);
+    transform: translateY(1.25em);
     opacity: 0;
     transition: all 0.4s ease 0.2s;
 }
@@ -581,7 +615,7 @@ body.menu-open .mobile-nav-content ul {
 .layer-8 {
     width: 100%;
     height: auto;
-    bottom: -2px;
+    bottom: -0.125em;
     z-index: 8;
 }
 
@@ -606,7 +640,7 @@ body.menu-open .mobile-nav-content ul {
     /* 3. SPAZIO DI SICUREZZA FLUIDO (Il fix vero) */
     /* Diciamo al contenuto: "Centrati, ma considera che i primi 15% dello schermo
        sono zona proibita (header + breadcrumb)". */
-    padding-top: max(100px, 15vh);
+    padding-top: max(6.25em, 15vh);
 
     /* Padding di sicurezza laterale e inferiore */
     padding-bottom: 5vh;
@@ -618,7 +652,7 @@ body.menu-open .mobile-nav-content ul {
 
 .hero-text-box {
     width: 100%;
-    max-width: 800px;
+    max-width: 50em;
     padding: 2rem 2rem;
 
     /* SFONDO E BLUR */
@@ -628,7 +662,7 @@ body.menu-open .mobile-nav-content ul {
     /* Per Safari */
 
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
+    border-radius: 1.25em;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     text-align: center;
 
@@ -651,7 +685,7 @@ body.menu-open .mobile-nav-content ul {
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     color: var(--universitea-green);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 0.1875em;
     font-weight: 600;
     margin-bottom: 1.5rem;
 }
@@ -702,8 +736,8 @@ body.menu-open .mobile-nav-content ul {
 
     /* Stile Estetico */
     background: rgba(15, 14, 14, 0.6);
-    padding: 8px 20px;
-    border-radius: 50px;
+    padding: 0.5em 1.25em;
+    border-radius: 3.125em;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -711,7 +745,7 @@ body.menu-open .mobile-nav-content ul {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.8);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625em;
     line-height: 1;
 }
 
@@ -723,7 +757,7 @@ body.menu-open .mobile-nav-content ul {
 #breadcrumb span[aria-current="page"] {
     color: var(--universitea-green);
     font-weight: 700;
-    margin-left: 5px;
+    margin-left: 0.3125em;
 }
 
 
@@ -732,11 +766,11 @@ body.homepage #breadcrumb {
     position: absolute;
 
     /* LOGICA CLAMP:
-       - Minimo 90px: Altezza fisica Header + aria (non va mai sotto il menu)
+       - Minimo 5.625em: Altezza fisica Header + aria (non va mai sotto il menu)
        - Ideale 12vh: Si adatta all'altezza dello schermo
-       - Massimo 140px: Non scende troppo su schermi giganti
+       - Massimo 8.75em: Non scende troppo su schermi giganti
     */
-    top: clamp(90px, 12vh, 140px);
+    top: clamp(5.625em, 12vh, 8.75em);
 
     left: 5%;
     margin: 0;
@@ -750,7 +784,7 @@ body.homepage #breadcrumb {
 @keyframes fadeInScale {
     from {
         opacity: 0;
-        transform: scale(0.95) translateY(20px);
+        transform: scale(0.95) translateY(1.25em);
     }
 
     to {
@@ -764,38 +798,129 @@ body.homepage #breadcrumb {
    5. MEDIA QUERIES (MOBILE) - Sotto 900px
 ========================================================================== */
 @media (max-width: 900px) {
-
-    #main-menu,
-    #user-actions {
-        display: none;
-    }
-
-    /* HAMBURGER */
-    .hamburger-btn {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        margin-left: auto;
-        z-index: 10005;
-    }
-
-    .hamburger-btn .bar {
+    .nav-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 3px;
-        background-color: #fff;
-        border-radius: 3px;
-        transition: all 0.3s ease;
+        height: 100vh;
+        background-color: rgba(15, 14, 14, 0.98);
+        backdrop-filter: blur(15px);
+        z-index: 10002; /* Sopra l'header base */
+
+        /* Layout Mobile Verticale */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        /* Stato Iniziale: Nascosto */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.4s ease;
     }
 
-    .main-header.scrolled .hamburger-btn .bar {
-        background-color: #0f0e0e;
+    /* Disposizione liste interne */
+    #main-menu ul,
+    #user-actions ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
     }
+
+    /* Animazione ingresso elementi */
+    #main-menu ul,
+    #user-actions ul {
+        transform: translateY(1.875em);
+        transition: transform 0.4s ease;
+    }
+
+    /* Stile Link Mobile */
+    #main-menu a,
+    .nav-text-link {
+        font-size: 1.8rem;
+        color: #fff !important; /* Forza bianco sempre */
+        font-weight: 800;
+        justify-content: center;
+    }
+
+    /* Icone più grandi e bianche */
+    .nav-text-link img {
+        width: 1.875em;
+        height: 1.875em;
+        filter: brightness(0) invert(1);
+    }
+
+    .mobile-only-text {
+        display: inline-block; /* Mostra testo "Carrello" */
+        margin-left: 0.625em;
+    }
+
+    /* Tasto Chiudi (X) */
+    .close-menu-btn {
+        display: block;
+        position: absolute;
+        top: 1.5625em;
+        right: 5%;
+        font-size: 3.5rem;
+        color: #fff;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    /* Mostra hamburger button sul mobile */
+    .hamburger-btn {
+        display: block;
+    }
+
+    .menu-checkbox {
+        display: block;
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        width: 2.5em;
+        height: 1.875em;
+        z-index: 10003;
+        top: 1.25em;
+        right: 1.25em;
+    }
+
+    /* Animazione hamburger quando checked */
+    #menu-toggle:checked ~ .hamburger-btn .bar:nth-child(1) {
+        transform: rotate(45deg) translate(0.9375em, 0.9375em);
+    }
+
+    #menu-toggle:checked ~ .hamburger-btn .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked ~ .hamburger-btn .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(0.9375em, -0.9375em);
+    }
+
+    /* --- 3. CHECKBOX LOGIC (IL TRUCCO) --- */
+
+    /* Quando la checkbox è CHECKED... */
+    #menu-toggle:checked ~ .nav-wrapper {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* ...gli elementi salgono su */
+    #menu-toggle:checked ~ .nav-wrapper #main-menu ul,
+    #menu-toggle:checked ~ .nav-wrapper #user-actions ul {
+        transform: translateY(0);
+    }
+
+    /* Blocca scroll del body (supporto browser moderni) */
+    body:has(#menu-toggle:checked) {
+        overflow: hidden;
+    }
+
+
 
     /* Parallasse Mobile */
     .parallax-layer {

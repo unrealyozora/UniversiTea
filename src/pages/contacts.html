@@ -15,27 +15,44 @@
 <a href="#content" class="skip-link">Vai al contenuto principale</a>
 
 <header class="main-header">
+    <a href="../../index.html">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo" >
+    </a>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <<a href="../../index.html" class="logo-link">
-    <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
-</a>
+    <label for="menu-toggle" class="hamburger-btn" aria-label="Apri Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </label>
 
-    <nav id="main-menu" aria-label="Menu principale">
-        <ul>
-            <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
-            <li><a href="tea-info.html">Il nostro Tè</a></li>
-            <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-            <li><a href="dashboard.php">Il tuo profilo</a></li>
-        </ul>
-    </nav>
+    <div class="nav-wrapper">
+        <label for="menu-toggle" class="close-menu-btn" aria-label="Chiudi Menu">&times;</label>
+        <nav id="main-menu" aria-label="Menu principale">
+            <ul>
+                <li><span lang="en-GB">Shop</span></li>
+                <li><a href="./tea-info.html">Il nostro Tè</a></li>
+                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+            </ul>
+        </nav>
 
-    <nav id="user-actions" aria-label="Menu utente">
-        <ul>
-            <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
-                    src="../../assets/images/cart.png" alt="Carrello" width="48" height="48"></a></li>
-            <li><a href="login.php" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
-        </ul>
-    </nav>
+        <nav id="user-actions" aria-label="Menu utente">
+            <ul>
+                <li>
+                    <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+                        <span class="mobile-only-text"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./register.php" class="btn-join">
+                        <span lang="en-GB">Join Now</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <nav id="breadcrumb" aria-label="Percorso di navigazione">
