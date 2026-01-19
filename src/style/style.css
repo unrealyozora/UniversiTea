@@ -9,9 +9,9 @@
     --graybgcolor: #181717;
     --lightbgcolor: #fbf5f3;
     --txtcolor: #E0E0E0;
-    --breadcolor: #5B7553;
+    --breadcolor: #88a87d;
     --linkcolor: #9ddbad;
-    --link-visited: #ff9b03;
+    --link-visited: #cc2569;
     /*#cc2569;*/
 
     --navlink-color: #0b3f3e;
@@ -1087,10 +1087,10 @@ body.homepage #breadcrumb {
     z-index: 2;
     width: 100%;
     background: linear-gradient(to top,
-            rgba(15, 14, 14, 1) 0%,
-            rgba(15, 14, 14, 1) 40%,
-            rgba(15, 14, 14, 0.8) 70%,
-            transparent 100%);
+    rgba(15, 14, 14, 1) 0%,
+    rgba(15, 14, 14, 1) 40%,
+    rgba(15, 14, 14, 0.8) 70%,
+    transparent 100%);
 
     padding: 5rem 2rem 1.5rem 2rem;
     color: #fff;
@@ -2045,7 +2045,7 @@ input:focus-visible {
 /*Paragrafi e Descrizioni, stile uguale per tutti*/
 .curiosita-content p,
 .tea-process p,
-/*da specificare anche tabledescr o va bene p?*/
+    /*da specificare anche tabledescr o va bene p?*/
 .tea-card p {
     font-size: 1.2rem;
     line-height: 1.7;

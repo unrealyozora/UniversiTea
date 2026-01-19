@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database_conn.php';
+require_once '../config/database/database_conn.php';
 require_once '../config/shop_functions.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -170,7 +170,7 @@ if (isset($_SESSION['msg_content'])) {
 // ==================== CARICA HTML ====================
 
 // Leggi il file HTML
-$htmlContent = file_get_contents(__DIR__ . '/shop.html');
+$htmlContent = file_get_contents('./shop.html');
 
 // Sostituisci i placeholder con i dati reali
 $replacements = [
