@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>UniversiTea - Home</title>
+    <title>Home | UniversiTea</title>
     <meta name="description"
           content="Pagina dedicata al negozio UniversiTea, un negozio che propone una vasta gamma di Te' e prodotti affini di alta qualità">
     <meta name="keywords" content="tè, università, tisane, negozio">
@@ -17,6 +17,8 @@
 </head>
 
 <body class="homepage">
+    <a href="#content" class="skip-link">Salta al contenuto principale</a>
+
 
 <header class="main-header">
 
@@ -80,7 +82,7 @@
             <img src="assets/images/layer-8.svg" class="parallax-layer layer-8" alt="">
         </div>
 
-        <div class="hero-ui-content">
+        <div class="hero-ui-content" id="content">
 
             <div class="hero-text-box">
                 <h1 class="hero-brand">UniversiTea</h1>
@@ -412,206 +414,8 @@
     </div>
 </footer>
 
-<script>
-    // --- SLIDER SCRIPT (Invariato) ---
-    const teaList = [
-        {
-            name: "Tè Verde Matcha",
-            desc: "Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo \"oro verde\" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami.",
-            model: "assets/images/Mate.glb"
-        },
-        {
-            name: "Earl Grey Imperiale",
-            desc: "Il classico tè nero aromatizzato con vero olio essenziale di bergamotto calabrese. Un blend aristocratico e profumato, perfetto per il pomeriggio, capace di trasformare ogni pausa in un momento di pura eleganza britannica.",
-            model: "assets/images/tea_container.glb"
-        },
-        {
-            name: "Infuso ai Frutti Rossi",
-            desc: "Una miscela dolce e dissetante, totalmente priva di teina. L'esplosione di fragole, lamponi e karkadè la rende perfetta sia come bevanda calda rinvigorente d'inverno, sia come dissetante tè freddo d'estate.",
-            model: "assets/images/bustina.glb"
-        }
-    ];
-
-    let currentIndex = 0;
-    let isAnimating = false;
-    const ANIMATION_DURATION = 700;
-
-    const wrapper = document.querySelector('.bestsellers-content-wrapper');
-    const productName = document.querySelector('.bestsellers-product-name');
-    const productDesc = document.querySelector('.bestsellers-info p');
-    const modelViewer = document.querySelector('model-viewer');
-    const btnPrev = document.querySelector('.bestsellers-nav-btn.prev');
-    const btnNext = document.querySelector('.bestsellers-nav-btn.next');
-    const dotsContainer = document.getElementById('bestsellers-dots');
-    const animCheckbox = document.getElementById('disable-anim');
-    const rotCheckbox = document.getElementById('disable-rot');
-
-    function toggleButtons(enable) {
-        if (enable) {
-            btnPrev.disabled = false;
-            btnNext.disabled = false;
-            isAnimating = false;
-        } else {
-            btnPrev.disabled = true;
-            btnNext.disabled = true;
-            isAnimating = true;
-        }
-    }
-
-    function init() {
-        wrapper.setAttribute('data-direction', 'next');
-
-        dotsContainer.innerHTML = '';
-        teaList.forEach((_, index) => {
-            const dot = document.createElement('li');
-            dot.classList.add('bestsellers-dot');
-            if (index === currentIndex) dot.classList.add('active');
-            dotsContainer.appendChild(dot);
-        });
-
-        btnPrev.addEventListener('click', () => changeTea(-1));
-        btnNext.addEventListener('click', () => changeTea(1));
-
-        if (rotCheckbox) {
-            rotCheckbox.addEventListener('change', (e) => {
-                if (e.target.checked) modelViewer.removeAttribute('auto-rotate');
-                else modelViewer.setAttribute('auto-rotate', '');
-            });
-        }
-    }
-
-    function changeTea(direction) {
-        if (isAnimating) return;
-
-        const reduceMotion = animCheckbox && animCheckbox.checked;
-
-        let nextIndex = currentIndex + direction;
-        if (nextIndex >= teaList.length) nextIndex = 0;
-        else if (nextIndex < 0) nextIndex = teaList.length - 1;
-
-        if (reduceMotion) {
-            updateContent(nextIndex);
-            return;
-        }
-
-        toggleButtons(false);
-
-        wrapper.classList.add('no-transition');
-        wrapper.classList.remove('animating-in', 'animating-out');
-
-        const dirString = direction === 1 ? 'next' : 'prev';
-        wrapper.setAttribute('data-direction', dirString);
-
-        void wrapper.offsetWidth;
-
-        wrapper.classList.remove('no-transition');
-
-        requestAnimationFrame(() => {
-            wrapper.classList.add('animating-in');
-        });
-
-        setTimeout(() => {
-            updateContent(nextIndex);
-
-            wrapper.classList.remove('animating-in');
-            wrapper.classList.add('animating-out');
-
-            setTimeout(() => {
-                wrapper.classList.add('no-transition');
-                wrapper.classList.remove('animating-out');
-                void wrapper.offsetWidth;
-                wrapper.classList.remove('no-transition');
-                toggleButtons(true);
-            }, ANIMATION_DURATION);
-
-        }, ANIMATION_DURATION);
-    }
-
-    function updateContent(index) {
-        currentIndex = index;
-        const data = teaList[index];
-
-        if (productName) productName.textContent = data.name;
-        if (productDesc) productDesc.textContent = data.desc;
-        if (modelViewer) modelViewer.setAttribute('src', data.model);
-
-        const dots = document.querySelectorAll('.bestsellers-dot');
-        dots.forEach((dot, i) => {
-            if (i === index) dot.classList.add('active');
-            else dot.classList.remove('active');
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        /* --- SCRIPT HEADER/PARALLASSE (Menu Logic rimossa, ora è solo CSS) --- */
-        const header = document.querySelector('.main-header');
-
-        /* 1. HEADER COLOR CHANGE */
-        function updateHeaderColor() {
-            const triggerPoint = window.innerHeight * 0.85;
-            if (window.scrollY > triggerPoint) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        }
-        window.addEventListener('scroll', updateHeaderColor);
-
-
-        /* 2. PARALLASSE & HERO FADE */
-        const layers = document.querySelectorAll('.parallax-layer');
-        const heroSection = document.querySelector('.hero-section');
-        const heroContent = document.querySelector('.hero-text-box');
-        const layerSpeeds = [0.85, 0.75, 0.65, 0.30, 0.35, 0.25, 0.15, 0.0];
-        const fadeDivisor = window.innerHeight / 1.5;
-
-        let ticking = false;
-
-        function updateParallax() {
-            const scrollY = window.scrollY;
-
-            if (heroSection && scrollY > heroSection.offsetHeight) {
-                ticking = false;
-                return;
-            }
-
-            layers.forEach((layer, index) => {
-                if (index < layerSpeeds.length) {
-                    const speed = layerSpeeds[index];
-                    if (layer.classList.contains('layer-4') || layer.classList.contains('layer-7')) {
-                        layer.style.transform = `translateY(${scrollY * speed}px)`;
-                    } else {
-                        layer.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
-                    }
-                }
-            });
-
-            if (heroContent) {
-                if (scrollY < 10) {
-                    heroContent.style.opacity = '';
-                    heroContent.style.filter = '';
-                }
-                else {
-                    const opacity = 1 - (scrollY / fadeDivisor);
-                    heroContent.style.opacity = opacity > 0 ? opacity : 0;
-                }
-            }
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
-    });
-</script>
+<script src="./src/config/index-slider.js"></script>
+<script src="./src/config/index-parallax.js"></script>
 
 </body>
 </html>

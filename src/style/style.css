@@ -96,20 +96,20 @@ section {
     background-color: var(--universitea-green);
     color: #0f0e0e;
     border: 2px solid var(--universitea-green);
-    border-radius: 50px;
+    border-radius: 3.125em;
     padding: 0.6em 1.8em;
     font-weight: 800;
     text-transform: uppercase;
     font-size: 0.9rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
+    box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.3);
 }
 
 .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
     color: var(--universitea-green);
-    transform: translateY(-2px);
+    transform: translateY(-0.125em);
 }
 
 
@@ -136,7 +136,7 @@ body.homepage .main-header:not(.scrolled) .btn-join {
 
     /* Animazioni */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.3);
+    box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.3);
 }
 
 /* HOVER: Diventa Bianco, Scritta Verde, Sale su */
@@ -145,8 +145,8 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
     color: var(--universitea-green);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 214, 159, 0.4);
+    transform: translateY(-0.1875em);
+    box-shadow: 0 0.5em 1.5625em rgba(0, 214, 159, 0.4);
 }
 
 
@@ -189,8 +189,8 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     border-color: var(--universitea-green);
     color: #0f0e0e;
     /* Nero per contrasto */
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0, 214, 159, 0.4);
+    transform: translateY(-0.1875em);
+    box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.4);
 }
 
 
@@ -223,7 +223,7 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
     color: #0f0e0e;
-    transform: translateY(-3px);
+    transform: translateY(-0.1875em);
 }
 
 /* ==========================================================================
@@ -241,7 +241,7 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     align-items: center;
     background: var(--universitea-green);
     padding: 1rem 5%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25em 1.25em rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
@@ -257,7 +257,7 @@ body.homepage .main-header:not(.scrolled) {
     padding: 1rem 5%;
 
     box-shadow: none;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0.625em);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -443,7 +443,7 @@ body.homepage .main-header:not(.scrolled) .hamburger-btn .bar {
     width: 100%;
     height: 100vh;
     background-color: rgba(15, 14, 14, 0.98);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(0.9375em);
     z-index: 10001;
     opacity: 0;
     visibility: hidden;
@@ -470,11 +470,16 @@ body.menu-open {
     border: none;
     color: #fff;
     font-size: 3.5rem;
-    line-height: 1;
     cursor: pointer;
     z-index: 10005;
     /* Molto alto */
-    padding: 0.625em;
+    width: 3.5em;
+    height: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
 }
 
 .mobile-nav-content {
@@ -506,7 +511,7 @@ body.menu-open .mobile-nav-content ul {
     font-size: 1.8rem;
     font-weight: 800;
     color: #fff;
-    text-decoration: none;
+    text-decoration: underline;
     text-transform: uppercase;
 }
 
@@ -657,13 +662,13 @@ body.menu-open .mobile-nav-content ul {
 
     /* SFONDO E BLUR */
     background: rgba(15, 14, 14, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(0.75em);
+    -webkit-backdrop-filter: blur(0.75em);
     /* Per Safari */
 
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1.25em;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.5);
     text-align: center;
 
     /* Animazione Ingresso */
@@ -738,7 +743,7 @@ body.menu-open .mobile-nav-content ul {
     background: rgba(15, 14, 14, 0.6);
     padding: 0.5em 1.25em;
     border-radius: 3.125em;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(0.3125em);
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     /* Tipografia */
@@ -805,7 +810,7 @@ body.homepage #breadcrumb {
         width: 100%;
         height: 100vh;
         background-color: rgba(15, 14, 14, 0.98);
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(0.9375em);
         z-index: 10002; /* Sopra l'header base */
 
         /* Layout Mobile Verticale */
@@ -860,19 +865,43 @@ body.homepage #breadcrumb {
 
     /* Tasto Chiudi (X) */
     .close-menu-btn {
-        display: block;
+        /*display: block;*/
         position: absolute;
         top: 1.5625em;
         right: 5%;
-        font-size: 3.5rem;
+        width: 3.5rem;
+        height: 3.5rem;
         color: #fff;
         line-height: 1;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
+    .close-menu-btn::before,
+    .close-menu-btn::after {
+        content: '';
+        position: absolute;
+        width: 2rem;        /* Lunghezza delle linee */
+        height: 3px;        /* Spessore delle linee */
+        background-color: #fff; /* Colore bianco */
+        border-radius: 4px; /* Punte arrotondate */
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Rotazione geometrica perfetta */
+    .close-menu-btn::before {
+        transform: rotate(45deg);
+    }
+    .close-menu-btn::after {
+        transform: rotate(-45deg);
+    }
     /* Mostra hamburger button sul mobile */
     .hamburger-btn {
         display: block;
+        width: 3.5rem;
+        height: 3.5rem;
     }
 
     .menu-checkbox {
@@ -880,24 +909,18 @@ body.homepage #breadcrumb {
         position: absolute;
         opacity: 0;
         cursor: pointer;
-        width: 2.5em;
-        height: 1.875em;
+        width: 3.5em;
+        height: 3.5em;
         z-index: 10003;
         top: 1.25em;
         right: 1.25em;
     }
 
     /* Animazione hamburger quando checked */
-    #menu-toggle:checked ~ .hamburger-btn .bar:nth-child(1) {
-        transform: rotate(45deg) translate(0.9375em, 0.9375em);
-    }
-
-    #menu-toggle:checked ~ .hamburger-btn .bar:nth-child(2) {
+    #menu-toggle:checked ~ .hamburger-btn {
         opacity: 0;
-    }
-
-    #menu-toggle:checked ~ .hamburger-btn .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(0.9375em, -0.9375em);
+        pointer-events: none; /* Disabilita il click sull'hamburger nascosto */
+        transition: opacity 0.3s ease;
     }
 
     /* --- 3. CHECKBOX LOGIC (IL TRUCCO) --- */
@@ -947,7 +970,7 @@ body.homepage #breadcrumb {
     /* BREADCRUMB MOBILE */
     #breadcrumb {
         font-size: 0.75rem;
-        padding: 6px 15px;
+        padding: 0.375em 0.9375em;
         white-space: nowrap;
         margin-top: 1rem;
         margin-bottom: 1.5rem;
@@ -958,7 +981,7 @@ body.homepage #breadcrumb {
     /* BREADCRUMB MOBILE (SOLO HOME) */
     body.homepage #breadcrumb {
         /* Su mobile l'header è piccolo, fissiamo una posizione sicura */
-        top: 85px;
+        top: 5.3125em;
         left: 5%;
         transform: none;
         bottom: auto;
@@ -978,11 +1001,11 @@ body.homepage #breadcrumb {
 /* ==========================================================================
    MEDIA QUERY "LAPTOP" (Per schermi bassi)
 ========================================================================== */
-@media (max-height: 850px) {
+@media (max-height: 53.125em) {
 
     /* 1. BREADCRUMB: La forziamo in alto per lasciare spazio */
     body.homepage #breadcrumb {
-        top: 85px;
+        top: 5.3125em;
         /* Appena sotto l'header */
         transform: scale(0.9);
         /* Ancora più piccola */
@@ -990,13 +1013,13 @@ body.homepage #breadcrumb {
 
     /* 2. UI Content: Meno spazio sopra */
     .hero-ui-content {
-        padding-top: 100px;
+        padding-top: 6.25em;
     }
 
     /* 3. Hero Box: Compressione */
     .hero-text-box {
         padding: 1.5rem 2rem;
-        max-width: 750px;
+        max-width: 46.875em;
     }
 
     /* 4. Tipografia ridotta */
@@ -1037,7 +1060,7 @@ body.homepage #breadcrumb {
     /* Logo leggermente più piccolo sui laptop, ma fisso */
     img.logo,
     .logo-img {
-        width: 110px;
+        width: 6.875em;
     }
 }
 
@@ -1072,10 +1095,10 @@ body.homepage #breadcrumb {
     font-size: 1.1rem;
     color: var(--universitea-green);
     font-weight: 500;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625em;
     margin: 0 auto 4rem auto;
     /* Margine sotto per staccare dal contenuto */
-    max-width: 600px;
+    max-width: 37.5em;
 }
 
 /* Caso specifico: Values ha l'H2 diretto, gli diamo spazio sotto */
@@ -1096,7 +1119,7 @@ body.homepage #breadcrumb {
 .values-list {
     display: grid;
     /* 3 Colonne automatiche */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(17.5em, 1fr));
     gap: 4rem;
     list-style: none;
     padding: 0;
@@ -1121,8 +1144,8 @@ body.homepage #breadcrumb {
     margin-bottom: 1.5rem;
     filter: invert(1);
     /* Rende le icone SVG bianche se sono nere */
-    width: 65px;
-    height: 65px;
+    width: 4.0625em;
+    height: 4.0625em;
 }
 
 .value-item h3 {
@@ -1147,7 +1170,7 @@ body.homepage #breadcrumb {
 
 .categories-list {
     /*display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+    grid-template-columns: repeat(auto-fit, minmax(18.75em, 31.25em));
     justify-content: center;
     gap: 3rem;
     list-style: none;
@@ -1174,7 +1197,7 @@ body.homepage #breadcrumb {
 /* --- STILE CARD AGGIORNATO --- */
 .category-card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 1.25em;
     overflow: hidden;
     aspect-ratio: 4/3;
     display: grid;
@@ -1182,7 +1205,7 @@ body.homepage #breadcrumb {
     place-items: end stretch;
 
     border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0.625em 1.875em 0px rgba(0, 0, 0, 0.9);
     transition: all 0.3s ease;
 }
 
@@ -1198,7 +1221,7 @@ body.homepage #breadcrumb {
 /* --- HOVER EFFECTS (Glow + Zoom, No Lift) --- */
 .category-card:hover {
     border-color: var(--universitea-green);
-    box-shadow: 0 0 30px var(--universitea-green);
+    box-shadow: 0 0 1.875em var(--universitea-green);
 }
 
 .category-card:hover .category-img {
@@ -1233,7 +1256,7 @@ body.homepage #breadcrumb {
     color: var(--universitea-green);
     margin: 0;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125em;
 }
 
 
@@ -1311,7 +1334,7 @@ body.homepage #breadcrumb {
     /* Bordi sempre arrotondati */
     object-fit: cover;
     display: block;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.1);
     /* Leggera ombra per profondità */
 }
 
@@ -1325,7 +1348,7 @@ body.homepage #breadcrumb {
     box-sizing: border-box;
 
     /* MODIFICA: Linea Verde Verticale */
-    border-left: 4px solid var(--universitea-green);
+    border-left: 0.25em solid var(--universitea-green);
     padding-left: 2rem;
 }
 
@@ -1337,7 +1360,7 @@ body.homepage #breadcrumb {
     margin-bottom: 1rem;
     line-height: 1.2;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625em;
 }
 
 
@@ -1347,7 +1370,7 @@ body.homepage #breadcrumb {
     color: var(--universitea-green);
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0.125em;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
@@ -1364,7 +1387,7 @@ body.homepage #breadcrumb {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 2.5rem;
-    max-width: 500px;
+    max-width: 31.25em;
 }
 
 /* =========================================
@@ -1377,19 +1400,19 @@ body.homepage #breadcrumb {
 
 .loyalty-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15.625em, 1fr));
     gap: 2rem;
     list-style: none;
     padding: 0;
     margin: 0 auto 4rem auto;
-    max-width: 1200px;
+    max-width: 75em;
     counter-reset: step-counter;
 }
 
 .step-card {
     background: rgba(255, 255, 255, 0.02);
     padding: 2rem;
-    border-radius: 15px;
+    border-radius: 0.9375em;
     height: 100%;
     text-align: left;
     border: 1px solid var(--card-border-color);
@@ -1504,7 +1527,7 @@ body.homepage #breadcrumb {
 .bestsellers-section-title {
     font-size: 2.2rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.125em;
     font-weight: 700;
     color: #fff;
     margin: 0;
@@ -1520,8 +1543,8 @@ body.homepage #breadcrumb {
 .bestsellers-nav-btn {
     background: transparent;
     border: 1px solid #666;
-    width: 40px;
-    height: 40px;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1531,8 +1554,8 @@ body.homepage #breadcrumb {
 }
 
 .bestsellers-nav-btn img {
-    width: 16px;
-    height: 16px;
+    width: 1em;
+    height: 1em;
     filter: invert(1);
 }
 
@@ -1554,15 +1577,15 @@ body.homepage #breadcrumb {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 10px;
+    gap: 0.625em;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .bestsellers-dot {
-    width: 10px;
-    height: 10px;
+    width: 0.625em;
+    height: 0.625em;
     background-color: #444;
     border-radius: 50%;
     transition: 0.3s;
@@ -1588,16 +1611,16 @@ body.homepage #breadcrumb {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625em;
     font-weight: 600;
-    margin-right: 5px;
+    margin-right: 0.3125em;
     padding: 0;
 }
 
 .access-toggle {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5em;
     color: #888;
     font-size: 0.75rem;
     font-weight: 600;
@@ -1614,11 +1637,11 @@ body.homepage #breadcrumb {
 .access-toggle input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 36px;
-    height: 20px;
+    width: 2.25em;
+    height: 1.25em;
     background: #333;
     border: 1px solid #555;
-    border-radius: 20px;
+    border-radius: 1.25em;
     position: relative;
     cursor: pointer;
     outline: none;
@@ -1629,10 +1652,10 @@ body.homepage #breadcrumb {
 .access-toggle input[type="checkbox"]::after {
     content: '';
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 14px;
-    height: 14px;
+    top: 0.125em;
+    left: 0.125em;
+    width: 0.875em;
+    height: 0.875em;
     background: #aaa;
     border-radius: 50%;
     transition: all 0.3s;
@@ -1645,7 +1668,7 @@ body.homepage #breadcrumb {
 
 .access-toggle input[type="checkbox"]:checked::after {
     background: #fff;
-    transform: translateX(16px);
+    transform: translateX(1em);
 }
 
 
@@ -1732,7 +1755,7 @@ body.homepage #breadcrumb {
     align-items: flex-start;
     padding-left: 2rem;
     margin-left: 5%;
-    border-left: 4px solid var(--universitea-green);
+    border-left: 0.25em solid var(--universitea-green);
 }
 
 .bestsellers-product-name {
@@ -1756,7 +1779,7 @@ body.homepage #breadcrumb {
 .bestsellers-visual {
     flex: 1;
     min-width: 0;
-    height: 500px;
+    height: 31.25em;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -1780,7 +1803,7 @@ body.homepage #breadcrumb {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625em;
     font-size: 0.75rem;
     color: var(--txtcolor);
     font-weight: 500;
@@ -1794,8 +1817,8 @@ body.homepage #breadcrumb {
 .bestsellers-visual figcaption::before {
     content: '';
     display: block;
-    width: 6px;
-    height: 6px;
+    width: 0.375em;
+    height: 0.375em;
     background-color: var(--universitea-green);
     border-radius: 50%;
     box-shadow: 0 0 5px var(--universitea-green);
@@ -1815,7 +1838,7 @@ body.homepage #breadcrumb {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    max-width: 1200px;
+    max-width: 75em;
     margin: 2rem auto 6rem auto;
     padding: 0 5%;
     align-items: start;
@@ -1825,7 +1848,7 @@ body.homepage #breadcrumb {
 /* Colonna Destra "Sticky" */
 .product-info-sticky {
     position: sticky;
-    top: 130px;
+    top: 8.125em;
     /* Si ferma sotto l'header */
     display: flex;
     flex-direction: column;
@@ -1834,8 +1857,8 @@ body.homepage #breadcrumb {
     background: var(--card-bg-color);
     /* Effetto vetro scuro */
     border: 1px solid var(--card-border-color);
-    border-radius: 24px;
-    backdrop-filter: blur(10px);
+    border-radius: 1.5em;
+    backdrop-filter: blur(0.625em);
 }
 
 /* Tipografia e Contrasto */
@@ -1851,7 +1874,7 @@ body.homepage #breadcrumb {
     color: var(--universitea-green);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.125em;
 }
 
 /* Testo Descrizione: Colore chiaro per contrasto su sfondo scuro */
@@ -1881,12 +1904,12 @@ body.homepage #breadcrumb {
     color: #e0e0e0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5em;
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 0.625em;
+    height: 0.625em;
     border-radius: 50%;
     background-color: var(--universitea-green);
     box-shadow: 0 0 8px var(--universitea-green);
@@ -1902,16 +1925,16 @@ body.homepage #breadcrumb {
 .product-gallery img {
     width: 100%;
     height: auto;
-    border-radius: 24px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 1.5em;
+    box-shadow: 0 0.625em 2.5em rgba(0, 0, 0, 0.5);
     border: 1px solid var(--card-border-color);
 }
 
 /* Form Acquisto */
 .add-to-cart-form {
     display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 15px;
+    grid-template-columns: 5em 1fr;
+    gap: 0.9375em;
     margin-top: 1rem;
 }
 
@@ -1920,17 +1943,17 @@ body.homepage #breadcrumb {
     font-size: 0.7rem;
     color: #aaa;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 0.3125em;
 }
 
 .qty-input {
     width: 100%;
-    padding: 10px;
+    padding: 0.625em;
     text-align: center;
     font-size: 1.1rem;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    border-radius: 0.75em;
     color: #fff;
 }
 
@@ -1954,7 +1977,7 @@ body.homepage #breadcrumb {
 /* Specifiche Tecniche */
 .product-specs {
     background: rgba(0, 214, 159, 0.1);
-    border-left: 4px solid var(--universitea-green);
+    border-left: 0.25em solid var(--universitea-green);
     padding: 1.2rem;
     border-radius: 0 12px 12px 0;
     margin-top: 1rem;
@@ -1968,7 +1991,7 @@ body.homepage #breadcrumb {
 /* Separatore */
 .separator {
     border: 0;
-    height: 1px;
+    height: 0.0625em;
     background: rgba(255, 255, 255, 0.1);
     width: 100%;
 }
@@ -1977,8 +2000,8 @@ body.homepage #breadcrumb {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid #fff;
-    outline-offset: 4px;
+    outline: 0.1875em solid #fff;
+    outline-offset: 0.25em;
 }
 
 /* MOBILE RESPONSIVE */
@@ -2134,7 +2157,7 @@ input:focus-visible {
     right: 1%;
     margin: 0;
     padding: 0.8rem;
-    border-radius: 12px;
+    border-radius: 0.75em;
     z-index: 100;
     /*lo tiene sopra a tutto, anche all'SVG*/
 
@@ -2195,11 +2218,11 @@ input:focus-visible {
 
 .curiosita-content {
     flex: 1;
-    min-width: 300px;
+    min-width: 18.75em;
 }
 
 .curiosita-image {
-    flex: 0 0 300px;
+    flex: 0 0 18.75em;
     display: flex;
     justify-content: center;
     padding: 2rem;
@@ -2207,7 +2230,7 @@ input:focus-visible {
 
 .curiosita-image img {
     width: 100%;
-    max-width: 120px;
+    max-width: 7.5em;
     height: auto;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
 }
@@ -2225,7 +2248,7 @@ input:focus-visible {
 .tea-process .table-container {
     width: 100%;
     overflow-x: auto;
-    border-radius: 15px;
+    border-radius: 0.9375em;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
     background-color: white;
@@ -2233,15 +2256,15 @@ input:focus-visible {
 }
 
 /*.tea-process .table-container:focus {
-    outline: 3px solid #FFA632;
-    outline-offset: 2px;
+    outline: 0.1875em solid #FFA632;
+    outline-offset: 0.125em;
 }*/
 
 /*tabella effettiva*/
 .tea-process table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 37.5em;
 }
 
 .tea-process table thead th {
@@ -2319,8 +2342,8 @@ input:focus-visible {
     width: 100%;
     max-width: 30rem;
     height: auto;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 1.25em;
+    box-shadow: 0 0.9375em 2.1875em rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
 }
 
@@ -2332,9 +2355,9 @@ input:focus-visible {
 .quiz-section {
     padding: 3rem 5%;
     background: var(--navlink-color);
-    border-radius: 15px;
+    border-radius: 0.9375em;
     margin: 4rem auto;
-    max-width: 800px;
+    max-width: 50em;
 }
 
 .quiz-section h2 {
@@ -2354,12 +2377,12 @@ fieldset {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 0.625em;
 }
 
 .question-text {
     font-weight: bold;
-    margin-top: 15px;
+    margin-top: 0.9375em;
     font-size: 1.2rem;
     color: var(--universitea-green);
     text-align: center;
@@ -2370,10 +2393,10 @@ fieldset {
 #tea-quiz label {
     display: block;
     width: 100%;
-    max-width: 450px;
-    padding: 12px;
+    max-width: 28.125em;
+    padding: 0.75em;
     border: 2px solid #eee;
-    border-radius: 10px;
+    border-radius: 0.625em;
     cursor: pointer;
     background-color: white;
     transition: all 0.3s ease;
@@ -2400,7 +2423,7 @@ fieldset {
 }
 
 #quiz-result {
-    margin-top: 20px;
+    margin-top: 1.25em;
     font-size: 1.3rem;
     font-weight: bold;
     text-align: center;
@@ -2450,8 +2473,8 @@ fieldset {
 
 /*Per vedere meglio il link usando tab per scorrere la pagina, per accessibilità*/
 .errorpage a:focus {
-    outline: 3px solid var(--universitea-green);
-    outline-offset: 4px;
+    outline: 0.1875em solid var(--universitea-green);
+    outline-offset: 0.25em;
     border-radius: 4px;
 }
 
@@ -2599,7 +2622,7 @@ fieldset {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 0.625em;
         width: 100%;
     }
 
@@ -2613,7 +2636,7 @@ fieldset {
     .accessibility-controls legend {
         width: 100%;
         text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 0.3125em;
     }
 
     .bestsellers-dots-container {
@@ -2651,7 +2674,7 @@ fieldset {
 
     .bestsellers-visual model-viewer {
         width: 100%;
-        height: 350px;
+        height: 21.875em;
         display: block;
     }
 
@@ -2675,7 +2698,7 @@ fieldset {
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 75em;
     margin: 0 auto;
     padding: 0 5%;
     display: grid;
@@ -2687,7 +2710,7 @@ fieldset {
     color: #fff;
     font-size: 1.1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625em;
     margin-bottom: 1.5rem;
     font-weight: 700;
 }
@@ -2713,7 +2736,7 @@ fieldset {
 
 /* Colonna Logo */
 .footer-logo {
-    width: 180px;
+    width: 11.25em;
     margin-bottom: 1.5rem;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
@@ -2734,8 +2757,8 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.05);
     color: #888;
@@ -2745,12 +2768,12 @@ fieldset {
 .social-icon:hover {
     background-color: var(--universitea-green);
     color: #0f0e0e;
-    transform: translateY(-3px);
+    transform: translateY(-0.1875em);
 }
 
 .social-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 1.25em;
+    height: 1.25em;
 }
 
 
@@ -2762,7 +2785,7 @@ fieldset {
 }
 
 .footer-bottom-content {
-    max-width: 1200px;
+    max-width: 75em;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -2778,12 +2801,12 @@ fieldset {
 .disclaimer {
     opacity: 0.5;
     font-style: italic;
-    margin-top: 5px !important;
+    margin-top: 0.3125em !important;
 }
 
 .validators {
     display: flex;
-    gap: 15px;
+    gap: 0.9375em;
     filter: grayscale(1) opacity(0.6);
     transition: 0.3s;
 }
