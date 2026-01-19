@@ -2236,7 +2236,7 @@ input:focus-visible {
 }
 
 /*sezione tea-process con tabella*/
-.tea-process {
+.tea-process, .admin-table-container {
     width: 100%;
     margin-top: 0;
     margin-bottom: 4rem;
@@ -2245,7 +2245,7 @@ input:focus-visible {
 }
 
 /*contenitore tabella*/
-.tea-process .table-container {
+.tea-process .table-container, .admin-table-container .product-table{
     width: 100%;
     overflow-x: auto;
     border-radius: 0.9375em;
@@ -2267,7 +2267,7 @@ input:focus-visible {
     min-width: 37.5em;
 }
 
-.tea-process table thead th {
+.tea-process table thead th , .admin-table-container table thead th{
     background-color: #007d5d;
     color: #ffffff;
     padding: 1.2rem;
@@ -2277,7 +2277,7 @@ input:focus-visible {
     letter-spacing: 0.05em;
 }
 
-.tea-process table tbody th {
+.tea-process table tbody th, .admin-table-container table tbody th {
     background-color: #f9f9f9;
     color: var(--darkbgcolor);
     font-weight: 700;
@@ -2286,17 +2286,17 @@ input:focus-visible {
     border-right: 3px solid #007d5d;
 }
 
-.tea-process table td {
+.tea-process table td, .admin-table-container table td {
     padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--navlink-color);
     color: var(--graybgcolor);
 }
 
-.tea-process table tbody tr:nth-child(even) {
+.tea-process table tbody tr:nth-child(even), .admin-table-container table tbody tr:nth-child(even){
     background-color: #f2f7f4;
 }
 
-.tea-process table tbody tr:hover {
+.tea-process table tbody tr:hover, .admin-table-container table tbody tr:hover {
     /*va bene per accessibilità o fastidioso?*/
     background-color: var(--linkcolor);
     transition: background-color 0.2s ease;
