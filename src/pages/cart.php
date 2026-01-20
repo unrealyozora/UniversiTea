@@ -1,5 +1,5 @@
 <?php
-require_once '../config/check_auth.php';
+require_once '../config/auth/check_auth.php';
 requireAuth('login.php');
 $user = getCurrentUser();
 ?>

@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database_conn.php';
+require_once '../config/database/database_conn.php';
 require_once '../config/shop_functions.php';
 
 // 1. Recupero ID e Validazione Immediata

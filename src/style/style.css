@@ -842,6 +842,13 @@ body.homepage #breadcrumb {
         transition: transform 0.4s ease;
     }
 
+    .main-header .btn-join {
+        font-size: 1.8rem;
+        background-color: var(--universitea-green);
+        color: #0f0e0e; /* Testo scuro per leggibilità sul verde */
+        border-color: var(--universitea-green);
+        box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.3);
+    }
     /* Stile Link Mobile */
     #main-menu a,
     .nav-text-link {
