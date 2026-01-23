@@ -148,7 +148,7 @@ try {
 
 } catch (PDOException $e) {
     $statusMsg = "Errore nel caricamento dei prodotti. Riprova più tardi.";
-    $listaHtml = '<div class="error-msg"><p>Il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Non ti preoccupare, ricarica la pagina, riprova più tardi o <a href="about.html">contattaci</a></p></div>';
+    $listaHtml = '<div class="error-msg"><p>Il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Non ti preoccupare, ricarica la pagina, riprova più tardi o <a href="./about.html">contattaci</a></p></div>';
     error_log("Errore database shop.php: " . $e->getMessage());
 
     // In caso di errore, imposta valori di default per i checked
