@@ -451,6 +451,18 @@ body.homepage .main-header:not(.scrolled) .hamburger-btn .bar {
     transition: all 0.3s ease;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 body.menu-open .mobile-menu-overlay {
     opacity: 1;
     visibility: visible;
@@ -463,6 +475,7 @@ body.menu-open {
 
 /* TASTO CHIUDI (X) */
 .close-menu-btn {
+    display: none;
     position: absolute;
     top: 1.5625em;
     right: 5%;
@@ -475,7 +488,6 @@ body.menu-open {
     /* Molto alto */
     width: 3.5em;
     height: 3.5em;
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
@@ -872,7 +884,6 @@ body.homepage #breadcrumb {
 
     /* Tasto Chiudi (X) */
     .close-menu-btn {
-        /*display: block;*/
         position: absolute;
         top: 1.5625em;
         right: 5%;

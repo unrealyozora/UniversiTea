@@ -46,6 +46,8 @@ $checkedTutti = ($categoryFilter === 'tutti') ? 'checked' : '';
 $checkedBevande = ($categoryFilter === 'bevande') ? 'checked' : '';
 $checkedMerch = ($categoryFilter === 'merchandising') ? 'checked' : '';
 $checkedServizi = ($categoryFilter === 'servizi') ? 'checked' : '';
+$checkedBundle = ($categoryFilter === 'bundle') ? 'checked' : '';
+
 
 // ==================== QUERY DATABASE ====================
 
@@ -146,7 +148,7 @@ try {
 
 } catch (PDOException $e) {
     $statusMsg = "Errore nel caricamento dei prodotti. Riprova più tardi.";
-    $listaHtml = '<div class="error-msg"><p>Upsie, il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Ricarica la pagina, riprova più tardi o <a href="about.html">contattaci</a></p></div>';
+    $listaHtml = '<div class="error-msg"><p>Il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Non ti preoccupare, ricarica la pagina, riprova più tardi o <a href="about.html">contattaci</a></p></div>';
     error_log("Errore database shop.php: " . $e->getMessage());
 
     // In caso di errore, imposta valori di default per i checked
@@ -154,6 +156,7 @@ try {
     $checkedBevande = '';
     $checkedMerch = '';
     $checkedServizi = '';
+    $checkedBundle = '';
 }
 
 $userFeedback = '';
@@ -179,6 +182,7 @@ $replacements = [
     '{{CHECKED_BEVANDE}}' => $checkedBevande,
     '{{CHECKED_MERCH}}' => $checkedMerch,
     '{{CHECKED_SERVIZI}}' => $checkedServizi,
+    '{{CHECKED_BUNDLE}}' => $checkedBundle,
     '{{USER_FEEDBACK}}' => $userFeedback,
     '{{STATUS_MSG}}' => htmlspecialchars($statusMsg, ENT_QUOTES, 'UTF-8'),
     '{{LISTA_PRODOTTI}}' => $listaHtml,
