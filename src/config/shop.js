@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(formData).toString();
 
         // Feedback visivo: opacità durante il caricamento
-        if(productArea) productArea.classList.add('loading-fade');
+        if (productArea) productArea.classList.add('loading-fade');
 
         fetch(`shop.php?${params}`, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
         })
             .then(response => response.text())
             .then(html => {
@@ -64,14 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (statusMsg && newStatus) statusMsg.textContent = newStatus;
 
                 // Rimuoviamo il feedback visivo
-                if(productArea) productArea.classList.remove('loading-fade');
+                if (productArea) productArea.classList.remove('loading-fade');
 
                 // Ricollega gli eventi ai nuovi elementi caricati
                 attachProductEvents();
             })
             .catch(error => {
                 console.error('Errore nel filtraggio:', error);
-                if(productArea) productArea.classList.remove('loading-fade');
+                if (productArea) productArea.classList.remove('loading-fade');
             });
     };
 
@@ -113,22 +113,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- FUNZIONI GLOBALI (PREFERITI E NOTIFICHE JS) ---
 
-function addToFavorites(productId) {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-    // Toggle (Aggiungi/Rimuovi)
-    if (favorites.includes(productId)) {
-        favorites = favorites.filter(id => id !== productId);
-        showNotification('Prodotto rimosso dai preferiti', 'info');
-    } else {
-        favorites.push(productId);
-        showNotification('Prodotto aggiunto ai preferiti! ❤', 'success');
-    }
-
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-
-    // Qui potresti aggiungere logica per cambiare l'icona del cuore (pieno/vuoto)
-}
+// function addToFavorites(productId) {
+//     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+//
+//     // Toggle (Aggiungi/Rimuovi)
+//     if (favorites.includes(productId)) {
+//         favorites = favorites.filter(id => id !== productId);
+//         showNotification('Prodotto rimosso dai preferiti', 'info');
+//     } else {
+//         favorites.push(productId);
+//         showNotification('Prodotto aggiunto ai preferiti! ❤', 'success');
+//     }
+//
+//     localStorage.setItem('favorites', JSON.stringify(favorites));
+//
+//     // Qui potresti aggiungere logica per cambiare l'icona del cuore (pieno/vuoto)
+// }
 
 function showNotification(message, type = 'info') {
     // Rimuovi notifiche esistenti per non sovrapporle

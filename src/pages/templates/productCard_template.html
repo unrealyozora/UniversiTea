@@ -9,17 +9,18 @@
             <p class="description">{{DESCRIZIONE}}</p>
             <p class="price">€ {{PREZZO}}</p>
 
-            <form action="../config/add_to_cart.php" method="POST" >
+            <form action="../config/add_to_cart.php" method="POST">
                 <input type="hidden" name="product_id" value="{{ID}}">
                 <button type="submit" class="btn-add-cart" aria-label="Aggiungi $nome al carrello">
                     Aggiungi al carrello
                 </button>
             </form>
-            <button class="btn-add-preferiti"
-                    data-id="{{ID}}"
-                    aria-label="Aggiungi {{NOME}} ai Preferiti">
-                Aggiungi ai Preferiti
-            </button>
+            <form action="../config/add_favorite.php" method="POST">
+                <input type="hidden" name="product_id" value="{{ID}}">
+                <button type="submit" class="btn-add-preferiti" value="{{ID}}"
+                        aria-label="Aggiungi {{NOME}} ai preferiti">Aggiungi ai Preferiti
+                </button>
+            </form>
         </div>
     </article>
 </li>
