@@ -1,5 +1,8 @@
 <?php
 session_start();
+if ($_SESSION["logged_in"] && isset($_SESSION["username"])) {
+    header("Location: dashboard.php");
+}
 $error = $_SESSION['registration_error'] ?? '';
 
 unset($_SESSION['registration_error']);
