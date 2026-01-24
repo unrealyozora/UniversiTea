@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION["logged_in"] && isset($_SESSION["username"])) {
+    header("Location: dashboard.php");
+    exit();
+}
 $error = $_SESSION['login_error'] ?? '';
 $username = $_SESSION['username'] ?? '';
 
