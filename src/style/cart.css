@@ -1,0 +1,374 @@
+/* ==========================================================================
+   STILE CARRELLO & CARD (Basato su UniversiTea Design System)
+   ========================================================================== */
+
+/* Contenitore principale (per allineamento) */
+.cart-container {
+    max-width: 75em;
+    margin: 2rem auto 6rem auto;
+    padding: 0 5%;
+}
+
+.cart-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.cart-header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cart-stats {
+    font-size: 1.1rem;
+    color: #aaa;
+    text-align: right;
+}
+
+.cart-stats strong {
+    color: var(--universitea-green);
+    font-size: 1.3rem;
+}
+
+/* --- CARD PRODOTTO NEL CARRELLO (.cart-item) --- */
+.cart-item {
+    display: flex;
+    flex-wrap: wrap; /* Per gestire mobile */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    /* Stile "Glass" coerente con .product-card e .step-card */
+    background-color: var(--card-bg-color); /* rgba(255, 255, 255, 0.03) */
+    border: 1px solid var(--card-border-color); /* rgba(255, 255, 255, 0.05) */
+    border-radius: 1.25em;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.25rem;
+
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover Effect: Glow verde sottile come nello Shop */
+.cart-item:hover {
+    border-color: rgba(0, 214, 159, 0.3);
+    box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 214, 159, 0.1); /* glow interno */
+    transform: translateY(-2px);
+}
+
+/* Dettagli Prodotto (Sinistra) */
+.item-details {
+    flex: 1;
+    min-width: 200px;
+}
+
+.item-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.item-price {
+    font-size: 0.95rem;
+    color: #888;
+}
+
+/* Azioni e Controlli (Destra) */
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.item-subtotal {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--universitea-green);
+    min-width: 80px;
+    text-align: right;
+}
+
+/* --- CONTROLLI QUANTITÀ (+ / -) --- */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2em;
+    padding: 0.25em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quantity-btn {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn:hover:not(:disabled) {
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+}
+
+.quantity-btn:disabled {
+    cursor: not-allowed;
+}
+
+.quantity-display {
+    min-width: 2em;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* --- BOTTONE RIMUOVI --- */
+.remove-btn {
+    background: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 0.5em 1em;
+    border-radius: 2em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.remove-btn:hover {
+    background-color: #ff4444;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+/* --- SEZIONE RIEPILOGO FINALE --- */
+.cart-summary {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(0, 214, 159, 0.05); /* Verde molto tenue */
+    border: 1px solid rgba(0, 214, 159, 0.2);
+    border-radius: 1.25em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+}
+
+.summary-row.total {
+    font-size: 1.5rem;
+    color: #fff;
+    display: flex;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.summary-row.total span:last-child {
+    color: var(--universitea-green);
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.checkout-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.clear-cart-btn {
+    width: 100%; /* Bottone a larghezza piena */
+    text-align: center;
+    background: #ff4444;
+    border: none;
+    color: #0f0e0e;
+    padding: 1em 2.5em;
+    border-radius: 3em;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0.25em 0.9em rgba(255, 68, 68, 0.3);
+}
+
+.clear-cart-btn:hover {
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5em 1.5em  #C82909;
+}
+
+/* Bottone Checkout (Stile .btn-join ma adattato) */
+.checkout-btn {
+    width: 100%; /* Bottone a larghezza piena */
+    text-align: center;
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    border: none;
+    padding: 1em 2.5em;
+    border-radius: 3em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.25em 0.9em rgba(0, 214, 159, 0.3);
+}
+
+.checkout-btn:hover {
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5em 1.5em rgba(0, 214, 159, 0.5);
+}
+.cart-content {
+    display: grid;
+    /* Colonna 1: Flessibile (1fr), Colonna 2: Fissa (380px) */
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    align-items: start; /* Importante: impedisce al box di destra di allungarsi quanto la lista prodotti */
+    position: relative;
+}
+
+/* 2. Stile del Box laterale (Riepilogo) */
+.cart-summary {
+    /* Resetta il vecchio margine superiore se c'era */
+    margin-top: 0;
+
+    /* Rendiamolo "Sticky" così ti segue mentre scorri */
+    position: sticky;
+    top: 8.5rem; /* Distanza dall'alto (regola in base all'altezza del tuo Header fisso) */
+
+    /* Stile "Card" coerente */
+    background: rgba(0, 214, 159, 0.03); /* Verde chiarissimo trasparente */
+    border: 1px solid rgba(0, 214, 159, 0.2);
+    border-radius: 1.25em;
+    padding: 2rem;
+
+    /* Layout interno del box */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    /* Effetto vetro */
+    backdrop-filter: blur(5px);
+}
+
+/* 3. Aggiustiamo l'allineamento interno del box riepilogo */
+.summary-row.total {
+    /* Ora che è in una colonna stretta, meglio flex space-between */
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.checkout-actions {
+    display: flex;
+    flex-direction: column; /* Su colonna laterale, i bottoni stanno meglio impilati */
+    gap: 1rem;
+    width: 100%;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 950px) {
+    .cart-content {
+        /* Torna a una sola colonna impilata */
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cart-summary {
+        /* Disabilita sticky su mobile */
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .checkout-actions {
+        flex-direction: row; /* Su mobile tornano affiancati se c'è spazio */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .checkout-btn {
+        width: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .item-actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 1rem;
+    }
+
+    .item-subtotal {
+        order: 1;
+        text-align: left;
+    }
+
+    .quantity-controls {
+        order: 2;
+    }
+
+    .remove-btn {
+        order: 3;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    .checkout-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .checkout-btn {
+        width: 100%;
+    }
+}
+
+/* Mobile stretto */
+@media (max-width: 500px) {
+    .checkout-actions {
+        flex-direction: column;
+    }
+    .checkout-btn {
+        width: 100%;
+    }
+}

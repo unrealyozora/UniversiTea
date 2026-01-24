@@ -2,64 +2,90 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Il tuo carrello</title>
-    <meta name="description"
-          content="Pagina dedicata al tuo carrello.">
-    <meta name="keywords" content="tè, università, tisane, carrello , negozio">
+    <title>Il tuo carrello | UniversiTea</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
-
-    <link rel="stylesheet" href="../style/print.css" media="print">
+    <link rel="stylesheet" href="../style/cart.css">
+    <style>
+        .action-form { display: inline; margin: 0; }
+        .cart-summary .action-form { display: inline-block; }
+        .hidden { display: none !important; }
+        /* Aggiungi qui CSS specifico se necessario */
+    </style>
 </head>
 <body>
+
 <header class="main-header">
+    <a href="../../index.html">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo" >
+    </a>
 
-    <div class="logo">
-        <a href="../../index.html">
-            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea - Torna alla Home" class="logo-img">
-        </a>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+    <label for="menu-toggle" class="hamburger-btn" >
+        <span class="sr-only">Apri menu</span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </label>
+    <div class="nav-wrapper">
+
+        <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi Menù</span></label>
+
+        <nav id="main-menu" aria-label="Menu principale">
+            <ul>
+                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
+                <li><a href="./tea-info.html">Il nostro Tè</a></li>
+                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+            </ul>
+        </nav>
+
+        <nav id="user-actions" aria-label="Menu utente">
+            <ul>
+                <li id="current-link">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+                        <span class="mobile-only-text">Carrello</span>
+                </li>
+                <li>
+                    <a href="./register.php" class="btn-join">
+                        Accedi Ora
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
-
-    <nav id="main-menu" aria-label="Menu principale">
-        <div class="main-menu-pill"></div>
-        <ul>
-            <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
-            <li><a href="./tea-info.html">Il nostro Tè</a></li>
-            <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
-            <li><a href="./dashboard.php">Il tuo profilo</a></li>
-        </ul>
-    </nav>
-
-    <nav id="user-actions" aria-label="Menu utente">
-        <ul>
-            <li><a href="./cart.html" class="cart-link" aria-label="Visualizza carrello"><img
-                    src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
-            <li><a href="templates/login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
-        </ul>
-    </nav>
 </header>
+
+
 <main>
     <div class="cart-container">
         <div class="cart-header">
             <h1>Il Tuo Carrello</h1>
             <div class="cart-stats">
-                <div>
-                    <strong id="itemCount">0</strong> Prodotti
-                </div>
-                <div>
-                    Totale: <strong id="totalAmount">€0.00</strong>
-                </div>
+                <div><strong>{{TOTAL_ITEMS}}</strong> Prodotti</div>
+                <div>Totale: <strong>{{TOTAL_AMOUNT}}</strong></div>
             </div>
         </div>
 
         <div class="cart-content">
-            <div class="alert" id="alertMessage"></div>
-
+            {{USER_FEEDBACK}}
             <div id="cartContainer">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Caricamento carrello...
+                {{CART_CONTENT}}
+            </div>
+
+            <div class="cart-summary {{HIDDEN_IF_EMPTY}}">
+                <div class="summary-row total">
+                    <span>Totale:</span>
+                    <span>{{TOTAL_AMOUNT}}</span>
+                </div>
+                <div class="checkout-actions">
+                    <form method="POST" action="cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+                        <input type="hidden" name="action" value="clear">
+                        <button type="submit" class="clear-cart-btn">Svuota Carrello</button>
+                    </form>
+                    <button class="checkout-btn">Procedi al Checkout</button>
                 </div>
             </div>
         </div>
@@ -99,14 +125,14 @@
             <h3>Naviga</h3>
             <ul>
                 <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
-                <li><a href="./shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
+                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
                 <li><a href="./dashboard.php">Il tuo profilo</a></li>
                 <li><a href="./preferiti.php">Preferiti</a></li>
                 <li><a href="./cart.php">Carrello (Ti trovi qui ora)</a></li>
                 <li><a href="./register.php">Registrati</a></li>
-                <li><a href="templates/login.html">Accedi</a></li>
+                <li><a href="./login.php">Accedi</a></li>
             </ul>
         </nav>
 
@@ -114,9 +140,8 @@
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <
                 <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
-                <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
+                <li><a href="./shop.php?category=merchandising"><span lang="en-GB">Merch</span> & Accessori</a></li>
                 <li><a href="./shop.php?category=servizi">I Servizi</a></li>
                 <li><a href="./shop.php?category=bundle">I Bundle</a></li>
                 <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>
@@ -159,12 +184,15 @@
                 <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
-                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                    <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
                          height="31">
                 </a>
             </div>
         </div>
     </div>
 </footer>
+
+<script src="../config/cart.js"></script>
 </body>
+</html>

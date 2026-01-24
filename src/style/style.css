@@ -317,7 +317,7 @@ body.homepage .main-header:not(.scrolled) img.logo {
 }
 
 #main-menu a,
-.nav-text-link {
+.nav-text-link, #main-menu ul, #user-actions ul li {
     text-decoration: none;
     color: #0f0e0e;
     /* Default: Nero */
@@ -330,6 +330,27 @@ body.homepage .main-header:not(.scrolled) img.logo {
     transition: color 0.3s ease, text-shadow 0.3s ease;
     display: flex;
     align-items: center;
+}
+
+ ul li#current-link{
+    position: relative;
+    padding-left: 1.5em; /* Spazio per l'icona */
+    display: flex;
+    align-items: center;
+}
+
+/* Creiamo l'icona come elemento separato virtuale */
+ ul li#current-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 1.2em;
+    height: 1.2em;
+    background-image: url(../../assets/images/current-pin-black.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: all 0.3s ease;
 }
 
 #main-menu a:visited,
@@ -863,18 +884,34 @@ body.homepage #breadcrumb {
     }
     /* Stile Link Mobile */
     #main-menu a,
-    .nav-text-link {
+    .nav-text-link, li#current-link, #current-link span {
         font-size: 1.8rem;
-        color: #fff !important; /* Forza bianco sempre */
+        color: #fff; /* Forza bianco sempre */
         font-weight: 800;
         justify-content: center;
     }
 
+     ul li#current-link/*, #user-actions ul li#current-link*/{
+        justify-content: center; /* Centra tutto il blocco */
+        padding-left: 0;         /* Reset padding laterale */
+        gap: 0.5em;              /* Spazio tra icona e testo */
+    }
+
+    /* Coloriamo l'icona di VERDE usando il trucco drop-shadow */
+     ul li#current-link::before/*, *#user-actions ul li#current-link::after*/ {
+        position: relative; /* Cambia da absolute a relative per stare vicino al testo */
+        left: auto;
+
+        /* IL TRUCCO: Sposto l'originale nera via e proietto un'ombra verde al suo posto */
+        transform: translateX(-100vw);
+        filter: drop-shadow(100vw 0 0 var(--universitea-green));
+    }
+
     /* Icone più grandi e bianche */
-    .nav-text-link img {
+    .nav-text-link img, li#current-link .nav-text-link img {
         width: 1.875em;
         height: 1.875em;
-        filter: brightness(0) invert(1);
+        filter: brightness(0) invert(1) !important;
     }
 
     .mobile-only-text {
@@ -2784,7 +2821,6 @@ fieldset {
 }
 
 .social-icon:hover {
-    background-color: var(--universitea-green);
     color: #0f0e0e;
     transform: translateY(-0.1875em);
 }
@@ -2817,9 +2853,8 @@ fieldset {
 }
 
 .disclaimer {
-    opacity: 0.5;
     font-style: italic;
-    margin-top: 0.3125em !important;
+    margin-top: 0.3125em;
 }
 
 .validators {

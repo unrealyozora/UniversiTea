@@ -1,0 +1,34 @@
+<div class="cart-item" id="item-{{ID}}">
+    <div class="item-details">
+        <div class="item-name">{{NOME}}</div>
+        <div class="item-price">{{PREZZO_UNITARIO}}</div>
+    </div>
+
+    <div class="item-actions">
+        <div class="item-subtotal">{{SUBTOTALE}}</div>
+
+        <div class="quantity-controls">
+            <form method="POST" action="./cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+                <input type="hidden" name="action" value="update_quantity">
+                <input type="hidden" name="product_id" value="{{ID}}">
+                <input type="hidden" name="quantity" value="{{QTY_MINUS}}">
+                <button type="submit" class="quantity-btn" {{DISABLED_MINUS}}>-</button>
+            </form>
+
+            <span class="quantity-display">{{QTY}}</span>
+
+            <form method="POST" action="./cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+                <input type="hidden" name="action" value="update_quantity">
+                <input type="hidden" name="product_id" value="{{ID}}">
+                <input type="hidden" name="quantity" value="{{QTY_PLUS}}">
+                <button type="submit" class="quantity-btn" {{DISABLED_PLUS}}>+</button>
+            </form>
+        </div>
+
+        <form method="POST" action="./cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+            <input type="hidden" name="action" value="remove">
+            <input type="hidden" name="product_id" value="{{ID}}">
+            <button type="submit" class="remove-btn">🗑️ Rimuovi</button>
+        </form>
+    </div>
+</div>
