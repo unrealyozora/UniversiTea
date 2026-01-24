@@ -38,9 +38,9 @@ $user = getCurrentUser();
 
     <nav id="user-actions" aria-label="Menu utente">
         <ul>
-            <li><a href="cart.html" class="cart-link" aria-label="Visualizza carrello"><img
+            <li><a href="cart.php" class="cart-link" aria-label="Visualizza carrello"><img
                             src="../../assets/images/shopping-cart.png" alt="Carrello" width="24" height="24"></a></li>
-            <li><a href="templates/login.html" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
+            <li><a href="login.php" class="btn-join" aria-label="Accedi al profilo">Join Now</a></li>
         </ul>
     </nav>
 </header>

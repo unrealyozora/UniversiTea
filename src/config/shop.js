@@ -20,24 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Collega gli eventi SOLO ai bottoni "Preferiti"
-     * (Il carrello è ora gestito dal form HTML nativo per comunicare con PHP)
-     */
-    const attachProductEvents = () => {
-        // Gestione Preferiti (rimane in JS/LocalStorage per ora)
-        document.querySelectorAll('.btn-add-preferiti').forEach(btn => {
-            // Rimuoviamo eventuali listener precedenti per evitare duplicati
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
-
-            newBtn.onclick = (e) => {
-                e.preventDefault(); // Evita scroll o reload
-                addToFavorites(newBtn.dataset.id);
-            };
-        });
-    };
-
-    /**
      * Esegue la chiamata AJAX per filtrare i prodotti
      * Recupera l'intero HTML di shop.php e ne estrae solo la lista
      */
@@ -66,8 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Rimuoviamo il feedback visivo
                 if (productArea) productArea.classList.remove('loading-fade');
 
-                // Ricollega gli eventi ai nuovi elementi caricati
-                attachProductEvents();
             })
             .catch(error => {
                 console.error('Errore nel filtraggio:', error);
@@ -97,9 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inizializzazione al primo caricamento
-    attachProductEvents();
-
     // Gestione dissolvenza messaggi PHP (Successo/Errore aggiunta carrello)
     const phpFeedback = document.querySelector('.success-msg, .error-msg');
     if (phpFeedback) {
@@ -111,24 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- FUNZIONI GLOBALI (PREFERITI E NOTIFICHE JS) ---
-
-// function addToFavorites(productId) {
-//     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-//
-//     // Toggle (Aggiungi/Rimuovi)
-//     if (favorites.includes(productId)) {
-//         favorites = favorites.filter(id => id !== productId);
-//         showNotification('Prodotto rimosso dai preferiti', 'info');
-//     } else {
-//         favorites.push(productId);
-//         showNotification('Prodotto aggiunto ai preferiti! ❤', 'success');
-//     }
-//
-//     localStorage.setItem('favorites', JSON.stringify(favorites));
-//
-//     // Qui potresti aggiungere logica per cambiare l'icona del cuore (pieno/vuoto)
-// }
+// --- FUNZIONI GLOBALI (NOTIFICHE JS) ---
 
 function showNotification(message, type = 'info') {
     // Rimuovi notifiche esistenti per non sovrapporle
