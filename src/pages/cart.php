@@ -5,6 +5,13 @@
 require_once '../config/auth/check_auth.php'; // Adatta il percorso se necessario
 require_once '../config/database/database_conn.php'; // Percorso basato sui tuoi file caricati
 
+function newFidelityPoints($oldPoints, $cartTotal): int
+{
+    $punti = floor($cartTotal / 5);
+    return $oldPoints + $punti;
+
+}
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -18,7 +25,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 $userEmail = $_SESSION['email']; // I tuoi file usano l'email come ID nel DB
 
 // Helper per template (non toccare)
-function renderCartItem($item, $templateHtml) {
+function renderCartItem($item, $templateHtml)
+{
     $id = htmlspecialchars($item['id']);
     $nome = htmlspecialchars($item['nome']);
     $prezzo = '€' . number_format($item['prezzo'], 2, ',', '.');
@@ -71,6 +79,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':email' => $userEmail]);
             $_SESSION['msg_content'] = "Carrello svuotato.";
             $_SESSION['msg_type'] = "success";
+        } elseif ($action = "checkout") {
+            $querySum = "SELECT 
+                SUM(p.prezzo * c.quantita) AS totale
+                FROM Carrello c
+                JOIN Prodotti p ON c.prodotto = p.id
+                WHERE c.consumatore = :email;
+               ";
+            $stmt = $conn->prepare($querySum);
+            $stmt->bindValue(':email', $userEmail);
+            $stmt->execute();
+            $sumResult = $stmt->fetch(PDO::FETCH_ASSOC);
+            $totale = $sumResult['totale'];
+
+            $queryFidelityPoints = "SELECT punti_fedelta FROM Utente WHERE email = :email;";
+            $stmt = $conn->prepare($queryFidelityPoints);
+            $stmt->bindValue(':email', $userEmail);
+            $stmt->execute();
+            $fidelityResult = $stmt->fetch(PDO::FETCH_ASSOC);
+            $oldFidelityPoints = $fidelityResult['punti_fedelta'];
+            $newFidelityPoints = newFidelityPoints($oldFidelityPoints, $totale);
+
+            $queryUpdate = "UPDATE Utente SET punti_fedelta = :newFidelityPoints WHERE email = :email;";
+            $stmt = $conn->prepare($queryUpdate);
+            $stmt->bindValue(':newFidelityPoints', $newFidelityPoints);
+            $stmt->bindValue(':email', $userEmail);
+            $stmt->execute();
+            $_SESSION['msg_type'] = "success";
+            $_SESSION['msg_content'] = "Transazione avvenuta con successo.";
+            $stmt = $conn->prepare("DELETE FROM Carrello WHERE consumatore = :email");
+            $stmt->execute([':email' => $userEmail]);
         }
 
     } catch (PDOException $e) {

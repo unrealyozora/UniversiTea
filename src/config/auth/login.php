@@ -81,8 +81,9 @@ function loginUser(): void
         if ($result['tipo_utente'] === 'Venditore') {
             header('Location: ../../pages/administrator.php'); // O il percorso corretto
         } else {
-            header('Location: ../../../index.html');
-        }exit();
+            header('Location: ../../pages/dashboard.php');
+        }
+        exit();
 
     } catch (Exception $e) {
         redirectWithError('Si è verificato un errore del server. Riprova più tardi.');
