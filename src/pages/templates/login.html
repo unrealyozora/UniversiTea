@@ -22,20 +22,22 @@
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <label for="menu-toggle" class="hamburger-btn" aria-label="Apri Menu">
+    <label for="menu-toggle" class="hamburger-btn">
+        <span class="sr-only">Apri menù</span>
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </label>
 
     <div class="nav-wrapper">
-        <label for="menu-toggle" class="close-menu-btn" aria-label="Chiudi Menu">&times;</label>
+        <label for="menu-toggle" class="close-menu-btn">
+            <span class="sr-only">Chiudi menù</span>&times;</label>
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
                 <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
-                <li>Il tuo profilo</li>
+                <li id="current-link">Il tuo profilo</li>
             </ul>
         </nav>
 
@@ -49,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <span lang="en-GB" class="btn-join">Join Now</span>
+                   Accedi Ora
                 </li>
             </ul>
         </nav>
@@ -84,7 +86,7 @@
     </form>
 
     <div class="register-link">
-        Non hai un account? <a href="register.php">Registrati ora!</a>
+        Non hai un account? <a href="./register.php">Registrati ora!</a>
     </div>
 </main>
 <footer class="main-footer-area">
@@ -120,14 +122,14 @@
             <h3>Naviga</h3>
             <ul>
                 <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
-                <li><a href="shop.php"><span lang="en-GB">Shop</span></a></li>
-                <li><a href="tea-info.html">Il nostro Tè</a></li>
-                <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-                <li><a href="dashboard.php">Il tuo profilo</a></li>
-                <li><a href="preferiti.php">Preferiti</a></li>
-                <li><a href="cart.php">Carrello</a></li>
+                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
+                <li><a href="./tea-info.html">Il nostro Tè</a></li>
+                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+                <li><a href="./preferiti.php">Preferiti</a></li>
+                <li><a href="./cart.php">Carrello</a></li>
                 <li><a href="register.html">Registrati</a></li>
-                <li><a href="login.php">Accedi (Ti trovi qui ora)</a></li>
+                <li><a href="./login.php">Accedi (Ti trovi qui ora)</a></li>
             </ul>
         </nav>
 
@@ -135,11 +137,11 @@
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
-                <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
-                <li><a href="shop.php?category=servizi">I Servizi</a></li>
-                <li><a href="shop.php?category=bundle">I Bundle</a></li>
-                <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
+                <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
+                <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
+                <li><a href="./shop.php?category=servizi">I Servizi</a></li>
+                <li><a href="./shop.php?category=bundle">I Bundle</a></li>
+                <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>
                 <li><a href="register.html">Programma Fedeltà</a></li>
             </ul>
         </nav>

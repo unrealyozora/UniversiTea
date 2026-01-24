@@ -16,24 +16,23 @@
 <header class="main-header">
     <a href="../../index.html">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo" >
-        <span lang="en" class="mobile-only-text">Home</span>
     </a>
 
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <label for="menu-toggle" class="hamburger-btn" aria-label="Apri Menu">
+    <label for="menu-toggle" class="hamburger-btn" >
+        <span class="sr-only">Apri menu</span>
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </label>
-
     <div class="nav-wrapper">
 
-        <label for="menu-toggle" class="close-menu-btn" aria-label="Chiudi Menu"></label>
+        <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi Menu</span></label>
 
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
-                <li><span lang="en-GB">Shop</span></li>
+                <li id="current-link"><span lang="en-GB">Shop</span></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
                 <li><a href="./dashboard.php">Il tuo profilo</a></li>
@@ -50,7 +49,7 @@
                 </li>
                 <li>
                     <a href="./register.php" class="btn-join">
-                        <span lang="en-GB">Join Now</span>
+                       Accedi Ora
                     </a>
                 </li>
             </ul>
@@ -73,7 +72,7 @@
 
     <div class="shop-layout">
         <aside id="shop-filter-section">
-            <form id="filter-form" method="GET" action="shop.php">
+            <form id="filter-form" method="GET" action="./shop.php">
                 <h2>Filtri di Ricerca</h2>
 
                 <div class="filter-group-vertical">
@@ -170,14 +169,14 @@
             <h3>Naviga</h3>
             <ul>
                 <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
-                <li><a href="shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
-                <li><a href="tea-info.html">Il nostro Tè</a></li>
-                <li><a href="about.html"><span lang="en-GB">About</span></a></li>
-                <li><a href="dashboard.php">Il tuo profilo</a></li>
-                <li><a href="preferiti.php">Preferiti</a></li>
-                <li><a href="cart.php">Carrello</a></li>
-                <li><a href="register.php">Registrati</a></li>
-                <li><a href="login.php">Accedi</a></li>
+                <li><a href="./shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
+                <li><a href="./tea-info.html">Il nostro Tè</a></li>
+                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+                <li><a href="./preferiti.php">Preferiti</a></li>
+                <li><a href="./cart.php">Carrello</a></li>
+                <li><a href="./register.php">Registrati</a></li>
+                <li><a href="./login.php">Accedi</a></li>
             </ul>
         </nav>
 
@@ -185,12 +184,12 @@
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h3>Prodotti</h3>
             <ul>
-                <li><a href="shop.php?category=bevande">Tè & Infusi</a></li>
-                <li><a href="shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
-                <li><a href="shop.php?category=servizi">I Servizi</a></li>
-                <li><a href="shop.php?category=bundle">I Bundle</a></li>
-                <li><a href="shop.php?filter=bestseller">I più venduti</a></li>
-                <li><a href="register.php">Programma Fedeltà</a></li>
+                <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
+                <li><a href="./shop.php?category=merchandising"><span lang="en-GB">Merch</span> & Accessori</a></li>
+                <li><a href="./shop.php?category=servizi">I Servizi</a></li>
+                <li><a href="./shop.php?category=bundle">I Bundle</a></li>
+                <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>
+                <li><a href="./register.php">Programma Fedeltà</a></li>
             </ul>
         </nav>
 
@@ -229,8 +228,8 @@
                 <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
-                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                    <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
                          height="31">
                 </a>
             </div>
