@@ -193,13 +193,8 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.4);
 }
 
-
-/* --- 3. ECCEZIONE HEADER SCROLLATO (Sfondo Verde) --- 
-   Il bottone "Join" qui diventa Nero -> Bianco per essere visibile */
-
 .main-header.scrolled .btn-join,
 .main-header .btn-join {
-    /* Default per pagine interne */
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -246,43 +241,35 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Solo nella homepage l'header ha position fixed per rimanere sovrapposto ai layer dell'hero section e non dover ricalcolare le altezze di ogni singolo layer. Nelle altre pagine l'header ha position sticky */
 body.homepage .main-header {
     position: fixed;
 }
 
 body.homepage .main-header:not(.scrolled) {
     background: rgba(15, 14, 14, 0.85);
-
-    /* IMPORTANTE: Manteniamo lo STESSO padding di base */
     padding: 1rem 5%;
-
     box-shadow: none;
     backdrop-filter: blur(0.625em);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.logo-link {
-    display: block;
-    text-decoration: none;
-}
-
-img.logo,
-.logo-img {
-    width: 8.125em;
+img.logo {
+    width: 9em;
     height: auto;
     display: block;
     transition: filter 0.4s ease, transform 0.3s ease;
-    filter: invert(1) brightness(0);
-    /* Logo Nero (Default) */
+    filter: brightness(0);
+    /* l'immagine del logo è di default verde. La rendo nera col filter per avere un logo scuro su sfondo chiaro su tutte le pagine */
 }
 
-.logo-link:hover .logo-img {
+body:not(.homepage) img.logo:hover {
     transform: scale(1.03);
 }
 
 body.homepage .main-header:not(.scrolled) img.logo {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    /* Logo Bianco (Home Top) */
+    filter: brightness(1);
+    /* In homepage, quando l'header non è scrollato ha sfondo scuro, quindi il logo deve tornare al suo colore originale verde */
 }
 
 /* --- MENU LINKS & CARRELLO --- */
@@ -297,6 +284,15 @@ body.homepage .main-header:not(.scrolled) img.logo {
     display: flex;
     align-items: center;
     gap: 3rem;
+    flex: 1;
+    justify-content: space-between;
+    margin-left: 3rem;
+
+}
+
+#main-menu {
+    margin: 0 auto;
+    /* Spinga il menu al centro */
 }
 
 #main-menu ul {
@@ -317,10 +313,11 @@ body.homepage .main-header:not(.scrolled) img.logo {
 }
 
 #main-menu a,
-.nav-text-link, #main-menu ul, #user-actions ul li {
+.nav-text-link,
+#main-menu ul,
+#user-actions ul li {
     text-decoration: none;
     color: #0f0e0e;
-    /* Default: Nero */
     font-size: 0.95rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -332,15 +329,16 @@ body.homepage .main-header:not(.scrolled) img.logo {
     align-items: center;
 }
 
- ul li#current-link{
+ul li#current-link {
     position: relative;
-    padding-left: 1.5em; /* Spazio per l'icona */
+    padding-left: 1.5em;
+    /* Spazio per l'icona */
     display: flex;
     align-items: center;
 }
 
 /* Creiamo l'icona come elemento separato virtuale */
- ul li#current-link::before {
+ul li#current-link::before {
     content: '';
     position: absolute;
     left: 0;
@@ -362,6 +360,8 @@ body.homepage .main-header:not(.scrolled) img.logo {
 .nav-text-link img {
     filter: none;
     transition: filter 0.3s ease;
+    width: 2em;
+    height: 2em;
 }
 
 /* Linea sotto (Default: Nera) */
@@ -387,26 +387,19 @@ body.homepage .main-header:not(.scrolled) img.logo {
     width: 100%;
 }
 
-/* NOTA: Lo stile di .btn-join è stato spostato nella sezione GLOBAL BUTTONS */
-
-
-/* ==========================================================================
-   D. ECCEZIONI COLORI HOME (Non scrollato)
-   Quando siamo in cima alla Home, cambiamo i colori in Bianco/Verde
-========================================================================== */
-
-/* Logo Bianco */
-body.homepage .main-header:not(.scrolled) .logo-img {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-}
-
-/* Testi Bianchi */
+/* Link del menu di navigazione bianchi su sfondo nero */
 body.homepage .main-header:not(.scrolled) #main-menu a,
 body.homepage .main-header:not(.scrolled) .nav-text-link {
     color: #fff;
 }
 
-/* Icona Carrello Bianca */
+/* Metto il colore dei link visitati sul menu con sfondo nero */
+body.homepage .main-header:not(.scrolled) #main-menu a:visited,
+body.homepage .main-header:not(.scrolled) .nav-text-link:visited {
+    color: var(--link-visited);
+}
+
+/*Il carrello nell'header, di base è circa nero. Lo rendo totalmente nerpo e poi inverto il colore a bianco. Così ho il carrello bianco su sfondo nero*/
 body.homepage .main-header:not(.scrolled) .nav-text-link img {
     filter: brightness(0) invert(1);
 }
@@ -419,11 +412,8 @@ body.homepage .main-header:not(.scrolled) .nav-text-link::after {
 
 body.homepage .main-header:not(.scrolled) #main-menu a:hover,
 body.homepage .main-header:not(.scrolled) .nav-text-link:hover {
-    text-shadow: 0 0 12px rgba(0, 214, 159, 0.6);
+    text-shadow: 0 0 12px var(--universitea-green);
 }
-
-/* NOTA: L'eccezione di colore per .btn-join nella home è gestita in GLOBAL BUTTONS */
-
 
 /* ==========================================================================
    2. ELEMENTI MOBILE (Hamburger & Overlay)
@@ -694,20 +684,17 @@ body.menu-open .mobile-nav-content ul {
     padding: 2rem 2rem;
 
     /* SFONDO E BLUR */
-    background: rgba(15, 14, 14, 0.65);
+    background: rgba(15, 14, 14, 0.85);
     backdrop-filter: blur(0.75em);
     -webkit-backdrop-filter: blur(0.75em);
     /* Per Safari */
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.25em;
     box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.5);
     text-align: center;
 
-    /* Animazione Ingresso */
     animation: fadeInScale 1.2s ease-out forwards;
-
-    /* Importante: assicuriamo che l'opacità sia gestibile da JS */
     will-change: opacity, transform;
 }
 
@@ -736,8 +723,6 @@ body.menu-open .mobile-nav-content ul {
     margin: 0 auto 2.5rem auto;
     font-weight: 300;
 }
-
-/* --- PULSANTI --- */
 
 /* Contenitore per affiancare i pulsanti */
 .hero-buttons {
@@ -795,7 +780,7 @@ body.menu-open .mobile-nav-content ul {
 #breadcrumb span[aria-current="page"] {
     color: var(--universitea-green);
     font-weight: 700;
-    margin-left: 0.3125em;
+    margin-left: 0.3em;
 }
 
 
@@ -808,15 +793,11 @@ body.homepage #breadcrumb {
        - Ideale 12vh: Si adatta all'altezza dello schermo
        - Massimo 8.75em: Non scende troppo su schermi giganti
     */
-    top: clamp(5.625em, 12vh, 8.75em);
+    top: clamp(10em, 13vh, 12em);
 
     left: 5%;
     margin: 0;
     z-index: 20;
-
-    /* Riduciamo un pelo la scala per eleganza sulla home */
-    transform: scale(0.95);
-    transform-origin: left top;
 }
 
 @keyframes fadeInScale {
@@ -844,7 +825,8 @@ body.homepage #breadcrumb {
         height: 100vh;
         background-color: rgba(15, 14, 14, 0.98);
         backdrop-filter: blur(0.9375em);
-        z-index: 10002; /* Sopra l'header base */
+        z-index: 10002;
+        /* Sopra l'header base */
 
         /* Layout Mobile Verticale */
         flex-direction: column;
@@ -856,7 +838,8 @@ body.homepage #breadcrumb {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: all 0.4s ease;
+        transition: all 0.3s ease;
+        margin: 0;
     }
 
     /* Disposizione liste interne */
@@ -872,34 +855,48 @@ body.homepage #breadcrumb {
     #main-menu ul,
     #user-actions ul {
         transform: translateY(1.875em);
-        transition: transform 0.4s ease;
+        transition: transform 0.3s ease;
     }
 
-    .main-header .btn-join {
-        font-size: 1.8rem;
+
+    body .main-header .nav-wrapper .btn-join {
         background-color: var(--universitea-green);
-        color: #0f0e0e; /* Testo scuro per leggibilità sul verde */
+        color: #0f0e0e;
         border-color: var(--universitea-green);
-        box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.3);
+        box-shadow: 0 0.25em 0.95em rgba(0, 214, 159, 0.3);
     }
+
     /* Stile Link Mobile */
     #main-menu a,
-    .nav-text-link, li#current-link, #current-link span {
+    .nav-text-link,
+    li#current-link,
+    #current-link span {
         font-size: 1.8rem;
-        color: #fff; /* Forza bianco sempre */
+        color: #fff;
+        /* Forza bianco sempre */
         font-weight: 800;
         justify-content: center;
     }
 
-     ul li#current-link/*, #user-actions ul li#current-link*/{
-        justify-content: center; /* Centra tutto il blocco */
-        padding-left: 0;         /* Reset padding laterale */
-        gap: 0.5em;              /* Spazio tra icona e testo */
+    ul li#current-link
+
+    /*, #user-actions ul li#current-link*/
+        {
+        justify-content: center;
+        /* Centra tutto il blocco */
+        padding-left: 0;
+        /* Reset padding laterale */
+        gap: 0.5em;
+        /* Spazio tra icona e testo */
     }
 
     /* Coloriamo l'icona di VERDE usando il trucco drop-shadow */
-     ul li#current-link::before/*, *#user-actions ul li#current-link::after*/ {
-        position: relative; /* Cambia da absolute a relative per stare vicino al testo */
+    ul li#current-link::before
+
+    /*, *#user-actions ul li#current-link::after*/
+        {
+        position: relative;
+        /* Cambia da absolute a relative per stare vicino al testo */
         left: auto;
 
         /* IL TRUCCO: Sposto l'originale nera via e proietto un'ombra verde al suo posto */
@@ -908,14 +905,16 @@ body.homepage #breadcrumb {
     }
 
     /* Icone più grandi e bianche */
-    .nav-text-link img, li#current-link .nav-text-link img {
+    .nav-text-link img,
+    li#current-link .nav-text-link img {
         width: 1.875em;
         height: 1.875em;
         filter: brightness(0) invert(1) !important;
     }
 
     .mobile-only-text {
-        display: inline-block; /* Mostra testo "Carrello" */
+        display: inline-block;
+        /* Mostra testo "Carrello" */
         margin-left: 0.625em;
     }
 
@@ -938,10 +937,14 @@ body.homepage #breadcrumb {
     .close-menu-btn::after {
         content: '';
         position: absolute;
-        width: 2rem;        /* Lunghezza delle linee */
-        height: 3px;        /* Spessore delle linee */
-        background-color: #fff; /* Colore bianco */
-        border-radius: 4px; /* Punte arrotondate */
+        width: 2rem;
+        /* Lunghezza delle linee */
+        height: 3px;
+        /* Spessore delle linee */
+        background-color: #fff;
+        /* Colore bianco */
+        border-radius: 4px;
+        /* Punte arrotondate */
         transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
@@ -949,9 +952,11 @@ body.homepage #breadcrumb {
     .close-menu-btn::before {
         transform: rotate(45deg);
     }
+
     .close-menu-btn::after {
         transform: rotate(-45deg);
     }
+
     /* Mostra hamburger button sul mobile */
     .hamburger-btn {
         display: block;
@@ -972,24 +977,25 @@ body.homepage #breadcrumb {
     }
 
     /* Animazione hamburger quando checked */
-    #menu-toggle:checked ~ .hamburger-btn {
+    #menu-toggle:checked~.hamburger-btn {
         opacity: 0;
-        pointer-events: none; /* Disabilita il click sull'hamburger nascosto */
+        pointer-events: none;
+        /* Disabilita il click sull'hamburger nascosto */
         transition: opacity 0.3s ease;
     }
 
     /* --- 3. CHECKBOX LOGIC (IL TRUCCO) --- */
 
     /* Quando la checkbox è CHECKED... */
-    #menu-toggle:checked ~ .nav-wrapper {
+    #menu-toggle:checked~.nav-wrapper {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
 
     /* ...gli elementi salgono su */
-    #menu-toggle:checked ~ .nav-wrapper #main-menu ul,
-    #menu-toggle:checked ~ .nav-wrapper #user-actions ul {
+    #menu-toggle:checked~.nav-wrapper #main-menu ul,
+    #menu-toggle:checked~.nav-wrapper #user-actions ul {
         transform: translateY(0);
     }
 
@@ -1025,7 +1031,7 @@ body.homepage #breadcrumb {
     /* BREADCRUMB MOBILE */
     #breadcrumb {
         font-size: 0.75rem;
-        padding: 0.375em 0.9375em;
+        padding: 0.5em 1em;
         white-space: nowrap;
         margin-top: 1rem;
         margin-bottom: 1.5rem;
@@ -1036,7 +1042,7 @@ body.homepage #breadcrumb {
     /* BREADCRUMB MOBILE (SOLO HOME) */
     body.homepage #breadcrumb {
         /* Su mobile l'header è piccolo, fissiamo una posizione sicura */
-        top: 5.3125em;
+        top: 9em;
         left: 5%;
         transform: none;
         bottom: auto;
@@ -1056,11 +1062,11 @@ body.homepage #breadcrumb {
 /* ==========================================================================
    MEDIA QUERY "LAPTOP" (Per schermi bassi)
 ========================================================================== */
-@media (max-height: 53.125em) {
+@media (max-height: 850px) {
 
     /* 1. BREADCRUMB: La forziamo in alto per lasciare spazio */
     body.homepage #breadcrumb {
-        top: 5.3125em;
+        top: 8em;
         /* Appena sotto l'header */
         transform: scale(0.9);
         /* Ancora più piccola */
@@ -1156,61 +1162,56 @@ body.homepage #breadcrumb {
     max-width: 37.5em;
 }
 
-/* Caso specifico: Values ha l'H2 diretto, gli diamo spazio sotto */
 .values-section>.section-title {
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
 }
 
-
-/* =========================================
-   1. VALUES SECTION (Sfondo NERO)
-   CLEAN: Niente card, niente hover movements
-========================================= */
 .values-section {
     background-color: var(--darkbgcolor);
-    /* NERO */
 }
 
 .values-list {
-    display: grid;
-    /* 3 Colonne automatiche */
-    grid-template-columns: repeat(auto-fit, minmax(17.5em, 1fr));
-    gap: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4em;
     list-style: none;
     padding: 0;
-    margin: 0;
+    max-width: 100%;
 }
 
 .value-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centra icona e testo */
+    text-align: center;
+    /* Flex sizing simili a Loyalty Steps */
+    flex: 1 1 300px;
+    max-width: 400px;
     padding: 0 1rem;
     transition: transform 0.3s ease;
 }
 
 .value-item:hover {
     transform: none;
-    /* Nessun movimento */
 }
 
 .value-icon {
     margin-bottom: 1.5rem;
-    filter: invert(1);
-    /* Rende le icone SVG bianche se sono nere */
-    width: 4.0625em;
-    height: 4.0625em;
+    width: 6em;
+    height: 6em;
+    border-radius: 8px;
+    box-shadow: 0 0 8px 2px var(--universitea-green);
 }
 
 .value-item h3 {
-    color: #fff;
+    color: var(--universitea-green);
     margin-bottom: 1rem;
     font-size: 1.3rem;
 }
 
 .value-item p {
-    color: #aaa;
+    color: var(--textcolor);
     line-height: 1.6;
     font-size: 1rem;
 }
@@ -1220,7 +1221,6 @@ body.homepage #breadcrumb {
 ========================================= */
 .categories-section {
     background-color: var(--graybgcolor);
-    /* GRIGIO */
 }
 
 .categories-list {
@@ -1290,10 +1290,10 @@ body.homepage #breadcrumb {
     z-index: 2;
     width: 100%;
     background: linear-gradient(to top,
-    rgba(15, 14, 14, 1) 0%,
-    rgba(15, 14, 14, 1) 40%,
-    rgba(15, 14, 14, 0.8) 70%,
-    transparent 100%);
+            rgba(15, 14, 14, 1) 0%,
+            rgba(15, 14, 14, 1) 40%,
+            rgba(15, 14, 14, 0.8) 70%,
+            transparent 100%);
 
     padding: 5rem 2rem 1.5rem 2rem;
     color: #fff;
@@ -1454,18 +1454,28 @@ body.homepage #breadcrumb {
 }
 
 .loyalty-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15.625em, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     list-style: none;
-    padding: 0;
+    padding: 0 5%;
     margin: 0 auto 4rem auto;
-    max-width: 75em;
     counter-reset: step-counter;
 }
 
+.loyalty-steps li {
+    box-shadow: 0 0 7px var(--universitea-green);
+    border-radius: 1rem;
+
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 450px;
+    max-width: 450px;
+}
+
 .step-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--card-bg-color);
     padding: 2rem;
     border-radius: 0.9375em;
     height: 100%;
@@ -1481,9 +1491,9 @@ body.homepage #breadcrumb {
 }
 
 .step-number {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
     line-height: 1;
 }
 
@@ -1494,17 +1504,31 @@ body.homepage #breadcrumb {
 }
 
 .step-card p {
-    color: #aaa;
-    font-size: 0.95rem;
+    color: var(--txtcolor);
+    font-size: 1rem;
     margin: 0;
+}
+
+.step-card p a {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--universitea-green);
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+
+    /*Min e max a 24px è una richiesta per l'accessibilità*/
+    min-width: 24px;
+    min-height: 24px;
+    /*Aumento l'area che l'utente può cliccare ma porto in negativo il margin per compensare lo spostamento. Altrimenti visivamente è più bruttino*/
+    padding: 0.2rem 0.3rem;
+    margin: -0.2rem -0.3rem;
 }
 
 .loyalty-footer {
     text-align: center;
 }
-
-/* NOTA: Rimosso .btn-loyalty perché ora è gestito da GLOBAL BUTTONS */
-
 
 /* =========================================
    MEDIA QUERIES (Mobile Adjustment)
@@ -1663,7 +1687,7 @@ body.homepage #breadcrumb {
 }
 
 .accessibility-controls legend {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--textcolor);
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.0625em;
@@ -1676,7 +1700,7 @@ body.homepage #breadcrumb {
     display: flex;
     align-items: center;
     gap: 0.5em;
-    color: #888;
+    color: var(--txtcolor);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -2248,7 +2272,7 @@ input:focus-visible {
 /*Paragrafi e Descrizioni, stile uguale per tutti*/
 .curiosita-content p,
 .tea-process p,
-    /*da specificare anche tabledescr o va bene p?*/
+/*da specificare anche tabledescr o va bene p?*/
 .tea-card p {
     font-size: 1.2rem;
     line-height: 1.7;
@@ -2291,7 +2315,8 @@ input:focus-visible {
 }
 
 /*sezione tea-process con tabella*/
-.tea-process, .admin-table-container {
+.tea-process,
+.admin-table-container {
     width: 100%;
     margin-top: 0;
     margin-bottom: 4rem;
@@ -2300,7 +2325,8 @@ input:focus-visible {
 }
 
 /*contenitore tabella*/
-.tea-process .table-container, .admin-table-container .product-table{
+.tea-process .table-container,
+.admin-table-container .product-table {
     width: 100%;
     overflow-x: auto;
     border-radius: 0.9375em;
@@ -2322,7 +2348,8 @@ input:focus-visible {
     min-width: 37.5em;
 }
 
-.tea-process table thead th , .admin-table-container table thead th{
+.tea-process table thead th,
+.admin-table-container table thead th {
     background-color: #007d5d;
     color: #ffffff;
     padding: 1.2rem;
@@ -2332,7 +2359,8 @@ input:focus-visible {
     letter-spacing: 0.05em;
 }
 
-.tea-process table tbody th, .admin-table-container table tbody th {
+.tea-process table tbody th,
+.admin-table-container table tbody th {
     background-color: #f9f9f9;
     color: var(--darkbgcolor);
     font-weight: 700;
@@ -2341,17 +2369,20 @@ input:focus-visible {
     border-right: 3px solid #007d5d;
 }
 
-.tea-process table td, .admin-table-container table td {
+.tea-process table td,
+.admin-table-container table td {
     padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--navlink-color);
     color: var(--graybgcolor);
 }
 
-.tea-process table tbody tr:nth-child(even), .admin-table-container table tbody tr:nth-child(even){
+.tea-process table tbody tr:nth-child(even),
+.admin-table-container table tbody tr:nth-child(even) {
     background-color: #f2f7f4;
 }
 
-.tea-process table tbody tr:hover, .admin-table-container table tbody tr:hover {
+.tea-process table tbody tr:hover,
+.admin-table-container table tbody tr:hover {
     /*va bene per accessibilità o fastidioso?*/
     background-color: var(--linkcolor);
     transition: background-color 0.2s ease;
