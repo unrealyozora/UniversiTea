@@ -16,7 +16,7 @@ if (animCheck) {
 const submitBtn = document.getElementById('submit-quiz');
 if (submitBtn) {
     submitBtn.addEventListener('click', function() {
-        const form = document.getElementById('tea-quiz');
+        const form = document.querySelector('.tea-quiz');
         const result = document.getElementById('quiz-result');
         const labels = form.querySelectorAll('label');
         

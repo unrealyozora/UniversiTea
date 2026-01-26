@@ -2104,15 +2104,11 @@ input:focus-visible {
 /*--------------------------*/
 /*STILE PAGINA IL NOSTRO TE'*/
 /*--------------------------*/
-.tea-info-page {
-    background-color: var(--graybgcolor);
-}
 
 .tea-content {
     position: relative;
-    max-width: 95%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 1.25em;
 }
 
 .tea-content h1 {
@@ -2139,7 +2135,6 @@ input:focus-visible {
     background: transparent;
     margin-top: 3em;
     margin-bottom: 5em;
-    /*margine sotto per non coprire paragrafi.*/
 }
 
 .tea-intro p {
@@ -2153,7 +2148,7 @@ input:focus-visible {
 }
 
 /*Getto di tè, no animazioni*/
-.tea-intro::before {
+/*.tea-intro::before {
     content: "";
     position: absolute;
     top: -4.3em;
@@ -2165,10 +2160,9 @@ input:focus-visible {
     border-left: 3px solid var(--universitea-green);
     border-right: 3px solid var(--universitea-green);
     border-bottom: none;
-    /*per non avere il bordo sotto*/
     border-radius: 2em 2em 0 0;
     z-index: 1;
-}
+}*/
 
 /*per gestire colori e stile dell'svg dal css*/
 .liquid-path {
@@ -2213,7 +2207,7 @@ input:focus-visible {
 }
 
 /*teiera non animata*/
-.teiera {
+/*.teiera {
     position: absolute;
     top: -8.7em;
     right: 1.7em;
@@ -2227,12 +2221,12 @@ input:focus-visible {
     width: 100%;
     height: auto;
     display: block;
-}
+}*/
 
 /*opzione no animazioni*/
 .tea-content .accessibility-controls {
     position: absolute;
-    top: 0;
+    top: -4.5em;
     right: 1%;
     margin: 0;
     padding: 0.8rem;
@@ -2255,9 +2249,20 @@ input:focus-visible {
 /*LOGICA DI STOP: Ferma tutto per opzione no animazioni*/
 .tea-content.no-anim * {
     animation-play-state: paused;
+    /*animation: none;*/
+    /*meglio animation:non?*/
 }
 
-/*Titoli H2, stile uguale per tutti*/
+@media (max-width: 768px) {
+    .tea-content .accessibility-controls {
+        position: static; /* Annulla il posizionamento absolute */
+        margin: 1rem auto; /* Lo centra e gli dà respiro */
+        width: 90%;
+        text-align: center;
+    }
+}
+
+/*Titoli H2, stile uguale per tutti. Cambia con h2 e la class del body??*/
 .curiosita-content h2,
 .tea-process h2,
 .tea-card h2,
@@ -2267,12 +2272,13 @@ input:focus-visible {
     margin-bottom: 1.5rem;
     text-align: left;
     margin-top: 1rem;
+    line-height: 1.6;
 }
 
-/*Paragrafi e Descrizioni, stile uguale per tutti*/
+/*Paragrafi e Descrizioni, stile uguale per tutti. Cambia solo con p e la class del body?*/
 .curiosita-content p,
 .tea-process p,
-/*da specificare anche tabledescr o va bene p?*/
+    /*da specificare anche tabledescr o va bene p?*/
 .tea-card p {
     font-size: 1.2rem;
     line-height: 1.7;
@@ -2285,7 +2291,7 @@ input:focus-visible {
 
 .curiosita {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 8em;
     margin-bottom: 0;
     padding: 2rem 5% 2rem 5%;
     display: flex;
@@ -2315,8 +2321,7 @@ input:focus-visible {
 }
 
 /*sezione tea-process con tabella*/
-.tea-process,
-.admin-table-container {
+.tea-process, .admin-table-container {
     width: 100%;
     margin-top: 0;
     margin-bottom: 4rem;
@@ -2325,8 +2330,7 @@ input:focus-visible {
 }
 
 /*contenitore tabella*/
-.tea-process .table-container,
-.admin-table-container .product-table {
+.tea-process .table-container, .admin-table-container .product-table{
     width: 100%;
     overflow-x: auto;
     border-radius: 0.9375em;
@@ -2348,8 +2352,7 @@ input:focus-visible {
     min-width: 37.5em;
 }
 
-.tea-process table thead th,
-.admin-table-container table thead th {
+.tea-process table thead th , .admin-table-container table thead th{
     background-color: #007d5d;
     color: #ffffff;
     padding: 1.2rem;
@@ -2359,8 +2362,7 @@ input:focus-visible {
     letter-spacing: 0.05em;
 }
 
-.tea-process table tbody th,
-.admin-table-container table tbody th {
+.tea-process table tbody th, .admin-table-container table tbody th {
     background-color: #f9f9f9;
     color: var(--darkbgcolor);
     font-weight: 700;
@@ -2369,20 +2371,17 @@ input:focus-visible {
     border-right: 3px solid #007d5d;
 }
 
-.tea-process table td,
-.admin-table-container table td {
+.tea-process table td, .admin-table-container table td {
     padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--navlink-color);
     color: var(--graybgcolor);
 }
 
-.tea-process table tbody tr:nth-child(even),
-.admin-table-container table tbody tr:nth-child(even) {
+.tea-process table tbody tr:nth-child(even), .admin-table-container table tbody tr:nth-child(even){
     background-color: #f2f7f4;
 }
 
-.tea-process table tbody tr:hover,
-.admin-table-container table tbody tr:hover {
+.tea-process table tbody tr:hover, .admin-table-container table tbody tr:hover {
     /*va bene per accessibilità o fastidioso?*/
     background-color: var(--linkcolor);
     transition: background-color 0.2s ease;
@@ -2390,43 +2389,38 @@ input:focus-visible {
 
 .tea-card {
     display: flex;
-    flex-direction: column;
-    /*Default per mobile: uno sopra l'altro*/
+    flex-direction: row; /* Foto e testo affiancati */
+    justify-content: space-between;
+    align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
     width: 100%;
     padding: 0 5%;
     box-sizing: border-box;
-    align-items: center;
+    text-align: left;
 }
 
-/*Su desktop foto e testo alternati*/
-@media (min-width: 768px) {
-    .tea-card {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
+/* Inverte l'ordine per i rami pari su Desktop */
+.tea-card:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
 
-    /*Inverte l'ordine per i pari*/
-    .tea-card:nth-of-type(even) {
-        flex-direction: row-reverse;
-    }
+.card-text {
+    flex: 1;
+    border-left: 0.25em solid var(--universitea-green);
+    padding-left: 1.5em;
+    padding-top: 1em;
+}
 
-    .card-text {
-        flex: 1;
-    }
-
-    .card-image {
-        flex: 0 0 45%;
-        display: flex;
-        justify-content: center;
-    }
+.card-image {
+    flex: 0 0 45%;
+    display: flex;
+    justify-content: center;
 }
 
 .tea-card img {
     width: 100%;
-    max-width: 30rem;
+    max-width: 25rem;
     height: auto;
     border-radius: 1.25em;
     box-shadow: 0 0.9375em 2.1875em rgba(0, 0, 0, 0.15);
@@ -2437,7 +2431,32 @@ input:focus-visible {
     transform: scale(1.03);
 }
 
-/*quiz*/
+/* --- LAYOUT MOBILE (Sotto i 768px) --- */
+@media (max-width: 767px) {
+    .tea-card, 
+    .tea-card:nth-of-type(even) {
+        flex-direction: column; /* Uno sopra l'altro */
+        text-align: center;      /* Opzionale: centra il testo su mobile */
+    }
+
+    .card-text {
+        border-left: none;
+        border-top: none;
+        padding-left: 0;
+        padding-top: 1.5em;
+    }
+
+    .card-image {
+        width: 100%;
+    }
+
+    .tea-card h2{
+        padding-bottom: 0.5em;
+        border-bottom: 0.1em solid var(--universitea-green);
+    }
+}
+
+/*--QUIZ--*/
 .quiz-section {
     padding: 3rem 5%;
     background: var(--navlink-color);
@@ -2448,10 +2467,9 @@ input:focus-visible {
 
 .quiz-section h2 {
     text-align: center;
-    /* Titolo quiz centrato */
 }
 
-/* Rimuoviamo bordi default dei fieldset */
+/*Rimuoviamo bordi default dei fieldset*/
 fieldset {
     border: none;
     padding: 0;
@@ -2459,28 +2477,35 @@ fieldset {
     width: 100%;
 }
 
-#tea-quiz {
+.quiz-section p{
+    font-size: 1.2em;
+}
+
+.tea-quiz {
+    margin-top: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.625em;
+    gap: 0.7em;
 }
 
 .question-text {
     font-weight: bold;
-    margin-top: 0.9375em;
-    font-size: 1.2rem;
-    color: var(--universitea-green);
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-size: 1.5rem;
+    color: var(--linkcolor);
     text-align: center;
     display: block;
     width: 100%;
 }
 
-#tea-quiz label {
+.tea-quiz label {
+    color: var(--graybgcolor);
     display: block;
     width: 100%;
     max-width: 28.125em;
-    padding: 0.75em;
+    padding: 1em;
     border: 2px solid #eee;
     border-radius: 0.625em;
     cursor: pointer;
@@ -2490,18 +2515,29 @@ fieldset {
 }
 
 /* Feedback visivo per risposte (Accessibilità: non solo colore) */
-#tea-quiz label.correct-answer {
+.tea-quiz label.correct-answer {
     border: 3px solid #28a745;
     background-color: #d4edda;
     color: #155724;
     font-weight: bold;
 }
 
-#tea-quiz label.wrong-selection {
+.tea-quiz label.wrong-selection {
     border: 3px solid #dc3545;
     background-color: #f8d7da;
     color: #721c24;
-    text-decoration: line-through;
+    /*text-decoration: line-through;*/
+}
+
+/*Icone di feedback, per avere altro oltre al colore*/
+.tea-quiz label.correct-answer::after {
+    content: "✔";
+    margin-left: 10px;
+}
+
+.tea-quiz label.wrong-selection::after {
+    content: "✖";
+    margin-left: 10px;
 }
 
 .hidden {
