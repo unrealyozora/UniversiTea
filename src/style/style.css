@@ -623,7 +623,7 @@ body.menu-open .mobile-nav-content ul {
 .layer-6 {
     width: 100%;
     height: auto;
-    bottom: 0%;
+    bottom: 0;
     z-index: 6;
 }
 
@@ -1211,7 +1211,7 @@ body.homepage #breadcrumb {
 }
 
 .value-item p {
-    color: var(--textcolor);
+    color: var(--txtcolor);
     line-height: 1.6;
     font-size: 1rem;
 }
@@ -1260,7 +1260,7 @@ body.homepage #breadcrumb {
     place-items: end stretch;
 
     border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0.625em 1.875em 0px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0.625em 1.875em 0 rgba(0, 0, 0, 0.9);
     transition: all 0.3s ease;
 }
 
@@ -1687,7 +1687,7 @@ body.homepage #breadcrumb {
 }
 
 .accessibility-controls legend {
-    color: var(--textcolor);
+    color: var(--txtcolor);
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.0625em;
