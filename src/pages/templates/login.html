@@ -59,35 +59,34 @@
 </header>
 
 <nav id="breadcrumb" aria-label="Percorso di navigazione">
-    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt; <span
-            aria-current="page">Login</span>
-    </p>
+    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt; <span aria-current="page" lang="en-GB">Login</span></p>
 </nav>
 
-<main id="content">
-    <h1>Accedi</h1>
-    <p class="subtitle">Benvenuto, accedi al tuo account per continuare!</p>
+<main id="login-content">
+    <h1>Accedi ad <span lang="en-GB">Universitea</span></h1>
+    <p class="register-link">Non hai un account? <a href="./register.php">Registrati ora!</a></p>
+    <section class="login-card">
+        <h2 class="subtitle">Salve! Accedi al tuo account per continuare!</h2>
 
-    <form method="POST" action="../config/auth/login.php" id="loginForm">
-        {{ERROR_MESSAGE}}
+        <form method="POST" action="../config/auth/login.php" id="loginForm">
+            {{ERROR_MESSAGE}}
 
-        <div class="form-group">
-            <label for="username">Username o Email</label>
-            <input type="text" id="username" name="username" aria-required="true"
-                   value="{{USERNAME_VALUE}}">
-        </div>
+            <div class="form-group">
+                <label for="username"><span lang="en-GB">Username</span> o Email</label>
+                <p class="login-advice">Ad esempio: bla bla bla</p>
+                <input type="text" id="username" name="username" aria-required="true"
+                       value="{{USERNAME_VALUE}}">
+            </div>
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" aria-required="true">
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <p class="login-advice">Ad esempio: bla bla bla</p>
+                <input type="password" id="password" name="password" aria-required="true">
+            </div>
 
-        <button type="submit" name="login" class="submit-btn" id="submitBtn">Accedi</button>
-    </form>
-
-    <div class="register-link">
-        Non hai un account? <a href="./register.php">Registrati ora!</a>
-    </div>
+            <button type="submit" name="login" class="submit-btn" id="submitBtn">Accedi</button>
+        </form>
+    </section>
 </main>
 <footer class="main-footer-area">
     <div class="footer-container">

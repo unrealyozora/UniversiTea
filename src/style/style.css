@@ -2255,8 +2255,10 @@ input:focus-visible {
 
 @media (max-width: 768px) {
     .tea-content .accessibility-controls {
-        position: static; /* Annulla il posizionamento absolute */
-        margin: 1rem auto; /* Lo centra e gli dà respiro */
+        position: static;
+        /* Annulla il posizionamento absolute */
+        margin: 1rem auto;
+        /* Lo centra e gli dà respiro */
         width: 90%;
         text-align: center;
     }
@@ -2278,7 +2280,7 @@ input:focus-visible {
 /*Paragrafi e Descrizioni, stile uguale per tutti. Cambia solo con p e la class del body?*/
 .curiosita-content p,
 .tea-process p,
-    /*da specificare anche tabledescr o va bene p?*/
+/*da specificare anche tabledescr o va bene p?*/
 .tea-card p {
     font-size: 1.2rem;
     line-height: 1.7;
@@ -2321,7 +2323,8 @@ input:focus-visible {
 }
 
 /*sezione tea-process con tabella*/
-.tea-process, .admin-table-container {
+.tea-process,
+.admin-table-container {
     width: 100%;
     margin-top: 0;
     margin-bottom: 4rem;
@@ -2330,7 +2333,8 @@ input:focus-visible {
 }
 
 /*contenitore tabella*/
-.tea-process .table-container, .admin-table-container .product-table{
+.tea-process .table-container,
+.admin-table-container .product-table {
     width: 100%;
     overflow-x: auto;
     border-radius: 0.9375em;
@@ -2352,7 +2356,8 @@ input:focus-visible {
     min-width: 37.5em;
 }
 
-.tea-process table thead th , .admin-table-container table thead th{
+.tea-process table thead th,
+.admin-table-container table thead th {
     background-color: #007d5d;
     color: #ffffff;
     padding: 1.2rem;
@@ -2362,7 +2367,8 @@ input:focus-visible {
     letter-spacing: 0.05em;
 }
 
-.tea-process table tbody th, .admin-table-container table tbody th {
+.tea-process table tbody th,
+.admin-table-container table tbody th {
     background-color: #f9f9f9;
     color: var(--darkbgcolor);
     font-weight: 700;
@@ -2371,17 +2377,20 @@ input:focus-visible {
     border-right: 3px solid #007d5d;
 }
 
-.tea-process table td, .admin-table-container table td {
+.tea-process table td,
+.admin-table-container table td {
     padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--navlink-color);
     color: var(--graybgcolor);
 }
 
-.tea-process table tbody tr:nth-child(even), .admin-table-container table tbody tr:nth-child(even){
+.tea-process table tbody tr:nth-child(even),
+.admin-table-container table tbody tr:nth-child(even) {
     background-color: #f2f7f4;
 }
 
-.tea-process table tbody tr:hover, .admin-table-container table tbody tr:hover {
+.tea-process table tbody tr:hover,
+.admin-table-container table tbody tr:hover {
     /*va bene per accessibilità o fastidioso?*/
     background-color: var(--linkcolor);
     transition: background-color 0.2s ease;
@@ -2389,7 +2398,8 @@ input:focus-visible {
 
 .tea-card {
     display: flex;
-    flex-direction: row; /* Foto e testo affiancati */
+    flex-direction: row;
+    /* Foto e testo affiancati */
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
@@ -2433,10 +2443,13 @@ input:focus-visible {
 
 /* --- LAYOUT MOBILE (Sotto i 768px) --- */
 @media (max-width: 767px) {
-    .tea-card, 
+
+    .tea-card,
     .tea-card:nth-of-type(even) {
-        flex-direction: column; /* Uno sopra l'altro */
-        text-align: center;      /* Opzionale: centra il testo su mobile */
+        flex-direction: column;
+        /* Uno sopra l'altro */
+        text-align: center;
+        /* Opzionale: centra il testo su mobile */
     }
 
     .card-text {
@@ -2450,7 +2463,7 @@ input:focus-visible {
         width: 100%;
     }
 
-    .tea-card h2{
+    .tea-card h2 {
         padding-bottom: 0.5em;
         border-bottom: 0.1em solid var(--universitea-green);
     }
@@ -2477,7 +2490,7 @@ fieldset {
     width: 100%;
 }
 
-.quiz-section p{
+.quiz-section p {
     font-size: 1.2em;
 }
 
@@ -2965,5 +2978,221 @@ fieldset {
 
     .brand-col {
         grid-column: span 1;
+    }
+}
+
+/*
+==========================================================================================================================================
+                                                    REGISTER & LOGIN PAGE STYLE
+==========================================================================================================================================
+*/
+
+#register-content, #login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2em;
+    background-color: var(--darkbgcolor);
+}
+
+/* Titoli */
+#register-content  h1, #login-content h1{
+    color: #fff;
+    font-size: 3.5em;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 800;
+}
+
+section.register-card h2,
+section.login-card h2
+{
+    font-size: 2em;
+    color: var(--txtcolor);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.login-prompt,
+.register-link {
+    font-size: 1em;
+    color: var(--txtcolor);
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.login-prompt a,
+.register-link a{
+    color: var(--universitea-green);
+    font-weight: 700;
+    transition: color 0.3s ease;
+    /*Solito motivo, avere un'area cliccabile più grande senza rovinare la grafica*/
+    padding: 1em;
+    margin: -1em;
+}
+
+.login-prompt a:hover,
+.register-link a:hover
+{
+    color: var(--txtcolor);
+    text-decoration: underline;
+}
+
+section.register-card,
+section.login-card
+{
+    width: 100%;
+    max-width: 40em;
+    background: var(--card-bg-color);
+    border-radius: 25px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 0 15px var(--universitea-green);
+}
+
+/* Fieldset (Radio Buttons) */
+fieldset {
+    border: none;
+    margin: 0 0 2rem 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: var(--universitea-green);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* Stile custom per i radio button (opzionale, per ora pulito) */
+fieldset div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+fieldset label {
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+fieldset input[type="radio"] {
+    width: 1.25em;
+    height: 1.25em;
+    cursor: pointer;
+}
+
+fieldset input[type="radio"]:checked+label {
+    color: var(--universitea-green);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--txtcolor);
+    font-size: 1em;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: var(--darkbgcolor);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3rem;
+    color: var(--txtcolor);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--universitea-green);
+    background-color: rgba(0, 214, 159, 0.05);
+    box-shadow: 0 0 0 4px rgba(0, 214, 159, 0.1);
+}
+
+.form-group p.register-advice,
+.form-group p.login-advice {
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    color:rgba(255, 255, 255, 0.5);
+    font-size: 0.9em;
+}
+
+.error-message,
+.error-msg {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    min-height: 1.2em;
+    /* Riserva spazio per evitare salti */
+    padding-left: 1rem;
+    font-weight: 500;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 214, 159, 0.2);
+    letter-spacing: 0.05em;
+}
+
+.submit-btn:hover {
+    background-color: #fff;
+    color: var(--universitea-green);
+    transform: translateY(-2px);
+    box-shadow: 0 0.75rem 2rem rgba(0, 214, 159, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    #registrationForm {
+        padding: 2rem 1.25rem;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    #content h1 {
+        font-size: 2.2rem;
+    }
+
+    fieldset {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
 }
