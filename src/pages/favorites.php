@@ -141,7 +141,7 @@ if (empty($preferiti)) {
                         <input type="hidden" name="action" value="add_to_cart">
                         <input type="hidden" name="product_id" value="' . $product_id . '">
                         <button type="submit" class="checkout-btn" style="margin-right: 10px;">
-                            🛒 Aggiungi al Carrello
+                             Aggiungi al Carrello
                         </button>
                     </form>
                     
@@ -149,7 +149,7 @@ if (empty($preferiti)) {
                         <input type="hidden" name="action" value="remove">
                         <input type="hidden" name="product_id" value="' . $product_id . '">
                         <button type="submit" class="remove-btn">
-                            🗑️ Rimuovi
+                             Rimuovi
                         </button>
                     </form>
                 </div>
@@ -165,7 +165,7 @@ if (empty($preferiti)) {
             <div class="checkout-actions">
                 <form method="POST" style="display: inline;" onsubmit="return confirm(\'Vuoi rimuovere tutti i prodotti dai preferiti?\');">
                     <input type="hidden" name="action" value="clear_all">
-                    <button type="submit" class="clear-cart-btn">🗑️ Svuota Preferiti</button>
+                    <button type="submit" class="clear-cart-btn"> Svuota Preferiti</button>
                 </form>
                 
                 <a href="shop.php" class="shop-btn">🛍️ Continua lo Shopping</a>
