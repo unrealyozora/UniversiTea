@@ -46,22 +46,22 @@ function checkValidData(): void
     global $user;
 
     if (empty($user->getUsername()) || empty($user->getEmail()) || empty($user->getPassword()) || empty($user->getConfirmPassword()) || empty($user->getPhone())) {
-        redirectWithError("Inserire tutti i campi obbligatori");
+        redirectWithError("Inserire tutti i campi obbligatori", "all");
     }
     if (strlen($user->getUsername()) < 3 || strlen($user->getUsername()) > 32) {
-        redirectWithError("Username deve essere compreso tra 3 e 32 caratteri");
+        redirectWithError("Username deve essere compreso tra 3 e 32 caratteri", "username");
     }
     if (strlen($user->getPassword()) < 6 || strlen($user->getPassword()) > 32) {
-        redirectWithError("La password deve essere compresa tra 6 e 32 caratteri");
+        redirectWithError("La password deve essere compresa tra 6 e 32 caratteri", "password");
     }
     if ($user->getPassword() != $user->getConfirmPassword()) {
-        redirectWithError("Le due password non corrispondono");
+        redirectWithError("Le due password non corrispondono", "confirmPassword");
     }
     if ((strlen($user->getPhone()) != 9) && (strlen($user->getPhone()) != 10)) {
-        redirectWithError("Numero di telefono non valido gay");
+        redirectWithError("Numero di telefono non valido", "phone");
     }
     if (($user->getUserType() !== UserType::Buyer) && $user->getUserType() !== UserType::Seller) {
-        redirectWithError("Tipologia utente non valida");
+        redirectWithError("Tipologia utente non valida", "userType");
     }
 }
 
@@ -69,7 +69,7 @@ function checkValidEmail(): void
 {
     global $user;
     if (!filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
-        redirectWithError("Email non valida");
+        redirectWithError("Email non valida", "email");
     }
 }
 
@@ -93,7 +93,7 @@ function RegisterUser(): void
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            redirectWithError("Utente già esistente");
+            redirectWithError("Utente già esistente", "all");
         }
 
         $pw_hash = password_hash($user->getPassword(), PASSWORD_BCRYPT);
@@ -116,13 +116,14 @@ function RegisterUser(): void
             throw new Exception("Errore durante la registrazione");
         }
     } catch (Exception $e) {
-        redirectWithError("Si è verificato un errore del server. Riprova più tardi.");
+        redirectWithError("Si è verificato un errore del server. Riprova più tardi.", "all");
     }
 }
 
-function redirectWithError($error): void
+function redirectWithError($error, $type): void
 {
     $_SESSION['registration_error'] = $error;
+    $_SESSION['error_type'] = $type;
     header('Location: ../../pages/register.php');
     exit();
 }

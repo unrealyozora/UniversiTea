@@ -69,7 +69,7 @@
         <section class="register-card">
             <h2>Crea il tuo account per iniziare!</h2>
             <form method="POST" action="../config/auth/register.php" id="registrationForm">
-                {{ERROR_MESSAGE}}
+                {{GENERIC_ERROR}}
 
                 <fieldset>
                     <legend>Seleziona una tipologia di utente:</legend>
@@ -86,31 +86,31 @@
                     <label for="username"><span lang="en-GB">Username</span></label>
                     <p class="register-advice">Ad esempio: bla bla bla</p>
                     <input type="text" id="username" name="username" aria-required="true">
-                    <div class="error-message" id="usernameError"></div>
+                    {{USERNAME_ERROR}}
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <p class="register-advice">Ad esempio: bla bla bla</p>
                     <input type="text" id="email" name="email" aria-required="true">
-                    <div class="error-message" id="emailError"></div>
+                    {{EMAIL_ERROR}}
                 </div>
                 <div class="form-group">
                     <label for="phone">Telefono</label>
                     <p class="register-advice">Ad esempio: bla bla bla</p>
                     <input type="text" id="phone" name="phone" aria-required="true">
-                    <div class="error-message" id="phoneError"></div>
+                    {{PHONE_ERROR}}
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <p class="register-advice">Ad esempio: bla bla bla</p>
                     <input type="text" id="password" name="password" aria-required="true">
-                    <div class="error-message" id="passwordError"></div>
+                    {{PASSWORD_ERROR}}
                 </div>
                 <div class="form-group">
                     <label for="confirm_password">Conferma password</label>
                     <p class="register-advice">Ad esempio: bla bla bla</p>
                     <input type="text" id="confirm_password" name="confirm_password" aria-required="true">
-                    <div class="error-message" id="confirmPasswordError"></div>
+                    {{CONFIRM_PWD_ERROR}}
                 </div>
 
                 <button type="submit" name="register" class="submit-btn" id="submitBtn">Registrati</button>
