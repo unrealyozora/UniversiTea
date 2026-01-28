@@ -21,7 +21,6 @@ function getImagePlaceholder($categoria) {
  * Esegue la query per ottenere i prodotti (uno singolo o lista)
  */
 function getProductQuery($conn, $id = null) {
-    // Query base unificata (la stessa di shop.php)
     $sql = "SELECT 
                 P.id, 
                 P.nome, 
@@ -49,17 +48,29 @@ function getProductQuery($conn, $id = null) {
             LEFT JOIN Bundle BU ON P.id = BU.id_bundle
             WHERE 1=1";
 
-    // Se c'è un ID specifico, aggiungiamo il filtro
     if ($id !== null) {
         $sql .= " AND P.id = :id";
         $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        // Usiamo PARAM_STR perché nel DB l'ID è un CHAR(36) UUID
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
     } else {
-        // Altrimenti prepariamo la query generica (utile per shop.php se vuoi rifattorizzare anche quello)
         $stmt = $conn->prepare($sql);
     }
 
     return $stmt;
+}
+
+function getBundleItems($conn, $bundleId) {
+    $sql = "SELECT P.id, P.nome 
+            FROM Bundle B
+            JOIN Prodotti P ON B.contenuto = P.id
+            WHERE B.id_bundle = :bundleId";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':bundleId', $bundleId, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function loadErrorPage($code) {

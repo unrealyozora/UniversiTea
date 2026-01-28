@@ -1924,6 +1924,10 @@ body.homepage #breadcrumb {
     /* Fondamentale per l'effetto sticky */
 }
 
+#bundle-content li{
+    list-style: none;
+}
+
 /* Colonna Destra "Sticky" */
 .product-info-sticky {
     position: sticky;
@@ -3058,7 +3062,7 @@ fieldset {
     border: none;
     margin: 0 0 2rem 0;
     padding: 0;
-    display: flex;
+    display: block;
     justify-content: center;
     gap: 2rem;
 }

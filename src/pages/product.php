@@ -19,9 +19,9 @@ try {
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-   // if (!$product) {
-     //   loadErrorPage(404);
-    //}
+    if (!$product) {
+      loadErrorPage(404);
+    }
 
 
     // Formattazione Prezzo
@@ -42,28 +42,57 @@ try {
     $specsHtml = '';
     $innerSpecs = '';
 
+    // In product.php, all'interno del blocco switch ($product['categoria'])
+
     switch ($product['categoria']) {
         case 'bevande':
             if (!empty($product['temp_consigliata'])) {
-                $innerSpecs .= "<div class='spec-item'><strong>Temperatura consigliata:</strong> " . htmlspecialchars($product['temp_consigliata']) . "°C</div>";
+                $innerSpecs .= "<div class='spec-item'><strong>Temperatura:</strong> " . htmlspecialchars($product['temp_consigliata']) . "°C</div>";
             }
             if (!empty($product['tipologia_bevanda'])) {
-                $innerSpecs .= "<div class='spec-item'><strong>Tipologia bevanda:</strong> " . htmlspecialchars($product['tipologia_bevanda']) . "</div>";
+                $innerSpecs .= "<div class='spec-item'><strong>Tipo:</strong> " . htmlspecialchars($product['tipologia_bevanda']) . "</div>";
+            }
+            if (!empty($product['scoop'])) {
+                $innerSpecs .= "<div class='spec-item'><strong>Curiosità (Scoop):</strong> " . htmlspecialchars($product['scoop']) . "</div>";
             }
             break;
 
         case 'merchandising':
+            if (!empty($product['tipologia_march'])) {
+                $innerSpecs .= "<div class='spec-item'><strong>Categoria Merch:</strong> " . htmlspecialchars($product['tipologia_march']) . "</div>";
+            }
             if (!empty($product['Materiale'])) {
                 $innerSpecs .= "<div class='spec-item'><strong>Materiale:</strong> " . htmlspecialchars($product['Materiale']) . "</div>";
             }
             break;
 
         case 'servizi':
+            if (!empty($product['tipologia_servizi'])) {
+                $innerSpecs .= "<div class='spec-item'><strong>Tipo di servizio:</strong> " . htmlspecialchars($product['tipologia_servizi']) . "</div>";
+            }
             if (!empty($product['livello_urgenza'])) {
                 $innerSpecs .= "<div class='spec-item'><strong>Urgenza:</strong> " . htmlspecialchars($product['livello_urgenza']) . "</div>";
             }
             break;
+
+        case 'bundle':
+            // Per i bundle potresti voler mostrare lo sconto applicato
+            $innerSpecs .= "<div class='spec-item'><strong>Percentuale Sconto:</strong> Prodotto incluso in un pacchetto speciale.</div>";
+            $items = getBundleItems($conn, $productId);
+            if (!empty($items)) {
+                $innerSpecs .= "<div class='spec-item'><strong>Contenuto del Bundle:</strong><ul id='bundle-content'>";
+                foreach ($items as $item) {
+                    $link = "product.php?id=" . urlencode($item['id']);
+                    $nome = htmlspecialchars($item['nome']);
+                    $innerSpecs .= "<li><a href='$link'>$nome</a></li>";
+                }
+                $innerSpecs .= "</ul></div>";
+            }
+            break;
     }
+
+// Correzione accesso variabile disponibilità
+    $isAvailable = $product['disponibilità'] > 0;
 
     if ($innerSpecs) {
         $specsHtml = "<div class='product-specs'><h3>Scheda Tecnica</h3>" . $innerSpecs . "</div>";

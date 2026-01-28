@@ -7,8 +7,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-
-
 function renderProductCard($product, $templateHtml)
 {
     $id = htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8');
@@ -64,40 +62,30 @@ try {
                 P.descrizione, 
                 P.prezzo, 
                 P.disponibilita,
-                B.temp_consigliata,
-                B.tipologia_bevanda,
-                B.scoop,
-                M.Materiale,
-                M.tipologia_march,
-                S.tipologia_servizi,
-                S.livello_urgenza,
+                -- Determiniamo la categoria con subquery per coerenza
                 CASE 
-                    WHEN B.id IS NOT NULL THEN 'bevande'
-                    WHEN M.id IS NOT NULL THEN 'merchandising'
-                    WHEN S.id IS NOT NULL THEN 'servizi'
-                    WHEN BU.id_bundle IS NOT NULL THEN 'bundle'
+                    WHEN EXISTS (SELECT 1 FROM Bevande WHERE id = P.id) THEN 'bevande'
+                    WHEN EXISTS (SELECT 1 FROM March_Bevande WHERE id = P.id) THEN 'merchandising'
+                    WHEN EXISTS (SELECT 1 FROM Servizi WHERE id = P.id) THEN 'servizi'
+                    WHEN EXISTS (SELECT 1 FROM Bundle WHERE id_bundle = P.id) THEN 'bundle'
                     ELSE 'altro'
                 END as categoria
             FROM Prodotti P
-            LEFT JOIN Bevande B ON P.id = B.id
-            LEFT JOIN March_Bevande M ON P.id = M.id
-            LEFT JOIN Servizi S ON P.id = S.id
-            LEFT JOIN Bundle BU ON P.id = BU.id_bundle
-            WHERE 1=1
-            GROUP BY P.id";
+            WHERE 1=1";
 
     $params = [];
 
     // Applica filtro categoria
     if ($categoryFilter && $categoryFilter !== 'tutti') {
         if ($categoryFilter === 'bevande') {
-            $sql .= " AND B.id IS NOT NULL";
+            $sql .= " AND EXISTS (SELECT 1 FROM Bevande B WHERE B.id = P.id)";
         } elseif ($categoryFilter === 'merchandising') {
-            $sql .= " AND M.id IS NOT NULL";
+            $sql .= " AND EXISTS (SELECT 1 FROM March_Bevande M WHERE M.id = P.id)";
         } elseif ($categoryFilter === 'servizi') {
-            $sql .= " AND S.id IS NOT NULL";
+            $sql .= " AND EXISTS (SELECT 1 FROM Servizi S WHERE S.id = P.id)";
         } elseif ($categoryFilter === 'bundle') {
-            $sql .= " AND BU.id_bundle IS NOT NULL";
+            // Qui risolviamo il problema del "moltiplicare i bundle"
+            $sql .= " AND EXISTS (SELECT 1 FROM Bundle BU WHERE BU.id_bundle = P.id)";
         }
     }
 
