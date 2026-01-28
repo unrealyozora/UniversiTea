@@ -42,7 +42,7 @@ function checkValidData(): void
 {
     global $user;
     if (empty($user->getUsername()) || empty($user->getPassword())) {
-        redirectWithError('Username e password sono obbligatorie');
+        redirectWithError('Username e password sono obbligatorie', "all");
     }
 }
 
@@ -61,13 +61,13 @@ function loginUser(): void
         $stmt->execute();
 
         if ($stmt->rowCount() === 0) {
-            redirectWithError('Credenziali non valide');
+            redirectWithError('Credenziali non valide', "all");
         }
 
         $result = $stmt->fetch();
 
         if (!password_verify($user->getPassword(), $result['password'])) {
-            redirectWithError('Credenziali non valide');
+            redirectWithError('Credenziali non valide', "all");
         }
 
         $_SESSION['email'] = $result['email'];
@@ -85,18 +85,19 @@ function loginUser(): void
             $destination = ($_SESSION['tipo_utente'] === 'Venditore') ? 'administrator.php' : 'dashboard.php';
         }
 
-        header("Location: " . $destination);
+        header("Location: ../../pages/" . $destination);
         exit();
 
     } catch (Exception $e) {
-        redirectWithError('Si è verificato un errore del server. Riprova più tardi.');
+        redirectWithError('Si è verificato un errore del server. Riprova più tardi.', "all");
     }
 }
 
-function redirectWithError($errorMessage): void
+function redirectWithError($error, $type): void
 {
-    $_SESSION['login_error'] = $errorMessage;
+    $_SESSION['login_error'] = $error;
     $_SESSION['username'] = $_POST['username'] ?? '';
+    $_SESSION['error_type'] = $type;
     header('Location: ../../pages/login.php');
     exit();
 }

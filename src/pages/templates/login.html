@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                   Accedi Ora
+                    Accedi Ora
                 </li>
             </ul>
         </nav>
@@ -59,7 +59,9 @@
 </header>
 
 <nav id="breadcrumb" aria-label="Percorso di navigazione">
-    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt; <span aria-current="page" lang="en-GB">Login</span></p>
+    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt; <span aria-current="page"
+                                                                                             lang="en-GB">Login</span>
+    </p>
 </nav>
 
 <main id="login-content">
@@ -69,7 +71,7 @@
         <h2 class="subtitle">Salve! Accedi al tuo account per continuare!</h2>
 
         <form method="POST" action="../config/auth/login.php" id="loginForm">
-            {{ERROR_MESSAGE}}
+            {{GENERIC_ERROR}}
 
             <div class="form-group">
                 <label for="username"><span lang="en-GB">Username</span> o Email</label>
@@ -161,8 +163,16 @@
                     <strong>Orari Assistenza:</strong>
 
 
-                      <p> Dal lunedì al venerdì:  <time datetime="09:00">9:00</time> - <time datetime="18:00">18:00</time></p>
-                       <p> Sabato:  <time datetime="10:00">10:00</time> - <time datetime="16:00">16:00</time></p>
+                    <p> Dal lunedì al venerdì:
+                        <time datetime="09:00">9:00</time>
+                        -
+                        <time datetime="18:00">18:00</time>
+                    </p>
+                    <p> Sabato:
+                        <time datetime="10:00">10:00</time>
+                        -
+                        <time datetime="16:00">16:00</time>
+                    </p>
                 </li>
             </ul>
         </div>

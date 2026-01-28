@@ -8,6 +8,7 @@ if ($_SESSION["logged_in"] && isset($_SESSION["username"])) {
     exit();
 }
 $error = $_SESSION['login_error'] ?? '';
+$error_type = $_SESSION['error_type'] ?? '';
 $username = $_SESSION['username'] ?? '';
 
 unset($_SESSION['login_error']);
@@ -23,14 +24,20 @@ if (!empty($error)) {
 }
 
 $username_escaped = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-
 $replacements = [
-    '{{ERROR_MESSAGE}}' => $error_html,
+    '{{GENERIC_ERROR}}' => '',
     '{{USERNAME_VALUE}}' => $username_escaped,
 ];
 
-$output = str_replace(array_keys($replacements), array_values($replacements), $template);
+$error_map = [
+    'all' => '{{GENERIC_ERROR}}',
+];
 
+if (isset($error_map[$error_type])) {
+    $replacements[$error_map[$error_type]] = $error_html;
+}
+
+$output = str_replace(array_keys($replacements), array_values($replacements), $template);
 header('Content-type: text/html; charset=utf-8');
 echo $output;
 ?>
