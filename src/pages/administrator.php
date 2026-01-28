@@ -9,25 +9,28 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['tipo_utente'] !== 'Venditore') 
     header('Location: login.php');
     exit();
 }
-
+$email_venditore = $_SESSION['email'];
 try {
     $db = new Database();
     $conn = $db->getConnection();
 
     // 2. Query per ottenere tutti i prodotti
     // Usiamo una query semplificata rispetto allo shop
-    $sql = "SELECT id, nome, prezzo, disponibilita, 
+    $sql = "SELECT p.id, p.nome, p.prezzo, p.disponibilita, 
             CASE 
-                WHEN id IN (SELECT id FROM Bevande) THEN 'Bevanda'
-                WHEN id IN (SELECT id FROM March_Bevande) THEN 'Merch'
-                WHEN id IN (SELECT id FROM Servizi) THEN 'Servizio'
-                WHEN id IN (SELECT id_bundle FROM Bundle) THEN 'Bundle'
+                WHEN p.id IN (SELECT id FROM Bevande) THEN 'Bevanda'
+                WHEN p.id IN (SELECT id FROM March_Bevande) THEN 'Merch'
+                WHEN p.id IN (SELECT id FROM Servizi) THEN 'Servizio'
+                WHEN p.id IN (SELECT id_bundle FROM Bundle) THEN 'Bundle'
                 ELSE 'Altro'
             END as categoria
-            FROM Prodotti 
-            ORDER BY id DESC"; // I più recenti in alto
+            FROM Prodotti p
+            INNER JOIN Vendita v ON p.id = v.prodotto
+            WHERE v.venditore = :email
+            ORDER BY p.id DESC";
 
-    $stmt = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([':email' => $email_venditore]);
     $prodotti = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // 3. Carica il template della riga

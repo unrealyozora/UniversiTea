@@ -5,6 +5,7 @@ require_once '../config/database/database_conn.php';
 if (!isset($_SESSION['logged_in']) || $_SESSION['tipo_utente'] !== 'Venditore') {
     die("Accesso negato");
 }
+$id_venditore = $_SESSION['email'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = null;
@@ -35,6 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!empty($id)) {
             // --- MODIFICA (UPDATE) ---
+            $checkSql = "SELECT 1 FROM Vendita WHERE venditore = :v AND prodotto = :p";
+            $checkStmt = $conn->prepare($checkSql);
+            $checkStmt->execute([':v' => $id_venditore, ':p' => $id]);
+
+            if (!$checkStmt->fetch()) {
+                throw new Exception("Non hai i permessi per modificare questo prodotto.");
+            }
+
             $sql = "UPDATE Prodotti SET nome=:n, descrizione=:d, prezzo=:p, disponibilita=:s WHERE id=:id";
             $stmt = $conn->prepare($sql);
             $stmt->execute([':n'=>$nome, ':d'=>$descrizione, ':p'=>$prezzo, ':s'=>$disponibilita, ':id'=>$id]);
@@ -90,6 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // IMPORTANTE: RIMOSSO $newId = $conn->lastInsertId();
             // Quella riga cancellava l'UUID appena generato mettendo 0.
+            $sqlVendita = "INSERT INTO Vendita (venditore, prodotto, quantita) VALUES (:v, :p, :q)";
+            $stmtVendita = $conn->prepare($sqlVendita);
+            $stmtVendita->execute([
+                ':v' => $id_venditore,
+                ':p' => $newId,
+                ':q' => $disponibilita // Usiamo la disponibilità iniziale come quantità venduta
+            ]);
 
             if ($categoria === 'bevande') {
                 // CORREZIONE: Aggiunto scoop nell'INSERT

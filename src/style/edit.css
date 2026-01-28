@@ -3,7 +3,7 @@
     text-align: center;
     background: #ff4444;
     border: none;
-    color: #0f0e0e;
+    color: var(--darkbgcolor);
     padding: 1em 2.5em;
     border-radius: 3em;
     font-size: 1rem;
@@ -20,3 +20,235 @@
     transform: translateY(-2px);
     box-shadow: 0 0.5em 1.5em  #C82909;
 }
+
+/* =========================================
+   FORM PRODOTTO - STYLE UNIVERSITEA
+   (Da aggiungere a style/edit.css)
+========================================= */
+
+/* Contenitore principale (Card stile Login) */
+.form-container {
+    width: 100%;
+    max-width: 45em; /* Circa 720px */
+    margin: 4rem auto;
+    padding: 2.5rem 2rem;
+
+    /* Stile Vetro Scuro */
+    background: var(--card-bg-color); /* Definito in style.css */
+    backdrop-filter: blur(0.625em);
+    border: 1px solid var(--card-border-color);
+    border-radius: 1.5em;
+    box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.5);
+    color: var(--txtcolor);
+}
+
+/* Tipografia */
+.form-container h1,
+.form-container h2,
+.form-container h3,
+.form-container h4 {
+    color: var(--universitea-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--txtcolor); /* Grigio chiaro */
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-left: 0.5rem; /* Allineamento visivo con la stondatura input */
+}
+
+/* Stile Input, Select e Textarea */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: var(--darkbgcolor); /* Nero profondo */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 3rem; /* Stondatura forte come nel login */
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Textarea con meno stondatura per leggibilità */
+textarea {
+    border-radius: 1.25em;
+    resize: vertical;
+    min-height: 8rem;
+}
+
+/* Select custom arrow fix (per renderlo scuro) */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300d69f%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 0.8rem auto;
+    cursor: pointer;
+}
+
+/* Focus State */
+input:focus,
+textarea:focus,
+select:focus{
+    border-color: var(--universitea-green);
+    background-color: var(--darkbgcolor);
+    color: var(--txtcolor);
+    box-shadow: 0 0 0 4px rgba(0, 214, 159, 0.1);
+    border-radius: 1.25em;
+}
+
+/* Sezioni Specifiche (Campi condizionali) */
+.specific-fields {
+    display: none; /* Gestito via JS */
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--universitea-green);
+    border-radius: 0 1rem 1rem 0;
+    animation: fadeIn 0.4s ease;
+}
+
+/* Scrollbox per i Bundle */
+.bundle-scroll-box {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: var(--darkbgcolor);
+    margin-bottom: 1.5rem;
+}
+
+/* Scrollbar custom per il box bundle */
+.bundle-scroll-box::-webkit-scrollbar {
+    width: 8px;
+}
+.bundle-scroll-box::-webkit-scrollbar-thumb {
+    background: var(--universitea-green);
+    border-radius: 4px;
+}
+.bundle-scroll-box::-webkit-scrollbar-track {
+    background: #0f0e0e;
+}
+
+/* Checkbox all'interno del bundle */
+.bundle-scroll-box label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+}
+.bundle-scroll-box input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: var(--universitea-green);
+    cursor: pointer;
+}
+
+/* Bottoni Azione */
+.form-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.btn-save {
+    flex: 2;
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    border: 2px solid var(--universitea-green);
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    box-shadow: 0 0.25em 0.9em rgba(0, 214, 159, 0.3);
+}
+
+.btn-save:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: var(--universitea-green);
+    transform: translateY(-2px);
+    box-shadow: 0 0.5em 1.5em rgba(0, 214, 159, 0.4);
+}
+
+/* Il btn-cancel è già definito nel tuo edit.css,
+   ma aggiungo flex: 1 per proporzionarlo */
+.btn-cancel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   VALIDAZIONE FORM ERRORI
+   (Da aggiungere a style/edit.css)
+========================================= */
+
+/* Bordo rosso per l'input mancante */
+.input-error {
+    border-color: #ff4444 !important;
+    box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.2) !important; /* Glow rosso */
+    background-color: rgba(255, 68, 68, 0.05) !important;
+}
+select.input-error:focus {
+    background-color: var(--darkbgcolor);
+    color: var(--txtcolor);
+    box-shadow: 0 0 0 4px rgba(0, 214, 159, 0.1);
+    border-radius: 1.25em;
+}
+/* Messaggio di errore sotto l'input */
+.field-error-msg {
+    color: #ff4444;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.4rem;
+    margin-left: 0.8rem;
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Mobile */
+@media (max-width: 600px) {
+    .form-actions {
+        flex-direction: column;
+    }
+    .btn-save, .btn-cancel {
+        width: 100%;
+    }
+}
+

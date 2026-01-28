@@ -7,6 +7,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['tipo_utente'] !== 'Venditore') 
     header('Location: ../pages/login.php');
     exit();
 }
+$id_venditore = $_SESSION['email'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? '';
@@ -26,6 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Inizia Transazione
         $conn->beginTransaction();
+
+        $check = $conn->prepare("SELECT 1 FROM Vendita WHERE venditore = :v AND prodotto = :p");
+        $check->execute([':v' => $id_venditore, ':p' => $id]);
+
+        if (!$check->fetch()) {
+            throw new Exception("Operazione negata: non sei il proprietario di questo prodotto.");
+        }
 
         // ORDINE DI CANCELLAZIONE FONDAMENTALE (Dall'esterno verso l'interno)
 

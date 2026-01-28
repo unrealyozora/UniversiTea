@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (categoria === 'bevande') {
                 validate('input[name="temp_consigliata"]', 'Inserisci la temperatura.');
-                validate('input[name="tipologia_bevanda"]', 'Specifica il tipo di bevanda.');
+                validate('select[name="tipologia_bevanda"]', 'Specifica il tipo di bevanda.');
             }
             else if (categoria === 'merchandising') {
                 validate('input[name="materiale"]', 'Indica il materiale.');

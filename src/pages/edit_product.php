@@ -179,9 +179,13 @@ $replacements = [
     '{{SELECTED_ABBIGLIAMENTO}}' => ($data['tipologia_march'] === 'Abbigliamento') ? 'selected' : '',
     '{{SELECTED_CASA}}'          => ($data['tipologia_march'] === 'Prodotti per la casa') ? 'selected' : '',
 
+    '{{SELECTED_TÈ}}'         => ($data['tipologia_bevanda'] === 'Tè') ? 'selected' : '',
+    '{{SELECTED_CIOCCOLATO}}' => ($data['tipologia_bevanda'] === 'Cioccolato') ? 'selected' : '',
+    '{{SELECTED_INFUSO}}'     => ($data['tipologia_bevanda'] === 'Infuso') ? 'selected' : '',
+
+
     // Placeholders Campi
     '{{VAL_TEMP}}'        => htmlspecialchars($data['temp_consigliata']),
-    '{{VAL_TIPO_BEV}}'    => htmlspecialchars($data['tipologia_bevanda']),
     '{{VAL_SCOOP}}'       => htmlspecialchars($data['scoop']),
     '{{VAL_MATERIALE}}'   => htmlspecialchars($data['materiale']),
     '{{VAL_TIPO_MERCH}}'  => htmlspecialchars($data['tipologia_march']),

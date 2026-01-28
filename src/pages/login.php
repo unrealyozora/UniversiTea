@@ -1,7 +1,10 @@
 <?php
 session_start();
 if ($_SESSION["logged_in"] && isset($_SESSION["username"])) {
-    header("Location: dashboard.php");
+    $redirect_to = $_SESSION['redirect_after_login'] ?? 'dashboard.php';
+    unset($_SESSION['redirect_after_login']); // Pulisci la variabile
+
+    header("Location: " . $redirect_to);
     exit();
 }
 $error = $_SESSION['login_error'] ?? '';

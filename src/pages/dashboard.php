@@ -47,7 +47,7 @@ $template = file_get_contents("templates/dashboard.html");
 $username_escaped = htmlspecialchars($user['username']);
 $email_escaped = htmlspecialchars($user['email']);
 if (checkIfUserIsAdmin($username_escaped)) {
-    header("Location: edit_product.php");
+    header("Location: administrator.php");
     exit();
 } else {
     $fidelity_points = getFidelityPoints();
