@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{TITOLO_PAGINA}} -Vista Venditore | UniversiTea</title>
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/edit.css">
     <style>
         .form-container { max-width: 600px; margin: 2rem auto; padding: 2rem; background: #f9f9f9; border-radius: 8px; }
         .form-group { margin-bottom: 1rem; }
@@ -16,6 +17,7 @@
     </style>
 </head>
 <body>
+<script src="../config/product_form.js"></script>
 
 <a href="#prodotto-content" class="skip-link">Salta al contenuto principale</a>
 
@@ -94,6 +96,7 @@
                 <option value="bevande" {{SELECTED_BEVANDE}}>Bevande</option>
                 <option value="merchandising" {{SELECTED_MERCH}}>Merchandising</option>
                 <option value="servizi" {{SELECTED_SERVIZI}}>Servizi</option>
+                <option value="bundle" {{SELECTED_BUNDLE}}>Bundle</option>
             </select>
         </div>
 
@@ -107,6 +110,10 @@
                 <label>Tipologia Bevanda:</label>
                 <input type="text" name="tipologia_bevanda" value="{{VAL_TIPO_BEV}}" placeholder="Es. Tè Verde">
             </div>
+            <div class="form-group">
+                <label>Scoop:</label>
+                <input type="text" name="scoop" value="{{VAL_SCOOP}}" placeholder="Es. Boh pettegoli">
+            </div>
         </div>
 
         <div id="fields-merchandising" class="specific-fields">
@@ -117,7 +124,18 @@
             </div>
             <div class="form-group">
                 <label>Tipologia Merch:</label>
-                <input type="text" name="tipologia_march" value="{{VAL_TIPO_MERCH}}" placeholder="Es. Tazza">
+                <select name="tipologia_march">
+                    <option value="Accessori" {{SELECTED_ACCESSORI}}>Accessori</option>
+                    <option value="Abbigliamento" {{SELECTED_ABBIGLIAMENTO}}>Abbigliamento</option>
+                    <option value="Prodotti per la casa" {{SELECTED_CASA}}>Prodotti per la casa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Bevanda Associata (Obbligatorio):</label>
+                <select name="id_bevanda">
+                    <option value="">-- Seleziona Bevanda --</option>
+                    {{OPTIONS_BEVANDE}}
+                </select>
             </div>
         </div>
 
@@ -125,15 +143,34 @@
             <h4>Dettagli Servizio</h4>
             <div class="form-group">
                 <label>Tipologia Servizio:</label>
-                <input type="text" name="tipologia_servizi" value="{{VAL_TIPO_SERV}}" placeholder="Es. Degustazione">
+                <select name="tipologia_servizi">
+                    {{OPTIONS_TIPO_SERVIZI}}
+                </select>
             </div>
             <div class="form-group">
                 <label>Livello Urgenza:</label>
-                <input type="text" name="livello_urgenza" value="{{VAL_URGENZA}}" placeholder="Es. Alto">
+                <select name="livello_urgenza">
+                    {{OPTIONS_URGENZA}}
+                </select>
+            </div>
+        </div>
+
+        <div id="fields-bundle" class="specific-fields">
+            <h4>Creazione Bundle</h4>
+            <p>Seleziona i prodotti da includere:</p>
+            <div style="max-height: 200px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 1rem;">
+                {{CHECKBOX_PRODOTTI}} </div>
+
+            <div class="form-group">
+                <label>Percentuale Sconto (%):</label>
+                <input type="number" name="percent_sconto" value="{{VAL_SCONTO}}" min="0" max="100">
             </div>
         </div>
 
         <button type="submit" class="btn-save">{{TESTO_BOTTONE}}</button>
+
+        <a href="../pages/administrator.php" class="btn-cancel" style="padding: 1rem; background: #ccc; text-decoration: none; color: black; border-radius: 4px; text-align: center; flex: 1;">Annulla</a>
+
     </form>
 </main>
 
@@ -189,7 +226,7 @@
             <h3>Prodotti</h3>
             <ul>
                 <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
-                <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
+                <li><a href="./shop.php?category=merchandising"><span lang="en-GB">Merch</span> & Accessori</a></li>
                 <li><a href="./shop.php?category=servizi">I Servizi</a></li>
                 <li><a href="./shop.php?category=bundle">I Bundle</a></li>
                 <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>

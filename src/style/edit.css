@@ -1,0 +1,22 @@
+.btn-cancel {
+    width: 100%; /* Bottone a larghezza piena */
+    text-align: center;
+    background: #ff4444;
+    border: none;
+    color: #0f0e0e;
+    padding: 1em 2.5em;
+    border-radius: 3em;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0.25em 0.9em rgba(255, 68, 68, 0.3);
+}
+
+.btn-cancel:hover {
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5em 1.5em  #C82909;
+}

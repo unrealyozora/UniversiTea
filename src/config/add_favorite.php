@@ -4,7 +4,7 @@ session_start();
 require_once 'database/database_conn.php';
 
 if (!isset($_SESSION['username']) || !$_SESSION['logged_in']) {
-    header("Location: ../pages/login.html");
+    header("Location: ../pages/login.php");
     exit();
 }
 

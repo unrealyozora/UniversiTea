@@ -81,7 +81,8 @@ try {
             LEFT JOIN March_Bevande M ON P.id = M.id
             LEFT JOIN Servizi S ON P.id = S.id
             LEFT JOIN Bundle BU ON P.id = BU.id_bundle
-            WHERE 1=1";
+            WHERE 1=1
+            GROUP BY P.id";
 
     $params = [];
 

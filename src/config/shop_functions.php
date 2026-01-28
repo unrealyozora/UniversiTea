@@ -10,8 +10,9 @@ function getImagePlaceholder($categoria) {
     $basePath = '../../assets/images/';
     switch ($categoria) {
         case 'bevande': return $basePath . 'placeholder_tea.svg';
-        case 'merchandising': return $basePath . 'placeholder_merch.jpg';
+        case 'merchandising': return $basePath . 'placeholder_merch.webp';
         case 'servizi': return $basePath . 'placeholder_service.svg';
+        case 'bundle': return $basePath . 'placeholder_bundle.svg';
         default: return $basePath . 'placeholder_generic.jpg';
     }
 }

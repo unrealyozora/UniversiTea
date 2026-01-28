@@ -21,6 +21,7 @@ try {
                 WHEN id IN (SELECT id FROM Bevande) THEN 'Bevanda'
                 WHEN id IN (SELECT id FROM March_Bevande) THEN 'Merch'
                 WHEN id IN (SELECT id FROM Servizi) THEN 'Servizio'
+                WHEN id IN (SELECT id_bundle FROM Bundle) THEN 'Bundle'
                 ELSE 'Altro'
             END as categoria
             FROM Prodotti 

@@ -4,7 +4,7 @@ require_once './database/database_conn.php';
 
 // Se l'utente non è loggato, reindirizza al login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: ../pages/login.html');
+    header('Location: ../pages/login.php');
     exit();
 }
 

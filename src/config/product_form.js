@@ -1,16 +1,16 @@
 function toggleFields() {
-    // 1. Nascondi tutti i campi specifici
+    // Nascondi tutti i campi specifici
     document.querySelectorAll('.specific-fields').forEach(el => el.style.display = 'none');
 
-    // 2. Prendi il valore selezionato
+    // Recupera il valore selezionato
     const cat = document.getElementById('categoria').value;
 
-    // 3. Mostra il div corrispondente (es. fields-bevande)
-    const target = document.getElementById('fields-' + cat);
-    if (target) {
-        target.style.display = 'block';
+    // Mostra il blocco corrispondente se c'è un valore
+    if (cat) {
+        const target = document.getElementById('fields-' + cat);
+        if (target) target.style.display = 'block';
     }
 }
 
-// Esegui al caricamento per mostrare i campi se siamo in modifica
-document.addEventListener('DOMContentLoaded', toggleFields);
+// Esegui la funzione al caricamento della pagina per mostrare i campi corretti in modifica
+window.addEventListener('DOMContentLoaded', toggleFields);
