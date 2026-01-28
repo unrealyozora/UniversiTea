@@ -18,6 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Verifica login (adattato alla tua logica di sessione)
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
     header('Location: login.php');
     exit;
 }

@@ -2,7 +2,7 @@
 session_start();
 if ($_SESSION["logged_in"] && isset($_SESSION["username"])) {
     $redirect_to = $_SESSION['redirect_after_login'] ?? 'dashboard.php';
-    unset($_SESSION['redirect_after_login']); // Pulisci la variabile
+    unset($_SESSION['redirect_after_login']);
 
     header("Location: " . $redirect_to);
     exit();

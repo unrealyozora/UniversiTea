@@ -4,6 +4,7 @@ require_once './database/database_conn.php';
 
 // Se l'utente non è loggato, reindirizza al login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
     header('Location: ../pages/login.php');
     exit();
 }

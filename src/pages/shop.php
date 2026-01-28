@@ -7,6 +7,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
+
+
 function renderProductCard($product, $templateHtml)
 {
     $id = htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8');

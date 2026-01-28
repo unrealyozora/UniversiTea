@@ -77,12 +77,15 @@ function loginUser(): void
         $_SESSION['last_activity'] = time();
 
         session_regenerate_id(true);
-
-        if ($result['tipo_utente'] === 'Venditore') {
-            header('Location: ../../pages/administrator.php'); // O il percorso corretto
+        if (isset($_SESSION['redirect_after_login'])) {
+            $destination = $_SESSION['redirect_after_login'];
+            unset($_SESSION['redirect_after_login']); // Importante: pulisci la sessione
         } else {
-            header('Location: ../../pages/dashboard.php');
+            // Fallback standard se non c'è una pagina di provenienza
+            $destination = ($_SESSION['tipo_utente'] === 'Venditore') ? 'administrator.php' : 'dashboard.php';
         }
+
+        header("Location: " . $destination);
         exit();
 
     } catch (Exception $e) {

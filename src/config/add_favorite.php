@@ -4,6 +4,7 @@ session_start();
 require_once 'database/database_conn.php';
 
 if (!isset($_SESSION['username']) || !$_SESSION['logged_in']) {
+    $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
     header("Location: ../pages/login.php");
     exit();
 }
