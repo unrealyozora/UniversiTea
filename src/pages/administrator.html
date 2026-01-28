@@ -13,7 +13,7 @@
 
 <header class="main-header">
     <a href="../../index.html">
-        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo" >
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
@@ -39,7 +39,8 @@
             <ul>
                 <li>
                     <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                             aria-hidden="true">
                         <span class="mobile-only-text">Carrello</span>
                     </a>
                 </li>
@@ -54,15 +55,21 @@
 </header>
 
 <main id="admin-content">
-            <h1>Il tuo Pannello di Controllo</h1>
-        <section id="intro-text">
-            <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. Qui potrai vedere e modificare tutti i prodotti da te venduti.</p>
-            <p>Cambia prezzo, disponibilità, descrizione e tutti parametri che vuoi.</p>
-        </section>
+    <h1>Il tuo Pannello di Controllo</h1>
+    <section id="intro-text">
+        <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. Qui potrai vedere e
+            modificare tutti i prodotti da te venduti.</p>
+        <p>Cambia prezzo, disponibilità, descrizione e tutti parametri che vuoi.</p>
+    </section>
+    <div class="nav-links">
+        <form action="../config/auth/logout.php" method="POST">
+            <button type="submit" name='logout' class="submit-btn">Logout</button>
+        </form>
+    </div>
 
-        <div class="admin-controls">
-            <a href="edit_product.php" class="btn-add-new">+ Aggiungi Nuovo Prodotto</a>
-        </div>
+    <div class="admin-controls">
+        <a href="edit_product.php" class="btn-add-new">+ Aggiungi Nuovo Prodotto</a>
+    </div>
 
     {{USER_FEEDBACK}}
 
