@@ -1,6 +1,6 @@
 <?php
-require_once('user.php');
 require_once('../database/database_conn.php');
+require_once('user.php');
 
 session_start();
 

@@ -110,7 +110,7 @@ function RegisterUser(): void
 
         if ($stmt->execute()) {
             $success = "Utente registrato con successo";
-            header('Location: ../../index.html');
+            header('Location: ../../../index.html');
             exit();
         } else {
             throw new Exception("Errore durante la registrazione");

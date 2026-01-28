@@ -6,100 +6,91 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputs = registrationForm.querySelectorAll('input')
         inputs.forEach(input => {
             input.addEventListener('input', function () {
-                clearError();
-                this.classList.add('error');
+                clearFieldError(this);
+                this.classList.remove('error');
             });
         });
     }
 });
 
 function validateRegistrationForm(e) {
-    const username = document.getElementById('username');
-    const usernameValue = username.value.trim();
-    const password = document.getElementById('password');
-    const passwordValue = password.value.trim();
-    const email = document.getElementById('email');
-    const emailValue = email.value.trim();
-    const passwordConfirm = document.getElementById('confirm_password');
-    const passwordConfirmValue = passwordConfirm.value.trim();
-    const phoneNumber = document.getElementById('phone')
-    const phoneNumberValue = phoneNumber.value.trim();
-
-    clearError();
-    username.classList.remove('error');
-    password.classList.remove('error');
-    email.classList.remove('error');
-    passwordConfirm.classList.remove('error');
-    phoneNumber.classList.remove('error');
-
-    if (!usernameValue || !passwordValue || !emailValue || !passwordConfirmValue || !phoneNumberValue) {
-        e.preventDefault();
-
-        if (!usernameValue) {
-            username.classList.add('error');
+    const fields = {
+        username: {
+            element: document.getElementById('username'),
+            rules: [
+                {check: (val) => !val, message: "Campo obbligatorio"},
+                {check: (val) => val.length < 3, message: "Username deve essere almeno 3 caratteri"},
+            ]
+        },
+        email: {
+            element: document.getElementById('email'),
+            rules: [
+                {check: (val) => !val, message: "Campo obbligatorio"},
+            ]
+        },
+        password: {
+            element: document.getElementById('password'),
+            rules: [
+                {check: (val) => !val, message: "Campo obbligatorio"},
+                {check: (val) => val.length < 6, message: "Password deve essere almeno 6 caratteri"},
+            ]
+        },
+        confirm_password: {
+            element: document.getElementById('confirm_password'),
+            rules: [
+                {check: (val) => !val, message: "Campo obbligatorio"},
+            ]
+        },
+        phone: {
+            element: document.getElementById('phone'),
+            rules: [
+                {check: (val) => !val, message: "Campo obbligatorio"},
+                {check: (val) => val.length !== 9 && val.length !== 10, message: "Numero di telefono non valido"}
+            ]
         }
-        if (!passwordValue) {
-            password.classList.add('error');
+    };
+    clearAllErrors();
+    
+    Object.values(fields).forEach(field => field.element.classList.remove('error'));
+    let hasError = false;
+    for (const [fieldName, field] of Object.entries(fields)) {
+        const value = field.element.value.trim();
+        for (const rule of field.rules) {
+            if (rule.check(value)) {
+                e.preventDefault();
+                field.element.classList.add('error');
+                showFieldError(field.element, rule.message);
+                hasError = true;
+                break;
+            }
         }
-        if (!emailValue) {
-            email.classList.add('error');
-        }
-        if (!passwordConfirmValue) {
-            passwordConfirm.classList.add('error');
-        }
-        if (!phoneNumberValue) {
-            phoneNumber.classList.add('error');
-        }
-        showError("Inserire i campi obbligatori")
     }
-
-    if (usernameValue.length < 3) {
-        e.preventDefault();
-        username.classList.add('error');
-        showError("Username deve essere almeno di 3 caratteri");
-        return false;
-    }
-
-    if (passwordValue.length < 6) {
-        e.preventDefault();
-        password.classList.add('error');
-        showError("Password deve essere almeno di 6 caratteri");
-        return false;
-    }
-
-    if (phoneNumberValue.length !== 9 && phoneNumberValue.length !== 10) {
-        e.preventDefault();
-        phoneNumber.classList.add('error');
-        showError("Numero di telefono non valido gay");
-        return false;
-    }
-    return true;
+    return !hasError;
 }
 
-function showError(message) {
-    let errorDiv = document.getElementById('errorMessage');
-
+function showFieldError(fieldElement, message) {
+    let errorDiv = fieldElement.parentElement.querySelector('.error-msg');
     if (!errorDiv) {
         errorDiv = document.createElement('div');
-        errorDiv.id = "errorMessage";
-        errorDiv.className = ('error-message');
-
-        const form = document.getElementById('registrationForm');
-        form.insertBefore(errorDiv, form.firstChild);
+        errorDiv.className = 'error-msg';
+        fieldElement.parentElement.appendChild(errorDiv);
     }
-
     errorDiv.textContent = message;
-    errorDiv.style.display = 'block';
     errorDiv.setAttribute('role', 'alert');
-
-    errorDiv.scrollIntoView({behavior: 'smooth', block: 'center'});
 }
 
-function clearError() {
-    const errorDiv = document.getElementById('errorMessage');
+function clearFieldError(fieldElement) {
+    const errorDiv = fieldElement.parentElement.querySelector('.error-msg');
     if (errorDiv && !errorDiv.hasAttribute('data-server-error')) {
-        errorDiv.textContent = '';
-        errorDiv.style.display = 'none';
-        errorDiv.removeAttribute('role');
+        errorDiv.remove();
     }
+}
+
+function clearAllErrors() {
+    const errorDivs = document.querySelectorAll(".error-msg");
+    errorDivs.forEach(errorDiv => {
+        if (!errorDiv.hasAttribute('data-server-error')) {
+            errorDiv.remove();
+        }
+    });
 }
