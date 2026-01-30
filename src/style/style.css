@@ -18,6 +18,7 @@
     --universitea-green: #00d69f;
     --card-bg-color: rgba(255, 255, 255, 0.03);
     --card-border-color: rgba(255, 255, 255, 0.05);
+    --step-number: #FFFFFF73;
 }
 
 html,
@@ -1495,7 +1496,7 @@ body.homepage #breadcrumb {
 .step-number {
     font-size: 3rem;
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--step-number);
     line-height: 1;
 }
 
@@ -3275,14 +3276,14 @@ fieldset input[type="radio"]:checked+label {
     letter-spacing: 0.05em;
 }
 
-.submit-btn:hover {
+.submit-btn:hover, .admin-controls:hover {
     background-color: #fff;
-    color: var(--universitea-green);
+    color: var(--darkbgcolor);
     transform: translateY(-2px);
     box-shadow: 0 0.75rem 2rem rgba(0, 214, 159, 0.3);
 }
 
-.submit-btn:active {
+.submit-btn:active, .admin-controls:active {
     transform: translateY(0);
 }
 
