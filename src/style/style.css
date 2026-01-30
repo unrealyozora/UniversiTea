@@ -870,7 +870,8 @@ body.homepage #breadcrumb {
     #main-menu a,
     .nav-text-link,
     li#current-link,
-    #current-link span {
+    #current-link span, #user-actions ul li
+    {
         font-size: 1.8rem;
         color: #fff;
         /* Forza bianco sempre */
@@ -906,7 +907,7 @@ body.homepage #breadcrumb {
 
     /* Icone più grandi e bianche */
     .nav-text-link img,
-    li#current-link .nav-text-link img {
+    li#current-link .nav-text-link img,li#current-link img  {
         width: 1.875em;
         height: 1.875em;
         filter: brightness(0) invert(1) !important;
