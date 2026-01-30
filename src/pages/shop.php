@@ -14,15 +14,24 @@ function renderProductCard($product, $templateHtml)
     $descrizione = htmlspecialchars($product['descrizione'] ?? '', ENT_QUOTES, 'UTF-8');
     $prezzo = number_format($product['prezzo'], 2, ',', '.');
     $categoria = htmlspecialchars($product['categoria'], ENT_QUOTES, 'UTF-8');
-    $imgPath = getImagePlaceholder($categoria);
+    $imgAlt = htmlspecialchars($product['img_alt'], ENT_QUOTES, 'UTF-8');
+
+    if ($product['img_src'] === '') {
+        $imgPath = getImagePlaceholder($product['categoria']);
+    } else {
+        $basePath = getBasePath();
+        $fullPath = $basePath . $product['img_src'];
+        $imgPath = htmlspecialchars($fullPath, ENT_QUOTES, 'UTF-8');
+    }
 
     $replacements = [
-        '{{ID}}'=> $id,
-        '{{NOME}}'=> $nome,
-        '{{DESCRIZIONE}}'=> $descrizione,
-        '{{PREZZO}}'=> $prezzo,
-        '{{CATEGORIA}}'=> $categoria,
-        '{{IMG_PATH}}'=> $imgPath,
+        '{{ID}}' => $id,
+        '{{NOME}}' => $nome,
+        '{{DESCRIZIONE}}' => $descrizione,
+        '{{PREZZO}}' => $prezzo,
+        '{{CATEGORIA}}' => $categoria,
+        '{{IMG_PATH}}' => $imgPath,
+        '{{IMG_ALT}}' => $imgAlt,
     ];
     return str_replace(array_keys($replacements), array_values($replacements), $templateHtml);
 }
@@ -38,7 +47,7 @@ if (!is_numeric($maxPrice) || $maxPrice < 0) {
     $maxPrice = 100;
 }
 
-$onlyAvailable = isset($_GET['availability']) && $_GET['availability'] ==='on';
+$onlyAvailable = isset($_GET['availability']) && $_GET['availability'] === 'on';
 
 
 // Imposta quale radio button deve essere checked
@@ -62,6 +71,8 @@ try {
                 P.descrizione, 
                 P.prezzo, 
                 P.disponibilita,
+                P.img_src,
+                P.img_alt,
                 -- Determiniamo la categoria con subquery per coerenza
                 CASE 
                     WHEN EXISTS (SELECT 1 FROM Bevande WHERE id = P.id) THEN 'bevande'
@@ -118,7 +129,7 @@ try {
     $stmt->execute();
     $prodotti = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $cardTemplate= __DIR__ . '/templates/productCard_template.html';
+    $cardTemplate = __DIR__ . '/templates/productCard_template.html';
     $cardTemplate = file_exists($cardTemplate) ? file_get_contents($cardTemplate) : '<li class="no-result"> Template Prodotto Mancante</li>';
 
     // Genera HTML dei prodotti

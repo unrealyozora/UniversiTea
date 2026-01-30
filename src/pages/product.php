@@ -5,7 +5,7 @@ require_once '../config/shop_functions.php';
 // 1. Recupero ID e Validazione Immediata
 $productId = $_GET['id'] ?? null;
 
-// Se non c'è l'ID nell'URL, è inutile connettersi al DB: errore 404 subito.
+// Se non c'è l'ID nell'URL, reindirizza a opagina di errore 404
 if (!$productId) {
     loadErrorPage(404);
 }
@@ -20,7 +20,7 @@ try {
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$product) {
-      loadErrorPage(404);
+        loadErrorPage(404);
     }
 
 
@@ -35,8 +35,15 @@ try {
     $btnText = $isAvailable ? 'Aggiungi al carrello' : 'Esaurito';
 
     // Immagine
-    $imgSrc = getImagePlaceholder($product['categoria']);
-    $imgAlt = "Dettaglio del prodotto: " . htmlspecialchars($product['nome']);
+    //$imgSrc = getImagePlaceholder($product['categoria']);
+    $basePath = getBasePath();
+    if ($product['img_src'] === '') {
+        $imgSrc = getImagePlaceholder($product['categoria']);
+    } else {
+        $imgSrc = $basePath . $product['img_src'];
+    }
+
+    $imgAlt = $product['img_alt'];
 
     // Generazione HTML Specifiche Tecniche
     $specsHtml = '';

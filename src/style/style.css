@@ -870,8 +870,8 @@ body.homepage #breadcrumb {
     #main-menu a,
     .nav-text-link,
     li#current-link,
-    #current-link span, #user-actions ul li
-    {
+    #current-link span,
+    #user-actions ul li {
         font-size: 1.8rem;
         color: #fff;
         /* Forza bianco sempre */
@@ -907,7 +907,8 @@ body.homepage #breadcrumb {
 
     /* Icone più grandi e bianche */
     .nav-text-link img,
-    li#current-link .nav-text-link img,li#current-link img  {
+    li#current-link .nav-text-link img,
+    li#current-link img {
         width: 1.875em;
         height: 1.875em;
         filter: brightness(0) invert(1) !important;
@@ -1925,7 +1926,7 @@ body.homepage #breadcrumb {
     /* Fondamentale per l'effetto sticky */
 }
 
-#bundle-content li{
+#bundle-content li {
     list-style: none;
 }
 
@@ -2824,6 +2825,110 @@ fieldset {
     }
 }
 
+/* --- OPTIMIZATION FOR SHORT SCREENS (e.g. Landscape Mobile / Small Laptops) --- */
+@media (max-height: 850px) {
+
+    /* Riduciamo padding globale del container */
+    #register-content,
+    #login-content {
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+        justify-content: flex-start;
+        /* Evita che venga tagliato in alto se troppo alto */
+        min-height: auto;
+        /* Rimuovi altezza minima forzata */
+    }
+
+    /* Riduciamo titoli */
+    #register-content h1,
+    #login-content h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Card più compatta */
+    section.register-card,
+    section.login-card {
+        padding: 1.5rem 1.5rem;
+        border-radius: 1.25em;
+        max-width: 50em;
+        /* Allarghiamo un po' per far stare 2 col */
+    }
+
+    section.register-card h2,
+    section.login-card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-prompt,
+    .register-link {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* --- GRID LAYOUT PER I FORM --- */
+    /* Trasforma il form in una griglia a 2 colonne */
+    #registrationForm,
+    #loginForm {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        /* Spazio tra le celle */
+        align-items: start;
+    }
+
+    /* Elementi che devono occupare tutta la larghezza (Titoli, Bottoni, Fieldset) */
+    #registrationForm fieldset,
+    #registrationForm .submit-btn,
+    #loginForm .submit-btn,
+    #loginForm .error-message,
+    #registrationForm .error-message,
+    .register-advice {
+        grid-column: 1 / -1;
+    }
+
+    /* Specifico per Login: Username e Password affiancati se c'è spazio, o 1 colonna se troppo stretto */
+    #loginForm .form-group {
+        margin-bottom: 0;
+    }
+
+    /* Riduciamo spazi nei form group */
+    .form-group {
+        margin-bottom: 0;
+        /* Gestito dal gap della griglia */
+    }
+
+    .form-group label {
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
+    }
+
+    .form-group input {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Fieldset più compatto */
+    fieldset {
+        margin: 0 0 1rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    legend {
+        margin-bottom: 0.5rem;
+    }
+
+    .submit-btn {
+        margin-top: 0.5rem;
+        padding: 0.8rem;
+    }
+}
+
 /* --- FOOTER --- */
 /* =========================================
    RE-STYLING FOOTER
@@ -2992,7 +3097,8 @@ fieldset {
 ==========================================================================================================================================
 */
 
-#register-content, #login-content {
+#register-content,
+#login-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3003,7 +3109,8 @@ fieldset {
 }
 
 /* Titoli */
-#register-content  h1, #login-content h1{
+#register-content h1,
+#login-content h1 {
     color: #fff;
     font-size: 3.5em;
     margin-bottom: 1.5rem;
@@ -3012,8 +3119,7 @@ fieldset {
 }
 
 section.register-card h2,
-section.login-card h2
-{
+section.login-card h2 {
     font-size: 2em;
     color: var(--txtcolor);
     margin-bottom: 1.5rem;
@@ -3031,7 +3137,7 @@ section.login-card h2
 }
 
 .login-prompt a,
-.register-link a{
+.register-link a {
     color: var(--universitea-green);
     font-weight: 700;
     transition: color 0.3s ease;
@@ -3041,15 +3147,13 @@ section.login-card h2
 }
 
 .login-prompt a:hover,
-.register-link a:hover
-{
+.register-link a:hover {
     color: var(--txtcolor);
     text-decoration: underline;
 }
 
 section.register-card,
-section.login-card
-{
+section.login-card {
     width: 100%;
     max-width: 40em;
     background: var(--card-bg-color);
@@ -3139,7 +3243,7 @@ fieldset input[type="radio"]:checked+label {
 .form-group p.login-advice {
     margin-bottom: 0.5rem;
     margin-left: 0.5rem;
-    color:rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.9em;
 }
 
@@ -3199,5 +3303,109 @@ fieldset input[type="radio"]:checked+label {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+    }
+}
+
+/* --- OPTIMIZATION FOR SHORT SCREENS (e.g. Landscape Mobile / Small Laptops) --- */
+@media (max-height: 850px) {
+
+    /* Riduciamo padding globale del container */
+    #register-content,
+    #login-content {
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+        justify-content: flex-start;
+        /* Evita che venga tagliato in alto se troppo alto */
+        min-height: auto;
+        /* Rimuovi altezza minima forzata */
+    }
+
+    /* Riduciamo titoli */
+    #register-content h1,
+    #login-content h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Card più compatta */
+    section.register-card,
+    section.login-card {
+        padding: 1.5rem 1.5rem;
+        border-radius: 1.25em;
+        max-width: 50em;
+        /* Allarghiamo un po' per far stare 2 col */
+    }
+
+    section.register-card h2,
+    section.login-card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-prompt,
+    .register-link {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* --- GRID LAYOUT PER I FORM --- */
+    /* Trasforma il form in una griglia a 2 colonne */
+    #registrationForm,
+    #loginForm {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        /* Spazio tra le celle */
+        align-items: start;
+    }
+
+    /* Elementi che devono occupare tutta la larghezza (Titoli, Bottoni, Fieldset) */
+    #registrationForm fieldset,
+    #registrationForm .submit-btn,
+    #loginForm .submit-btn,
+    #loginForm .error-message,
+    #registrationForm .error-message,
+    .register-advice {
+        grid-column: 1 / -1;
+    }
+
+    /* Specifico per Login: Username e Password affiancati se c'è spazio, o 1 colonna se troppo stretto */
+    #loginForm .form-group {
+        margin-bottom: 0;
+    }
+
+    /* Riduciamo spazi nei form group */
+    .form-group {
+        margin-bottom: 0;
+        /* Gestito dal gap della griglia */
+    }
+
+    .form-group label {
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
+    }
+
+    .form-group input {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Fieldset più compatto */
+    fieldset {
+        margin: 0 0 1rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    legend {
+        margin-bottom: 0.5rem;
+    }
+
+    .submit-btn {
+        margin-top: 0.5rem;
+        padding: 0.8rem;
     }
 }
