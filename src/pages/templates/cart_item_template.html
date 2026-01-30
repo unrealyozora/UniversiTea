@@ -12,7 +12,7 @@
                 <input type="hidden" name="action" value="update_quantity">
                 <input type="hidden" name="product_id" value="{{ID}}">
                 <input type="hidden" name="quantity" value="{{QTY_MINUS}}">
-                <button type="submit" class="quantity-btn" {{DISABLED_MINUS}}>-</button>
+                <button type="submit" class="quantity-btn" {{DISABLED_MINUS}} aria-label="Diminuisci quantità: -1">-</button>
             </form>
 
             <span class="quantity-display">{{QTY}}</span>
@@ -21,7 +21,7 @@
                 <input type="hidden" name="action" value="update_quantity">
                 <input type="hidden" name="product_id" value="{{ID}}">
                 <input type="hidden" name="quantity" value="{{QTY_PLUS}}">
-                <button type="submit" class="quantity-btn" {{DISABLED_PLUS}}>+</button>
+                <button type="submit" class="quantity-btn" {{DISABLED_PLUS}} aria-label="Aumenta quantità: +1">+</button>
             </form>
         </div>
 

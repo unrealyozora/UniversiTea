@@ -11,14 +11,14 @@
 
             <form action="../config/add_to_cart.php" method="POST">
                 <input type="hidden" name="product_id" value="{{ID}}">
-                <button type="submit" class="btn-add-cart" aria-label="Aggiungi $nome al carrello">
+                <button type="submit" class="btn-add-cart" aria-label="Aggiungi al carrello: {{NOME}}">
                     Aggiungi al carrello
                 </button>
             </form>
             <form action="../config/add_favorite.php" method="POST">
                 <input type="hidden" name="product_id" value="{{ID}}">
                 <button type="submit" class="btn-add-preferiti" value="{{ID}}"
-                        aria-label="Aggiungi {{NOME}} ai preferiti">Aggiungi ai Preferiti
+                        aria-label="Aggiungi ai preferiti: {{NOME}}">Aggiungi ai Preferiti
                 </button>
             </form>
         </div>
