@@ -258,12 +258,12 @@
 /* --- GRIGLIA PRODOTTI --- */
 .product-list {
     display: grid;
-    /* Grid responsive robusta */
     grid-template-columns: repeat(auto-fill, minmax(16.25em, 1fr));
     gap: 2rem;
     list-style: none;
     padding: 0;
     margin-top: 1em;
+    margin-right: 1rem;
     transition: opacity 0.1s ease;
 }
 .product-list.loading-fade {
@@ -296,6 +296,7 @@
     height: 13.75em; /* Altezza fissa per allineamento visivo */
     object-fit: contain; /* Contain evita il taglio dei prodotti */
     padding: 1.5rem;
+    margin-left: 1em;
     background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: transform 0.5s ease;
@@ -350,7 +351,7 @@
 }
 
 /* Bottone Action */
-.btn-add-cart {
+.btn-add-cart, .btn-filter {
     width: 100%;
     padding: 0.8rem;
     background-color: transparent;
@@ -366,13 +367,13 @@
     margin: 0.5em;
 }
 
-.btn-add-cart:hover {
+.btn-add-cart:hover, .btn-filter:hover {
     background-color: var(--universitea-green);
     color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
     box-shadow: 0 0 15px rgba(0, 214, 159, 0.4);
 }
 
-.btn-add-cart:focus-visible {
+.btn-add-cart:focus-visible, .btn-filter:focus-visible {
     outline: 3px solid #fff;
     outline-offset: 2px;
 }
