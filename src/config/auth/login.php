@@ -85,7 +85,7 @@ function loginUser(): void
             $destination = ($_SESSION['tipo_utente'] === 'Venditore') ? 'administrator.php' : 'dashboard.php';
         }
 
-        header("Location: ../../pages/" . $destination);
+        header("Location: " . $destination);
         exit();
 
     } catch (Exception $e) {

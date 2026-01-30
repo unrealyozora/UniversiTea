@@ -20,14 +20,15 @@
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <label for="menu-toggle" class="hamburger-btn" aria-label="Apri Menu">
+    <label for="menu-toggle" class="hamburger-btn">
+        <span class="sr-only">Apri menù</span>
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </label>
 
     <div class="nav-wrapper">
-        <label for="menu-toggle" class="close-menu-btn" aria-label="Chiudi Menu">&times;</label>
+        <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi Menu</span></label>
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
                 <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
@@ -47,7 +48,9 @@
                     </a>
                 </li>
                 <li>
-                    <span lang="en-GB" class="btn-join">Join Now</span>
+                    <a href="./register.php" class="btn-join">
+                        Accedi ora
+                    </a>
                 </li>
             </ul>
         </nav>
