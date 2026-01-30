@@ -4,27 +4,41 @@
 /**
  * Restituisce il path dell'immagine placeholder in base alla categoria
  */
-function getImagePlaceholder($categoria) {
+function getImagePlaceholder($categoria)
+{
     // Nota: Aggiusta il path in base a dove includi il file.
     // Se lo includi in pages/product.php, il path relativo è corretto così.
     $basePath = '../../assets/images/';
     switch ($categoria) {
-        case 'bevande': return $basePath . 'placeholder_tea.svg';
-        case 'merchandising': return $basePath . 'placeholder_merch2.webp';
-        case 'servizi': return $basePath . 'placeholder_service.svg';
-        case 'bundle': return $basePath . 'placeholder_bundle.svg';
-        default: return $basePath . 'placeholder_generic.jpg';
+        case 'bevande':
+            return $basePath . 'placeholder_tea.svg';
+        case 'merchandising':
+            return $basePath . 'placeholder_merch2.webp';
+        case 'servizi':
+            return $basePath . 'placeholder_service.svg';
+        case 'bundle':
+            return $basePath . 'placeholder_bundle.svg';
+        default:
+            return $basePath . 'placeholder_generic.jpg';
     }
+}
+
+function getBasePath(): string
+{
+    return '../../assets/images/';
 }
 
 /**
  * Esegue la query per ottenere i prodotti (uno singolo o lista)
  */
-function getProductQuery($conn, $id = null) {
+function getProductQuery($conn, $id = null)
+{
     $sql = "SELECT 
                 P.id, 
                 P.nome, 
                 P.descrizione, 
+                P.img_src,
+                P.img_alt,
                 P.prezzo, 
                 P.disponibilita,
                 B.temp_consigliata,
@@ -60,7 +74,8 @@ function getProductQuery($conn, $id = null) {
     return $stmt;
 }
 
-function getBundleItems($conn, $bundleId) {
+function getBundleItems($conn, $bundleId)
+{
     $sql = "SELECT P.id, P.nome 
             FROM Bundle B
             JOIN Prodotti P ON B.contenuto = P.id
@@ -73,7 +88,8 @@ function getBundleItems($conn, $bundleId) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function loadErrorPage($code) {
+function loadErrorPage($code)
+{
     http_response_code($code);
 
 // ADATTA QUESTO PERCORSO:
