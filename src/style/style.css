@@ -2120,161 +2120,66 @@ input:focus-visible {
     margin: 0 auto;
 }
 
-.tea-content h1 {
-    color: #FFA632;
-    text-align: center;
-    margin-top: 0.6em;
-    margin-bottom: 1.5em;
-    font-size: 2.7rem;
-    width: 100%;
-}
-
-.tea-intro {
-    max-width: 60rem;
-    margin-left: auto;
-    margin-right: auto;
+.teaintro {
     position: relative;
-    z-index: 1;
+    width: 100%;
+    height: 70vh; /*occupa il 70% dello schermo*/
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end; /*allinea a sinistra*/
+    background-image: url('../../assets/images/tea-photo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /*foto è al 100% dello schermo*/ 
+    padding: 3em;
+    
+}
+
+.teaintro-text {
+    max-width: 50em;
+    padding: 2em;
+    background: rgba(255, 255, 255, 0.1); /*questo dà la trasparenza*/
+    backdrop-filter: blur(12px); /*sfocato*/
+    -webkit-backdrop-filter: blur(12px); /*per Safari*/
+    border: 1px solid var(--txtcolor);
+    border-radius: 1em;
+}
+
+.teaintro-text h1 {
+    color: var(--universitea-green);
     text-align: center;
-    padding: 3.5em 2.5em;
-    background: transparent;
-    margin-top: 3em;
-    margin-bottom: 5em;
-}
-
-.tea-intro p {
-    max-width: 100%;
-    font-size: 1.3rem;
-    line-height: 1.7;
-    color: var(--txtcolor);
-    margin-bottom: 1.2em;
-    position: relative;
-    z-index: 2;
-}
-
-/*Getto di tè, no animazioni*/
-/*.tea-intro::before {
-    content: "";
-    position: absolute;
-    top: -4.3em;
-    right: 11.5em;
-    width: 1.5em;
-    height: 4.1em;
-    background: #181717;
-    border-top: 3px solid var(--universitea-green);
-    border-left: 3px solid var(--universitea-green);
-    border-right: 3px solid var(--universitea-green);
-    border-bottom: none;
-    border-radius: 2em 2em 0 0;
-    z-index: 1;
-}*/
-
-/*per gestire colori e stile dell'svg dal css*/
-.liquid-path {
-    fill: none;
-    stroke: #00D69F;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-/*immagine svg. animiamo solo la parte sotto*/
-.liquid-svg {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 120%;
-    z-index: -1;
-    overflow: visible;
-}
-
-.liquid-svg path {
-    transform-origin: top;
-    animation: drip-only 5s ease-in-out infinite;
-}
-
-.liquid-svg rect {
-    animation: none;
-}
-
-@keyframes drip-only {
-
-    0%,
-    100% {
-        transform: scaleY(1);
-    }
-
-    50% {
-        transform: scaleY(1.1);
-    }
-}
-
-/*teiera non animata*/
-/*.teiera {
-    position: absolute;
-    top: -8.7em;
-    right: 1.7em;
-    width: 12em;
-    z-index: 10;
-    transform: rotate(-15deg);
-    filter: drop-shadow(0.25em 0.5em 0.37em rgba(0, 0, 0, 0.2));
-}
-
-.teiera img {
-    width: 100%;
-    height: auto;
-    display: block;
-}*/
-
-/*opzione no animazioni*/
-.tea-content .accessibility-controls {
-    position: absolute;
-    top: -4.5em;
-    right: 1%;
-    margin: 0;
-    padding: 0.8rem;
-    border-radius: 0.75em;
-    z-index: 100;
-    /*lo tiene sopra a tutto, anche all'SVG*/
-
-}
-
-.tea-content .accessibility-controls legend {
-    font-size: 0.8rem;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    font-size: 2.5em;
+    line-height: 1.6;
     font-weight: bold;
 }
 
-.tea-content .access-toggle {
-    cursor: pointer;
-    font-size: 0.8rem;
+.teaintro-text p{
+    font-size: 2em;
+    color: var(--txtcolor);
+    line-height: 1.6;
+    text-align: center;
 }
 
-/*LOGICA DI STOP: Ferma tutto per opzione no animazioni*/
-.tea-content.no-anim * {
-    animation-play-state: paused;
-    /*animation: none;*/
-    /*meglio animation:non?*/
+.teaintro-text cite{
+    display: block; /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
+    text-align: right;
+
 }
 
 @media (max-width: 768px) {
-    .tea-content .accessibility-controls {
-        position: static;
-        /* Annulla il posizionamento absolute */
-        margin: 1rem auto;
-        /* Lo centra e gli dà respiro */
-        width: 90%;
+    .teaintro {
+        justify-content: center; /*sui telefoni mettiamo al centro*/
         text-align: center;
+    }
+    .teaintro-text {
+        max-width: 90%;
+        padding: 1.5em;
     }
 }
 
-/*Titoli H2, stile uguale per tutti. Cambia con h2 e la class del body??*/
-.curiosita-content h2,
+.curiosita h2,
 .tea-process h2,
 .tea-card h2,
 .quiz-section h2 {
@@ -2286,16 +2191,14 @@ input:focus-visible {
     line-height: 1.6;
 }
 
-/*Paragrafi e Descrizioni, stile uguale per tutti. Cambia solo con p e la class del body?*/
-.curiosita-content p,
+.curiosita p,
 .tea-process p,
-/*da specificare anche tabledescr o va bene p?*/
 .tea-card p {
-    font-size: 1.2rem;
+    font-size: 1.2em;
     line-height: 1.7;
     color: var(--txtcolor);
-    margin-bottom: 1.2rem;
-    margin-top: 2rem;
+    margin-bottom: 1.2em;
+    margin-top: 2em;
     text-align: left;
     max-width: 100%;
 }
@@ -2328,12 +2231,10 @@ input:focus-visible {
     width: 100%;
     max-width: 7.5em;
     height: auto;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
 }
 
 /*sezione tea-process con tabella*/
-.tea-process,
-.admin-table-container {
+.tea-process {
     width: 100%;
     margin-top: 0;
     margin-bottom: 4rem;
@@ -2342,31 +2243,21 @@ input:focus-visible {
 }
 
 /*contenitore tabella*/
-.tea-process .table-container,
-.admin-table-container .product-table {
+.tea-process .table-container{
     width: 100%;
-    overflow-x: auto;
-    border-radius: 0.9375em;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-    background-color: white;
-    margin-top: 2rem;
+    padding: 0 1em 0 1em;
+    margin-top: 2em;
 }
-
-/*.tea-process .table-container:focus {
-    outline: 0.1875em solid #FFA632;
-    outline-offset: 0.125em;
-}*/
 
 /*tabella effettiva*/
 .tea-process table {
     width: 100%;
-    border-collapse: collapse;
-    min-width: 37.5em;
+    border-collapse: collapse; /*tolgo la roba default dei bordi delle tabelle*/
+    border: 2px solid #ddd;
+    border-radius: 2em; /*bordi arrotondati*/
 }
 
-.tea-process table thead th,
-.admin-table-container table thead th {
+.tea-process thead th {
     background-color: #007d5d;
     color: #ffffff;
     padding: 1.2rem;
@@ -2376,39 +2267,62 @@ input:focus-visible {
     letter-spacing: 0.05em;
 }
 
-.tea-process table tbody th,
-.admin-table-container table tbody th {
-    background-color: #f9f9f9;
+.tea-process tbody th {
+    background-color: var(--linkcolor);
     color: var(--darkbgcolor);
-    font-weight: 700;
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid var(--navlink-color);
-    border-right: 3px solid #007d5d;
+    font-weight: bold;
+    padding: 1em 1em;
+    border-bottom: 1px solid var(--navlink-color); /*bordino tra un th e l'altro*/
+    border-right: 3px solid #007d5d; /*bordo tra th e td*/
 }
 
-.tea-process table td,
-.admin-table-container table td {
+.tea-process tbody td {
     padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--navlink-color);
     color: var(--graybgcolor);
+    background-color: var(--txtcolor);
+    border: 1px solid black;
 }
 
-.tea-process table tbody tr:nth-child(even),
-.admin-table-container table tbody tr:nth-child(even) {
-    background-color: #f2f7f4;
+.tea-process caption{
+    caption-side: bottom; /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
+    background-color: var(--darkbgcolor);
+    color: var(--linkcolor);
+    font-weight: bold;
+    border: none; /*tolgo bordo default sotto*/
+    padding-top: 1em;
+    text-align: center;
 }
 
-.tea-process table tbody tr:hover,
-.admin-table-container table tbody tr:hover {
-    /*va bene per accessibilità o fastidioso?*/
-    background-color: var(--linkcolor);
-    transition: background-color 0.2s ease;
+@media (max-width: 768px){
+
+    .tea-process thead{
+        display: none;
+    }
+
+    .tea-process tr, .tea-process td{
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .tea-process th{
+        text-transform: uppercase;
+        text-align: center;
+        width: 100%;
+    }
+
+    .tea-process td::before{
+        content: attr(datatitle);
+        display: block;
+        color: var(--graybgcolor);
+        font-weight: bold;
+    }
 }
 
 .tea-card {
     display: flex;
-    flex-direction: row;
-    /* Foto e testo affiancati */
+    flex-direction: row; /* Foto e testo affiancati */
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
@@ -2419,7 +2333,7 @@ input:focus-visible {
     text-align: left;
 }
 
-/* Inverte l'ordine per i rami pari su Desktop */
+/*inverte l'ordine foto testo per desktop*/
 .tea-card:nth-of-type(even) {
     flex-direction: row-reverse;
 }
@@ -2446,19 +2360,12 @@ input:focus-visible {
     transition: transform 0.3s ease;
 }
 
-.tea-card img:hover {
-    transform: scale(1.03);
-}
-
 /* --- LAYOUT MOBILE (Sotto i 768px) --- */
 @media (max-width: 767px) {
-
-    .tea-card,
+    .tea-card, 
     .tea-card:nth-of-type(even) {
-        flex-direction: column;
-        /* Uno sopra l'altro */
-        text-align: center;
-        /* Opzionale: centra il testo su mobile */
+        flex-direction: column; /*ora sono uno sopra l'altro e non alternati come prima*/
+        text-align: center; 
     }
 
     .card-text {
@@ -2472,7 +2379,7 @@ input:focus-visible {
         width: 100%;
     }
 
-    .tea-card h2 {
+    .tea-card h2{
         padding-bottom: 0.5em;
         border-bottom: 0.1em solid var(--universitea-green);
     }
@@ -2499,7 +2406,7 @@ fieldset {
     width: 100%;
 }
 
-.quiz-section p {
+.quiz-section p{
     font-size: 1.2em;
 }
 
