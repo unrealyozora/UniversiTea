@@ -80,11 +80,12 @@
             <form id="filter-form" method="GET" action="./shop.php">
                 <h2>Filtri di Ricerca</h2>
 
-                <div class="filter-group-vertical">
+                <fieldset class="filter-group-vertical filter-group">
+                    <legend>Barra di ricerca</legend>
                     <label for="search-input">Cerca prodotto per nome o descrizione:</label>
                     <input type="search" id="search-input" name="search"
                            value="{{SEARCH_VALUE}}" placeholder="Té nero ...">
-                </div>
+                </fieldset>
 
                 <fieldset class="filter-group">
                     <legend>Categoria</legend>
@@ -113,16 +114,18 @@
                 </fieldset>
                 <div class="filter-settings">
                     <fieldset class="filter-group price-group">
-                        <label for="price-range" class="visually-hidden">Seleziona prezzo massimo <span
+                        <legend>Prezzo</legend>
+                        <label for="price-range"  aria-live="assertive">Seleziona prezzo massimo <span
                                 id="price-value">{{MAX_PRICE}}€</span></label>
                         <input type="range" id="price-range" name="max-price" min="0" max="100" value="{{MAX_PRICE}}"
                                step="1">
                     </fieldset>
 
-                    <div class="filter-toggle">
+                    <fieldset class="filter-group filter-toggle">
+                        <legend>Disponibilità</legend>
                         <input type="checkbox" id="avail-toggle" name="availability" {{CHECKED_AVAILABILITY}}>
                         <label for="avail-toggle">Solo disponibili</label>
-                    </div>
+                    </fieldset>
                 </div>
 
                 <button type="submit" class="btn-filter">Applica Filtri</button>
@@ -130,7 +133,7 @@
         </aside>
 
         <section class="products-area" aria-live="polite">
-            <h2 class="visually-hidden">Risultati ricerca</h2>
+            <h2>Risultati ricerca</h2>
             {{USER_FEEDBACK}}
             <p id="status-msg" role="status">{{STATUS_MSG}}</p>
 

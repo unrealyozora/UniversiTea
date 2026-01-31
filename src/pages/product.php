@@ -5,11 +5,6 @@ require_once '../config/shop_functions.php';
 // 1. Recupero ID e Validazione Immediata
 $productId = $_GET['id'] ?? null;
 
-// Se non c'è l'ID nell'URL, reindirizza a opagina di errore 404
-if (!$productId) {
-    loadErrorPage(404);
-}
-
 try {
     $db = new Database();
     $conn = $db->getConnection();
@@ -18,10 +13,6 @@ try {
     $stmt = getProductQuery($conn, $productId);
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$product) {
-        loadErrorPage(404);
-    }
 
 
     // Formattazione Prezzo
@@ -42,8 +33,6 @@ try {
     // Generazione HTML Specifiche Tecniche
     $specsHtml = '';
     $innerSpecs = '';
-
-    // In product.php, all'interno del blocco switch ($product['categoria'])
 
     switch ($product['categoria']) {
         case 'bevande':
@@ -125,6 +114,4 @@ try {
 
 } catch (PDOException $e) {
     error_log("Errore product.php: " . $e->getMessage());
-    // In caso di errore DB, meglio usare codice 500
-    loadErrorPage(500);
 }

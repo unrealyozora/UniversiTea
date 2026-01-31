@@ -93,25 +93,3 @@ function getBundleItems($conn, $bundleId)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-function loadErrorPage($code)
-{
-    http_response_code($code);
-
-// ADATTA QUESTO PERCORSO:
-// Supponiamo che le pagine siano tipo: pages/404.php, pages/500.php
-    $path = __DIR__ . "/../pages/$code.html";
-
-// Se sono .html cambia l'estensione qui sotto:
-    if (!file_exists($path)) {
-        $path = __DIR__ . "/../pages/$code.php";
-    }
-
-    if (file_exists($path)) {
-        require $path;
-    } else {
-// Fallback estremo se manca anche il file di errore
-        echo "<h1>Errore $code</h1><p>Si è verificato un errore e la pagina personalizzata non è stata trovata.</p>";
-    }
-    exit; // Importante: ferma l'esecuzione dello script!
-}

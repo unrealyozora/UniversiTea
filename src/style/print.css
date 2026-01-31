@@ -1,300 +1,359 @@
 /* ==========================================================================
-   STILE DI STAMPA (PRINT STYLESHEET)
-   ========================================================================== */
+   STILI DI STAMPA (print.css)
+   Minimizza inchiostro, rimuove elementi 3D/interattivi, compatta il layout.
+========================================================================== */
 
 @media print {
-    :root {
-        --darkbgcolor: #ffffff !important;
-        --graybgcolor: #ffffff !important;
-        --lightbgcolor: #ffffff !important;
-        --txtcolor: #000000 !important;
-        --card-bg-color: transparent !important;
-        --card-border-color: #000000 !important;
-        --universitea-green: #006400 !important; /* Verde scuro per contrasto su carta */
-        --linkcolor: #000000 !important;
-    }
 
-    * {
+    /* --- 1. RESET GLOBALE & RISPARMIO INCHIOSTRO --- */
+    *,
+    *::before,
+    *::after {
         background: transparent !important;
         color: #000 !important;
         box-shadow: none !important;
         text-shadow: none !important;
-        filter: none !important; /* Rimuove invert o blur */
-        backdrop-filter: none !important;
+        filter: none !important; /* Rimuove filtri di inversione colori */
+        transition: none !important;
+        animation: none !important;
     }
 
-    html, body {
-        font-size: 12pt;
-        line-height: 1.5;
-        font-family: Georgia, "Times New Roman", serif;
+    body {
+        font-family: "Helvetica", "Arial", sans-serif;
+        font-size: 11pt;
+        line-height: 1.3;
+        background-color: #fff !important;
+        color: #000;
         margin: 0;
         padding: 0;
-        background-color: #fff;
-        width: 100%;
-        overflow: visible;
     }
 
     a {
         text-decoration: underline;
-        color: #000;
-        font-weight: bold;
+        color: #000 !important;
+        border: none !important;
     }
 
-    /* Mostra href dopo il link, escluso breadcrumb, loghi e link interni (#) */
-    a[href]:after {
+     a[href^="http"]::after {
         content: " (" attr(href) ")";
-        font-size: 0.8rem;
-        font-weight: normal;
+        font-size: 0.8em;
     }
 
-    a[href^="#"]:after,
-    a[href^="javascript"]:after,
-    .logo a:after,
-    #breadcrumb a:after,
-    .product-card a:after {
-        content: "";
-    }
+    /* --- 2. NASCONDI ELEMENTI INUTILI IN STAMPA --- */
 
-    /* 3. NASCONDERE ELEMENTI INUTILI
-       Nascondiamo menu, pulsanti interattivi, carrelli, video, parallasse, ecc.
-    */
-    nav#main-menu,
-    nav#user-actions,
-    .mobile-menu-overlay,
+    /* Navigazione e Menu */
+    .menu-checkbox,
     .hamburger-btn,
+    .nav-wrapper,
+    #main-menu,
+    #user-actions,
     .skip-link,
-    .parallax-scene,         /* Rimuove lo sfondo animato della home */
-    .hero-cta,               /* Rimuove bottoni "Join Now" */
-    .bestsellers-nav,        /* Rimuove frecce carosello */
-    .bestsellers-dots-container,
-    .accessibility-controls,
-    .btn-add,                /* Rimuove bottoni aggiungi al carrello */
-    .btn-join,
-    .submit-btn,
-    .filter-section,         /* Rimuove filtri shop */
-    model-viewer,            /* I modelli 3D non si stampano */
-    form,                    /* Nasconde form di login/registrazione */
-    iframe,
-    footer ul,               /* Nasconde link ridondanti nel footer */
-    footer p a img           /* Nasconde i badge di validazione W3C */
-    {
-        display: none !important;
-    }
+    .close-menu-btn,
+    .mobile-menu-overlay,
 
+        /* Elementi Grafici Pesanti e 3D */
+    .hero-section, /* Troppo inchiostro */
     .parallax-scene,
-    .parallax-layer,
-    img.parallax-layer,
-    .hero-section .parallax-scene {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        width: 0 !important;
-        opacity: 0 !important;
-        position: absolute !important; /* Toglie dal flusso se display fallisce */
-        z-index: -9999 !important;
-    }
+    .liquid-svg,
+    model-viewer, /* RIMOSSO MODELLO 3D */
+    .bestsellers-visual, /* Spesso contiene il 3D o immagini grandi */
 
+        /* Interfaccia Utente e Form */
+    .action-form, /* Pulsanti checkout/svuota */
+    .add-to-cart-form, /* Form aggiunta carrello */
+    aside#shop-filter-section, /* Filtri laterali shop */
+    .btn-join,
+    .btn-add-cart,
+    .btn-add-preferiti,
+    .btn-filter,
+    .social-links,
     .accessibility-controls,
-    form.accessibility-controls,
-    .access-toggle,
-    .bestsellers-header .accessibility-controls {
+    .bestsellers-nav, /* Frecce navigazione */
+
+        /* Elementi Footer superflui */
+    .footer-column nav, /* Nasconde le colonne "Naviga" e "Prodotti" */
+    .validators,
+    .disclaimer {
         display: none !important;
-        visibility: hidden !important;
     }
 
-    /* 4. LAYOUT GENERALE */
+    .product-card img,
+    .tea-card img,
+    .cart-item img,
+    .product-gallery img {
+        width: 30px !important;  /* Dimensione ridotta a 30px */
+        height: 30px !important;
+        object-fit: contain;
+        border: 1px solid #666;
+        margin-right: 8px;
+        /* Filtro B/N + leggero contrasto per definizione su carta */
+        filter: grayscale(100%) contrast(1.2) !important;
+    }
 
-    /* Header semplificato */
-    .main-header,
-    .main-header.scrolled {
-        position: static; /* Non più fixed */
-        background: none;
-        border-bottom: 2px solid #000;
-        padding: 20px 0;
+    /* --- 3. HEADER SEMPLIFICATO --- */
+    .main-header {
+        position: static !important; /* Niente sticky header */
         display: block;
         text-align: center;
-        height: auto;
+        border-bottom: 2px solid #000;
+        padding: 10px 0;
+        background-color: #fff !important;
     }
 
-    .logo {
-        width: 100%;
-        text-align: center;
-    }
-
-    .logo-img {
-        width: 200px; /* Logo più piccolo e definito */
+    .main-header .logo {
+        width: 150px; /* Logo più piccolo */
         height: auto;
         margin: 0 auto;
-        filter: grayscale(100%) brightness(0); /* Logo nero puro */
+        filter: brightness(0) !important; /* Forza logo nero */
     }
 
-    /* Breadcrumb */
-    #breadcrumb {
-        position: static;
-        background: none;
-        border: none;
-        color: #000;
-        padding: 10px 0;
-        margin: 0;
-        font-size: 0.9rem;
-        backdrop-filter: none;
+    /* --- 4. PAGINA SHOP (Layout Compatto) --- */
+
+    .shop-layout {
+        display: block !important;
     }
 
-    #breadcrumb span[aria-current="page"] {
-        color: #000;
-        font-weight: bold;
-        text-decoration: none;
-    }
-
-    /* Main Content Reset */
-    main {
-        padding: 0;
-        margin: 20px 0;
-    }
-
-    section {
-        page-break-inside: avoid; /* Evita di tagliare una sezione a metà pagina */
-        padding: 20px 0 !important;
-    }
-
-    /* Titoli */
-    h1, h2, h3 {
-        color: #000 !important;
-        page-break-after: avoid; /* Tiene il titolo attaccato al paragrafo */
-        text-align: left;
-    }
-
-    h1 { font-size: 24pt; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
-    h2 { font-size: 18pt; margin-top: 30px; }
-
-    /* 5. STILI SPECIFICI PER PAGINA */
-
-    /* --- HOME --- */
-    .hero-section {
-        height: auto;
-        background: none;
-        display: block;
-        padding: 0;
-        margin-bottom: 30px;
-    }
-
-    .hero-ui-content {
-        position: static;
-        padding: 0;
-    }
-
-    .hero-text-box {
-        background: none;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-        max-width: 100%;
-        text-align: left;
-        color: #000;
-        animation: none;
-    }
-
-    .hero-brand { font-size: 30pt; color: #000; }
-    .hero-slogan { color: #333; font-style: italic; }
-    .hero-description { color: #000; max-width: 100%; font-size: 12pt; }
-
-    /* Best Sellers (Layout Lineare invece di Slider) */
-    .bestsellers-content-wrapper {
-        display: block; /* Linearizza il contenuto */
-        transform: none !important; /* Rimuove skew e traslazioni */
-    }
-
-    .bestsellers-content-wrapper:after { display: none; } /* Rimuove tendina verde */
-
-    .bestsellers-info {
-        border-left: 4px solid #000; /* Bordo nero invece di verde */
-        margin: 0;
-        padding-left: 20px;
-        width: 100%;
-        page-break-inside: avoid;
-    }
-
-    .bestsellers-visual {
-        display: none; /* Nasconde l'area 3D */
-    }
-
-    /* --- SHOP --- */
     .product-list {
-        display: block; /* Lista verticale per stampa ordinata */
+        display: block !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Modifica principale: Card con bordo e spazi ridotti */
+    .product-item {
+        display: block;
+        width: 100% !important;
+        margin-bottom: 8px !important; /* Molto vicini tra loro */
+        padding: 8px !important;       /* Spazio interno ridotto */
+        border: 1px solid #666 !important; /* Bordo grigio scuro per leggibilità */
+        page-break-inside: avoid;      /* Evita il taglio a metà pagina */
+        box-sizing: border-box;
     }
 
     .product-card {
-        border: 1px solid #ccc;
-        border-radius: 0;
-        margin-bottom: 20px;
-        page-break-inside: avoid;
-        display: flex;
-        flex-direction: row; /* Immagine a sx, testo a dx */
-        align-items: flex-start;
-        padding: 15px;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center; /* Allinea immagine e testo al centro verticalmente */
+        background: transparent !important;
+        border: none !important; /* Il bordo è gestito da .product-item */
+        box-shadow: none !important;
+        gap: 15px; /* Spazio ridotto tra immagine e testo */
     }
 
-    .product-card:hover { transform: none; box-shadow: none; }
+    .product-card a {
+        flex: 0 0 60px; /* Immagine più piccola fissa */
+        margin: 0;
+    }
 
     .product-card img {
-        width: 100px;
-        height: auto;
-        border: 1px solid #eee;
-        margin-right: 20px;
-        align-self: flex-start;
+        width: 40px !important;       /* Rende l'immagine piccola */
+        height: auto !important;      /* Mantiene le proporzioni */
+        filter: grayscale(100%) !important; /* Converte in bianco e nero */
+        border: 1px solid #ccc;       /* Opzionale: aggiunge un bordo leggero */
+    }
+
+    /* 2. Nascondere i Bottoni */
+    /* Nasconde specificamente i bottoni di aggiunta carrello e preferiti */
+    .btn-add-cart,
+    .btn-add-preferiti {
+        display: none !important;
     }
 
     .product-info {
-        padding: 0;
-        display: block;
+        flex: 1;
+        text-align: left;
+        padding: 0 !important;
     }
 
-    .product-info h3 { margin-top: 0; font-size: 14pt; }
-    .product-info .description { -webkit-line-clamp: unset; overflow: visible; color: #000; }
-    .product-info .price { font-weight: bold; font-size: 14pt; margin-top: 10px; display: block;}
-
-    /* --- TEA INFO --- */
-    #tea-content .container {
-        display: block; /* Rimuove la griglia */
-    }
-
-    .aside-container {
-        padding-top: 20px;
-        page-break-inside: avoid;
-    }
-
-    .curiosita {
-        background: #f0f0f0 !important; /* Grigio chiarissimo per distinguere il box */
-        border: 1px solid #000;
+    .product-info h3 {
+        margin: 0;
+        font-size: 11pt; /* Font leggermente più piccolo */
+        font-weight: bold;
         color: #000;
-        border-radius: 0;
-        box-shadow: none;
+        line-height: 1.2;
     }
 
-    .teiera { display: none; } /* Nasconde immagine decorativa */
+    .product-info .category-tag {
+        display: none !important; /* Nascondiamo la categoria per risparmiare spazio */
+    }
 
-    /* --- PRODUCT DETAIL --- */
+    .product-info .price {
+        font-size: 11pt;
+        font-weight: bold;
+        margin: 0;
+        float: right; /* Prezzo a destra per compattezza */
+    }
+
+    .product-info .description {
+        font-size: 9pt;
+        color: #333 !important;
+        margin-top: 4px;
+        line-height: 1.2;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limita a 2 righe se supportato */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* --- 5. PAGINA PRODOTTO DETTAGLIO --- */
+
     .product-detail-container {
-        display: block;
+        display: block !important; /* Colonna singola */
+        margin: 20px 0;
+        padding: 0;
     }
 
-    .product-gallery img {
-        max-width: 300px;
+    .product-gallery {
+        float: left; /* Immagine a sinistra */
+        width: 200px;
+        margin-right: 30px;
         margin-bottom: 20px;
     }
 
-    .add-to-cart-form { display: none; } /* Nasconde il form di acquisto */
-
-    /* --- FOOTER --- */
-    footer {
-        border-top: 2px solid #000;
-        margin-top: 50px;
-        padding-top: 20px;
-        text-align: center;
-        font-size: 0.8rem;
+    .product-gallery img {
+        width: 100%;
+        border: 1px solid #ccc;
+        box-shadow: none !important;
     }
 
-    footer p {
-        margin: 5px 0;
+    .product-info-sticky {
+        position: static !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        overflow: visible;
+    }
+
+    .product-header-group h1 {
+        font-size: 20pt;
+        color: #000 !important;
+        margin-top: 0;
+    }
+
+    .product-description {
+        font-size: 11pt;
+        color: #000 !important;
+        text-align: justify;
+    }
+
+    /* Specifiche tecniche */
+    .product-specs {
+        margin-top: 20px;
+        border: 1px solid #000;
+        border-left: 5px solid #000 !important; /* Sostituisce il verde */
+        padding: 10px;
+        clear: both; /* Va sotto l'immagine floattata */
+    }
+
+    /* --- 6. CARRELLO & PREFERITI --- */
+
+    .cart-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cart-header {
+        border-bottom: 2px solid #000;
+        margin-bottom: 20px;
+    }
+
+    /* Assumendo che gli elementi del carrello siano in una lista o div */
+    #cartContainer > div,
+    li.cart-item {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 10px;
+        page-break-inside: avoid;
+    }
+
+    /* --- 7. PAGINA ABOUT & INFO TE --- */
+
+    .statsbar {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #666; /* Bordo attorno a tutta la barra */
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .stat-number {
+        font-size: 14pt;
+        font-weight: bold;
+    }
+
+    /* Card informative racchiuse e vicine */
+    .tea-card {
+        flex-direction: row !important;
+        border: 1px solid #666 !important; /* Bordo completo */
+        padding: 10px !important;
+        margin-bottom: 10px !important; /* Ravvicinate */
+        gap: 15px;
+        page-break-inside: avoid;
+        align-items: flex-start;
+    }
+
+    .tea-card:nth-of-type(even) {
+        flex-direction: row !important;
+    }
+
+    .tea-card img {
+        max-width: 100px; /* Immagine ridotta */
+        height: auto;
+        margin: 0;
+        border: 1px solid #eee;
+        box-shadow: none !important;
+    }
+
+    .card-text {
+        border: none !important;
+        padding: 0 !important;
+        flex: 1;
+    }
+
+    .card-text h2 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-size: 12pt;
+        color: #000 !important;
+    }
+
+    .card-text p {
+        margin: 0;
+        font-size: 10pt;
+        line-height: 1.3;
+        color: #000 !important;
+    }
+
+    /* --- 8. FOOTER MINIMALE --- */
+    .main-footer-area {
+        margin-top: 40px;
+        border-top: 2px solid #000;
+        padding-top: 20px;
+        background: transparent !important;
+    }
+
+    .footer-container {
+        display: grid; /* Rimuove grid */
+    }
+
+    .footer-column {
+        margin-bottom: 10px;
+    }
+
+    /* Mantiene solo contatti e copyright */
+    .contact-list li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #ccc;
+        margin-top: 20px;
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .legal-info p {
+        font-size: 9pt;
     }
 }

@@ -7,12 +7,12 @@
     <td datatitle="Categoria">{{CATEGORIA}}</td>
     <td class="actions" datatitle="Azioni">
         <a href="edit_product.php?id={{ID}}" class="btn-edit" aria-label="Modifica {{NOME}}">
-            ✏️ Modifica
+            Modifica
         </a>
 
         <form action="../config/delete_product.php" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare {{NOME}}?');" style="display:inline;">
             <input type="hidden" name="id" value="{{ID}}">
-            <button type="submit" class="btn-delete" aria-label="Elimina {{NOME}}">🗑️</button>
+            <button type="submit" class="btn-delete" aria-label="Elimina {{NOME}}">Elimina</button>
         </form>
     </td>
 </tr>

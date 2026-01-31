@@ -1,28 +1,22 @@
-// --- CONFIGURAZIONE DEL DOCUMENTO ---
-#let project(title: "", authors: (), course: "", date: none, body) = {
-  // --- DEFINIZIONE COLORI BRAND ---
-  let tea-dark = rgb("#386641") // Verde foresta scuro per testo e titoli (leggibile su bianco)
-  let tea-light = rgb("#6A994E") // Verde matcha per linee e accenti
-  let tea-bg = rgb("#F2F8F2") // Verde chiarissimo per sfondi tabelle
 
-  // Impostazioni della pagina e font
+#let project(title: "", authors: (), course: "", date: none, login:(), body) = {
+
+  let tea-dark = rgb("#386641")
+  let tea-light = rgb("#6A994E")
+  let tea-bg = rgb("#F2F8F2") 
+
   set page(paper: "a4", margin: (x: 2.5cm, y: 2.5cm), numbering: "1")
-
-  // Font: Lato per il corpo (leggibilità), Playfair Display per i titoli (eleganza)
-  // Nota: Se non hai questi font installati, Typst userà un fallback.
   set text(font: "Lato", lang: "it", size: 11pt, fill: rgb("#1a1a1a"))
   set par(justify: true)
 
-  // --- STILE DEI TITOLI ---
-  // Heading 1: Stile "Playfair Display", colore scuro, linea di accento verde matcha
+
   show heading.where(level: 1): it => block(below: 1em)[
     #set text(font: "Lato", size: 18pt, weight: "bold", fill: tea-dark)
     #it
     #v(-0.2em)
-    #line(length: 100%, stroke: 2pt + tea-light) // Linea spessa color matcha
+    #line(length: 100%, stroke: 2pt + tea-light) 
   ]
 
-  // Heading 2: Stile "Playfair Display", colore scuro
   show heading.where(level: 2): it => block(above: 1.5em, below: 1em)[
     #set text(font: "Lato", size: 14pt, weight: "bold", fill: tea-dark)
     #it
@@ -46,20 +40,25 @@
       gutter: 1.5em,
       ..authors.map(author => strong(author)),
     )
+    #v(1cm)
+    #text(size: 14pt, weight: "bold", fill: tea-dark, "Credenziali di Accesso")
+    #v(0.5em)
+    #grid(
+      columns: (1fr,),
+      gutter: 0.8em,
+      ..login.map(l => text(l)),
+    )
     #v(2cm)
     #if date != none {
       text(date)
     }
     #v(1fr)
-    // Logo (assicurati che il percorso sia corretto rispetto al file .typ)
     #image(width: 30%, "../assets/images/universitea_logo.svg")
     #v(2cm)
   ]
 
   pagebreak()
 
-  // Indice
-  // Personalizziamo anche il titolo dell'indice
   show outline.entry: it => text(font: "Lato", it)
   outline(title: text(font: "Lato", fill: tea-dark)[Indice dei Contenuti], indent: auto)
   pagebreak()
@@ -83,6 +82,10 @@
       "Soligo Lorenzo (Matr. 2101057)"
   ),
   date: "30 Dicembre 2025",
+  login: ("Link: tecweb.studenti.math.unipd.it/tceron/",
+          "Venditore: admin  admin",
+          "Utente: user  user"),
+
   doc,
 )
 
