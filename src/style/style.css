@@ -1148,10 +1148,10 @@ body.homepage #breadcrumb {
 
 /* Stile del Titolo H2 */
 .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: 3rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    color: #fff;
+    color: var(--txtcolor);
     text-transform: uppercase;
     display: inline-block;
 }
@@ -1573,18 +1573,17 @@ body.homepage #breadcrumb {
     }
 }
 
-/* ===========================================================
-   SEZIONE BEST SELLERS - FIXED & CLEAN
-   Sfondo NERO
-=========================================================== */
+/*
+==========================================================================================================================================
+                                                    SEZIONE BEST SELLERS (CAROSELLO CSS-ONLY)
+==========================================================================================================================================
+*/
 
 .best-sellers-container {
     position: relative;
     padding: 4rem 5%;
     overflow: hidden;
-    /* Taglia la "tenda" verde quando esce dai bordi */
     box-sizing: border-box;
-    /* AGGIUNTO: Sfondo Nero per sicurezza alternanza */
     background-color: var(--darkbgcolor);
 }
 
@@ -1609,11 +1608,11 @@ body.homepage #breadcrumb {
 }
 
 .bestsellers-section-title {
-    font-size: 2.2rem;
+    font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.125em;
-    font-weight: 700;
-    color: #fff;
+    font-weight: 800;
+    color: var(--txtcolor);
     margin: 0;
     line-height: 1;
 }
@@ -1754,86 +1753,72 @@ body.homepage #breadcrumb {
     background: #fff;
     transform: translateX(1em);
 }
-
-
-/* --- 2. LAYOUT CONTENUTO --- */
+/*
+====================================================================================================
+                        BESTSELLERS SECTION
+====================================================================================================
+*/
 
 .bestsellers-content-wrapper {
     display: flex;
-    flex-direction: row;
-    /* Default Desktop */
     flex-wrap: nowrap;
-    /* Default Desktop */
+    overflow-x: auto; /*scroll laterale mi va bene*/
+    overflow-y: hidden; /*scroll verticale non lo voglio*/
+    width: 100%;
+    height: auto;
+    gap: 0;
+
+    /* Dichiaro la presenza di punti di aggancio orizzontali in cui il browser deve obbligatoriamente fermarsi */
+    scroll-snap-type: x mandatory;
+
+    /* Movimento fluido quando clicco i pulsanti */
+    scroll-behavior: smooth;
+
+    /* Scorrimento per inerzia. Lo dichiaro apposta per iOS che solitamente lo disattiva per risparmiare risorse*/
+    -webkit-overflow-scrolling: touch;
+
+    /* Nasconde scrollbar dei browser con motori Gecko, tipo Firefox */
+    scrollbar-width: none;
+    /* Nasconde scrollbar dei vecchi browser con motore Trident/EdgeHTML, tipo Edge o Explorer */
+    -ms-overflow-style: none;
+}
+
+/* Nasconde scrollbar dei browser con motore Blink/WebKit, tipo Chrome, Safari, Opera, Brave ecc */
+.bestsellers-content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Disattiviamo l'animazione wipe vecchia che rompe lo scroll */
+.bestsellers-content-wrapper::after {
+    display: none;
+}
+
+.product-slide {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     gap: 2rem;
     position: relative;
+    scroll-margin-top: 100vh;
+
+    /* Per mostrare una slide alla volta ner carosello */
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    width: 100%;
+
+    /* Definisco che il punto di aggancio sia al centro di questo elemento con classe product-slide */
+    scroll-snap-align: center;
+
+    /* Si deve fermare per forza su ogni punto do aggancio senza saltarne con un singolo scroll */
+    scroll-snap-stop: always;
 }
 
-/* --- ANIMAZIONE WIPE (PASSANTE) --- */
-
-.bestsellers-content-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 150%;
-    height: 100%;
-    background-color: var(--universitea-green);
-    z-index: 50;
-    pointer-events: none;
-    opacity: 1;
-
-    /* Stato base: Transizione attiva */
-    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-
-    /* Posizione base: Nascosto a sinistra */
-    transform: skewX(-15deg) translateX(-150%);
-}
-
-/* Classe RESET (Spegne animazione senza !important grazie alla specificità) */
-.bestsellers-content-wrapper.no-transition::after {
-    transition: none;
-}
-
-/* --- LOGICA DIREZIONI --- */
-
-/* NEXT (Clicco Destra -> Entra da SX, Esce a DX) */
-.bestsellers-content-wrapper[data-direction="next"]::after {
-    transform: skewX(-15deg) translateX(-150%);
-}
-
-.bestsellers-content-wrapper[data-direction="next"].animating-in::after {
-    transform: skewX(-15deg) translateX(-15%);
-    /* Centro */
-}
-
-.bestsellers-content-wrapper[data-direction="next"].animating-out::after {
-    transform: skewX(-15deg) translateX(120%);
-    /* Uscita a Destra */
-}
-
-/* PREV (Clicco Sinistra -> Entra da DX, Esce a SX) */
-.bestsellers-content-wrapper[data-direction="prev"]::after {
-    transform: skewX(-15deg) translateX(120%);
-}
-
-.bestsellers-content-wrapper[data-direction="prev"].animating-in::after {
-    transform: skewX(-15deg) translateX(-15%);
-    /* Centro */
-}
-
-.bestsellers-content-wrapper[data-direction="prev"].animating-out::after {
-    transform: skewX(-15deg) translateX(-150%);
-    /* Uscita a Sinistra */
-}
-
-
-/* --- COLONNE CONTENUTO --- */
 .bestsellers-info {
-    flex: 1;
-    min-width: 0;
+    flex: 1; /* Prende tutto lo spazio disponibile, ma se lo spartisce con bestsellers-visual che anche lui ha flex 1 */
+    min-width: 0; /* Altrimenti le frasi lunghe fanno allargare il contenitore anziché andare a capo */
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1852,18 +1837,16 @@ body.homepage #breadcrumb {
 
 .bestsellers-info p {
     font-size: 1.1rem;
-    color: #ccc;
-    line-height: 1.6;
+    color: var(--txtcolor);
+    line-height: 1.5;
     margin-bottom: 2.5rem;
     max-width: 100%;
 }
 
-/* NOTA: Rimosso .bestsellers-cta perché ora è gestito da GLOBAL BUTTONS */
-
 .bestsellers-visual {
-    flex: 1;
-    min-width: 0;
-    height: 31.25em;
+    flex: 1; /* Per spartirsi lo spazio con la descrizione */
+    min-width: 0; /* Stesso motivo scritto su bestsellers-info */
+    height: 32em;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -1877,17 +1860,16 @@ body.homepage #breadcrumb {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    outline: none;
+    outline: none; /* Elimina eventuali contorni se selezionato */
     cursor: grab;
 }
 
-/* Didascalia */
 .bestsellers-visual figcaption {
     margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.625em;
+    gap: 0.5em;
     font-size: 0.75rem;
     color: var(--txtcolor);
     font-weight: 500;
@@ -1901,13 +1883,158 @@ body.homepage #breadcrumb {
 .bestsellers-visual figcaption::before {
     content: '';
     display: block;
-    width: 0.375em;
-    height: 0.375em;
+    width: 0.4em;
+    height: 0.4em;
     background-color: var(--universitea-green);
     border-radius: 50%;
     box-shadow: 0 0 5px var(--universitea-green);
 }
 
+.slide-nav-container {
+    position: absolute;
+    bottom: 0rem;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.side-nav-btn {
+    pointer-events: auto;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 20;
+}
+
+.side-nav-btn img {
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: invert(1);
+    pointer-events: none;
+}
+
+.side-nav-btn:hover {
+    background-color: var(--universitea-green);
+    border-color: var(--universitea-green);
+}
+
+.side-nav-btn.prev {
+    margin-right: auto;
+}
+
+.side-nav-btn.next {
+    margin-left: auto;
+}
+
+/* =========================================
+   MEDIA QUERY MOBILE (FIX PRIORITÀ ID)
+   ========================================= */
+@media (max-width: 900px) {
+
+    #bestsellers-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        gap: 0;
+        padding-bottom: 2rem;
+
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .product-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+        margin: 0;
+        gap: 1.5rem;
+
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+
+    .bestsellers-info {
+        width: 100%;
+        flex: unset; /* Per eliminare il flex 1 che c'èera prima */
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bestsellers-product-name {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .bestsellers-info p {
+        font-size: 1rem;
+        padding: 0 5rem;
+        max-width: 100rem;
+    }
+
+    .bestsellers-visual {
+        flex: unset; /* Per eliminare il flex 1 che c'èera prima */
+        width: 100%;
+        height: 18rem;
+        margin: 0;
+    }
+
+    .bestsellers-nav {
+        display: none;
+    }
+
+    .bestsellers-header {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .header-left-group {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .bestsellers-section-title {
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .slide-nav-container {
+        /* Su mobile li teniamo sempre in fondo */
+        bottom: 1rem;
+        padding: 0 1rem;
+        /* Le regole flex ereditate dal desktop funzionano anche qui per metterli ai lati */
+    }
+}
 
 /*====================================================================================================================================================
 

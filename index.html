@@ -166,21 +166,8 @@
     <section class="section-dark best-sellers-container" aria-labelledby="bestsellers-heading">
 
         <header class="bestsellers-header">
-
             <div class="header-left-group">
                 <h2 id="bestsellers-heading" class="bestsellers-section-title">I più venduti</h2>
-
-                <div class="bestsellers-nav">
-                    <button class="bestsellers-nav-btn prev" id="btn-prev" type="button"
-                            aria-label="Vedi prodotto precedente" aria-controls="bestsellers-content">
-                        <img src="assets/images/angle-left.svg" alt="" aria-hidden="true">
-                    </button>
-
-                    <button class="bestsellers-nav-btn next" id="btn-next" type="button"
-                            aria-label="Vedi prodotto successivo" aria-controls="bestsellers-content">
-                        <img src="assets/images/angle-right.svg" alt="" aria-hidden="true">
-                    </button>
-                </div>
             </div>
 
             <span id="slide-status" class="sr-only" aria-live="polite"></span>
@@ -200,35 +187,64 @@
                     </label>
                 </fieldset>
             </form>
-
         </header>
 
-        <div class="bestsellers-content-wrapper" id="bestsellers-content" aria-live="polite" aria-atomic="true">
+        <div class="bestsellers-content-wrapper carousel-snap" id="bestsellers-content">
 
-            <article class="bestsellers-info">
-                <h3 class="bestsellers-product-name">Tè Verde Matcha</h3>
-
-                <p>
-                    Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più
-                    pregiate coltivate in ombra, questo "oro verde" offre un concentrato ineguagliabile di
-                    antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami, ideale
-                    per
-                    la cerimonia tradizionale o per dare un tocco raffinato alle tue bevande moderne.
-                </p>
-
-                <a href="src/pages/shop.php" class="bestsellers-cta">Scopri di più</a>
+            <article class="product-slide" id="product-1">
+                <div class="bestsellers-info">
+                    <h3 class="bestsellers-product-name">Tè Verde Matcha</h3>
+                    <p>Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra...</p>
+                    <a href="src/pages/shop.php" class="bestsellers-cta">Scopri di più</a>
+                </div>
+                <figure class="bestsellers-visual">
+                    <model-viewer loading="lazy" src="assets/images/Mate.glb" alt="Matcha" auto-rotate camera-controls shadow-intensity="1" disable-zoom></model-viewer>
+                    <figcaption>Trascina per ruotare</figcaption>
+                </figure>
+                <div class="slide-nav-container">
+                    <a href="#product-2" class="side-nav-btn next" aria-label="Vai al prossimo">
+                        <img src="assets/images/angle-right.svg" alt="">
+                    </a>
+                </div>
             </article>
 
-            <figure class="bestsellers-visual">
+            <article class="product-slide" id="product-2">
+                <div class="bestsellers-info">
+                    <h3 class="bestsellers-product-name">Earl Grey Imperiale</h3>
+                    <p>Il classico tè nero aromatizzato con vero olio essenziale di bergamotto...</p>
+                    <a href="src/pages/shop.php" class="bestsellers-cta">Scopri di più</a>
+                </div>
+                <figure class="bestsellers-visual">
+                    <model-viewer loading="lazy" src="assets/images/tea_container.glb" alt="Earl Grey" auto-rotate camera-controls shadow-intensity="1" disable-zoom></model-viewer>
+                    <figcaption>Trascina per ruotare</figcaption>
+                </figure>
+                <div class="slide-nav-container">
+                    <a href="#product-1" class="side-nav-btn prev" aria-label="Vai al precedente">
+                        <img src="assets/images/angle-left.svg" alt="">
+                    </a>
 
-                <model-viewer id="tea-model" src="assets/images/Mate.glb"
-                              alt="Modello 3D interattivo della tazza di Tè Verde Matcha" auto-rotate camera-controls
-                              shadow-intensity="1" disable-zoom aria-describedby="model-caption">
-                </model-viewer>
+                    <a href="#product-3" class="side-nav-btn next" aria-label="Vai al prossimo">
+                        <img src="assets/images/angle-right.svg" alt="">
+                    </a>
+                </div>
+            </article>
 
-                <figcaption id="model-caption">Ruota il modello per esplorare i dettagli</figcaption>
-
-            </figure>
+            <article class="product-slide" id="product-3">
+                <div class="bestsellers-info">
+                    <h3 class="bestsellers-product-name">Infuso Frutti Rossi</h3>
+                    <p>Una miscela dolce e dissetante, totalmente priva di teina...</p>
+                    <a href="src/pages/shop.php" class="bestsellers-cta">Scopri di più</a>
+                </div>
+                <figure class="bestsellers-visual">
+                    <model-viewer loading="lazy" src="assets/images/bustina.glb" alt="Infuso" auto-rotate camera-controls shadow-intensity="1" disable-zoom></model-viewer>
+                    <figcaption>Trascina per ruotare</figcaption>
+                </figure>
+                <div class="slide-nav-container">
+                    <a href="#product-2" class="side-nav-btn prev" aria-label="Vai al precedente">
+                        <img src="assets/images/angle-left.svg" alt="">
+                    </a>
+                </div>
+            </article>
 
         </div>
 
@@ -418,7 +434,7 @@
     </div>
 </footer>
 
-<script src="./src/config/index-slider.js"></script>
+<!-- <script src="./src/config/index-slider.js"></script> -->
 <script src="./src/config/index-parallax.js"></script>
 
 </body>
