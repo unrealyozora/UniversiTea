@@ -1,9 +1,4 @@
 <?php
-// ../config/shop_functions.php
-
-/**
- * Restituisce il path dell'immagine placeholder in base alla categoria
- */
 function getImagePlaceholder($categoria)
 {
     // Nota: Aggiusta il path in base a dove includi il file.
@@ -28,9 +23,20 @@ function getBasePath(): string
     return '../../assets/images/';
 }
 
-/**
- * Esegue la query per ottenere i prodotti (uno singolo o lista)
- */
+function checkImage($product){
+    $basePath = getBasePath();
+    $imageFile = $product['img_src'];
+    $fullPath = $basePath . $imageFile;
+
+    if ($product['img_src'] === '' || !file_exists(__DIR__ . '/' . $fullPath) ){
+        $img_src = getImagePlaceholder($product['categoria']);
+    } else {
+        $fullPath = $basePath . $product['img_src'];
+        $img_src = htmlspecialchars($fullPath, ENT_QUOTES, 'UTF-8');
+    }
+    return $img_src;
+}
+
 function getProductQuery($conn, $id = null)
 {
     $sql = "SELECT 

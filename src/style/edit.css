@@ -126,6 +126,10 @@ select:focus{
     animation: fadeIn 0.4s ease;
 }
 
+.specific-fields.selected-field{
+    display: block !important;
+}
+
 /* Scrollbox per i Bundle */
 .bundle-scroll-box {
     max-height: 200px;

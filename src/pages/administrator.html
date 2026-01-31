@@ -2,10 +2,11 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Pannello di Controllo | UniversiTea</title>
+    <title>Profilo Venditore | UniversiTea</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/adm.css">
 </head>
 <body>
 
@@ -54,33 +55,42 @@
     </div>
 </header>
 
+<nav id="breadcrumb" aria-label="Percorso di navigazione">
+    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page">Il tuo profilo</span>
+    </p>
+</nav>
+
 <main id="admin-content">
     <h1>Il tuo Pannello di Controllo</h1>
     <section id="intro-text">
-        <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. Qui potrai vedere e
-            modificare tutti i prodotti da te venduti.</p>
-        <p>Cambia prezzo, disponibilità, descrizione e tutti parametri che vuoi.</p>
+        <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. </p>
+        <p>Potrai velocemente aggiungere nuovi prodotti al tuo catalogo.</p>
+        <p>Inoltre potrai vedere e modificare tutti i prodotti da te venduti. Cambia prezzo, disponibilità, descrizione e tutti parametri che vuoi.</p>
     </section>
-    <div class="nav-links">
+
+    <div class="admin-logout">
         <form action="../config/auth/logout.php" method="POST">
             <button type="submit" name='logout' class="submit-btn">Logout</button>
         </form>
     </div>
 
     <div class="admin-controls">
-        <a href="edit_product.php" class="btn-add-new">+ Aggiungi Nuovo Prodotto</a>
+        <a href="edit_product.php" class="btn-add-new">Aggiungi Nuovo Prodotto</a>
     </div>
 
     {{USER_FEEDBACK}}
+   <section class="admin-table-container">
+       <h1>Tabella dei Prodotti</h1>
+       <p id="table-descr">La tabella mostra i dati principali per ogni prodotto venduto da te. É sviluppata per righe, una per ogni prodotto, e ha 6 colonne, una per ogni caratteristica mostrata. In particolare ogni prodotto ha un id, nome, prezzo, quantità in stock, categoria (bevanda, <span lang="en">merchandising</span>, servizi o <span lang="en">bundle</span>) e due azioni possibili: la modifica e la cancellazione.</p>
 
-    <section class="admin-table-container">
-        <table class="product-table">
+       <table class="product-table" aria-describedby="table-descr">
+            <caption>Tabella dei Prodotti Proprietari</caption>
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Prodotto</th>
+                <th scope="col">Nome</th>
                 <th scope="col">Prezzo</th>
-                <th scope="col">Stock</th>
+                <th scope="col">Disponibilità</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Azioni</th>
             </tr>

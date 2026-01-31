@@ -90,15 +90,18 @@ function showError(inputElement, message) {
  */
 document.addEventListener('DOMContentLoaded', () => {
     // Inizializza visibilità campi
-    toggleFields();
+    toggleFields(true);
 
+    // 2. Gestione evento cambio:
     const catSelect = document.getElementById('categoria');
-    if(catSelect) catSelect.addEventListener('change', toggleFields);
+
+    if (catSelect) {
+        catSelect.addEventListener('change', () => {
+            toggleFields(false);
+        });
+    }
 
     const form = document.getElementById('productForm');
-
-    // --- AGGIUNTA: ASCOLTATORI PER RIMUOVERE ERRORI IN TEMPO REALE ---
-    // Seleziona tutti gli input, select e textarea dentro il form
     const allInputs = document.querySelectorAll('#productForm input, #productForm select, #productForm textarea');
 
     allInputs.forEach(element => {
@@ -113,39 +116,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- GESTIONE SUBMIT ---
     if (form) {
         form.addEventListener('submit', function (event) {
 
-            // 1. Pulisci errori precedenti (reset totale per ri-validare)
             clearErrors();
-
             let isValid = true;
             let firstErrorField = null;
 
-            const validate = (selector, msg) => {
+            const validate = (selector, requiredMsg) => {
                 const el = document.querySelector(selector);
-                // Controllo: esiste? è visibile? è vuoto?
-                if (el && el.offsetParent !== null && !el.value.trim()) {
+                if (!el || el.offsetParent === null) return;
+
+                const value = el.value.trim();
+
+                if (value === '' && requiredMsg) {
                     isValid = false;
-                    showError(el, msg);
+                    showError(el, requiredMsg);
                     if (!firstErrorField) firstErrorField = el;
+                    return;
+                }
+
+                if (el.type === 'number' && value !== '') {
+                    const min = parseFloat(el.getAttribute('min'));
+                    const max = parseFloat(el.getAttribute('max'));
+                    const currentVal = parseFloat(value);
+
+                    if (!isNaN(min) && currentVal < min) {
+                        isValid = false;
+                        showError(el, `Il valore deve essere almeno ${min}.`);
+                        if (!firstErrorField) firstErrorField = el;
+                        return;
+                    }
+
+                    if (!isNaN(max) && currentVal > max) {
+                        isValid = false;
+                        showError(el, `Il valore non può superare ${max}.`);
+                        if (!firstErrorField) firstErrorField = el;
+                        return;
+                    }
+                }
+
+                if (el.hasAttribute('maxlength') && value !== '') {
+                    const maxLen = parseInt(el.getAttribute('maxlength'));
+                    if (value.length > maxLen) {
+                        isValid = false;
+                        showError(el, `Massimo ${maxLen} caratteri consentiti.`);
+                        if (!firstErrorField) firstErrorField = el;
+                        return;
+                    }
                 }
             };
 
-            // A. CAMPI GLOBALI
-            validate('#nome', 'Il nome del prodotto è obbligatorio.');
-            validate('#descrizione', 'Inserisci una descrizione.');
-            validate('#prezzo', 'Inserisci un prezzo valido.');
-            validate('#disponibilita', 'Specifica la quantità.');
+            validate('#nome', 'Il nome del prodotto è obbligatorio, al massimo 100 caratteri.');
+            validate('#descrizione', 'Inserisci una descrizione, al massimo 1000 caratteri..');
+            validate('#prezzo', 'Inserisci un prezzo valido, compreso tra 0.01 e 100.');
+            validate('#disponibilita', 'Specifica la quantità maggiore uguale a zero.');
             validate('#categoria', 'Seleziona una categoria.');
 
-            // B. CAMPI CONTESTUALI
+            // Validazione condizionale
             const categoria = catSelect.value;
 
             if (categoria === 'bevande') {
-                validate('input[name="temp_consigliata"]', 'Inserisci la temperatura.');
+                validate('input[name="temp_consigliata"]', 'Inserisci la temperatura maggiore di 0.');
                 validate('select[name="tipologia_bevanda"]', 'Specifica il tipo di bevanda.');
+                validate('input[name="scoop"]', null);
             }
             else if (categoria === 'merchandising') {
                 validate('input[name="materiale"]', 'Indica il materiale.');
@@ -157,9 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 validate('select[name="livello_urgenza"]', 'Scegli l\'urgenza.');
             }
             else if (categoria === 'bundle') {
-                validate('input[name="percent_sconto"]', 'Inserisci lo sconto.');
+                validate('input[name="percent_sconto"]', null);
 
-                // Validazione Checkbox Bundle
+                // Logica custom per checkbox (rimane invariata)
                 const checkboxes = document.querySelectorAll('#fields-bundle input[type="checkbox"]');
                 let checkedOne = false;
                 checkboxes.forEach(box => { if (box.checked) checkedOne = true; });
@@ -172,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // C. BLOCCO INVIO
             if (!isValid) {
                 event.preventDefault();
                 if (firstErrorField) {
@@ -182,4 +215,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
 });

@@ -14,15 +14,9 @@ function renderProductCard($product, $templateHtml)
     $descrizione = htmlspecialchars($product['descrizione'] ?? '', ENT_QUOTES, 'UTF-8');
     $prezzo = number_format($product['prezzo'], 2, ',', '.');
     $categoria = htmlspecialchars($product['categoria'], ENT_QUOTES, 'UTF-8');
-    $imgAlt = htmlspecialchars($product['img_alt'], ENT_QUOTES, 'UTF-8');
+    $img_alt = htmlspecialchars($product['img_alt'], ENT_QUOTES, 'UTF-8');
 
-    if ($product['img_src'] === '') {
-        $imgPath = getImagePlaceholder($product['categoria']);
-    } else {
-        $basePath = getBasePath();
-        $fullPath = $basePath . $product['img_src'];
-        $imgPath = htmlspecialchars($fullPath, ENT_QUOTES, 'UTF-8');
-    }
+    $img_src=checkImage($product);
 
     $replacements = [
         '{{ID}}' => $id,
@@ -30,15 +24,13 @@ function renderProductCard($product, $templateHtml)
         '{{DESCRIZIONE}}' => $descrizione,
         '{{PREZZO}}' => $prezzo,
         '{{CATEGORIA}}' => $categoria,
-        '{{IMG_PATH}}' => $imgPath,
-        '{{IMG_ALT}}' => $imgAlt,
+        '{{IMG_PATH}}' => $img_src,
+        '{{IMG_ALT}}' => $img_alt,
     ];
     return str_replace(array_keys($replacements), array_values($replacements), $templateHtml);
 }
 
-// ==================== GESTIONE FILTRI ====================
 
-// Recupera parametri dalla URL
 $searchValue = $_GET['search'] ?? '';
 
 $categoryFilter = $_GET['category'] ?? 'tutti';
@@ -49,16 +41,11 @@ if (!is_numeric($maxPrice) || $maxPrice < 0) {
 
 $onlyAvailable = isset($_GET['availability']) && $_GET['availability'] === 'on';
 
-
-// Imposta quale radio button deve essere checked
 $checkedTutti = ($categoryFilter === 'tutti') ? 'checked' : '';
 $checkedBevande = ($categoryFilter === 'bevande') ? 'checked' : '';
 $checkedMerch = ($categoryFilter === 'merchandising') ? 'checked' : '';
 $checkedServizi = ($categoryFilter === 'servizi') ? 'checked' : '';
 $checkedBundle = ($categoryFilter === 'bundle') ? 'checked' : '';
-
-
-// ==================== QUERY DATABASE ====================
 
 try {
     $db = new Database();
@@ -86,7 +73,6 @@ try {
 
     $params = [];
 
-    // Applica filtro categoria
     if ($categoryFilter && $categoryFilter !== 'tutti') {
         if ($categoryFilter === 'bevande') {
             $sql .= " AND EXISTS (SELECT 1 FROM Bevande B WHERE B.id = P.id)";
@@ -100,7 +86,6 @@ try {
         }
     }
 
-    // Applica filtro ricerca
     if (!empty($searchValue)) {
         $sql .= " AND (P.nome LIKE :searchN OR P.descrizione LIKE :searchD)";
         $params[':searchN'] = '%' . $searchValue . '%';
@@ -116,10 +101,7 @@ try {
         $sql .= " AND P.disponibilita > 0";
     }
 
-    // Ordinamento deterministico
     $sql .= " ORDER BY P.nome ASC";
-
-    // Esegui query
     $stmt = $conn->prepare($sql);
 
     foreach ($params as $key => $value) {
@@ -132,18 +114,16 @@ try {
     $cardTemplate = __DIR__ . '/templates/productCard_template.html';
     $cardTemplate = file_exists($cardTemplate) ? file_get_contents($cardTemplate) : '<li class="no-result"> Template Prodotto Mancante</li>';
 
-    // Genera HTML dei prodotti
+
     $listaHtml = '';
     foreach ($prodotti as $prodotto) {
         $listaHtml .= renderProductCard($prodotto, $cardTemplate);
     }
 
-    // Se non ci sono prodotti
     if (empty($listaHtml)) {
         $listaHtml = '<li class="no-results">Nessun prodotto trovato con questi filtri.</li>';
     }
 
-    // Messaggio di stato
     $statusMsg = count($prodotti) > 0
         ? "Visualizzati " . count($prodotti) . " prodotti."
         : "Nessun prodotto trovato con questi filtri.";
@@ -153,7 +133,6 @@ try {
     $listaHtml = '<div class="error-msg"><p>Il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Non ti preoccupare, ricarica la pagina, riprova più tardi o <a href="./about.html">contattaci</a></p></div>';
     error_log("Errore database shop.php: " . $e->getMessage());
 
-    // In caso di errore, imposta valori di default per i checked
     $checkedTutti = 'checked';
     $checkedBevande = '';
     $checkedMerch = '';
@@ -172,12 +151,9 @@ if (isset($_SESSION['msg_content'])) {
     unset($_SESSION['msg_content']);
 }
 
-// ==================== CARICA HTML ====================
 
-// Leggi il file HTML
 $htmlContent = file_get_contents('./shop.html');
 
-// Sostituisci i placeholder con i dati reali
 $replacements = [
     '{{SEARCH_VALUE}}' => htmlspecialchars($searchValue, ENT_QUOTES, 'UTF-8'),
     '{{CHECKED_TUTTI}}' => $checkedTutti,
@@ -192,7 +168,6 @@ $replacements = [
     '{{CHECKED_AVAILABILITY}}' => $onlyAvailable ? 'checked' : '',
 ];
 
-// Applica le sostituzioni
 $finalHtml = str_replace(
     array_keys($replacements),
     array_values($replacements),

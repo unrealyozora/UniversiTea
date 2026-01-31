@@ -34,14 +34,8 @@ try {
     $btnDisabled = $isAvailable ? '' : 'disabled';
     $btnText = $isAvailable ? 'Aggiungi al carrello' : 'Esaurito';
 
-    // Immagine
-    //$imgSrc = getImagePlaceholder($product['categoria']);
-    $basePath = getBasePath();
-    if ($product['img_src'] === '') {
-        $imgSrc = getImagePlaceholder($product['categoria']);
-    } else {
-        $imgSrc = $basePath . $product['img_src'];
-    }
+    $imgSrc=checkImage($product);
+
 
     $imgAlt = $product['img_alt'];
 

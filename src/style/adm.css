@@ -1,0 +1,253 @@
+/* =========================================
+   LAYOUT GENERALE ADMIN
+========================================= */
+#admin-content {
+    max-width: 75rem; /* Limita la larghezza per non "spalmare" il contenuto su schermi grandi */
+    margin: 0 auto;   /* Centra il contenitore nella pagina */
+    padding: 3rem 5%; /* Spaziatura interna */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;        /* Spazio verticale tra le sezioni (Titolo, Toolbar, Tabella) */
+}
+
+/* Titolo H1 della pagina admin */
+#admin-content h1 {
+    text-align: center;
+    color: var(--universitea-green);
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   TESTO INTRODUTTIVO
+========================================= */
+#intro-text {
+    text-align: center;
+    max-width: 50rem; /* Limita la larghezza per facilitare la lettura */
+    margin: 0 auto;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    padding: 2rem;
+    border-radius: 1.25em;
+    backdrop-filter: blur(5px);
+}
+
+#intro-text p {
+    font-size: 1.1rem;
+    color: var(--txtcolor);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+#intro-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================
+   TOOLBAR AZIONI (Bottoni)
+========================================= */
+/* Contenitore flessibile per allineare i bottoni */
+.admin-actions-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Su mobile va a capo */
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50px; /* Effetto "pillola" allungata */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Bottone Aggiungi Prodotto (PRIMARIO) --- */
+/* Stile pieno, verde neon */
+.admin-controls .btn-add-new {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    border: 2px solid var(--universitea-green);
+
+    border-radius: 3rem;
+    padding: 0.8rem 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 214, 159, 0.2);
+
+    /* Reset larghezze vecchie */
+    width: auto;
+    margin: 0;
+}
+
+.admin-controls .btn-add-new:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: var(--universitea-green);
+    transform: translateY(-3px);
+    box-shadow: 0 0.8rem 2rem rgba(0, 214, 159, 0.4);
+}
+
+/* --- Bottone Logout (SECONDARIO) --- */
+/* Stile "Outline" (solo bordo) per dargli meno peso visivo rispetto all'aggiunta prodotti */
+.admin-logout .submit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    color: #ff6b6b; /* Un rosso leggero per indicare uscita/attenzione */
+    border: 2px solid #ff6b6b;
+
+    border-radius: 3rem;
+    padding: 0.8rem 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: none;
+
+    /* Reset larghezze vecchie */
+    width: auto;
+    margin: 0;
+}
+
+.admin-logout .submit-btn:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.5rem rgba(255, 107, 107, 0.3);
+}
+
+/* =========================================
+   TABELLA (Piccoli ritocchi)
+========================================= */
+#table-descr {
+    max-width: 60rem;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #aaa;
+}
+
+/* RESPONSIVE */
+/* =========================================
+   RESPONSIVE (MOBILE) - CARD VIEW
+========================================= */
+@media (max-width: 768px) {
+
+    /* --- 1. Toolbar Bottoni (Già presente) --- */
+    .admin-actions-toolbar {
+        flex-direction: column-reverse;
+        border-radius: 1.5rem;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .admin-controls .btn-add-new,
+    .admin-logout .submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* --- 2. Trasformazione Tabella in Cards --- */
+
+    /* Resetta il comportamento tabella standard */
+    .product-table,
+    .product-table tbody,
+    .product-table tr,
+    .product-table td,
+    .product-table th {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Nascondi l'intestazione classica della tabella (ID, Nome, ecc.) */
+    .product-table thead {
+        display: none;
+    }
+
+    /* Stile della "Card" (ex riga tr) */
+    .product-table tr {
+        margin-bottom: 2rem;
+        background-color: var(--card-bg-color); /* Sfondo coerente col tema */
+        border: 1px solid var(--card-border-color);
+        border-radius: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        overflow: hidden; /* Mantiene i bordi arrotondati */
+    }
+
+    /* Stile del Titolo Card (ex colonna Nome) */
+    .product-table th {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--universitea-green);
+        padding: 1rem;
+        font-size: 1.2rem;
+        text-align: center;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--card-border-color);
+
+        /* Reset bordi desktop specifici */
+        border-right: none !important;
+        border-left: none !important;
+    }
+
+    /* Stile delle Righe Dati (ex colonne td) */
+    .product-table td {
+        display: flex;
+        justify-content: space-between; /* Etichetta a sx, Valore a dx */
+        align-items: center;
+        padding: 1rem 1.2rem;
+        text-align: right;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--txtcolor);
+        min-height: 3.5rem; /* Altezza minima per tocco facile */
+    }
+
+    .product-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* Inserimento Etichette (ID, Prezzo...) via CSS */
+    .product-table td::before {
+        content: attr(data-title); /* Legge l'attributo HTML messo prima */
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: #888; /* Colore più tenue per l'etichetta */
+        margin-right: 1rem;
+        text-align: left;
+    }
+
+    /* --- 3. Stile Speciale per le Azioni --- */
+    .product-table td.actions {
+        flex-direction: row;
+        justify-content: space-evenly; /* Distribuisce i bottoni */
+        padding: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.2); /* Sfondo più scuro per stacco visivo */
+    }
+
+    /* Nascondiamo la label "Azioni" perché è intuitiva */
+    .product-table td.actions::before {
+        display: none;
+    }
+
+    /* Rendiamo i bottoni azioni più grandi su mobile */
+    .product-table .btn-edit,
+    .product-table .btn-delete {
+        padding: 0.6em 1.2em;
+        font-size: 1rem;
+    }
+}
