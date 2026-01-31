@@ -1,0 +1,354 @@
+/* =========================================
+   LAYOUT GENERALE ADMIN
+========================================= */
+#admin-content {
+    max-width: 75rem; /* Limita la larghezza per non "spalmare" il contenuto su schermi grandi */
+    margin: 0 auto;   /* Centra il contenitore nella pagina */
+    padding: 3rem 5%; /* Spaziatura interna */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;        /* Spazio verticale tra le sezioni (Titolo, Toolbar, Tabella) */
+}
+
+/* Titolo H1 della pagina admin */
+#admin-content h1 {
+    text-align: center;
+    color: var(--universitea-green);
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   TESTO INTRODUTTIVO
+========================================= */
+#intro-text {
+    text-align: center;
+    max-width: 50rem; /* Limita la larghezza per facilitare la lettura */
+    margin: 0 auto;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    padding: 2rem;
+    border-radius: 1.25em;
+    backdrop-filter: blur(5px);
+}
+
+#intro-text p {
+    font-size: 1.1rem;
+    color: var(--txtcolor);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+#intro-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================
+   TOOLBAR AZIONI (Bottoni)
+========================================= */
+/* Contenitore flessibile per allineare i bottoni */
+.admin-actions-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Su mobile va a capo */
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50px; /* Effetto "pillola" allungata */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Bottone Aggiungi Prodotto (PRIMARIO) --- */
+/* Stile pieno, verde neon */
+.admin-controls .btn-add-new {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    border: 2px solid var(--universitea-green);
+
+    border-radius: 3rem;
+    padding: 0.8rem 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 214, 159, 0.2);
+
+    /* Reset larghezze vecchie */
+    width: auto;
+    margin: 0;
+}
+
+.admin-controls .btn-add-new:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: var(--universitea-green);
+    transform: translateY(-3px);
+    box-shadow: 0 0.8rem 2rem rgba(0, 214, 159, 0.4);
+}
+
+/* --- Bottone Logout (SECONDARIO) --- */
+/* Stile "Outline" (solo bordo) per dargli meno peso visivo rispetto all'aggiunta prodotti */
+.admin-logout .submit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    color: #ff6b6b; /* Un rosso leggero per indicare uscita/attenzione */
+    border: 2px solid #ff6b6b;
+
+    border-radius: 3rem;
+    padding: 0.8rem 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: none;
+
+    /* Reset larghezze vecchie */
+    width: auto;
+    margin: 0;
+}
+
+.admin-logout .submit-btn:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.5rem rgba(255, 107, 107, 0.3);
+}
+
+.btn-delete {
+    background: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 0.5em 1em;
+    border-radius: 2em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-delete:hover {
+    background-color: #ff4444;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+.btn-edit{
+    width: 100%;
+    padding: 0.8rem;
+    background-color: transparent;
+    border: 2px solid var(--universitea-green);
+    color: var(--universitea-green);
+    border-radius: 2em;
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5em;
+}
+.btn-edit:active {
+    transform: scale(0.98);
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-edit:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 214, 159, 0.4);
+}
+
+.btn-edit:hover {
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
+    box-shadow: 0 0 15px rgba(0, 214, 159, 0.4);
+}
+
+.btn-edit:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+/* RESPONSIVE */
+/* =========================================
+   RESPONSIVE (MOBILE) - CARD VIEW
+========================================= */
+@media (max-width: 768px) {
+
+    /* --- 1. Toolbar Bottoni (Già presente) --- */
+    .admin-actions-toolbar {
+        flex-direction: column-reverse;
+        border-radius: 1.5rem;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .admin-controls .btn-add-new,
+    .admin-logout .submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* --- 2. Trasformazione Tabella in Cards --- */
+
+
+}
+
+/* =========================================
+   TABELLA (Stile "Tea Info" adattato)
+========================================= */
+
+/* Descrizione sopra la tabella */
+#table-descr {
+    max-width: 60rem;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #aaa;
+}
+
+/* Contenitore Tabella */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1.5em; /* Ridotto leggermente per adattarsi ai contenuti admin */
+    overflow: hidden; /* Necessario per vedere il border-radius sui bordi */
+    margin-bottom: 2rem;
+}
+
+/* Intestazione (Header) */
+.product-table thead th {
+    background-color: #007d5d; /* Verde scuro specifico di tea-info */
+    color: #ffffff;
+    padding: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-bottom: none;
+}
+
+/* Prima Colonna (Nome Prodotto - TH scope="row") */
+.product-table tbody th {
+    background-color: var(--linkcolor); /* Verde chiaro */
+    color: var(--darkbgcolor);          /* Testo scuro */
+    font-weight: bold;
+    padding: 1em 1em;
+    border-bottom: 1px solid var(--navlink-color);
+    border-right: 3px solid #007d5d;    /* Bordo verde scuro a destra */
+    text-align: left;
+}
+
+/* Celle Standard (TD) */
+.product-table tbody td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--navlink-color);
+    color: var(--graybgcolor);          /* Testo scuro */
+    background-color: var(--txtcolor);  /* Sfondo chiaro/grigio */
+    border-right: 1px solid #000;       /* Bordo nero come in tea-info */
+    vertical-align: middle;
+}
+
+/* Rimuovi il bordo destro dall'ultima cella per pulizia */
+.product-table tbody td:last-child {
+    border-right: none;
+}
+
+/* Caption (Titolo Tabella in basso)*/
+.product-table caption {
+    padding-bottom: 1em;
+    color: var(--linkcolor);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   RESPONSIVE (MOBILE) - ADATTAMENTO STILE
+========================================= */
+@media (max-width: 768px) {
+
+    /* Nascondi l'header come in tea-info */
+    .product-table thead {
+        display: none;
+    }
+
+    /* Le celle diventano blocchi */
+    .product-table tr,
+    .product-table td,
+    .product-table th {
+        display: block;
+        width: 100%;
+        text-align: center; /* Allineamento centrale come tea-info mobile */
+    }
+
+    /* Stile della "Card" (Riga) */
+    .product-table tr {
+        margin-bottom: 2rem;
+        background-color: var(--txtcolor); /* Sfondo chiaro per coerenza */
+        border: 2px solid #ddd;
+        border-radius: 1.5em;
+        overflow: hidden;
+    }
+
+    /* Header della Card (Nome prodotto) */
+    .product-table th {
+        background-color: var(--linkcolor);
+        color: var(--darkbgcolor);
+        border-right: none;
+        border-bottom: 3px solid #007d5d;
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+
+    /* Celle dati */
+    .product-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid var(--navlink-color);
+        border-right: none;
+        color: var(--graybgcolor);
+        background-color: var(--txtcolor);
+    }
+
+    /* Etichette "datatitle" (mimica tea-info) */
+    .product-table td::before {
+        content: attr(datatitle);
+        font-weight: bold;
+        color: var(--graybgcolor);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+
+    /* Gestione specifica cella Azioni su mobile */
+    .product-table td.actions {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        background-color: rgba(0,0,0,0.05); /* Leggermente più scuro */
+    }
+
+    .product-table td.actions::before {
+        display: none; /* Nascondi etichetta per le azioni */
+    }
+}

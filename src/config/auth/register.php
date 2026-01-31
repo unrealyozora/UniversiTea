@@ -98,13 +98,12 @@ function RegisterUser(): void
 
         $pw_hash = password_hash($user->getPassword(), PASSWORD_BCRYPT);
 
-        $query = "INSERT INTO Utente (email,indirizzo, username, telefono, password, punti_fedelta, tipo_utente) VALUES (:email, :indirizzo, :username, :telefono, :password, :start_fid_points, :user_type)";
+        $query = "INSERT INTO Utente (email, username, telefono, password, punti_fedelta, tipo_utente) VALUES (:email, :username, :telefono, :password, :start_fid_points, :user_type)";
         $stmt = $db->prepare($query);
         $stmt->bindValue(':username', $user->getUsername());
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':password', $pw_hash);
         $stmt->bindValue(':telefono', $user->getPhone());
-        $stmt->bindValue(':indirizzo', $address);
         $stmt->bindValue(':start_fid_points', $start_fid_points);
         $stmt->bindValue(':user_type', $user_type);
 

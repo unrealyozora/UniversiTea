@@ -1,28 +1,22 @@
-// --- CONFIGURAZIONE DEL DOCUMENTO ---
-#let project(title: "", authors: (), course: "", date: none, body) = {
-  // --- DEFINIZIONE COLORI BRAND ---
-  let tea-dark = rgb("#386641") // Verde foresta scuro per testo e titoli (leggibile su bianco)
-  let tea-light = rgb("#6A994E") // Verde matcha per linee e accenti
-  let tea-bg = rgb("#F2F8F2") // Verde chiarissimo per sfondi tabelle
 
-  // Impostazioni della pagina e font
+#let project(title: "", authors: (), course: "", date: none, login:(), body) = {
+
+  let tea-dark = rgb("#386641")
+  let tea-light = rgb("#6A994E")
+  let tea-bg = rgb("#F2F8F2") 
+
   set page(paper: "a4", margin: (x: 2.5cm, y: 2.5cm), numbering: "1")
-
-  // Font: Lato per il corpo (leggibilità), Playfair Display per i titoli (eleganza)
-  // Nota: Se non hai questi font installati, Typst userà un fallback.
   set text(font: "Lato", lang: "it", size: 11pt, fill: rgb("#1a1a1a"))
   set par(justify: true)
 
-  // --- STILE DEI TITOLI ---
-  // Heading 1: Stile "Playfair Display", colore scuro, linea di accento verde matcha
+
   show heading.where(level: 1): it => block(below: 1em)[
     #set text(font: "Lato", size: 18pt, weight: "bold", fill: tea-dark)
     #it
     #v(-0.2em)
-    #line(length: 100%, stroke: 2pt + tea-light) // Linea spessa color matcha
+    #line(length: 100%, stroke: 2pt + tea-light) 
   ]
 
-  // Heading 2: Stile "Playfair Display", colore scuro
   show heading.where(level: 2): it => block(above: 1.5em, below: 1em)[
     #set text(font: "Lato", size: 14pt, weight: "bold", fill: tea-dark)
     #it
@@ -46,20 +40,25 @@
       gutter: 1.5em,
       ..authors.map(author => strong(author)),
     )
+    #v(1cm)
+    #text(size: 14pt, weight: "bold", fill: tea-dark, "Credenziali di Accesso")
+    #v(0.5em)
+    #grid(
+      columns: (1fr,),
+      gutter: 0.8em,
+      ..login.map(l => text(l)),
+    )
     #v(2cm)
     #if date != none {
       text(date)
     }
     #v(1fr)
-    // Logo (assicurati che il percorso sia corretto rispetto al file .typ)
     #image(width: 30%, "../assets/images/universitea_logo.svg")
     #v(2cm)
   ]
 
   pagebreak()
 
-  // Indice
-  // Personalizziamo anche il titolo dell'indice
   show outline.entry: it => text(font: "Lato", it)
   outline(title: text(font: "Lato", fill: tea-dark)[Indice dei Contenuti], indent: auto)
   pagebreak()
@@ -83,6 +82,10 @@
       "Soligo Lorenzo (Matr. 2101057)"
   ),
   date: "30 Dicembre 2025",
+  login: ("Link: tecweb.studenti.math.unipd.it/tceron/",
+          "Venditore: admin  admin",
+          "Utente: user  user"),
+
   doc,
 )
 
@@ -304,12 +307,26 @@ La suddivisione dei compiti è stata gestita cercando di coniugare gli impegni e
 - Menù Mobile
 - Controllo con NVDA
 
+== Ceron Tommaso
+- Pagina Registrazione: HTML, JS, PHP
+- Pagina Login: HTML, JS, PHP
+- Pagina Profilo Compratore/Utente: HTML, JS, PHP 
+- Gestione logica login/logout/registrazione e sessioni PHP
+- Gestione logica aggiunta al carrello/ aggiunta ai preferiti
+- Pagina carrello: HTML, JS, PHP
+
 = 7. Funzionalità Aggiuntive
 == Filtri Shop
 Nella pagina _Shop_ sono stati implementati filtri per categoria e prezzo, permettendo agli utenti di restringere i risultati in base alle proprie preferenze. I filtri sono realizzati utilizzando PHP come base di partenza e JavaScript per aggiornare dinamicamente la visualizzazione dei prodotti senza ricaricare la pagina, rispettando il principio di _*Progressive Enhancement*_.
 == Gestione attenta della creazione dei prodotti
 Per la creazione dei prodotti, è stata implementata una pagina dedicata che consente ai venditori di inserire tutte le informazioni necessarie in modo strutturato. Questa pagina include campi per il nome del prodotto, la descrizione, il prezzo, la categoria e l'immagine del prodotto. Inoltre, sono stati implementati controlli di validazione per garantire che tutti i dati inseriti siano corretti e completi prima della pubblicazione sul server. \
 I dettagli specifici del tipo di prodotto vengono mostrati in base alla categoria selezionata, migliorando l'esperienza utente evitando il sovraccarico cognitivo.
+
+== Gestione Accesso e registrazione e possibili errori
+Al fine di non limitare l'accesso ai dispositivi che per qualunque ragione non abbiano JavaScript abilitato all'interno del browser, la logica di accesso e registrazione è stata implementata utilizzando esclusivamente tramite chiamate dirette al server, tramite richieste POST e Sessioni PHP.\ 
+Per la gestione degli errori (come ad esempio credenziali non valide, o uno/più campi vuoti) il sito effettua un controllo iniziale tramite JavaScript, in caso di successo questi ed ulteriori controlli vengono eseguiti lato server, in caso di esito positivo si avrà il proseguimento dell'azione, in caso contrario vengono mostrati dei messaggi di errore che (in caso di errori lato server) non dipendono dall'utilizzo di JavaScript, sempre sfruttando le Sessioni PHP, che memorizzano il messaggio d'errore da visualizzare. In questo modo qualunque utente può conoscere la natura dell'errore a prescindere dalla tecnologia a sua disposizione. 
+
+
 = 8. Uso dell'AI nel progetto
 Durante lo sviluppo del progetto, l'Intelligenza Artificiale è stata utilizzata in modo limitato e mirato. In particolare, sono stati impiegati strumenti di AI per:
 - Generazione delle immagini per evitare di incappare in problemi di copyright.

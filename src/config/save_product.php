@@ -1,21 +1,39 @@
 <?php
 session_start();
 require_once '../config/database/database_conn.php';
+require_once './validate_product_form.php';
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['tipo_utente'] !== 'Venditore') {
     die("Accesso negato");
 }
 $id_venditore = $_SESSION['email'];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_category') {
+    $_SESSION['form_data'] = $_POST;
+    $redirectUrl = '../pages/edit_product.php' . (!empty($_POST['id']) ? "?id=".$_POST['id'] : "");
+    header("Location: $redirectUrl");
+    exit();
+}
+
+$errors = validateProductData($_POST);
+if (!empty($errors)) {
+    $_SESSION['errors'] = $errors;
+    $_SESSION['form_data'] = $_POST;
+
+    header('Location: ../pages/edit_product.php' . (!empty($_POST['id']) ? "?id=".$_POST['id'] : ""));
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = null;
     $id = $_POST['id'] ?? '';
-    // Recupero dati comuni
     $nome = $_POST['nome'];
     $descrizione = $_POST['descrizione'];
     $prezzo = $_POST['prezzo'];
     $disponibilita = $_POST['disponibilita'];
     $categoria = $_POST['categoria'];
+    $img_src = $_POST['img_src'];
+    $img_alt = $_POST['img_alt'];
 
     try {
         $db = new Database();
@@ -35,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (!empty($id)) {
-            // --- MODIFICA (UPDATE) ---
             $checkSql = "SELECT 1 FROM Vendita WHERE venditore = :v AND prodotto = :p";
             $checkStmt = $conn->prepare($checkSql);
             $checkStmt->execute([':v' => $id_venditore, ':p' => $id]);
@@ -44,19 +61,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception("Non hai i permessi per modificare questo prodotto.");
             }
 
-            $sql = "UPDATE Prodotti SET nome=:n, descrizione=:d, prezzo=:p, disponibilita=:s WHERE id=:id";
+            $sql = "UPDATE Prodotti SET nome=:n, descrizione=:d, prezzo=:p, disponibilita=:s, img_src=:is, img_alt=:ia WHERE id=:id";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([':n'=>$nome, ':d'=>$descrizione, ':p'=>$prezzo, ':s'=>$disponibilita, ':id'=>$id]);
+            $stmt->execute([':n'=>$nome, ':d'=>$descrizione, ':p'=>$prezzo, ':s'=>$disponibilita, ':is'=>$img_src, ':ia'=>$img_alt, ':id'=>$id]);
 
             // Aggiorna Sottotabelle
             if ($categoria === 'bevande') {
-                // CORREZIONE: Aggiunto scoop nell'UPDATE
                 $sqlSub = "UPDATE Bevande SET temp_consigliata=:t, tipologia_bevanda=:tp, scoop=:sc WHERE id=:id";
                 $stmtSub = $conn->prepare($sqlSub);
                 $stmtSub->execute([
                     ':t' => $_POST['temp_consigliata'],
                     ':tp' => $_POST['tipologia_bevanda'],
-                    ':sc' => $_POST['scoop'], // Campo mancante aggiunto
+                    ':sc' => $_POST['scoop'],
                     ':id' => $id
                 ]);
             } elseif ($categoria === 'merchandising') {
@@ -73,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmtSub = $conn->prepare($sqlSub);
                 $stmtSub->execute([':ts' => $_POST['tipologia_servizi'], ':lu' => $_POST['livello_urgenza'], ':id' => $id]);
             }elseif ($categoria === 'bundle') {
-                // Per i bundle, cancelliamo le vecchie associazioni e le ricreiamo
                 $conn->prepare("DELETE FROM Bundle WHERE id_bundle = :id")->execute([':id'=>$id]);
 
                 $prodottiSelezionati = $_POST['prodotti_bundle'] ?? [];
@@ -90,26 +105,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $msg = "Prodotto aggiornato correttamente!";
 
         } else {
-            // --- NUOVO (INSERT) ---
-            $newId = guidv4(); // Genera UUID corretto
+            $newId = guidv4();
 
-            $sql = "INSERT INTO Prodotti (id, nome, descrizione, prezzo, disponibilita) VALUES (:id, :n, :d, :p, :s)";
+            $sql = "INSERT INTO Prodotti (id, nome, descrizione, prezzo, disponibilita, img_src, img_alt) VALUES (:id, :n, :d, :p, :s, :is, :ia)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([':id'=>$newId, ':n'=>$nome, ':d'=>$descrizione, ':p'=>$prezzo, ':s'=>$disponibilita]);
+            $stmt->execute([':id'=>$newId, ':n'=>$nome, ':d'=>$descrizione, ':p'=>$prezzo, ':s'=>$disponibilita, ':is'=>$img_src, ':ia'=>$img_alt,]);
 
-            // IMPORTANTE: RIMOSSO $newId = $conn->lastInsertId();
-            // Quella riga cancellava l'UUID appena generato mettendo 0.
             $sqlVendita = "INSERT INTO Vendita (venditore, prodotto, quantita) VALUES (:v, :p, :q)";
             $stmtVendita = $conn->prepare($sqlVendita);
             $stmtVendita->execute([
                 ':v' => $id_venditore,
                 ':p' => $newId,
-                ':q' => $disponibilita // Usiamo la disponibilità iniziale come quantità venduta
+                ':q' => $disponibilita
             ]);
 
             if ($categoria === 'bevande') {
-                // CORREZIONE: Aggiunto scoop nell'INSERT
-                // Se l'utente non lo compila, mettiamo un valore default per evitare l'errore SQL
                 $scoopVal = !empty($_POST['scoop']) ? $_POST['scoop'] : 'Standard';
 
                 $sqlSub = "INSERT INTO Bevande (id, temp_consigliata, tipologia_bevanda, scoop) VALUES (:id, :t, :tp, :sc)";
@@ -118,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ':id' => $newId,
                     ':t' => $_POST['temp_consigliata'],
                     ':tp' => $_POST['tipologia_bevanda'],
-                    ':sc' => $scoopVal // Campo mancante aggiunto
+                    ':sc' => $scoopVal
                 ]);
             } elseif ($categoria === 'merchandising') {
                 $idBevandaEsistente = $_POST['id_bevanda'];

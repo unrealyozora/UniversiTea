@@ -366,6 +366,17 @@
     transition: all 0.3s ease;
     margin: 0.5em;
 }
+.btn-filter:active {
+    transform: scale(0.98);
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-filter:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 214, 159, 0.4);
+}
 
 .btn-add-cart:hover, .btn-filter:hover {
     background-color: var(--universitea-green);

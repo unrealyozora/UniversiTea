@@ -1,9 +1,4 @@
 <?php
-// ../config/shop_functions.php
-
-/**
- * Restituisce il path dell'immagine placeholder in base alla categoria
- */
 function getImagePlaceholder($categoria)
 {
     // Nota: Aggiusta il path in base a dove includi il file.
@@ -28,9 +23,20 @@ function getBasePath(): string
     return '../../assets/images/';
 }
 
-/**
- * Esegue la query per ottenere i prodotti (uno singolo o lista)
- */
+function checkImage($product){
+    $basePath = getBasePath();
+    $imageFile = $product['img_src'];
+    $fullPath = $basePath . $imageFile;
+
+    if ($product['img_src'] === '' || !file_exists(__DIR__ . '/' . $fullPath) ){
+        $img_src = getImagePlaceholder($product['categoria']);
+    } else {
+        $fullPath = $basePath . $product['img_src'];
+        $img_src = htmlspecialchars($fullPath, ENT_QUOTES, 'UTF-8');
+    }
+    return $img_src;
+}
+
 function getProductQuery($conn, $id = null)
 {
     $sql = "SELECT 
@@ -86,26 +92,4 @@ function getBundleItems($conn, $bundleId)
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function loadErrorPage($code)
-{
-    http_response_code($code);
-
-// ADATTA QUESTO PERCORSO:
-// Supponiamo che le pagine siano tipo: pages/404.php, pages/500.php
-    $path = __DIR__ . "/../pages/$code.html";
-
-// Se sono .html cambia l'estensione qui sotto:
-    if (!file_exists($path)) {
-        $path = __DIR__ . "/../pages/$code.php";
-    }
-
-    if (file_exists($path)) {
-        require $path;
-    } else {
-// Fallback estremo se manca anche il file di errore
-        echo "<h1>Errore $code</h1><p>Si è verificato un errore e la pagina personalizzata non è stata trovata.</p>";
-    }
-    exit; // Importante: ferma l'esecuzione dello script!
 }
