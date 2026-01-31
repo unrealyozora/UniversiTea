@@ -8,10 +8,12 @@
           content="Pagina dedicata al tuo profilo Universitea.">
     <meta name="keywords" content="tè, università, tisane,profilo, negozio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/print.css" media="print">
 </head>
 <body>
+<a href="#dashboard-content" class="skip-link">Salta al contenuto principale</a>
 <header class="main-header">
     <a href="../../index.html">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
@@ -61,7 +63,7 @@
     </p>
 </nav>
 
-<div class="dashboard-card">
+<main id="dashboard-content" class="dashboard-card">
     <h1>Il Tuo Profilo</h1>
 
     <div class="status-badge">
@@ -96,7 +98,7 @@
         Ultima attività: {{LAST_ACTIVITY}}<br>
         Timeout: 30 minuti di inattività
     </div>
-</div>
+</main>
 
 
 <footer class="main-footer-area">
@@ -147,7 +149,6 @@
         <nav class="footer-column" aria-label="Categorie prodotti">
             <h2>Prodotti</h2>
             <ul>
-                <
                 <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
                 <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a></li>
                 <li><a href="./shop.php?category=servizi">I Servizi</a></li>

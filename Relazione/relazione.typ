@@ -87,31 +87,36 @@
 )
 
 = 1. Introduzione al Progetto
-Il presente documento descrive la progettazione e lo sviluppo del sito web "TeaShop", una piattaforma e-commerce dedicata alla vendita e alla cultura del tè pregiato. Il progetto è stato realizzato nell'ambito del corso di Tecnologie Web, applicando le best practices di sviluppo frontend, design responsivo e accessibilità.
+Il presente documento descrive la progettazione e lo sviluppo del sito web "UniversiTea", una piattaforma e-commerce dedicata alla vendita e alla cultura del tè pregiato rivolta agli studenti universitari, visti come il Target principale. \ 
+Il progetto è stato realizzato nell'ambito del corso di Tecnologie Web, applicando le best practices di sviluppo frontend, design responsivo e accessibilità.
 
 = 2. Obiettivi del Sito
-L'obiettivo principale del sito è creare un'esperienza utente immersiva che guidi il visitatore dalla scoperta delle varietà di tè fino all'acquisto.
-Gli obiettivi specifici includono:
-- *Educazione:* Fornire schede tecniche dettagliate su origine, temperatura dell'acqua e tempi di infusione.
-- *Vendita:* Un flusso di acquisto semplice e intuitivo.
-- *Brand Awareness:* Trasmettere valori di calma, natura e qualità attraverso il design visivo.
+L'obiettivo principale del sito è creare un'esperienza utente immersiva che guidi il visitatore dalla scoperta delle varietà di prodotti, dalle bevande ai servizi tra studenti,fino all'acquisto.
+Il sito mira a:
+- Fornire un'interfaccia intuitiva e accattivante per esplorare i prodotti disponibili.
+- Aiutare gli studenti fornendo una piattaforma per la vendita di servizi legati alla vita universitaria.
+- Garantire l'accessibilità a tutti gli utenti, rispettando le linee guida WCAG 2.1 (Livello AA).
+- Offrire contenuti informativi e guide per avvicinare gli utenti al mondo del tè.
+- 
 
 = 3. Target di Riferimento
-L'analisi dell'utenza ha identificato tre profili principali (Personas):
+L'analisi dell'utenza ha identificato tre profili principali:
 - *Il Neofita Curioso:* Utente che vuole avvicinarsi al mondo del tè ma necessita di guide passo-passo.
-- *L'Intenditore:* Utente esperto che cerca varietà rare e informazioni tecniche precise (anno di raccolta, cultivar).
-- *Il Regalo Perfetto:* Utente che cerca confezioni regalo esteticamente curate, basandosi principalmente sulle immagini.
+- *Lo Studente preoccupato:* Utente che cerca soluzioni pratiche e veloci per la propria vita quotidiana, target principale dei "_Servizi_".
+- *Il Regalo Perfetto:* Utente che cerca consigli per regali unici e di qualità, che possa essere guidato nella scelta da contenuti informativi.
 
 = 4. Contenuti e Struttura
 Il sito è strutturato secondo la seguente sitemap:
 
 / Home Page: Hero section emozionale, prodotti in evidenza, ultime notizie dal blog.
-/ Catalogo (Shop): Filtri per tipologia (Verde, Nero, Bianco), prezzo e origine.
-/ Scheda Prodotto: Foto ad alta risoluzione, descrizione sensoriale, pulsante "Aggiungi al carrello".
-/ Blog: Articoli sulla cerimonia del tè e benefici per la salute.
-/ Chi Siamo: Storia dell'azienda e valori etici.
+/ Catalogo (Shop): Filtri per tipologia di prodotto, prezzo e disponibilità e per nome/descrizione.
+/ Scheda Prodotto: Foto ad alta risoluzione, descrizione con tutti i dettagli, pulsante "Aggiungi al carrello".
+/ I nostri tè: Guida alle varietà di tè con specifica delle differenze.
+/ Chi Siamo: Storia dell'azienda.
+/ Il mio Profilo: Area personale: per i Venditori un Pannello di Gestione, per il cliente comune un informativa sui Punti Fedeltà e punto di accesso per la Pagina dei preferiti.
 
-== 5. Accessibilità (Monitoraggio WCAG 2.1)
+
+= 5. Accessibilità (Monitoraggio WCAG 2.1)
 In questa sezione viene analizzata la conformità del sito alle linee guida WCAG 2.1 (Livello AA), come richiesto dalle specifiche di progetto. La seguente tabella riassume lo stato di validazione dei criteri principali.
 
 #align(center)[
@@ -137,7 +142,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   
   ..wcag-row(
     "1.1.1 Contenuti non testuali", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "NVDA",
     "Attributi alt presenti su logo e prodotti. Modelli 3D nascosti agli screen reader."
   ),
   ..wcag-row(
@@ -152,7 +157,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ),
   ..wcag-row(
     "1.3.2 Sequenza significativa", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Silktide e controllo manuale",
     "L'ordine del DOM rispecchia l'ordine visivo anche nei layout grid/flex."
   ),
   ..wcag-row(
@@ -163,7 +168,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ..wcag-row(
     "1.4.1 Uso del colore", "A", 
     text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
-    "I link sono distinguibili non solo per colore ma anche tramite sottolineatura o icone."
+    "I link sono distinguibili non solo per colore ma anche tramite sottolineatura, icone e/o aspetto da bottone."
   ),
   ..wcag-row(
     "1.4.3 Contrasto minimo", "AA", 
@@ -284,7 +289,31 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
 )
 
 == Note aggiuntive sull'Accessibilità
-Per verificare i contrasti cromatici è stato utilizzato lo strumento *WebAIM Contrast Checker*. Le icone puramente decorative sono state nascoste agli screen reader utilizzando `aria-hidden="true"`.
+Per verificare i contrasti cromatici è stato utilizzato lo strumento *WebAIM Contrast Checker*. Le icone puramente decorative sono state nascoste agli screen reader utilizzando `aria-hidden="true"`.\
+Il controllo della correttezza del codice è stato validato in due modalità automatiche. La prima l'utilizzo di *TotalValidator*, la seconda l'utilizzo di *PHPStorm* il quale indica errori formali, link non funzionanti (a livello statico) e _best practice_ non rispettate. Particolarità di PHPStorm è inoltre la possibilità di impostare un server remoto su cui riversare il progetto, rendendo automatico il caricamento sul server _tecweb_.
 
-== 6. Conclusioni
+
+= 6. Suddivisione dei compiti
+La suddivisione dei compiti è stata gestita cercando di coniugare gli impegni e le preferenze di ognuno dei membri del team. In particolare la spartizione da seguito questa struttura:
+== Soligo Lorenzo
+- Design del Database
+- Pagina SHOP: HTML, PHP, JS e CSS
+- Pagina Prodotto: HTML, PHP, JS e CSS
+- Pagina Profilo Venditore/Administrator:  HTML, PHP, JS e CSS
+- Pagina Aggiunta/Modifica Prodotto: HTML, PHP, JS e CSS
+- Menù Mobile
+- Controllo con NVDA
+
+= 7. Funzionalità Aggiuntive
+== Filtri Shop
+Nella pagina _Shop_ sono stati implementati filtri per categoria e prezzo, permettendo agli utenti di restringere i risultati in base alle proprie preferenze. I filtri sono realizzati utilizzando PHP come base di partenza e JavaScript per aggiornare dinamicamente la visualizzazione dei prodotti senza ricaricare la pagina, rispettando il principio di _*Progressive Enhancement*_.
+== Gestione attenta della creazione dei prodotti
+Per la creazione dei prodotti, è stata implementata una pagina dedicata che consente ai venditori di inserire tutte le informazioni necessarie in modo strutturato. Questa pagina include campi per il nome del prodotto, la descrizione, il prezzo, la categoria e l'immagine del prodotto. Inoltre, sono stati implementati controlli di validazione per garantire che tutti i dati inseriti siano corretti e completi prima della pubblicazione sul server. \
+I dettagli specifici del tipo di prodotto vengono mostrati in base alla categoria selezionata, migliorando l'esperienza utente evitando il sovraccarico cognitivo.
+= 8. Uso dell'AI nel progetto
+Durante lo sviluppo del progetto, l'Intelligenza Artificiale è stata utilizzata in modo limitato e mirato. In particolare, sono stati impiegati strumenti di AI per:
+- Generazione delle immagini per evitare di incappare in problemi di copyright.
+- Codice per la gestione del Parallasse nella pagina HOME.
+L'uso dell'AI è stato sempre supervisionato e integrato con il lavoro manuale del team, assicurando che il prodotto finale rispecchiasse le competenze acquisite durante il corso e rispettasse gli standard di qualità richiesti.
+= 7. Conclusioni
 Il progetto ha permesso di approfondire le tecnologie HTML, CSS e JavaScript, con un focus particolare sull'inclusività. Il sito risultante è non solo esteticamente gradevole, ma utilizzabile da una vasta gamma di utenti, rispettando gli standard universitari e internazionali.

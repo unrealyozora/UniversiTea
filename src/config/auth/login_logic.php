@@ -82,7 +82,8 @@ function loginUser(): void
             unset($_SESSION['redirect_after_login']); // Importante: pulisci la sessione
         } else {
             // Fallback standard se non c'è una pagina di provenienza
-            $destination = ($_SESSION['tipo_utente'] === 'Venditore') ? 'administrator.php' : 'dashboard.php';
+            $filename = ($_SESSION['tipo_utente'] === 'Venditore') ? 'administrator.php' : 'dashboard.php';
+            $destination = '../../pages/' . $filename;
         }
 
         header("Location: " . $destination);
