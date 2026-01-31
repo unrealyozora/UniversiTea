@@ -12,6 +12,8 @@
     --breadcolor: #88a87d;
     --linkcolor: #9ddbad;
     --link-visited: #cc2569;
+    --error-bg: rgba(255, 68, 68, 0.08);
+    --error-txtcolor:#ff4444;
     /*#cc2569;*/
 
     --navlink-color: #0b3f3e;
@@ -3145,15 +3147,28 @@ fieldset input[type="radio"]:checked+label {
     font-size: 0.9em;
 }
 
-.error-message,
-.error-msg {
-    color: #ff4444;
-    font-size: 0.85rem;
+.error-msg,
+.error-message{
+    background: var(--error-bg);
+    color: var(--error-txtcolor);
+    border-left: 4px solid var(--error-txtcolor);
+    border-right: 4px solid var(--error-txtcolor);
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
     margin-top: 0.5rem;
-    min-height: 1.2em;
-    /* Riserva spazio per evitare salti */
-    padding-left: 1rem;
-    font-weight: 500;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInError 0.4s ease;
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .submit-btn {
@@ -3201,5 +3216,121 @@ fieldset input[type="radio"]:checked+label {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+    }
+}
+
+/* --- OPTIMIZATION FOR SHORT SCREENS (e.g. Landscape Mobile / Small Laptops) --- */
+@media (max-height: 850px) {
+
+    /* --- LAYOUT DEL CONTENITORE --- */
+    #register-content,
+    #login-content {
+        padding: 0.5rem 1rem;
+        margin-bottom: 2rem;
+        justify-content: flex-start;
+        min-height: auto;
+    }
+
+    /* Titoli più piccoli */
+    #register-content h1,
+    #login-content h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Card più snella */
+    section.register-card,
+    section.login-card {
+        padding: 1.5rem 2rem;
+        border-radius: 1.5em;
+        /* Un po' più tondo */
+        max-width: 55em;
+        /* Più larga per far stare comode le colonne */
+    }
+
+    section.register-card h2,
+    section.login-card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-prompt,
+    .register-link {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* --- GRIGLIA FORM (REGISTER & LOGIN) --- */
+    #registrationForm,
+    #loginForm {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Due colonne uguali */
+        column-gap: 2rem;
+        row-gap: 1rem;
+        align-items: start;
+    }
+
+    /* --- FIELDSET (RADIO BUTTONS) --- */
+    /* Deve stare in alto e al centro, occupando tutto lo spazio */
+    #registrationForm fieldset {
+        grid-column: 1 / -1;
+        /* Occupa tutta la riga */
+        display: flex;
+        justify-content: center;
+        /* Centra i radio buttons orizzontalmente */
+        align-items: center;
+        gap: 2rem;
+        /* Distanzia le opzioni */
+        margin-bottom: 0.5rem;
+        margin-top: 0;
+    }
+
+    /* --- CAMPI INPUT --- */
+    .form-group {
+        margin-bottom: 0;
+        /* Gestito dal gap della griglia */
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .form-group p.register-advice,
+    .form-group p.login-advice {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .form-group input {
+        padding: 0.7rem 1rem;
+        /* Meno alto */
+        font-size: 0.9rem;
+    }
+
+    /* Specifico LOGIN */
+    #loginForm .form-group {
+        margin-bottom: 0;
+    }
+
+    /* --- SUBMIT BUTTON --- */
+    /* Deve stare in basso e al centro, occupando tutto lo spazio */
+    #registrationForm .submit-btn,
+    #loginForm .submit-btn {
+        grid-column: 1 / -1;
+        /* Occupa tutta la riga */
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    /* Gestione errori generici */
+    #loginForm .error-message,
+    #registrationForm>.error-message {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 1rem;
     }
 }
