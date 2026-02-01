@@ -28,6 +28,7 @@ body {
     font-size: 100%;
     font-family: "Lexend", "Roboto", sans-serif;
     line-height: 1.5em;
+    scroll-padding-top: 35vh;
 }
 
 body {
