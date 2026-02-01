@@ -6,13 +6,15 @@
     <td datatitle="Disponibilità">{{DISPONIBILITA}} pz.</td>
     <td datatitle="Categoria">{{CATEGORIA}}</td>
     <td class="actions" datatitle="Azioni">
-        <a href="edit_product.php?id={{ID}}" class="btn-edit" aria-label="Modifica {{NOME}}">
-            Modifica
-        </a>
+        <div class="action-buttons">
+            <a href="edit_product.php?id={{ID}}" class="btn-table btn-edit" aria-label="Modifica {{NOME}}">
+                Modifica
+            </a>
 
-        <form action="../config/delete_product.php" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare {{NOME}}?');" style="display:inline;">
-            <input type="hidden" name="id" value="{{ID}}">
-            <button type="submit" class="btn-delete" aria-label="Elimina {{NOME}}">Elimina</button>
-        </form>
+            <form action="../config/delete_product.php" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare {{NOME}}?');">
+                <input type="hidden" name="id" value="{{ID}}">
+                <button type="submit" class="btn-table btn-delete" aria-label="Elimina {{NOME}}">Elimina</button>
+            </form>
+        </div>
     </td>
 </tr>
