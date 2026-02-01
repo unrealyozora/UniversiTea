@@ -2179,16 +2179,37 @@ input:focus-visible {
     }
 }
 
-.curiosita h2,
-.tea-process h2,
-.tea-card h2,
-.quiz-section h2 {
+.indicetea{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    padding: 2em 2em 2em 4em;
+}
+
+.indicetea p{
+    font-size: 1.5em;
+    line-height: 1.6;
+    padding-bottom: 0.2em;
+}
+
+.indicetea a{
+    font-size: 1em;
+    line-height: 1.6;
+    padding: 0.2em;
+}
+
+.quiz-section h2, .tea-process h2, .tea-card h3 {
     color: var(--universitea-green);
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     text-align: left;
     margin-top: 1rem;
     line-height: 1.6;
+}
+
+.tea-process h2{
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .curiosita p,
@@ -2205,32 +2226,36 @@ input:focus-visible {
 
 .curiosita {
     width: 100%;
-    margin-top: 8em;
-    margin-bottom: 0;
-    padding: 2rem 5% 2rem 5%;
+    padding: 2em 5% 2em 5%;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
+    justify-content: center; /*centra il contenuto orizzontalmente*/
+    align-items: center; /*centra il contenuto verticalmente*/
+    gap: 2em;
+}
+
+.curiosita h2 {
+    flex: 0 0 100%; 
+    color: var(--universitea-green);
+    font-size: 2.5em;
+    text-align: center;
+    padding-top: 1em;
+    text-transform: uppercase;
+    line-height: 1.6;
 }
 
 .curiosita-content {
-    flex: 1;
-    min-width: 18.75em;
+    flex: 1 1 300px; 
 }
 
 .curiosita-image {
-    flex: 0 0 18.75em;
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
+    flex: 0 1 auto; /*così l'immagine sta di fianco al testo*/
 }
 
 .curiosita-image img {
     width: 100%;
-    max-width: 7.5em;
-    height: auto;
+    max-width: 15em;
 }
 
 /*sezione tea-process con tabella*/
@@ -2322,15 +2347,24 @@ input:focus-visible {
 
 .tea-card {
     display: flex;
-    flex-direction: row; /* Foto e testo affiancati */
+    flex-direction: row; /*foto e testo affiancati*/
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 2em;
     width: 100%;
     padding: 0 5%;
     box-sizing: border-box;
     text-align: left;
+}
+
+#tè {
+    text-align: center;
+    color: var(--universitea-green);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    line-height: 1.6;
+    text-transform: uppercase;
 }
 
 /*inverte l'ordine foto testo per desktop*/
@@ -2353,11 +2387,7 @@ input:focus-visible {
 
 .tea-card img {
     width: 100%;
-    max-width: 25rem;
-    height: auto;
-    border-radius: 1.25em;
-    box-shadow: 0 0.9375em 2.1875em rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
+    max-width: 25em;
 }
 
 /* --- LAYOUT MOBILE (Sotto i 768px) --- */
@@ -2379,7 +2409,7 @@ input:focus-visible {
         width: 100%;
     }
 
-    .tea-card h2{
+    .tea-card h3{
         padding-bottom: 0.5em;
         border-bottom: 0.1em solid var(--universitea-green);
     }
@@ -2479,6 +2509,7 @@ fieldset {
     font-weight: bold;
     text-align: center;
 }
+
 
 
 /*ERRORPAGES*/
