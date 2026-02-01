@@ -111,7 +111,7 @@ section {
 .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
-    color: var(--universitea-green);
+    color: var(--darkbgcolor);
     transform: translateY(-0.125em);
 }
 
@@ -147,7 +147,7 @@ body.homepage .main-header:not(.scrolled) .btn-join {
 body.homepage .main-header:not(.scrolled) .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
-    color: var(--universitea-green);
+    color: var(--darkbgcolor);
     transform: translateY(-0.1875em);
     box-shadow: 0 0.5em 1.5625em rgba(0, 214, 159, 0.4);
 }
@@ -3239,5 +3239,193 @@ fieldset input[type="radio"]:checked+label {
         grid-column: 1 / -1;
         text-align: center;
         margin-bottom: 1rem;
+    }
+}
+
+
+/* ==========================================================================
+   DASHBOARD / PROFILO UTENTE - MODERN STYLE
+   (Targeting: dashboard.html)
+========================================================================== */
+
+/* 1. LAYOUT CENTRALE E SFONDO */
+/* Centra la card nella pagina e aggiunge lo sfondo animato */
+#dashboard-content {
+    position: relative;
+    max-width: 40rem; /* Larghezza massima contenuta */
+    margin: 4rem auto; /* Spazio sopra e sotto */
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    /* Effetto Vetro (Glassmorphism) */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+
+    padding: 3rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Glow Ambientale Verde dietro/dentro la card */
+#dashboard-content::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 214, 159, 0.1) 0%, rgba(0,0,0,0) 70%);
+    top: 0;
+    right: 0;
+    transform: translate(30%, -30%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 2. TITOLO E STATUS */
+#dashboard-content h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* Badge "Account Attivo" */
+div.status-badge {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+span.status-badge {
+    display: inline-block;
+    padding: 0.4em 1em;
+    background: rgba(0, 214, 159, 0.15);
+    color: var(--universitea-green);
+    border: 1px solid var(--universitea-green);
+    border-radius: 2em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 15px rgba(0, 214, 159, 0.2);
+}
+
+/* 3. RIGHE INFORMAZIONI (.info-row) */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.info-row:last-of-type {
+    border-bottom: none;
+    margin-bottom: 1rem;
+}
+
+.info-row:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 0.5rem;
+}
+
+.info-label {
+    color: #aaa;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.info-label a {
+    color: var(--universitea-green);
+    text-decoration: none;
+    position: relative;
+    transition: text-shadow 0.3s ease;
+}
+
+.info-label a:hover {
+    text-shadow: 0 0 10px rgba(0, 214, 159, 0.6);
+}
+
+.info-value {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* 4. TASTO LOGOUT E NAV-LINKS */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    order: 10; /* Sposta il logout in fondo se necessario */
+}
+
+.nav-links form {
+    width: 100%;
+}
+
+.nav-links button.submit-btn {
+    background-color: transparent;
+    border: 2px solid #ff4444;
+    color: #ff4444;
+    box-shadow: none;
+    margin-top: 0;
+    width: 100%;
+}
+
+.nav-links button.submit-btn:hover {
+    background-color: #ff4444;
+    color: #fff;
+    border-color: #ff4444;
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 5. INFO SESSIONE (Footer della card) */
+.session-info {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    line-height: 1.6;
+}
+
+.session-info strong {
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+/* RESPONSIVE PER MOBILE */
+@media (max-width: 600px) {
+    #dashboard-content {
+        padding: 2rem 1.5rem;
+        margin: 2rem 5%;
+        width: 90%;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    .info-value {
+        align-self: flex-start;
+        color: var(--universitea-green); /* Evidenzia il dato su mobile */
     }
 }
