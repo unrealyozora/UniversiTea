@@ -2510,7 +2510,41 @@ fieldset {
     text-align: center;
 }
 
+/*PAGINA ABOUT*/
 
+#about-content{
+    padding: 0 5%; /*spazio ai bordi*/
+}
+
+.about-statsbar{
+    display: flex;
+    flex-direction: row; /*i blocchi stanno nella stessa riga*/
+    justify-content: space-around; /*distribuisce le stat così hanno lo stesso spazio tra loro*/
+    list-style: none; /*per togliere i pallini della lista*/
+    background-color: rgba(0, 214, 159, 0.5);
+    width: 100%;
+    color: var(--txtcolor);
+}
+
+.about-stats h2, .about-intro h2, .chisiamo h2{
+    font-size: 2.5em;
+    color: var(--universitea-green);
+    margin-bottom: 0.7em;
+    margin-top: 0.7em;
+}
+
+.about-sta{
+    display: flex;
+    flex-direction: column; /*numero e spiegazione stanno uno sotto l'altro*/
+    align-items: center;
+    text-align: center;
+    padding: 1em 1em 1em 1em;
+}
+
+.stat-number{
+    font-size: 1.7em;
+    padding-bottom: 0.4em;
+}
 
 /*ERRORPAGES*/
 .errorpage {
