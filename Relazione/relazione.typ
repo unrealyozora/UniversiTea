@@ -118,6 +118,16 @@ Il sito è strutturato secondo la seguente sitemap:
 / Chi Siamo: Storia dell'azienda.
 / Il mio Profilo: Area personale: per i Venditori un Pannello di Gestione, per il cliente comune un informativa sui Punti Fedeltà e punto di accesso per la Pagina dei preferiti.
 
+Il sito si appoggia di un database MySQL per la persistenza di dati quali account e prodotti, seguendo il seguente schema:
+#figure(
+  image("BasiDati_TecWeb.png", width: 80%),
+  caption: [
+    Schema ER del database utilizzato
+  ],
+)
+
+
+
 
 = 5. Accessibilità (Monitoraggio WCAG 2.1)
 In questa sezione viene analizzata la conformità del sito alle linee guida WCAG 2.1 (Livello AA), come richiesto dalle specifiche di progetto. La seguente tabella riassume lo stato di validazione dei criteri principali.
