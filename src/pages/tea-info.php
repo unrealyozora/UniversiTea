@@ -10,12 +10,12 @@ $resultMessage = '';
 
 // Array per le classi CSS
 $classes = [
-    'Q1_WRONG1_CLASS' => '',
-    'Q1_CORRECT_CLASS' => '',
-    'Q1_WRONG2_CLASS' => '',
-    'Q2_WRONG1_CLASS' => '',
-    'Q2_CORRECT_CLASS' => '',
-    'Q2_WRONG2_CLASS' => '',
+    'ANSWER_CLASS_Q1A' => '',
+    'ANSWER_CLASS_Q1B' => '',
+    'ANSWER_CLASS_Q1C' => '',
+    'ANSWER_CLASS_Q2A' => '',
+    'ANSWER_CLASS_Q2B' => '',
+    'ANSWER_CLASS_Q2C' => '',
 ];
 
 // Array per i checked
@@ -35,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_quiz'])) {
     // Verifica le risposte
     if (isset($_POST['q1'])) {
         $q1_answer = $_POST['q1'];
-        if ($q1_answer === 'correct') {
+        if ($q1_answer === 'camellia') {
             $score++;
         }
     }
 
     if (isset($_POST['q2'])) {
         $q2_answer = $_POST['q2'];
-        if ($q2_answer === 'correct') {
+        if ($q2_answer === 'lavorazione') {
             $score++;
         }
     }
@@ -53,24 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_quiz'])) {
     } else {
         // Applica le classi alle risposte
         // Domanda 1
-        if ($q1_answer === 'wrong1') {
+        if ($q1_answer === 'rooibos') {
             $classes['Q1_WRONG1_CLASS'] = 'wrong-selection';
             $checked['Q1_WRONG1_CHECKED'] = 'checked';
-        } elseif ($q1_answer === 'correct') {
+        } elseif ($q1_answer === 'camellia') {
             $checked['Q1_CORRECT_CHECKED'] = 'checked';
-        } elseif ($q1_answer === 'wrong2') {
+        } elseif ($q1_answer === 'camomilla') {
             $classes['Q1_WRONG2_CLASS'] = 'wrong-selection';
             $checked['Q1_WRONG2_CHECKED'] = 'checked';
         }
         $classes['Q1_CORRECT_CLASS'] = 'correct-answer';
 
         // Domanda 2
-        if ($q2_answer === 'wrong1') {
+        if ($q2_answer === 'altitudine') {
             $classes['Q2_WRONG1_CLASS'] = 'wrong-selection';
             $checked['Q2_WRONG1_CHECKED'] = 'checked';
-        } elseif ($q2_answer === 'correct') {
+        } elseif ($q2_answer === 'lavorazione') {
             $checked['Q2_CORRECT_CHECKED'] = 'checked';
-        } elseif ($q2_answer === 'wrong2') {
+        } elseif ($q2_answer === 'acqua') {
             $classes['Q2_WRONG2_CLASS'] = 'wrong-selection';
             $checked['Q2_WRONG2_CHECKED'] = 'checked';
         }
@@ -102,6 +102,7 @@ $replacements = array_merge(
 foreach ($replacements as $placeholder => $value) {
     $html = str_replace($placeholder, $value, $html);
 }
+
 $user_action = '';
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $user_action = '<li>

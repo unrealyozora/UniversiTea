@@ -8,7 +8,6 @@ $productId = $_GET['id'] ?? null;
 $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
 
 
-
 try {
     $db = new Database();
     $conn = $db->getConnection();
@@ -41,7 +40,7 @@ try {
         $formClass = '';
     }
 
-    $imgSrc=checkImage($product);
+    $imgSrc = checkImage($product);
 
 
     $imgAlt = $product['img_alt'];
@@ -135,7 +134,7 @@ try {
     }
 
     // Caricamento Template
-    $htmlContent = file_get_contents(__DIR__ . '/product.html');
+    $htmlContent = file_get_contents('templates/product.html');
 
     // Sostituzione Placeholder
     $replacements = [
@@ -145,8 +144,8 @@ try {
         '{{CATEGORY}}' => htmlspecialchars($product['categoria']),
         '{{IMG_SRC}}' => $imgSrc,
         '{{IMG_ALT}}' => $imgAlt,
-        '{{PRODUCT_ID}}'=> $productId,
-        '{{FEEDBACK}}'=> $feedbackHtml,
+        '{{PRODUCT_ID}}' => $productId,
+        '{{FEEDBACK}}' => $feedbackHtml,
         '{{AVAILABILITY_CLASS}}' => $availClass,
         '{{AVAILABILITY_TEXT}}' => $availText,
         '{{FORM_ACTION}}' => $isSeller ? '' : '../config/add_to_cart.php',

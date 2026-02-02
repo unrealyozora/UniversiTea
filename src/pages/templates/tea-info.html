@@ -94,9 +94,13 @@
             <p>Lo sapevi che tutti i tè derivano dalla pianta <strong>Camellia sinensis</strong>? Ciò che li rende
                 diversi — dal verde al nero, dal bianco all’oolong — è il metodo di <strong>lavorazione</strong> delle
                 foglie.</p>
-                <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in
+            <p>Esistono poi altre bevande, come quelle a base di rooibos o camomilla, che spesso chiamiamo “tè”, ma in
                 realtà non provengono dalla Camellia sinensis e quindi non sono tè veri e propri.</p>
-                <p>L’arte di preparare una buona tazza di tè richiede pazienza e attenzione ai dettagli. Dalla scelta della temperatura dell'acqua fino al tempo di infusione delle foglie, ogni passaggio contribuisce a creare un'esperienza sensoriale unica. Molti sottovalutano l'importanza della teiera, ma il materiale di cui è fatta può cambiare radicalmente il sapore finale della bevanda, trasformando un semplice momento di pausa in un vero e proprio rituale di benessere quotidiano.</p> 
+            <p>L’arte di preparare una buona tazza di tè richiede pazienza e attenzione ai dettagli. Dalla scelta della
+                temperatura dell'acqua fino al tempo di infusione delle foglie, ogni passaggio contribuisce a creare
+                un'esperienza sensoriale unica. Molti sottovalutano l'importanza della teiera, ma il materiale di cui è
+                fatta può cambiare radicalmente il sapore finale della bevanda, trasformando un semplice momento di
+                pausa in un vero e proprio rituale di benessere quotidiano.</p>
         </div>
 
         <div class="curiosita-image">
@@ -113,7 +117,7 @@
             ossidazione delle foglie cambino il carattere finale dei principali tipi di tè.</p>
 
 
-            <!--percentuali, metti abbr title-->
+        <!--percentuali, metti abbr title-->
         <div class="table-container" tabindex="0">
             <table class="process-title" aria-describedby="descr">
                 <caption>Ossidazione del tè</caption>
@@ -220,28 +224,29 @@
         <form class="tea-quiz" method="POST" action="tea-info.php#quiz">
             <fieldset>
                 <legend class="question-text">1. Da quale pianta derivano tutti i veri tipi di tè?</legend>
-                <label for="q1-a" class="{{Q1_WRONG1_CLASS}}">
-                    <input type="radio" name="q1" id="q1-a" value="wrong1" {{Q1_WRONG1_CHECKED}}> Rooibos
+                <label for="q1-a" class="{{ANSWER_CLASS_Q1A}}">
+                    <input type="radio" name="q1" id="q1-a" value="rooibos" {{Q1_WRONG1_CHECKED}}> Rooibos
                 </label>
-                <label for="q1-b" class="{{Q1_CORRECT_CLASS}}">
-                    <input type="radio" name="q1" id="q1-b" value="correct" {{Q1_CORRECT_CHECKED}}> Camellia sinensis
+                <label for="q1-b" class="{{ANSWER_CLASS_Q1B}}">
+                    <input type="radio" name="q1" id="q1-b" value="camellia" {{Q1_CORRECT_CHECKED}}> Camellia sinensis
                 </label>
-                <label for="q1-c" class="{{Q1_WRONG2_CLASS}}">
-                    <input type="radio" name="q1" id="q1-c" value="wrong2" {{Q1_WRONG2_CHECKED}}> Camomilla
+                <label for="q1-c" class="{{ANSWER_CLASS_Q1C}}">
+                    <input type="radio" name="q1" id="q1-c" value="camomilla" {{Q1_WRONG2_CHECKED}}> Camomilla
                 </label>
             </fieldset>
 
             <fieldset>
                 <legend class="question-text">2. Cosa determina la differenza tra i vari tè?</legend>
-                <label for="q2-a" class="{{Q2_WRONG1_CLASS}}">
-                    <input type="radio" name="q2" id="q2-a" value="wrong1" {{Q2_WRONG1_CHECKED}}> L'altitudine
+                <label for="q2-a" class="{{ANSWER_CLASS_Q2A}}">
+                    <input type="radio" name="q2" id="q2-a" value="altitudine" {{Q2_WRONG1_CHECKED}}> L'altitudine
                 </label>
-                <label for="q2-b" class="{{Q2_CORRECT_CLASS}}">
-                    <input type="radio" name="q2" id="q2-b" value="correct" {{Q2_CORRECT_CHECKED}}> La lavorazione delle
+                <label for="q2-b" class="{{ANSWER_CLASS_Q2B}}">
+                    <input type="radio" name="q2" id="q2-b" value="lavorazione" {{Q2_CORRECT_CHECKED}}> La lavorazione
+                    delle
                     foglie
                 </label>
-                <label for="q2-c" class="{{Q2_WRONG2_CLASS}}">
-                    <input type="radio" name="q2" id="q2-c" value="wrong2" {{Q2_WRONG2_CHECKED}}> Il tipo di acqua
+                <label for="q2-c" class="{{ANSWER_CLASS_Q2C}}">
+                    <input type="radio" name="q2" id="q2-c" value="acqua" {{Q2_WRONG2_CHECKED}}> Il tipo di acqua
                 </label>
             </fieldset>
 
@@ -358,7 +363,6 @@
         </div>
     </div>
 </footer>
-<script src="../config/tea-page.js"></script>
 </body>
 
 </html>
