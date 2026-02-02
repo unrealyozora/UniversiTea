@@ -7,6 +7,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 
+$venditoreBanner='';
+$isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
+$isSeller ? $venditoreBanner=$banner = file_get_contents('templates/restriction.html') :'';
+
 $email = $_SESSION['email'];
 
 // Gestione delle azioni POST
@@ -195,6 +199,7 @@ $template = file_get_contents('templates/favorites.html');
 
 // Replacements
 $replacements = [
+    '{{VENDITORE_BANNER}}' => $venditoreBanner,
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{ITEMS_LABEL}}' => $totalItems === 1 ? 'Prodotto' : 'Prodotti',
     '{{MESSAGE_HTML}}' => $message_html,

@@ -15,8 +15,11 @@ function newFidelityPoints($oldPoints, $cartTotal): int
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$venditoreBanner='';
+$isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
+$isSeller ? $venditoreBanner=$banner = file_get_contents('templates/restriction.html') :'';
 
-// Verifica login (adattato alla tua logica di sessione)
+
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
     header('Location: login.php');
@@ -32,11 +35,12 @@ function renderCartItem($item, $templateHtml)
     $nome = htmlspecialchars($item['nome']);
     $prezzo = '€' . number_format($item['prezzo'], 2, ',', '.');
     $subtotale = '€' . number_format($item['subtotal'], 2, ',', '.');
-    $qty = (int) $item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
+    $qty = (int)$item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
 
     // Logica stock: se non hai colonna stock in Carrello, la prendiamo da Prodotti
     // Assumo stock 99 se non definito, oppure aggiungi la colonna nella query
-    $stock = isset($item['stock']) ? (int) $item['stock'] : 99;
+    $stock = isset($item['stock']) ? (int)$item['stock'] : 99;
+
 
     $replacements = [
         '{{ID}}' => $id,
@@ -53,6 +57,7 @@ function renderCartItem($item, $templateHtml)
 }
 
 // 2. GESTIONE AZIONI POST (FALLBACK PER QUANDO MANCA JS)
+$disabledFidelityCheck = 'disabled';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $prodId = $_POST['product_id'] ?? 0;
@@ -61,8 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db = new Database();
         $conn = $db->getConnection();
 
+
         if ($action === 'update_quantity') {
-            $qty = (int) $_POST['quantity'];
+            $qty = (int)$_POST['quantity'];
             if ($qty > 0) {
                 // Query adattata alla tua tabella 'Carrello'
                 $stmt = $conn->prepare("UPDATE Carrello SET quantita = :qty WHERE consumatore = :email AND prodotto = :pid");
@@ -80,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':email' => $userEmail]);
             $_SESSION['msg_content'] = "Carrello svuotato.";
             $_SESSION['msg_type'] = "success";
-        } elseif ($action = "checkout") {
+        } elseif ($action === "checkout") {
             $querySum = "SELECT 
                 SUM(p.prezzo * c.quantita) AS totale
                 FROM Carrello c
@@ -104,6 +110,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $queryUpdate = "UPDATE Utente SET punti_fedelta = :newFidelityPoints WHERE email = :email;";
             $stmt = $conn->prepare($queryUpdate);
             $stmt->bindValue(':newFidelityPoints', $newFidelityPoints);
+            $stmt->bindValue(':email', $userEmail);
+            $stmt->execute();
+            $_SESSION['msg_type'] = "success";
+            $_SESSION['msg_content'] = "Transazione avvenuta con successo.";
+            $stmt = $conn->prepare("DELETE FROM Carrello WHERE consumatore = :email");
+            $stmt->execute([':email' => $userEmail]);
+        } elseif ($action === "fidelity") {
+            $querySum = "SELECT 
+                SUM(p.prezzo * c.quantita) AS totale
+                FROM Carrello c
+                JOIN Prodotti p ON c.prodotto = p.id
+                WHERE c.consumatore = :email;
+               ";
+            $stmt = $conn->prepare($querySum);
+            $stmt->bindValue(':email', $userEmail);
+            $stmt->execute();
+            $sumResult = $stmt->fetch(PDO::FETCH_ASSOC);
+            $totale = $sumResult['totale'];
+
+            $queryFidelityPoints = "SELECT punti_fedelta FROM Utente WHERE email = :email;";
+            $stmt = $conn->prepare($queryFidelityPoints);
+            $stmt->bindValue(':email', $userEmail);
+            $stmt->execute();
+            $fidelityResult = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $fidelityPointsAfterCheckout = $fidelityResult['punti_fedelta'] - $totale * 5;
+
+            $queryUpdate = "UPDATE Utente SET punti_fedelta = :newFidelityPoints WHERE email = :email;";
+            $stmt = $conn->prepare($queryUpdate);
+            $stmt->bindValue(':newFidelityPoints', $fidelityPointsAfterCheckout);
             $stmt->bindValue(':email', $userEmail);
             $stmt->execute();
             $_SESSION['msg_type'] = "success";
@@ -141,7 +177,6 @@ try {
             p.prezzo, 
             c.quantita, 
             (p.prezzo * c.quantita) as subtotal
-            -- , p.stock  <-- Decommenta se hai la colonna stock in Prodotti
         FROM Carrello c 
         JOIN Prodotti p ON c.prodotto = p.id 
         WHERE c.consumatore = :email
@@ -166,6 +201,16 @@ try {
             $cartItemsHtml .= renderCartItem($item, $itemTemplate);
             $totalAmount += $item['subtotal'];
             $totalItems += $item['quantita'];
+
+
+        }
+        $queryFidelityPoints = "SELECT punti_fedelta FROM Utente WHERE email = :email;";
+        $stmt = $conn->prepare($queryFidelityPoints);
+        $stmt->bindValue(':email', $userEmail);
+        $stmt->execute();
+        $fidelityResult = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($fidelityResult['punti_fedelta'] >= $totalAmount * 5) {
+            $disabledFidelityCheck = '';
         }
     } else {
         $cartItemsHtml = '<div class="empty-cart"><h2>Il tuo carrello è vuoto</h2><a href="./shop.php" class="btn-join">Vai allo Shop</a></div>';
@@ -205,10 +250,12 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 }
 
 $replacements = [
+    '{{VENDITORE_BANNER}}' => $venditoreBanner,
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{TOTAL_AMOUNT}}' => '€' . number_format($totalAmount, 2, ',', '.'),
     '{{CART_CONTENT}}' => $cartItemsHtml,
     '{{USER_FEEDBACK}}' => $userFeedback,
+    '{{DISABLED_FIDELITY_CHECK}}' => $disabledFidelityCheck,
     '{{HIDDEN_IF_EMPTY}}' => ($totalItems === 0) ? 'hidden' : '',
     '{{USER_ACTION}}' => $user_action,
 ];

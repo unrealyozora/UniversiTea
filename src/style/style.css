@@ -189,11 +189,11 @@ body.homepage .main-header {
     position: fixed;
 }
 
-.btn-disabled-role {
-    background-color: #cccccc !important;
-    color: var(--darkbgcolor) !important;
-    cursor: not-allowed !important;
-    border-color: #bbbbbb !important;
+.product-card .product-info .btn-disabled-role {
+    background-color: #cccccc;
+    color: var(--darkbgcolor);
+    cursor: not-allowed;
+    border-color: #bbbbbb;
     opacity: 0.7;
     pointer-events: none;
 }
@@ -3313,7 +3313,7 @@ fieldset input[type="radio"]:checked+label {
 }
 
 .form-group p.register-advice,
-.form-group p.login-advice {
+.form-group p.login-advice, .form-group p.product-advice  {
     margin-bottom: 0.5rem;
     margin-left: 0.5rem;
     color: rgba(255, 255, 255, 0.5);
