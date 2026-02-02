@@ -17,7 +17,6 @@ $classes = [
     'Q2_CORRECT_CLASS' => '',
     'Q2_WRONG2_CLASS' => '',
 ];
-//$user_action = '';
 
 // Array per i checked
 $checked = [
@@ -103,8 +102,7 @@ $replacements = array_merge(
 foreach ($replacements as $placeholder => $value) {
     $html = str_replace($placeholder, $value, $html);
 }
-
-$template = file_get_contents('templates/tea-info.html');
+$user_action = '';
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $user_action = '<li>
                         <a href="dashboard.php" class="nav-profile-link">
