@@ -2339,7 +2339,7 @@ input:focus-visible {
 /*STILE PAGINA IL NOSTRO TE'*/
 /*--------------------------*/
 
-.tea-content {
+#tea-content {
     position: relative;
     max-width: 100%;
     margin: 0 auto;
@@ -2348,17 +2348,14 @@ input:focus-visible {
 .teaintro {
     position: relative;
     width: 100%;
-    height: 70vh;
-    /*occupa il 70% dello schermo*/
+    height: 70vh; /*occupa il 70% dello schermo*/
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    /*allinea a sinistra*/
+    justify-content: flex-end; /*allinea a sinistra*/
     background-image: url('../../assets/images/tea-photo.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
-    /*foto è al 100% dello schermo*/
+    background-size: cover; /*foto è al 100% dello schermo*/
     padding: 3em;
 
 }
@@ -2366,12 +2363,9 @@ input:focus-visible {
 .teaintro-text {
     max-width: 50em;
     padding: 2em;
-    background: rgba(255, 255, 255, 0.1);
-    /*questo dà la trasparenza*/
-    backdrop-filter: blur(12px);
-    /*sfocato*/
-    -webkit-backdrop-filter: blur(12px);
-    /*per Safari*/
+    background: rgba(255, 255, 255, 0.1); /*questo dà la trasparenza*/
+    backdrop-filter: blur(12px); /*sfocato*/
+    -webkit-backdrop-filter: blur(12px); /*per Safari*/
     border: 1px solid var(--txtcolor);
     border-radius: 1em;
 }
@@ -2386,64 +2380,76 @@ input:focus-visible {
     font-weight: bold;
 }
 
-.teaintro-text p {
+.teaintro-text p{
     font-size: 2em;
     color: var(--txtcolor);
     line-height: 1.6;
     text-align: center;
 }
 
-.teaintro-text cite {
-    display: block;
-    /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
+.teaintro-text cite{
+    display: block; /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
     text-align: right;
 
 }
 
 @media (max-width: 768px) {
     .teaintro {
-        justify-content: center;
-        /*sui telefoni mettiamo al centro*/
+        justify-content: center; /*sui telefoni mettiamo al centro*/
         text-align: center;
     }
-
     .teaintro-text {
         max-width: 90%;
         padding: 1.5em;
     }
 }
 
-.indicetea {
+.indicetea{
     display: flex;
-    align-items: left;
+    align-items: flex-start;
     flex-direction: column;
     padding: 2em 2em 2em 4em;
 }
 
-.indicetea p {
+.indicetea p{
     font-size: 1.5em;
     line-height: 1.6;
     padding-bottom: 0.2em;
 }
 
-.indicetea a {
-    font-size: 1em;
+.tornasu{
+    display: inline-block; /*lo rendo un elemento singoletto*/
+    text-transform: uppercase;
+    padding: 0.6em;
+    border-radius: 1.2em;
+    background-color: var(--navlink-color);
+    border-color: var(--universitea-green);
+    color: var(--darkbgcolor);
+    font-weight: bold;
+    margin-left: 1em;
+    margin-top: 1em;
+
+    font-size: 0.8em;
     line-height: 1.6;
     padding: 0.2em;
+    text-align: left;
 }
 
-.quiz-section h2,
-.tea-process h2,
-.tea-card h3 {
+.tornasu:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease; /*per avere una transizione più soft*/
+}
+
+.quiz-section h2, .tea-process h2, .tea-card h3 {
     color: var(--universitea-green);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
     text-align: left;
-    margin-top: 1rem;
+    margin-top: 1em;
     line-height: 1.6;
 }
 
-.tea-process h2 {
+.tea-process h2{
     text-align: center;
     text-transform: uppercase;
 }
@@ -2466,10 +2472,8 @@ input:focus-visible {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    /*centra il contenuto orizzontalmente*/
-    align-items: center;
-    /*centra il contenuto verticalmente*/
+    justify-content: center; /*centra il contenuto orizzontalmente*/
+    align-items: center; /*centra il contenuto verticalmente*/
     gap: 2em;
 }
 
@@ -2488,8 +2492,7 @@ input:focus-visible {
 }
 
 .curiosita-image {
-    flex: 0 1 auto;
-    /*così l'immagine sta di fianco al testo*/
+    flex: 0 1 auto; /*così l'immagine sta di fianco al testo*/
 }
 
 .curiosita-image img {
@@ -2497,39 +2500,34 @@ input:focus-visible {
     max-width: 15em;
 }
 
-/*sezione tea-process con tabella*/
 .tea-process {
     width: 100%;
     margin-top: 0;
-    margin-bottom: 4rem;
-    padding: 4rem 5% 2rem 5%;
+    margin-bottom: 4em;
+    padding: 4em 5% 4em 5%;
     box-sizing: border-box;
 }
 
-/*contenitore tabella*/
-.tea-process .table-container {
+.tea-process .table-container{
     width: 100%;
     padding: 0 1em 0 1em;
     margin-top: 2em;
 }
 
-/*tabella effettiva*/
 .tea-process table {
     width: 100%;
-    border-collapse: collapse;
-    /*tolgo la roba default dei bordi delle tabelle*/
+    border-collapse: collapse; /*tolgo la roba default dei bordi delle tabelle*/
     border: 2px solid #ddd;
-    border-radius: 2em;
-    /*bordi arrotondati*/
+    border-radius: 2em; /*bordi arrotondati*/
 }
 
 .tea-process thead th {
     background-color: #007d5d;
-    color: #ffffff;
-    padding: 1.2rem;
+    color: var(--lightbgcolor);
+    padding: 1.2em;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     letter-spacing: 0.05em;
 }
 
@@ -2538,10 +2536,8 @@ input:focus-visible {
     color: var(--darkbgcolor);
     font-weight: bold;
     padding: 1em 1em;
-    border-bottom: 1px solid var(--navlink-color);
-    /*bordino tra un th e l'altro*/
-    border-right: 3px solid #007d5d;
-    /*bordo tra th e td*/
+    border-bottom: 1px solid var(--navlink-color); /*bordino tra un th e l'altro*/
+    border-right: 3px solid #007d5d; /*bordo tra th e td*/
 }
 
 .tea-process tbody td {
@@ -2549,41 +2545,38 @@ input:focus-visible {
     border-bottom: 1px solid var(--navlink-color);
     color: var(--graybgcolor);
     background-color: var(--txtcolor);
-    border: 1px solid black;
+    border: 1px solid var(--darkbgcolor);
 }
 
-.tea-process caption {
-    caption-side: bottom;
-    /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
+.tea-process caption{
+    caption-side: bottom; /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
     background-color: var(--darkbgcolor);
     color: var(--linkcolor);
     font-weight: bold;
-    border: none;
-    /*tolgo bordo default sotto*/
+    border: none; /*tolgo bordo default sotto*/
     padding-top: 1em;
     text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px){
 
-    .tea-process thead {
+    .tea-process thead{
         display: none;
     }
 
-    .tea-process tr,
-    .tea-process td {
+    .tea-process tr, .tea-process td{
         display: block;
         text-align: center;
         width: 100%;
     }
 
-    .tea-process th {
+    .tea-process th{
         text-transform: uppercase;
         text-align: center;
         width: 100%;
     }
 
-    .tea-process td::before {
+    .tea-process td::before{
         content: attr(datatitle);
         display: block;
         color: var(--graybgcolor);
@@ -2593,8 +2586,7 @@ input:focus-visible {
 
 .tea-card {
     display: flex;
-    flex-direction: row;
-    /*foto e testo affiancati*/
+    flex-direction: row; /*foto e testo affiancati*/
     justify-content: space-between;
     align-items: center;
     gap: 2em;
@@ -2614,7 +2606,6 @@ input:focus-visible {
     text-transform: uppercase;
 }
 
-/*inverte l'ordine foto testo per desktop*/
 .tea-card:nth-of-type(even) {
     flex-direction: row-reverse;
 }
@@ -2637,13 +2628,11 @@ input:focus-visible {
     max-width: 25em;
 }
 
-/* --- LAYOUT MOBILE (Sotto i 768px) --- */
+/*Per mobile*/
 @media (max-width: 767px) {
-
     .tea-card,
     .tea-card:nth-of-type(even) {
         flex-direction: column;
-        /*ora sono uno sopra l'altro e non alternati come prima*/
         text-align: center;
     }
 
@@ -2658,7 +2647,7 @@ input:focus-visible {
         width: 100%;
     }
 
-    .tea-card h3 {
+    .tea-card h3{
         padding-bottom: 0.5em;
         border-bottom: 0.1em solid var(--universitea-green);
     }
@@ -2761,45 +2750,159 @@ fieldset {
 
 /*PAGINA ABOUT*/
 
-#about-content {
-    padding: 0 5%;
-    /*spazio ai bordi*/
+#about-content{
+    padding: 0 5%; /*spazio ai bordi*/
 }
 
-.about-statsbar {
-    display: flex;
-    flex-direction: row;
-    /*i blocchi stanno nella stessa riga*/
-    justify-content: space-around;
-    /*distribuisce le stat così hanno lo stesso spazio tra loro*/
-    list-style: none;
-    /*per togliere i pallini della lista*/
-    background-color: rgba(0, 214, 159, 0.5);
-    width: 100%;
-    color: var(--txtcolor);
+#about-content h1{
+    text-transform: uppercase;
+    font-size: 2.5em;
+    color: var(--link-visited);
+    border: 2px solid var(--universitea-green);
+    text-align: center;
+    margin-top: 0.2em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
 }
 
-.about-stats h2,
-.about-intro h2,
-.chisiamo h2 {
+.about-stats h2, .about-intro h2, .chisiamo h2, .about-facts h2, .about-group h2{
     font-size: 2.5em;
     color: var(--universitea-green);
-    margin-bottom: 0.7em;
-    margin-top: 0.7em;
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+    line-height: 1.6;
 }
 
-.about-sta {
+.about-intro h2{
+    margin-top: 0;
+}
+
+.about-stats p, .about-intro p, .chisiamo p, .about-facts p, .about-group p{
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.about-intro{
     display: flex;
-    flex-direction: column;
-    /*numero e spiegazione stanno uno sotto l'altro*/
+    align-items: center;
+    justify-content: space-between;
+    gap: 3em;
+    margin-bottom: 4em;
+    margin-top: 2em;
+}
+
+.about-intro-img img {
+    max-width: 25em;
+}
+
+/*Per mobile*/
+@media (max-width: 768px) {
+    .about-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-intro-img {
+        margin-top: 0.5em;
+    }
+}
+
+.chisiamo h3{
+    font-size: 1.7em;
+    color: var(--linkcolor);
+    line-height: 1.6;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-style: italic;
+}
+
+.about-statsbar{
+    display: flex;
+    flex-direction: row; /*i blocchi stanno nella stessa riga*/
+    justify-content: space-around; /*distribuisce le stat così hanno lo stesso spazio tra loro*/
+    list-style: none; /*per togliere i pallini della lista*/
+    background-color: rgba(0, 214, 159, 0.3);
+    border-radius: 20px;
+    width: 100%;
+    color: var(--txtcolor);
+    margin-bottom: 2em; /*margin bottom*/
+    border: 2px solid var(--linkcolor);
+}
+
+.about-stats h2{
+    text-align: center;
+}
+
+.about-sta{
+    display: flex;
+    flex-direction: column; /*numero e spiegazione stanno uno sotto l'altro*/
     align-items: center;
     text-align: center;
     padding: 1em 1em 1em 1em;
 }
 
-.stat-number {
+.stat-number{
     font-size: 1.7em;
     padding-bottom: 0.4em;
+}
+
+.about-group h3{
+    color: var(--txtcolor);
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+}
+
+.about-values {
+    display: flex;
+    align-items: center; /*centra verticalmente immagine e testo*/
+    justify-content: space-between;
+    gap: 2em;
+}
+
+.about-values img {
+    width: 50%;
+    max-width: 60em;
+}
+
+.values-text{
+    border: 2px solid var(--universitea-green);
+    border-radius: 2em;
+    padding: 1em 1em 1em 1em;
+    margin-bottom: 4em;
+}
+
+.about-values:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .about-values {
+        flex-direction: column-reverse; /*così l'immagine viene sopra la scritta*/
+        gap: 1em;
+        text-align: center;
+        border: 2px solid var(--universitea-green); /*metto il bordo su tutto, non solo il testo*/
+        border-radius: 2em;
+        margin-bottom: 2em;
+    }
+
+    .about-values:nth-of-type(even) {
+        flex-direction: column-reverse;
+        padding-left: 0; /*rimuove il padding laterale che avevo messo che non serve*/
+    }
+
+    .about-values img {
+        width: 80%;
+        max-width: 15em;
+    }
+
+    .values-text {
+        width: 100%;
+        border: 0; /*tolgo il bordo dal testo così lo metto su tutto, vedi sopra*/
+        margin-bottom: 1em;
+    }
 }
 
 /*ERRORPAGES*/
