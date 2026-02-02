@@ -135,15 +135,15 @@
         <fieldset id="fields-bevande" class="specific-fields {{BEVANDA}}">
             <h4>Dettagli Bevanda</h4>
             <div class="form-group">
-                <label>Temperatura Consigliata:</label>
+                <label for="temp_consigliata">Temperatura Consigliata:</label>
                 <p class="product-advice">Inserisci una temperatura maggiore di 0</p>
-                <input type="number" name="temp_consigliata" value="{{VAL_TEMP}}" placeholder="Es. 80">
+                <input id="temp_consigliata" type="number" name="temp_consigliata" value="{{VAL_TEMP}}" placeholder="Es. 80">
                 {{ERR_TEMP_CONSIGLIATA}}
             </div>
             <div class="form-group">
-                <label>Tipologia Bevanda:</label>
+                <label for="tipologia_bevanda">Tipologia Bevanda:</label>
                 <p class="product-advice">Scegli una tipologia di bevanda tra quelle proposte</p>
-                <select name="tipologia_bevanda">
+                <select id="tipologia_bevanda" name="tipologia_bevanda">
                     <option value="">-- Seleziona Tipologia --</option>
                     <option value="Tè" {{SELECTED_TÈ}}>Tè</option>
                     <option value="Cioccolato" {{SELECTED_CIOCCOLATO}}>Cioccolato</option>
@@ -152,9 +152,9 @@
                 {{ERR_TIPOLOGIA_BEVANDA}}
             </div>
             <div class="form-group">
-                <label>Scoop (Curiosità):</label>
+                <label for="scoop">Scoop (Curiosità):</label>
                 <p class="product-advice">Inserisci un scoop con al massimo 255 caratteri. Tutti i caratteri sono accettati</p>
-                <input type="text" name="scoop" value="{{VAL_SCOOP}}" maxlength="255"
+                <input type="text" id="scoop" name="scoop" value="{{VAL_SCOOP}}" maxlength="255"
                        placeholder="Inserisci una curiosità sul tè">
             </div>
         </fieldset>
@@ -162,27 +162,30 @@
         <fieldset id="fields-merchandising" class="specific-fields {{MERCHANDISING}}">
             <h4>Dettagli Merch</h4>
             <div class="form-group">
-                <label>Materiale:</label>
+                <label for="materiale">Materiale:</label>
                 <p class="product-advice">Inserisci un material con al massimo 255 caratteri. Tutti i caratteri sono accettati</p>
-                <input type="text" name="materiale" maxlength="255" value="{{VAL_MATERIALE}}"
+                <input type="text" id="materiale" name="materiale" maxlength="255" value="{{VAL_MATERIALE}}"
                        placeholder="Es. Ceramica, Cotone...">
                 {{ERR_MATERIALE}}
             </div>
             <div class="form-group">
-                <label>Tipologia Merch:</label>
+                <label for="tipologia_march">Tipologia Merch:</label>
                 <p class="product-advice">Scegli una tipologia di <span lang="en">Merchandising</span> tra quelle proposte</p>
-                <select name="tipologia_march">
+                <select id="tipologia_march" name="tipologia_march">
                     <option value="">-- Seleziona Tipologia --</option>
+                    <!--suppress HtmlUnknownAttribute -->
                     <option value="Accessori" {{SELECTED_ACCESSORI}}>Accessori</option>
+                    <!--suppress HtmlUnknownAttribute -->
                     <option value="Abbigliamento" {{SELECTED_ABBIGLIAMENTO}}>Abbigliamento</option>
+                    <!--suppress HtmlUnknownAttribute -->
                     <option value="Prodotti per la casa" {{SELECTED_CASA}}>Prodotti per la casa</option>
                 </select>
                 {{ERR_TIPOLOGIA_MARCH}}
             </div>
             <div class="form-group">
-                <label>Bevanda Associata (Obbligatorio):</label>
+                <label for="id_bevanda">Bevanda Associata (Obbligatorio):</label>
                 <p class="product-advice">Scegli una bevanda associata tra quelle proposte</p>
-                <select name="id_bevanda">
+                <select id="id_bevanda" name="id_bevanda">
                     <option value="">-- Seleziona Bevanda --</option>
                     {{OPTIONS_BEVANDE}}
                 </select>
@@ -193,17 +196,17 @@
         <fieldset id="fields-servizi" class="specific-fields {{SERVIZI}}">
             <h4>Dettagli Servizio</h4>
             <div class="form-group">
-                <label>Tipologia Servizio:</label>
+                <label for="tipologia_servizi">Tipologia Servizio:</label>
                 <p class="product-advice">Scegli una tipologia di servizio tra quelle proposte</p>
-                <select name="tipologia_servizi">
+                <select id="tipologia_servizi" name="tipologia_servizi">
                     {{OPTIONS_TIPO_SERVIZI}}
                 </select>
                 {{ERR_TIPOLOGIA_SERVIZI}}
             </div>
             <div class="form-group">
-                <label>Livello Urgenza:</label>
+                <label for="livello_urgenza">Livello Urgenza:</label>
                 <p class="product-advice">Scegli un livello di urgenza tra quelle proposte</p>
-                <select name="livello_urgenza">
+                <select id="livello_urgenza" name="livello_urgenza">
                     {{OPTIONS_URGENZA}}
                 </select>
                 {{ERR_LIVELLO_URGENZA}}
@@ -220,9 +223,9 @@
             {{ERR_PRODOTTI_BUNDLE}}
 
             <div class="form-group">
-                <label>Percentuale Sconto (%):</label>
+                <label for="percent_sconto">Percentuale Sconto (%):</label>
                 <p class="product-advice">Inserisci una percentuale di sconto tra 0 e 100</p>
-                <input type="number" name="percent_sconto" value="{{VAL_SCONTO}}" min="0" max="100"
+                <input type="number" id="percent_sconto" name="percent_sconto" value="{{VAL_SCONTO}}" min="0" max="100"
                        placeholder="Es. 20">
                 {{ERR_PERCENT_SCONTO}}
             </div>
@@ -312,8 +315,8 @@
                 <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
                     <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                 </a>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
-                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank" rel="noopener noreferrer">
+                    <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
                          height="31">
                 </a>
             </div>
