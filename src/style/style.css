@@ -2355,9 +2355,9 @@ input:focus-visible {
     background-image: url('../../assets/images/tea-photo.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover; /*foto è al 100% dello schermo*/
+    background-size: cover; /*foto è al 100% dello schermo*/ 
     padding: 3em;
-
+    
 }
 
 .teaintro-text {
@@ -2408,7 +2408,6 @@ input:focus-visible {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding: 2em 2em 2em 4em;
 }
 
 .indicetea p{
@@ -2417,41 +2416,33 @@ input:focus-visible {
     padding-bottom: 0.2em;
 }
 
-.tornasu{
-    display: inline-block; /*lo rendo un elemento singoletto*/
-    text-transform: uppercase;
-    padding: 0.6em;
-    border-radius: 1.2em;
-    background-color: var(--navlink-color);
-    border-color: var(--universitea-green);
-    color: var(--darkbgcolor);
-    font-weight: bold;
-    margin-left: 1em;
-    margin-top: 1em;
-
-    font-size: 0.8em;
-    line-height: 1.6;
-    padding: 0.2em;
-    text-align: left;
+@media (max-width: 768px){
+    .indicetea{
+        margin-left: 2em;
+    }
 }
 
-.tornasu:hover{
-    transform: scale(1.1);
-    transition: all 0.3s ease; /*per avere una transizione più soft*/
-}
-
-.quiz-section h2, .tea-process h2, .tea-card h3 {
+.quiz-section h2, .tea-process h2, .tea-card h3, #tè {
     color: var(--universitea-green);
     font-size: 2.5em;
     margin-bottom: 1.5em;
     text-align: left;
-    margin-top: 1em;
     line-height: 1.6;
+}
+
+#tè{
+    text-align: center;
+    margin-bottom: 1em;
+    padding: 0 5% 0 5%;
+
+}
+
+.tea-card h3{
+    font-size: 2em;
 }
 
 .tea-process h2{
     text-align: center;
-    text-transform: uppercase;
 }
 
 .curiosita p,
@@ -2468,7 +2459,6 @@ input:focus-visible {
 
 .curiosita {
     width: 100%;
-    padding: 2em 5% 2em 5%;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
@@ -2478,17 +2468,16 @@ input:focus-visible {
 }
 
 .curiosita h2 {
-    flex: 0 0 100%;
+    flex: 0 0 100%; 
     color: var(--universitea-green);
     font-size: 2.5em;
     text-align: center;
-    padding-top: 1em;
-    text-transform: uppercase;
+    margin-top: 1em;
     line-height: 1.6;
 }
 
 .curiosita-content {
-    flex: 1 1 300px;
+    flex: 1 1 300px; 
 }
 
 .curiosita-image {
@@ -2504,7 +2493,6 @@ input:focus-visible {
     width: 100%;
     margin-top: 0;
     margin-bottom: 4em;
-    padding: 4em 5% 4em 5%;
     box-sizing: border-box;
 }
 
@@ -2591,19 +2579,8 @@ input:focus-visible {
     align-items: center;
     gap: 2em;
     width: 100%;
-    padding: 0 5%;
     box-sizing: border-box;
     text-align: left;
-}
-
-#tè {
-    text-align: center;
-    color: var(--universitea-green);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
-    line-height: 1.6;
-    text-transform: uppercase;
 }
 
 .tea-card:nth-of-type(even) {
@@ -2614,7 +2591,6 @@ input:focus-visible {
     flex: 1;
     border-left: 0.25em solid var(--universitea-green);
     padding-left: 1.5em;
-    padding-top: 1em;
 }
 
 .card-image {
@@ -2630,10 +2606,10 @@ input:focus-visible {
 
 /*Per mobile*/
 @media (max-width: 767px) {
-    .tea-card,
+    .tea-card, 
     .tea-card:nth-of-type(even) {
         flex-direction: column;
-        text-align: center;
+        text-align: center; 
     }
 
     .card-text {
@@ -2652,7 +2628,6 @@ input:focus-visible {
         border-bottom: 0.1em solid var(--universitea-green);
     }
 }
-
 /*--QUIZ--*/
 .quiz-section {
     padding: 3rem 5%;
@@ -2751,7 +2726,7 @@ fieldset {
 /*PAGINA ABOUT*/
 
 #about-content{
-    padding: 0 5%; /*spazio ai bordi*/
+    padding: 0; /*spazio ai bordi*/
 }
 
 #about-content h1{
@@ -2767,8 +2742,6 @@ fieldset {
 .about-stats h2, .about-intro h2, .chisiamo h2, .about-facts h2, .about-group h2{
     font-size: 2.5em;
     color: var(--universitea-green);
-    margin-bottom: 0.5em;
-    margin-top: 2em;
     line-height: 1.6;
 }
 
@@ -2784,11 +2757,9 @@ fieldset {
 
 .about-intro{
     display: flex;
-    align-items: center;
+    align-items: center;  
     justify-content: space-between;
-    gap: 3em;
-    margin-bottom: 4em;
-    margin-top: 2em;
+    gap: 3em; 
 }
 
 .about-intro-img img {
@@ -2798,7 +2769,7 @@ fieldset {
 /*Per mobile*/
 @media (max-width: 768px) {
     .about-intro {
-        flex-direction: column;
+        flex-direction: column; 
         text-align: center;
     }
 
@@ -2847,6 +2818,10 @@ fieldset {
     padding-bottom: 0.4em;
 }
 
+.about-group h2{
+    margin-bottom: 0.2em;
+}
+
 .about-group h3{
     color: var(--txtcolor);
     text-transform: uppercase;
@@ -2868,10 +2843,8 @@ fieldset {
 }
 
 .values-text{
-    border: 2px solid var(--universitea-green);
-    border-radius: 2em;
+    border-left: 0.25em solid var(--universitea-green);
     padding: 1em 1em 1em 1em;
-    margin-bottom: 4em;
 }
 
 .about-values:nth-of-type(even) {
@@ -2883,13 +2856,17 @@ fieldset {
         flex-direction: column-reverse; /*così l'immagine viene sopra la scritta*/
         gap: 1em;
         text-align: center;
-        border: 2px solid var(--universitea-green); /*metto il bordo su tutto, non solo il testo*/
         border-radius: 2em;
         margin-bottom: 2em;
     }
 
+    .about-values h3{
+        padding-bottom: 0.5em;
+        border-bottom: 0.1em solid var(--universitea-green);
+    }
+
     .about-values:nth-of-type(even) {
-        flex-direction: column-reverse;
+        flex-direction: column-reverse; 
         padding-left: 0; /*rimuove il padding laterale che avevo messo che non serve*/
     }
 
@@ -2900,9 +2877,36 @@ fieldset {
 
     .values-text {
         width: 100%;
-        border: 0; /*tolgo il bordo dal testo così lo metto su tutto, vedi sopra*/
+        border: 0; /*tolgo il bordo left del desktop e lo metto bottom*/
         margin-bottom: 1em;
     }
+}
+
+/*freccetta per tornare sù*/
+.tornasu {
+    position: fixed;
+    bottom: 1.6em; 
+    right: 1.6em;
+    width: 3em;
+    height: 3em;
+    background-color: var(--universitea-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /*lo tiene sopra tabelle e immagini*/
+    text-decoration: none; /*per togliere il potenziale sottolineato del link che è un a*/
+    transition: all 0.3s ease;
+}
+
+/* Dimensione dell'icona SVG */
+.tornasu svg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.tornasu svg path, .tornasu svg rect{
+    fill: var(--lightbgcolor);
 }
 
 /*ERRORPAGES*/
