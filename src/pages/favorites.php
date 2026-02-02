@@ -197,7 +197,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 $template = file_get_contents('templates/favorites.html');
 
-// Replacements
 $replacements = [
     '{{VENDITORE_BANNER}}' => $venditoreBanner,
     '{{TOTAL_ITEMS}}' => $totalItems,

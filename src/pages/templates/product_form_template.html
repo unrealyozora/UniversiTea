@@ -46,15 +46,22 @@
                         <span class="mobile-only-text">Carrello</span>
                     </a>
                 </li>
-                <li>
-                    <a href="./register.php" class="btn-join">
-                        Accedi ora
-                    </a>
+                <li id="current-link">
+                    <img src="../../assets/images/user.png" alt="Il tuo profilo">
+                    <span class="mobile-only-text">Profilo</span>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
+
+<nav id="breadcrumb" aria-label="Percorso di navigazione">
+    <p>Ti trovi in:
+        <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt;
+        <a href="./dashboard.php">Il mio Profilo</a> &gt;
+        <span aria-current="page" id="breadcrumb-current">{{BREADCRUMB}}</span>
+    </p>
+</nav>
 
 <main class="form-container" id="prodotto-content">
 

@@ -167,6 +167,7 @@ $replacements = [
     '{{TESTO_BOTTONE}}'   => $btnText,
     '{{VAL_ID}}'          => $data['id'],
     '{{VAL_NOME}}'        => htmlspecialchars($data['nome']),
+    '{{BREADCRUMB}}'        => htmlspecialchars($data['nome'])!==''? htmlspecialchars($data['nome']) : 'NUOVO PRODOTTO',
     '{{VAL_DESCRIZIONE}}' => htmlspecialchars($data['descrizione']),
     '{{VAL_PREZZO}}'      => $data['prezzo'],
     '{{VAL_DISPONIBILITA}}'=> $data['disponibilita'],
