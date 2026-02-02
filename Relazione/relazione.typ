@@ -100,7 +100,6 @@ Il sito mira a:
 - Aiutare gli studenti fornendo una piattaforma per la vendita di servizi legati alla vita universitaria.
 - Garantire l'accessibilità a tutti gli utenti, rispettando le linee guida WCAG 2.1 (Livello AA).
 - Offrire contenuti informativi e guide per avvicinare gli utenti al mondo del tè.
-- 
 
 = 3. Target di Riferimento
 L'analisi dell'utenza ha identificato tre profili principali:
@@ -332,10 +331,9 @@ Nella pagina _Shop_ sono stati implementati filtri per categoria e prezzo, perme
 Per la creazione dei prodotti, è stata implementata una pagina dedicata che consente ai venditori di inserire tutte le informazioni necessarie in modo strutturato. Questa pagina include campi per il nome del prodotto, la descrizione, il prezzo, la categoria e l'immagine del prodotto. Inoltre, sono stati implementati controlli di validazione per garantire che tutti i dati inseriti siano corretti e completi prima della pubblicazione sul server. \
 I dettagli specifici del tipo di prodotto vengono mostrati in base alla categoria selezionata, migliorando l'esperienza utente evitando il sovraccarico cognitivo.
 
-== Gestione Accesso e registrazione e possibili errori
-Al fine di non limitare l'accesso ai dispositivi che per qualunque ragione non abbiano JavaScript abilitato all'interno del browser, la logica di accesso e registrazione è stata implementata utilizzando esclusivamente tramite chiamate dirette al server, tramite richieste POST e Sessioni PHP.\ 
-Per la gestione degli errori (come ad esempio credenziali non valide, o uno/più campi vuoti) il sito effettua un controllo iniziale tramite JavaScript, in caso di successo questi ed ulteriori controlli vengono eseguiti lato server, in caso di esito positivo si avrà il proseguimento dell'azione, in caso contrario vengono mostrati dei messaggi di errore che (in caso di errori lato server) non dipendono dall'utilizzo di JavaScript, sempre sfruttando le Sessioni PHP, che memorizzano il messaggio d'errore da visualizzare. In questo modo qualunque utente può conoscere la natura dell'errore a prescindere dalla tecnologia a sua disposizione. 
-
+== Gestione form e Funzionalità e-commerce
+Al fine di non limitare l' utilizzo del sito a coloro che non utilizzano JavaScript all' interno del loro browser, abbiamo 
+cercato di implementare tutte funzionalità legate al negozio, quali registrazione, accesso, aggiunta al carrello e ai preferiti, indipendenti da codice JavaScript.
 
 = 8. Uso dell'AI nel progetto
 Durante lo sviluppo del progetto, l'Intelligenza Artificiale è stata utilizzata in modo limitato e mirato. In particolare, sono stati impiegati strumenti di AI per:
