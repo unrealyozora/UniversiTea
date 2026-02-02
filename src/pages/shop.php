@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-function renderProductCard($product, $templateHtml, $isSeller=false)
+function renderProductCard($product, $templateHtml, $isSeller = false)
 {
     $id = htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8');
     $nome = htmlspecialchars($product['nome'], ENT_QUOTES, 'UTF-8');
@@ -146,7 +146,7 @@ try {
 
     $listaHtml = '';
     foreach ($prodotti as $prodotto) {
-        $listaHtml .= renderProductCard($prodotto, $cardTemplate,$isSeller);
+        $listaHtml .= renderProductCard($prodotto, $cardTemplate, $isSeller);
     }
 
     $statusMsg = count($prodotti) > 0
