@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+//session_start();
 
 
 $score = 0;
@@ -18,7 +17,7 @@ $classes = [
     'Q2_CORRECT_CLASS' => '',
     'Q2_WRONG2_CLASS' => '',
 ];
-$user_action = '';
+//$user_action = '';
 
 // Array per i checked
 $checked = [
@@ -88,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_quiz'])) {
 }
 
 // Carica il template HTML
-$html = file_get_contents("tea-info.html");
+$html = file_get_contents("templates/tea-info.html");
 
 // Sostituisci i placeholder con i valori
 $replacements = array_merge(
@@ -121,7 +120,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     </li>';
 }
 
-echo str_replace('{{USER_ACTION}}', $user_action, $template);
+$html = str_replace('{{USER_ACTION}}', $user_action, $html);
 
 echo $html;
 
