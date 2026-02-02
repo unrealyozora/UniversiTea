@@ -5,6 +5,9 @@ require_once '../config/shop_functions.php';
 
 // 1. Recupero ID e Validazione Immediata
 $productId = $_GET['id'] ?? null;
+$isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
+
+
 
 try {
     $db = new Database();
@@ -23,8 +26,20 @@ try {
     $isAvailable = $product['disponibilita'] > 0;
     $availClass = $isAvailable ? 'available' : 'out-of-stock';
     $availText = $isAvailable ? 'Disponibile' : 'Non disponibile';
-    $btnDisabled = $isAvailable ? '' : 'disabled';
-    $btnText = $isAvailable ? 'Aggiungi al carrello' : 'Esaurito';
+
+
+    if ($isSeller) {
+        $btnDisabled = 'disabled';
+        $btnDisabledClass = 'btn-disabled-role';
+        $btnText = 'Acquisto riservato ai Clienti';
+        $formClass = 'form-disabled';
+    } else {
+        // Logica standard esistente
+        $btnDisabled = $isAvailable ? '' : 'disabled';
+        $btnDisabledClass = $isAvailable ? '' : 'btn-disabled-role';
+        $btnText = $isAvailable ? 'Aggiungi al carrello' : 'Esaurito';
+        $formClass = '';
+    }
 
     $imgSrc=checkImage($product);
 
@@ -92,11 +107,11 @@ try {
     $feedbackHtml = '';
     if (isset($_SESSION['msg_type']) && isset($_SESSION['msg_content'])) {
 
-        $msgClass = ($_SESSION['msg_type'] === 'success') ? 'alert-success' : 'alert-error';
+        $msgClass = ($_SESSION['msg_type'] == 'success') ? 'success-msg' : 'error-msg';
         $msgContent = htmlspecialchars($_SESSION['msg_content']);
 
         // Creiamo l'HTML
-        $feedbackHtml = "<div class='$msgClass'>$msgContent</div>";
+        $feedbackHtml = '<div class="' . $msgClass . '" role="alert">' . htmlspecialchars($_SESSION['msg_content']) . '</div>';
 
         // PULIZIA: Rimuoviamo il messaggio dalla sessione così non appare di nuovo al refresh
         unset($_SESSION['msg_type']);
@@ -118,7 +133,10 @@ try {
         '{{FEEDBACK}}'=> $feedbackHtml,
         '{{AVAILABILITY_CLASS}}' => $availClass,
         '{{AVAILABILITY_TEXT}}' => $availText,
+        '{{FORM_ACTION}}' => $isSeller ? '' : '../config/add_to_cart.php',
+        '{{FORM_CLASS}}' => $formClass,
         '{{BTN_DISABLED}}' => $btnDisabled,
+        '{{BTN_DISABLED_CLASS}}' => $btnDisabledClass,
         '{{BTN_TEXT}}' => $btnText,
         '{{SPECS}}' => $specsHtml
     ];

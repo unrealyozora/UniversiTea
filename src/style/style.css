@@ -250,6 +250,21 @@ body.homepage .main-header {
     position: fixed;
 }
 
+.btn-disabled-role {
+    background-color: #cccccc !important;
+    color: var(--darkbgcolor) !important;
+    cursor: not-allowed !important;
+    border-color: #bbbbbb !important;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+
+form.form-disabled {
+    pointer-events: none;
+}
+
+
 body.homepage .main-header:not(.scrolled) {
     background: rgba(15, 14, 14, 0.85);
     padding: 1rem 5%;
@@ -264,7 +279,6 @@ img.logo {
     display: block;
     transition: filter 0.4s ease, transform 0.3s ease;
     filter: brightness(0);
-    /* l'immagine del logo è di default verde. La rendo nera col filter per avere un logo scuro su sfondo chiaro su tutte le pagine */
 }
 
 body:not(.homepage) img.logo:hover {
