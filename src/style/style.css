@@ -899,8 +899,8 @@ body.homepage #breadcrumb {
 
     ul li#current-link
 
-        /*, #user-actions ul li#current-link*/
-    {
+    /*, #user-actions ul li#current-link*/
+        {
         justify-content: center;
         /* Centra tutto il blocco */
         padding-left: 0;
@@ -912,8 +912,8 @@ body.homepage #breadcrumb {
     /* Coloriamo l'icona di VERDE usando il trucco drop-shadow */
     ul li#current-link::before
 
-        /*, *#user-actions ul li#current-link::after*/
-    {
+    /*, *#user-actions ul li#current-link::after*/
+        {
         position: relative;
         /* Cambia da absolute a relative per stare vicino al testo */
         left: auto;
@@ -997,7 +997,7 @@ body.homepage #breadcrumb {
     }
 
     /* Animazione hamburger quando checked */
-    #menu-toggle:checked ~ .hamburger-btn {
+    #menu-toggle:checked~.hamburger-btn {
         opacity: 0;
         pointer-events: none;
         /* Disabilita il click sull'hamburger nascosto */
@@ -1006,15 +1006,15 @@ body.homepage #breadcrumb {
 
     /* --- 3. CHECKBOX LOGIC (IL TRUCCO) --- */
     /* Quando la checkbox è CHECKED... */
-    #menu-toggle:checked ~ .nav-wrapper {
+    #menu-toggle:checked~.nav-wrapper {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
 
     /* ...gli elementi salgono su */
-    #menu-toggle:checked ~ .nav-wrapper #main-menu ul,
-    #menu-toggle:checked ~ .nav-wrapper #user-actions ul {
+    #menu-toggle:checked~.nav-wrapper #main-menu ul,
+    #menu-toggle:checked~.nav-wrapper #user-actions ul {
         transform: translateY(0);
     }
 
@@ -1178,7 +1178,7 @@ body.homepage #breadcrumb {
     max-width: 37.5em;
 }
 
-.values-section > .section-title {
+.values-section>.section-title {
     margin-bottom: 6rem;
 }
 
@@ -1255,7 +1255,7 @@ body.homepage #breadcrumb {
     list-style: none;
 }
 
-.categories-list > li {
+.categories-list>li {
     flex: 1 1 28rem;
     max-width: 38rem;
 }
@@ -1306,10 +1306,10 @@ body.homepage #breadcrumb {
     z-index: 2;
     width: 100%;
     background: linear-gradient(to top,
-    rgba(15, 14, 14, 1) 0%,
-    rgba(15, 14, 14, 1) 40%,
-    rgba(15, 14, 14, 0.8) 70%,
-    transparent 100%);
+            rgba(15, 14, 14, 1) 0%,
+            rgba(15, 14, 14, 1) 40%,
+            rgba(15, 14, 14, 0.8) 70%,
+            transparent 100%);
 
     padding: 5rem 2rem 1.5rem 2rem;
     color: #fff;
@@ -3331,7 +3331,7 @@ fieldset input[type="radio"] {
     cursor: pointer;
 }
 
-fieldset input[type="radio"]:checked + label {
+fieldset input[type="radio"]:checked+label {
     color: var(--universitea-green);
 }
 
@@ -3564,7 +3564,7 @@ fieldset input[type="radio"]:checked + label {
 
     /* Gestione errori generici */
     #loginForm .error-message,
-    #registrationForm > .error-message {
+    #registrationForm>.error-message {
         grid-column: 1 / -1;
         text-align: center;
         margin-bottom: 1rem;

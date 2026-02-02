@@ -2,12 +2,16 @@
    LAYOUT GENERALE ADMIN
 ========================================= */
 #admin-content {
-    max-width: 75rem; /* Limita la larghezza per non "spalmare" il contenuto su schermi grandi */
-    margin: 0 auto;   /* Centra il contenitore nella pagina */
-    padding: 3rem 5%; /* Spaziatura interna */
+    max-width: 75rem;
+    /* Limita la larghezza per non "spalmare" il contenuto su schermi grandi */
+    margin: 0 auto;
+    /* Centra il contenitore nella pagina */
+    padding: 3rem 5%;
+    /* Spaziatura interna */
     display: flex;
     flex-direction: column;
-    gap: 3rem;        /* Spazio verticale tra le sezioni (Titolo, Toolbar, Tabella) */
+    gap: 3rem;
+    /* Spazio verticale tra le sezioni (Titolo, Toolbar, Tabella) */
 }
 
 /* Titolo H1 della pagina admin */
@@ -18,6 +22,7 @@
     margin-bottom: 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    line-height: 1.5em;
 }
 
 /* =========================================
@@ -25,7 +30,8 @@
 ========================================= */
 #intro-text {
     text-align: center;
-    max-width: 50rem; /* Limita la larghezza per facilitare la lettura */
+    max-width: 50rem;
+    /* Limita la larghezza per facilitare la lettura */
     margin: 0 auto;
     background-color: var(--card-bg-color);
     border: 1px solid var(--card-border-color);
@@ -44,13 +50,15 @@
 #intro-text p:last-child {
     margin-bottom: 0;
 }
+
 /* =========================================
    DASHBOARD CARDS (Griglia Contestuale)
 ========================================= */
 
 .admin-dashboard-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* La card "Aggiungi" è più grande (60% - 40%) */
+    grid-template-columns: 1.5fr 1fr;
+    /* La card "Aggiungi" è più grande (60% - 40%) */
     gap: 2rem;
     width: 100%;
     margin-bottom: 2rem;
@@ -58,15 +66,17 @@
 
 /* Stile comune delle Card */
 .dashboard-card {
-    background-color: var(--card-bg-color); /* Usa le tue variabili esistenti */
+    background-color: var(--card-bg-color);
+    /* Usa le tue variabili esistenti */
     border: 1px solid var(--card-border-color);
     border-radius: 1.5rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Spinge il bottone in fondo se il testo è corto */
+    justify-content: space-between;
+    /* Spinge il bottone in fondo se il testo è corto */
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -93,7 +103,8 @@
 
 /* Allineamento bottone a destra o sinistra a piacere (qui inizio a sinistra) */
 .card-action {
-    margin-top: auto; /* Assicura che il bottone stia sempre in basso */
+    margin-top: auto;
+    /* Assicura che il bottone stia sempre in basso */
 }
 
 /* =========================================
@@ -145,13 +156,15 @@
 ========================================= */
 @media (max-width: 900px) {
     .admin-dashboard-grid {
-        grid-template-columns: 1fr; /* Una colonna sola */
+        grid-template-columns: 1fr;
+        /* Una colonna sola */
         gap: 1.5rem;
     }
 
     .dashboard-card {
         padding: 1.5rem;
-        text-align: center; /* Testo centrato su mobile */
+        text-align: center;
+        /* Testo centrato su mobile */
     }
 
     /* Bottoni a tutta larghezza su mobile per facilitare il tocco */
@@ -175,9 +188,11 @@
 .action-buttons {
     display: flex;
     gap: 1rem;
-    justify-content: flex-start; /* Allinea a sinistra su desktop */
+    justify-content: flex-start;
+    /* Allinea a sinistra su desktop */
     align-items: center;
 }
+
 .action-buttons form {
     display: flex;
     margin: 0;
@@ -197,9 +212,11 @@
     border-radius: 1.825em;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 2px solid transparent; /* Riserva spazio per il bordo */
+    border: 2px solid transparent;
+    /* Riserva spazio per il bordo */
     font-family: inherit;
-    min-width: 80px; /* Larghezza minima uniforme */
+    min-width: 80px;
+    /* Larghezza minima uniforme */
 }
 
 /* --- Modifica (Verde Outline) --- */
@@ -241,15 +258,17 @@
 
     /* Tabella Mobile (Card View) - Allineamento Azioni */
     .product-table td.actions {
-        display: block; /* O flex */
+        display: block;
+        /* O flex */
         padding-top: 1.5rem;
         margin-top: 1rem;
-        border-top: 1px dashed rgba(255,255,255,0.1);
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
         background: transparent !important;
     }
 
     .action-buttons {
-        justify-content: center; /* Centra i bottoni nella card */
+        justify-content: center;
+        /* Centra i bottoni nella card */
         width: 100%;
         gap: 1rem;
     }
@@ -266,7 +285,7 @@
 
 /* Descrizione sopra la tabella */
 #table-descr {
-    padding-top:1.5em;
+    padding-top: 1.5em;
     max-width: 60rem;
     margin: 0 auto 1.5rem auto;
     text-align: center;
@@ -278,14 +297,17 @@
 .product-table {
     width: 100%;
     border-collapse: collapse;
-    border-radius: 1.5em; /* Ridotto leggermente per adattarsi ai contenuti admin */
-    overflow: hidden; /* Necessario per vedere il border-radius sui bordi */
+    border-radius: 1.5em;
+    /* Ridotto leggermente per adattarsi ai contenuti admin */
+    overflow: hidden;
+    /* Necessario per vedere il border-radius sui bordi */
     margin-bottom: 2rem;
 }
 
 /* Intestazione (Header) */
 .product-table thead th {
-    background-color: #007d5d; /* Verde scuro specifico di tea-info */
+    background-color: #007d5d;
+    /* Verde scuro specifico di tea-info */
     color: #ffffff;
     padding: 1.2rem;
     font-weight: bold;
@@ -297,12 +319,15 @@
 
 /* Prima Colonna (Nome Prodotto - TH scope="row") */
 .product-table tbody th {
-    background-color: var(--linkcolor); /* Verde chiaro */
-    color: var(--darkbgcolor);          /* Testo scuro */
+    background-color: var(--linkcolor);
+    /* Verde chiaro */
+    color: var(--darkbgcolor);
+    /* Testo scuro */
     font-weight: bold;
     padding: 1em 1em;
     border-bottom: 1px solid var(--navlink-color);
-    border-right: 3px solid #007d5d;    /* Bordo verde scuro a destra */
+    border-right: 3px solid #007d5d;
+    /* Bordo verde scuro a destra */
     text-align: left;
 }
 
@@ -310,9 +335,12 @@
 .product-table tbody td {
     padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--navlink-color);
-    color: var(--graybgcolor);          /* Testo scuro */
-    background-color: var(--txtcolor);  /* Sfondo chiaro/grigio */
-    border-right: 1px solid #000;       /* Bordo nero come in tea-info */
+    color: var(--graybgcolor);
+    /* Testo scuro */
+    background-color: var(--txtcolor);
+    /* Sfondo chiaro/grigio */
+    border-right: 1px solid #000;
+    /* Bordo nero come in tea-info */
     vertical-align: middle;
 }
 
@@ -346,13 +374,15 @@
     .product-table th {
         display: block;
         width: 100%;
-        text-align: center; /* Allineamento centrale come tea-info mobile */
+        text-align: center;
+        /* Allineamento centrale come tea-info mobile */
     }
 
     /* Stile della "Card" (Riga) */
     .product-table tr {
         margin-bottom: 2rem;
-        background-color: var(--txtcolor); /* Sfondo chiaro per coerenza */
+        background-color: var(--txtcolor);
+        /* Sfondo chiaro per coerenza */
         border: 2px solid #ddd;
         border-radius: 1.5em;
         overflow: hidden;
@@ -391,22 +421,26 @@
 
     /* Gestione specifica cella Azioni su mobile */
     .product-table td.actions {
-        display: block; /* Rimuove il flex laterale della cella */
+        display: block;
+        /* Rimuove il flex laterale della cella */
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
         margin-top: 0;
-        border-top: 1px dashed rgba(0,0,0,0.1);
-        background-color: rgba(0,0,0,0.05);
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.05);
     }
 
     .product-table td.actions::before {
-        display: none; /* Nascondi etichetta per le azioni */
+        display: none;
+        /* Nascondi etichetta per le azioni */
     }
 
     .action-buttons {
         display: flex;
-        flex-direction: column; /* QUESTA è la regola che li mette uno sotto l'altro */
-        gap: 1rem; /* Spazio verticale tra i bottoni */
+        flex-direction: column;
+        /* QUESTA è la regola che li mette uno sotto l'altro */
+        gap: 1rem;
+        /* Spazio verticale tra i bottoni */
         width: 100%;
     }
 
