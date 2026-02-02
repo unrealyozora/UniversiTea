@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 
 
 $score = 0;
@@ -10,22 +10,22 @@ $resultMessage = '';
 
 // Array per le classi CSS
 $classes = [
-    'ANSWER_CLASS_Q1A' => '',
-    'ANSWER_CLASS_Q1B' => '',
-    'ANSWER_CLASS_Q1C' => '',
-    'ANSWER_CLASS_Q2A' => '',
-    'ANSWER_CLASS_Q2B' => '',
-    'ANSWER_CLASS_Q2C' => '',
+    '{{ANSWER_CLASS_Q1A}}' => 'no-info',
+    '{{ANSWER_CLASS_Q1B}}' => 'no-info',
+    '{{ANSWER_CLASS_Q1C}}' => 'no-info',
+    '{{ANSWER_CLASS_Q2A}}' => 'no-info',
+    '{{ANSWER_CLASS_Q2B}}' => 'no-info',
+    '{{ANSWER_CLASS_Q2C}}' => 'no-info',
 ];
 
 // Array per i checked
 $checked = [
-    'Q1_WRONG1_CHECKED' => '',
-    'Q1_CORRECT_CHECKED' => '',
-    'Q1_WRONG2_CHECKED' => '',
-    'Q2_WRONG1_CHECKED' => '',
-    'Q2_CORRECT_CHECKED' => '',
-    'Q2_WRONG2_CHECKED' => '',
+    '{{Q1_WRONG1_CHECKED}}' => 'no-info',
+    '{{Q1_CORRECT_CHECKED}}' => 'no-info',
+    '{{Q1_WRONG2_CHECKED}}' => 'no-info',
+    '{{Q2_WRONG1_CHECKED}}' => 'no-info',
+    '{{Q2_CORRECT_CHECKED}}' => 'no-info',
+    '{{Q2_WRONG2_CHECKED}}' => 'no-info',
 ];
 
 // Controlla se il form è stato inviato
@@ -54,27 +54,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_quiz'])) {
         // Applica le classi alle risposte
         // Domanda 1
         if ($q1_answer === 'rooibos') {
-            $classes['Q1_WRONG1_CLASS'] = 'wrong-selection';
-            $checked['Q1_WRONG1_CHECKED'] = 'checked';
+            $checked['{{Q1_WRONG1_CHECKED}}'] = 'checked';
+            $classes['{{ANSWER_CLASS_Q1A}}'] = 'wrong-selection';
         } elseif ($q1_answer === 'camellia') {
-            $checked['Q1_CORRECT_CHECKED'] = 'checked';
+            $checked['{{Q1_CORRECT_CHECKED}}'] = 'checked';
+            $classes['{{ANSWER_CLASS_Q1B}}'] = 'correct-answer';
         } elseif ($q1_answer === 'camomilla') {
-            $classes['Q1_WRONG2_CLASS'] = 'wrong-selection';
-            $checked['Q1_WRONG2_CHECKED'] = 'checked';
+            $checked['{{Q1_WRONG2_CHECKED}}'] = 'checked';
+            $classes['{{ANSWER_CLASS_Q1C}}'] = 'wrong-selection';
         }
-        $classes['Q1_CORRECT_CLASS'] = 'correct-answer';
 
         // Domanda 2
         if ($q2_answer === 'altitudine') {
-            $classes['Q2_WRONG1_CLASS'] = 'wrong-selection';
-            $checked['Q2_WRONG1_CHECKED'] = 'checked';
+            $checked['{{Q2_WRONG1_CHECKED}}'] = 'checked';
+            $classes['{{ANSWER_CLASS_Q2A}}'] = 'wrong-selection';
         } elseif ($q2_answer === 'lavorazione') {
-            $checked['Q2_CORRECT_CHECKED'] = 'checked';
+            $checked['{{Q2_CORRECT_CHECKED}}'] = 'checked';
+            $classes['{{ANSWER_CLASS_Q2B}}'] = 'correct-answer';
         } elseif ($q2_answer === 'acqua') {
-            $classes['Q2_WRONG2_CLASS'] = 'wrong-selection';
-            $checked['Q2_WRONG2_CHECKED'] = 'checked';
+            $checked['{{Q2_WRONG2_CHECKED}}'] = 'checked';
+            $classes['{{ANSWER_CLASS_Q2C}}'] = 'wrong-selection';
         }
-        $classes['Q2_CORRECT_CLASS'] = 'correct-answer';
 
         // Messaggio risultato
         if ($score === 2) {
@@ -88,15 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_quiz'])) {
 // Carica il template HTML
 $html = file_get_contents("templates/tea-info.html");
 
-// Sostituisci i placeholder con i valori
 $replacements = array_merge(
     ['{{RESULT_MESSAGE}}' => $resultMessage],
-    array_map(function ($value) {
-        return $value;
-    }, $classes),
-    array_map(function ($value) {
-        return $value;
-    }, $checked)
+    $classes,
+    $checked
 );
 
 foreach ($replacements as $placeholder => $value) {
