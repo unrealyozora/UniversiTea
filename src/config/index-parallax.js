@@ -1,22 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- SCRIPT HEADER/PARALLASSE (Menu Logic rimossa, ora è solo CSS) --- */
-    const header = document.querySelector('.main-header');
-
-    /* 1. HEADER COLOR CHANGE */
-    function updateHeaderColor() {
-        const triggerPoint = window.innerHeight * 0.85;
-        if (window.scrollY > triggerPoint) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }
-    window.addEventListener('scroll', updateHeaderColor);
-
-
-    /* 2. PARALLASSE & HERO FADE */
+    /* PARALLASSE & HERO FADE */
     const layers = document.querySelectorAll('.parallax-layer');
     const heroSection = document.querySelector('.hero-section');
     const heroContent = document.querySelector('.hero-text-box');
