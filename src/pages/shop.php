@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-function renderProductCard($product, $templateHtml)
+function renderProductCard($product, $templateHtml, $isSeller=false)
 {
     $id = htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8');
     $nome = htmlspecialchars($product['nome'], ENT_QUOTES, 'UTF-8');
@@ -18,6 +18,25 @@ function renderProductCard($product, $templateHtml)
 
     $img_src = checkImage($product);
 
+    if ($isSeller) {
+        $actionCart = '';
+        $actionFav = '';
+        $formClass = 'form-disabled';
+        $btnDisabledClass = 'btn-disabled-role';
+        $btnState = 'disabled';
+        $btnCartText = 'Acquisto Bloccato per Venditori';
+        $btnFavText = 'Preferiti Bloccati per Venditori';
+
+    } else {
+        $actionCart = '../config/add_to_cart.php';
+        $actionFav = '../config/add_favorite.php';
+        $formClass = '';
+        $btnDisabledClass = '';
+        $btnState = '';
+        $btnCartText = 'Aggiungi al carrello';
+        $btnFavText = 'Aggiungi ai Preferiti';
+    }
+
     $replacements = [
         '{{ID}}' => $id,
         '{{NOME}}' => $nome,
@@ -26,6 +45,15 @@ function renderProductCard($product, $templateHtml)
         '{{CATEGORIA}}' => $categoria,
         '{{IMG_PATH}}' => $img_src,
         '{{IMG_ALT}}' => $img_alt,
+
+        '{{CART_BTN_TEXT}}' => $btnCartText,
+        '{{FAV_BTN_TEXT}}' => $btnFavText,
+        '{{ACTION_CART}}' => $actionCart,
+        '{{ACTION_FAV}}' => $actionFav,
+        '{{FORM_CLASS}}' => $formClass,
+        '{{BTN_DISABLED_CLASS}}' => $btnDisabledClass,
+        '{{BTN_STATE}}' => $btnState,
+        '{{BTN_CART_TEXT}}' => $btnCartText
     ];
     return str_replace(array_keys($replacements), array_values($replacements), $templateHtml);
 }
@@ -114,10 +142,11 @@ try {
     $cardTemplate = __DIR__ . '/templates/productCard_template.html';
     $cardTemplate = file_exists($cardTemplate) ? file_get_contents($cardTemplate) : '<li class="no-result"> Template Prodotto Mancante</li>';
 
+    $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
 
     $listaHtml = '';
     foreach ($prodotti as $prodotto) {
-        $listaHtml .= renderProductCard($prodotto, $cardTemplate);
+        $listaHtml .= renderProductCard($prodotto, $cardTemplate,$isSeller);
     }
 
     $statusMsg = count($prodotti) > 0

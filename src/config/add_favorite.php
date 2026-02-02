@@ -12,6 +12,18 @@ if (!isset($_SESSION['username']) || !$_SESSION['logged_in']) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $product_id = $_POST['product_id'];
 
+    if (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore') {
+        $_SESSION['msg_type'] = 'error';
+        $_SESSION['msg_content'] = 'L\'aggiunta ai preferiti è un\'azione bloccata per gli account Venditore. Esegui l\'accesso con un account Standard.';
+        $referer = $_SERVER['HTTP_REFERER'] ?? '';
+        if (str_contains($referer, 'shop.php')) {
+            header('Location: ../pages/shop.php');
+        } else {
+            header("Location: ../pages/product.php?id=" . $product_id);
+        }
+        exit();
+    }
+
     try {
         $database = new Database();
         $db = $database->getConnection();

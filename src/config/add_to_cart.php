@@ -13,6 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $email = $_SESSION['email'];
     $prodId = $_POST['product_id'];
 
+    if (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore') {
+        $_SESSION['msg_type'] = 'error';
+        $_SESSION['msg_content'] = 'L\'aggiunta al carrello è un\'azione bloccata per gli account Venditore. Esegui l\'accesso con un account Standard.';
+        $referer = $_SERVER['HTTP_REFERER'] ?? '';
+        if (str_contains($referer, 'shop.php')) {
+            header('Location: ../pages/shop.php');
+        } else {
+            header("Location: ../pages/product.php?id=" . $prodId);
+        }
+        exit();
+    }
+
     $qty = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
 
     try {
@@ -46,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
 
 
 $referer = $_SERVER['HTTP_REFERER'] ?? '';
-if (strpos($referer, 'shop.php') !== false) {
+if (str_contains($referer, 'shop.php')) {
     header('Location: ../pages/shop.php');
 } else {
     header("Location: ../pages/product.php?id=" . $prodId);

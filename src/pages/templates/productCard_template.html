@@ -1,6 +1,6 @@
 <li class="product-item">
     <article class="product-card">
-        <a aria-label="vai alla pagina di {{NOME}}" href="product.php?id={{ID}}">
+        <a class="card-link" aria-label="vai alla pagina di {{NOME}}" href="product.php?id={{ID}}">
             <img src="{{IMG_PATH}}" alt="{{IMG_ALT}}" loading="lazy">
         </a>
         <div class="product-info">
@@ -9,16 +9,16 @@
             <p class="description">{{DESCRIZIONE}}</p>
             <p class="price">€ {{PREZZO}}</p>
 
-            <form action="../config/add_to_cart.php" method="POST">
+            <form class="{{FORM_CLASS}}" action="{{ACTION_CART}}" method="POST">
                 <input type="hidden" name="product_id" value="{{ID}}">
-                <button type="submit" class="btn-add-cart" aria-label="Aggiungi al carrello: {{NOME}}">
-                    Aggiungi al carrello
+                <button type="submit" class="btn-add-cart {{BTN_DISABLED_CLASS}}" aria-label="Aggiungi al carrello: {{NOME}}">
+                    {{CART_BTN_TEXT}}
                 </button>
             </form>
-            <form action="../config/add_favorite.php" method="POST">
+            <form class="{{FORM_CLASS}}" action="{{ACTION_FAV}}" method="POST">
                 <input type="hidden" name="product_id" value="{{ID}}">
-                <button type="submit" class="btn-add-preferiti" value="{{ID}}"
-                        aria-label="Aggiungi ai preferiti: {{NOME}}">Aggiungi ai Preferiti
+                <button type="submit" class="btn-add-preferiti {{BTN_DISABLED_CLASS}}" value="{{ID}}"
+                        aria-label="Aggiungi ai preferiti: {{NOME}}">{{FAV_BTN_TEXT}}
                 </button>
             </form>
         </div>

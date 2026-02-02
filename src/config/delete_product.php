@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // A. Pulisci interazioni Utente
         // Tabelle: Carrello, Preferiti, Vendita, Consumo
-        $tablesInteractions = ['Carrello', 'Preferiti', 'Vendita', 'Consumo'];
+        $tablesInteractions = ['Carrello', 'Preferiti', 'Vendita'];
         foreach ($tablesInteractions as $table) {
             $stmt = $conn->prepare("DELETE FROM $table WHERE prodotto = :id");
             $stmt->execute([':id' => $id]);
