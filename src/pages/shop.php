@@ -120,10 +120,6 @@ try {
         $listaHtml .= renderProductCard($prodotto, $cardTemplate);
     }
 
-    if (empty($listaHtml)) {
-        $listaHtml = '<li class="no-results">Nessun prodotto trovato con questi filtri.</li>';
-    }
-
     $statusMsg = count($prodotti) > 0
         ? "Visualizzati " . count($prodotti) . " prodotti."
         : "Nessun prodotto trovato con questi filtri.";

@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $email = $_SESSION['email'];
     $prodId = $_POST['product_id'];
 
+    $qty = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+
     try {
         $db = new Database();
         $conn = $db->getConnection();
@@ -23,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
 
         if ($stmt->rowCount() > 0) {
             // 2. Se esiste, aggiorna la quantità (nota: 'quantita' SENZA accento)
-            $update = $conn->prepare("UPDATE Carrello SET quantita = quantita + 1 WHERE consumatore = :email AND prodotto = :prod");
-            $update->execute([':email' => $email, ':prod' => $prodId]);
+            $update = $conn->prepare("UPDATE Carrello SET quantita = quantita + :qty WHERE consumatore = :email AND prodotto = :prod");
+            $update->execute([':email' => $email, ':prod' => $prodId, ':qty' => $qty]);
         } else {
             // 3. Se non esiste, inserisci (nota: 'quantita' SENZA accento)
-            $insert = $conn->prepare("INSERT INTO Carrello (consumatore, prodotto, quantita) VALUES (:email, :prod, 1)");
-            $insert->execute([':email' => $email, ':prod' => $prodId]);
+            $insert = $conn->prepare("INSERT INTO Carrello (consumatore, prodotto, quantita) VALUES (:email, :prod, :qty)");
+            $insert->execute([':email' => $email, ':prod' => $prodId, ':qty' => $qty]);
         }
 
         // Successo: Messaggio feedback
@@ -42,6 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     }
 }
 
-// Torna allo shop
-header('Location: ../pages/shop.php');
+
+$referer = $_SERVER['HTTP_REFERER'] ?? '';
+if (strpos($referer, 'shop.php') !== false) {
+    header('Location: ../pages/shop.php');
+} else {
+    header("Location: ../pages/product.php?id=" . $prodId);
+}
 exit();
