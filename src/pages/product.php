@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../config/database/database_conn.php';
 require_once '../config/shop_functions.php';
 
@@ -88,6 +89,20 @@ try {
         $specsHtml = "<div class='product-specs'><h3>Scheda Tecnica</h3>" . $innerSpecs . "</div>";
     }
 
+    $feedbackHtml = '';
+    if (isset($_SESSION['msg_type']) && isset($_SESSION['msg_content'])) {
+
+        $msgClass = ($_SESSION['msg_type'] === 'success') ? 'alert-success' : 'alert-error';
+        $msgContent = htmlspecialchars($_SESSION['msg_content']);
+
+        // Creiamo l'HTML
+        $feedbackHtml = "<div class='$msgClass'>$msgContent</div>";
+
+        // PULIZIA: Rimuoviamo il messaggio dalla sessione così non appare di nuovo al refresh
+        unset($_SESSION['msg_type']);
+        unset($_SESSION['msg_content']);
+    }
+
     // Caricamento Template
     $htmlContent = file_get_contents(__DIR__ . '/product.html');
 
@@ -99,6 +114,8 @@ try {
         '{{CATEGORY}}' => htmlspecialchars($product['categoria']),
         '{{IMG_SRC}}' => $imgSrc,
         '{{IMG_ALT}}' => $imgAlt,
+        '{{PRODUCT_ID}}'=> $productId,
+        '{{FEEDBACK}}'=> $feedbackHtml,
         '{{AVAILABILITY_CLASS}}' => $availClass,
         '{{AVAILABILITY_TEXT}}' => $availText,
         '{{BTN_DISABLED}}' => $btnDisabled,
