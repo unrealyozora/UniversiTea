@@ -13,7 +13,7 @@
 <a href="#admin-content" class="skip-link">Salta al contenuto principale</a>
 
 <header class="main-header">
-    <a href="../../index.html">
+    <a href="../../index.php">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
@@ -56,7 +56,7 @@
 </header>
 
 <nav id="breadcrumb" aria-label="Percorso di navigazione">
-    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page">Il tuo profilo</span>
+    <p>Ti trovi in: <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page">Il tuo profilo</span>
     </p>
 </nav>
 
@@ -65,7 +65,8 @@
     <section id="intro-text">
         <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. </p>
         <p>Potrai velocemente aggiungere nuovi prodotti al tuo catalogo.</p>
-        <p>Inoltre potrai vedere e modificare tutti i prodotti da te venduti. Cambia prezzo, disponibilità, descrizione e tutti parametri che vuoi.</p>
+        <p>Inoltre potrai vedere e modificare tutti i prodotti da te venduti. Cambia prezzo, disponibilità, descrizione
+            e tutti parametri che vuoi.</p>
     </section>
 
     <section class="admin-dashboard-grid">
@@ -73,7 +74,8 @@
         <div class="dashboard-card primary-card">
             <div class="card-content">
                 <h2>Espandi il Catalogo</h2>
-                <p>Fai crescere il tuo business aggiungendo nuovi prodotti. Puoi definire categorie, prezzi e disponibilità per attirare nuovi clienti.</p>
+                <p>Fai crescere il tuo business aggiungendo nuovi prodotti. Puoi definire categorie, prezzi e
+                    disponibilità per attirare nuovi clienti.</p>
             </div>
             <div class="card-action">
                 <a href="edit_product.php" class="btn-add-new">
@@ -85,7 +87,8 @@
         <div class="dashboard-card secondary-card">
             <div class="card-content">
                 <h2>Gestione Sessione</h2>
-                <p>Attualmente sei connesso come venditore. Se devi cambiare terminale o account, termina la sessione qui.</p>
+                <p>Attualmente sei connesso come venditore. Se devi cambiare terminale o account, termina la sessione
+                    qui.</p>
             </div>
             <div class="card-action">
                 <form action="../config/auth/logout.php" method="POST">
@@ -99,11 +102,14 @@
     </section>
 
     {{USER_FEEDBACK}}
-   <section class="admin-table-container">
-       <h1>Tabella dei Prodotti</h1>
-       <p id="table-descr">La tabella mostra i dati principali per ogni prodotto venduto da te. É sviluppata per righe, una per ogni prodotto, e ha 6 colonne, una per ogni caratteristica mostrata. In particolare ogni prodotto ha un id, nome, prezzo, quantità in stock, categoria (bevanda, <span lang="en">merchandising</span>, servizi o <span lang="en">bundle</span>) e due azioni possibili: la modifica e la cancellazione.</p>
+    <section class="admin-table-container">
+        <h1>Tabella dei Prodotti</h1>
+        <p id="table-descr">La tabella mostra i dati principali per ogni prodotto venduto da te. É sviluppata per righe,
+            una per ogni prodotto, e ha 6 colonne, una per ogni caratteristica mostrata. In particolare ogni prodotto ha
+            un id, nome, prezzo, quantità in stock, categoria (bevanda, <span lang="en">merchandising</span>, servizi o
+            <span lang="en">bundle</span>) e due azioni possibili: la modifica e la cancellazione.</p>
 
-       <table class="product-table" aria-describedby="table-descr">
+        <table class="product-table" aria-describedby="table-descr">
             <caption>Tabella dei Prodotti Proprietari</caption>
             <thead>
             <tr>
@@ -155,7 +161,7 @@
         <nav class="footer-column" aria-label="Mappa del sito">
             <h3>Naviga</h3>
             <ul>
-                <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
+                <li><a href="../../index.php"><span lang="en-GB">Home</span></a></li>
                 <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
@@ -196,8 +202,16 @@
                     <strong>Orari Assistenza:</strong>
 
 
-                    <p> Dal lunedì al venerdì:  <time datetime="09:00">9:00</time> - <time datetime="18:00">18:00</time></p>
-                    <p> Sabato:  <time datetime="10:00">10:00</time> - <time datetime="16:00">16:00</time></p>
+                    <p> Dal lunedì al venerdì:
+                        <time datetime="09:00">9:00</time>
+                        -
+                        <time datetime="18:00">18:00</time>
+                    </p>
+                    <p> Sabato:
+                        <time datetime="10:00">10:00</time>
+                        -
+                        <time datetime="16:00">16:00</time>
+                    </p>
                 </li>
             </ul>
         </div>

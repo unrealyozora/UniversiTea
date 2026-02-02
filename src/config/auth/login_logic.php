@@ -11,7 +11,7 @@ $user = new User();
 
 //TODO raggruppare in funzione separata
 if (isset($_SESSION['username']) && $_SESSION['logged_in']) {
-    header('Location: ../../../index.html');
+    header('Location: ../../../index.php');
     exit();
 }
 
@@ -24,7 +24,7 @@ loginUser();
 function checkRequest(): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['login'])) {
-        header('Location: ../../../index.html');
+        header('Location: ../../../index.php');
         exit();
     }
 }

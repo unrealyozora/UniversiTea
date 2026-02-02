@@ -14,13 +14,13 @@
 <a href="#shop-content" class="skip-link">Salta al contenuto principale</a>
 
 <header class="main-header">
-    <a href="../../index.html">
-        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo" >
+    <a href="../../index.php">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
     </a>
 
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <label for="menu-toggle" class="hamburger-btn" >
+    <label for="menu-toggle" class="hamburger-btn">
         <span class="sr-only">Apri menu</span>
         <span class="bar"></span>
         <span class="bar"></span>
@@ -43,13 +43,14 @@
             <ul>
                 <li>
                     <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                             aria-hidden="true">
                         <span class="mobile-only-text">Carrello</span>
                     </a>
                 </li>
                 <li>
                     <a href="./register.php" class="btn-join">
-                       Accedi Ora
+                        Accedi Ora
                     </a>
                 </li>
             </ul>
@@ -58,7 +59,8 @@
 </header>
 
 <nav id="breadcrumb" aria-label="Percorso di navigazione">
-    <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page" lang="en">Shop</span>
+    <p>Ti trovi in: <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt;&gt; <span aria-current="page"
+                                                                                                lang="en">Shop</span>
     </p>
 </nav>
 
@@ -115,7 +117,7 @@
                 <div class="filter-settings">
                     <fieldset class="filter-group price-group">
                         <legend>Prezzo</legend>
-                        <label for="price-range"  aria-live="assertive">Seleziona prezzo massimo <span
+                        <label for="price-range" aria-live="assertive">Seleziona prezzo massimo <span
                                 id="price-value">{{MAX_PRICE}}€</span></label>
                         <input type="range" id="price-range" name="max-price" min="0" max="100" value="{{MAX_PRICE}}"
                                step="1">
@@ -176,7 +178,7 @@
         <nav class="footer-column" aria-label="Mappa del sito">
             <h3>Naviga</h3>
             <ul>
-                <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
+                <li><a href="../../index.php"><span lang="en-GB">Home</span></a></li>
                 <li><a href="./shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
@@ -217,8 +219,16 @@
                     <strong>Orari Assistenza:</strong>
 
 
-                      <p> Dal lunedì al venerdì:  <time datetime="09:00">9:00</time> - <time datetime="18:00">18:00</time></p>
-                       <p> Sabato:  <time datetime="10:00">10:00</time> - <time datetime="16:00">16:00</time></p>
+                    <p> Dal lunedì al venerdì:
+                        <time datetime="09:00">9:00</time>
+                        -
+                        <time datetime="18:00">18:00</time>
+                    </p>
+                    <p> Sabato:
+                        <time datetime="10:00">10:00</time>
+                        -
+                        <time datetime="16:00">16:00</time>
+                    </p>
                 </li>
             </ul>
         </div>

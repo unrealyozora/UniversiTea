@@ -8,218 +8,226 @@
     <meta name="description" content="Pagina dedicata alla registrazione di un nuovo utente">
     <meta name="keywords" content="tè, università, tisane, negozio, login, signup, registrazione, accesso">
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/print.css" media="print">
 </head>
 
 <body>
-    <a href="#register-content" class="skip-link">Salta al contenuto principale</a>
+<a href="#register-content" class="skip-link">Salta al contenuto principale</a>
 
-    <script src="../config/validation/register_validation.js"></script>
-    <header class="main-header">
-        <a href="../../index.html">
-            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
-        </a>
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+<script src="../config/validation/register_validation.js"></script>
+<header class="main-header">
+    <a href="../../index.php">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
+    </a>
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-        <label for="menu-toggle" class="hamburger-btn">
-            <span class="sr-only">Apri menù</span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </label>
+    <label for="menu-toggle" class="hamburger-btn">
+        <span class="sr-only">Apri menù</span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </label>
 
-        <div class="nav-wrapper">
-            <label for="menu-toggle" class="close-menu-btn">
-                <span class="sr-only">Chiudi menù</span></label>
-            <nav id="main-menu" aria-label="Menu principale">
-                <ul>
-                    <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
-                    <li><a href="./tea-info.html">Il nostro Tè</a></li>
-                    <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
-                    <li><a href="./dashboard.php">Il tuo profilo</a></li>
-                </ul>
-            </nav>
+    <div class="nav-wrapper">
+        <label for="menu-toggle" class="close-menu-btn">
+            <span class="sr-only">Chiudi menù</span></label>
+        <nav id="main-menu" aria-label="Menu principale">
+            <ul>
+                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
+                <li><a href="./tea-info.html">Il nostro Tè</a></li>
+                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+            </ul>
+        </nav>
 
-            <nav id="user-actions" aria-label="Menu utente">
-                <ul>
-                    <li>
-                        <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                            <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
-                                aria-hidden="true">
-                            <span class="mobile-only-text">Carrello</span>
-                        </a>
-                    </li>
-                    <li id="current-link">
-                        Accedi Ora
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <nav id="breadcrumb" aria-label="Percorso di navigazione">
-        <p>Ti trovi in: <a href="../../index.html"><span lang="en-GB">Home</span></a> &gt; <span aria-current="page">Registrazione</span></p>
-    </nav>
-
-    <main id="register-content">
-        <h1>Registrati su <span lang="en-GB">Universitea</span>!</h1>
-        <p class="login-prompt">Hai già un account? <a href="./login.php">Accedi cliccando qui</a></p>
-        <section class="register-card">
-            <h2>Crea il tuo account per iniziare!</h2>
-            <form method="POST" action="../config/auth/register.php" id="registrationForm">
-                {{GENERIC_ERROR}}
-
-                <fieldset>
-                    <legend>Seleziona una tipologia di utente:</legend>
-                    <div>
-                        <input type="radio" id="buyer" name="user_type" value="Compratore" checked />
-                        <label for="buyer">Cliente</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="seller" name="user_type" value="Venditore" />
-                        <label for="seller">Venditore</label>
-                    </div>
-                </fieldset>
-                <div class="form-group">
-                    <label for="username"><span lang="en-GB">Username</span></label>
-                    <p class="register-advice">Deve avere almeno 3 caratteri. Tutti i tipi di caratteri sono accettati</p>
-                    <input type="text" id="username" name="username" aria-required="true">
-                    {{USERNAME_ERROR}}
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <p class="register-advice">Non deve essere vuoto</p>
-                    <input type="text" id="email" name="email" aria-required="true">
-                    {{EMAIL_ERROR}}
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telefono</label>
-                    <p class="register-advice">Deve essere di lungo esattamente 9 o 10 numeri</p>
-                    <input type="text" id="phone" name="phone" aria-required="true">
-                    {{PHONE_ERROR}}
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <p class="register-advice">Deve avere almeno 6 caratteri. Tutti i tipi di caratteri sono accettati</p>
-                    <input type="text" id="password" name="password" aria-required="true">
-                    {{PASSWORD_ERROR}}
-                </div>
-                <div class="form-group">
-                    <label for="confirm_password">Conferma password</label>
-                    <input type="text" id="confirm_password" name="confirm_password" aria-required="true">
-                    {{CONFIRM_PWD_ERROR}}
-                </div>
-
-                <button type="submit" name="register" class="submit-btn" id="submitBtn">Registrati</button>
-            </form>
-        </section>
-    </main>
-    <footer class="main-footer-area">
-        <div class="footer-container">
-
-            <!-- Colonna Brand -->
-            <div class="footer-column brand-col">
-                <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
-                <p class="footer-tagline">
-                    Il tè che studia con te. Dalla natura incontaminata, direttamente nella tua tazza.
-                </p>
-                <div class="social-links">
-                    <a href="#" aria-label="Seguici su Facebook" class="social-icon">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
+        <nav id="user-actions" aria-label="Menu utente">
+            <ul>
+                <li>
+                    <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                             aria-hidden="true">
+                        <span class="mobile-only-text">Carrello</span>
                     </a>
-                    <a href="#" aria-label="Seguici su Instagram" class="social-icon">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Seguici su Twitter" class="social-icon">
-                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                        </svg>
-                    </a>
+                </li>
+                <li id="current-link">
+                    Accedi Ora
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<nav id="breadcrumb" aria-label="Percorso di navigazione">
+    <p>Ti trovi in: <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt; <span aria-current="page">Registrazione</span>
+    </p>
+</nav>
+
+<main id="register-content">
+    <h1>Registrati su <span lang="en-GB">Universitea</span>!</h1>
+    <p class="login-prompt">Hai già un account? <a href="./login.php">Accedi cliccando qui</a></p>
+    <section class="register-card">
+        <h2>Crea il tuo account per iniziare!</h2>
+        <form method="POST" action="../config/auth/register.php" id="registrationForm">
+            {{GENERIC_ERROR}}
+
+            <fieldset>
+                <legend>Seleziona una tipologia di utente:</legend>
+                <div>
+                    <input type="radio" id="buyer" name="user_type" value="Compratore" checked/>
+                    <label for="buyer">Cliente</label>
                 </div>
+                <div>
+                    <input type="radio" id="seller" name="user_type" value="Venditore"/>
+                    <label for="seller">Venditore</label>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label for="username"><span lang="en-GB">Username</span></label>
+                <p class="register-advice">Deve avere almeno 3 caratteri. Tutti i tipi di caratteri sono accettati</p>
+                <input type="text" id="username" name="username" aria-required="true">
+                {{USERNAME_ERROR}}
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <p class="register-advice">Non deve essere vuoto</p>
+                <input type="text" id="email" name="email" aria-required="true">
+                {{EMAIL_ERROR}}
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefono</label>
+                <p class="register-advice">Deve essere di lungo esattamente 9 o 10 numeri</p>
+                <input type="text" id="phone" name="phone" aria-required="true">
+                {{PHONE_ERROR}}
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <p class="register-advice">Deve avere almeno 6 caratteri. Tutti i tipi di caratteri sono accettati</p>
+                <input type="text" id="password" name="password" aria-required="true">
+                {{PASSWORD_ERROR}}
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Conferma password</label>
+                <input type="text" id="confirm_password" name="confirm_password" aria-required="true">
+                {{CONFIRM_PWD_ERROR}}
             </div>
 
-            <nav class="footer-column" aria-label="Mappa del sito">
-                <h3>Naviga</h3>
-                <ul>
-                    <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
-                    <li><a href="./shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
-                    <li><a href="./tea-info.html">Il nostro Tè</a></li>
-                    <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
-                    <li><a href="./dashboard.php">Il tuo profilo</a></li>
-                    <li><a href="./favorites.php">Preferiti</a></li>
-                    <li><a href="./cart.php">Carrello</a></li>
-                    <li><a href="./register.php">Registrati (Ti trovi qui ora)</a></li>
-                    <li><a href="./login.php">Accedi</a></li>
-                </ul>
-            </nav>
+            <button type="submit" name="register" class="submit-btn" id="submitBtn">Registrati</button>
+        </form>
+    </section>
+</main>
+<footer class="main-footer-area">
+    <div class="footer-container">
 
-            <!-- Categorie Prodotti -->
-            <nav class="footer-column" aria-label="Categorie prodotti">
-                <h3>Prodotti</h3>
-                <ul>
-                    <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
-                    <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a>
-                    </li>
-                    <li><a href="./shop.php?category=servizi">I Servizi</a></li>
-                    <li><a href="./shop.php?category=bundle">I Bundle</a></li>
-                    <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>
-                    <li><a href="./register.php">Programma Fedeltà</a></li>
-                </ul>
-            </nav>
-
-            <!-- Contatti & Supporto -->
-            <div class="footer-column">
-                <h3>Contatti</h3>
-                <ul class="contact-list">
-                    <li>
-                        <strong>Email:</strong><br>
-                        <a href="mailto:info@universitea.it">info@universitea.it</a>
-                    </li>
-                    <li>
-                        <strong>Telefono:</strong><br>
-                        <a href="tel:+3912312390123">+39 123 123 90123</a>
-                    </li>
-                    <li>
-                        <strong>Orari Assistenza:</strong><br>
-                       Dal lunedì al venerdì: Dalle <time datetime="09:00">9:00</time> alle <time datetime="18:00">18:00</time><br>
-                        Sabato: Dalle <time datetime="10:00">10:00</time> alle <time> datetime="16:00">16:00</time>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- Fascia Bottom -->
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <div class="legal-info">
-                    <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span
-                            lang="en-GB">All rights reserved</span>.</p>
-                    <p class="disclaimer">Questo sito è un progetto accademico realizzato per scopi didattici.</p>
-                </div>
-
-                <div class="validators">
-                    <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
-                        <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
-                    </a>
-                    <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"
-                        rel="noopener noreferrer">
-                        <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
-                            height="31">
-                    </a>
-                </div>
+        <!-- Colonna Brand -->
+        <div class="footer-column brand-col">
+            <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
+            <p class="footer-tagline">
+                Il tè che studia con te. Dalla natura incontaminata, direttamente nella tua tazza.
+            </p>
+            <div class="social-links">
+                <a href="#" aria-label="Seguici su Facebook" class="social-icon">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Seguici su Instagram" class="social-icon">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Seguici su Twitter" class="social-icon">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
             </div>
         </div>
-    </footer>
+
+        <nav class="footer-column" aria-label="Mappa del sito">
+            <h3>Naviga</h3>
+            <ul>
+                <li><a href="../../index.php"><span lang="en-GB">Home</span></a></li>
+                <li><a href="./shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
+                <li><a href="./tea-info.html">Il nostro Tè</a></li>
+                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
+                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+                <li><a href="./favorites.php">Preferiti</a></li>
+                <li><a href="./cart.php">Carrello</a></li>
+                <li><a href="./register.php">Registrati (Ti trovi qui ora)</a></li>
+                <li><a href="./login.php">Accedi</a></li>
+            </ul>
+        </nav>
+
+        <!-- Categorie Prodotti -->
+        <nav class="footer-column" aria-label="Categorie prodotti">
+            <h3>Prodotti</h3>
+            <ul>
+                <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
+                <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a>
+                </li>
+                <li><a href="./shop.php?category=servizi">I Servizi</a></li>
+                <li><a href="./shop.php?category=bundle">I Bundle</a></li>
+                <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>
+                <li><a href="./register.php">Programma Fedeltà</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contatti & Supporto -->
+        <div class="footer-column">
+            <h3>Contatti</h3>
+            <ul class="contact-list">
+                <li>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:info@universitea.it">info@universitea.it</a>
+                </li>
+                <li>
+                    <strong>Telefono:</strong><br>
+                    <a href="tel:+3912312390123">+39 123 123 90123</a>
+                </li>
+                <li>
+                    <strong>Orari Assistenza:</strong><br>
+                    Dal lunedì al venerdì: Dalle
+                    <time datetime="09:00">9:00</time>
+                    alle
+                    <time datetime="18:00">18:00</time>
+                    <br>
+                    Sabato: Dalle
+                    <time datetime="10:00">10:00</time>
+                    alle
+                    <time> datetime="16:00">16:00</time>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Fascia Bottom -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <div class="legal-info">
+                <p><span lang="en-GB">Copyright</span> © 2025 <span lang="en-GB">UniversiTea</span> - <span
+                        lang="en-GB">All rights reserved</span>.</p>
+                <p class="disclaimer">Questo sito è un progetto accademico realizzato per scopi didattici.</p>
+            </div>
+
+            <div class="validators">
+                <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
+                </a>
+                <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"
+                   rel="noopener noreferrer">
+                    <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                         height="31">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 
 </html>

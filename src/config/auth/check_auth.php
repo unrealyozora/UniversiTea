@@ -31,7 +31,7 @@ function requireAuth($redirectUrl = '../../pages/login.html')
     }
 }
 
-function preventAuthAccess($redirectUrl = '../../../index.html')
+function preventAuthAccess($redirectUrl = '../../../index.php')
 {
     if (!isLoggedIn()) {
         header('Location: ' . $redirectUrl);

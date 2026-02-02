@@ -14,8 +14,8 @@
 <a href="#prodotto-content" class="skip-link">Salta al contenuto principale</a>
 
 <header class="main-header">
-    <a href="../../index.html">
-        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo" >
+    <a href="../../index.php">
+        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
@@ -31,7 +31,7 @@
             <span class="sr-only">Chiudi menù</span></label>
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
-                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a> </li>
+                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
                 <li><a href="./dashboard.php">Il tuo profilo</a></li>
@@ -42,7 +42,8 @@
             <ul>
                 <li>
                     <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24" aria-hidden="true">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                             aria-hidden="true">
                         <span class="mobile-only-text">Carrello</span>
                     </a>
                 </li>
@@ -66,13 +67,15 @@
 
         <div class="form-group">
             <label for="nome">Nome Prodotto:</label>
-            <input type="text" id="nome" name="nome" value="{{VAL_NOME}}" maxlength="100" required placeholder="Inserisci il nome del prodotto">
+            <input type="text" id="nome" name="nome" value="{{VAL_NOME}}" maxlength="100" required
+                   placeholder="Inserisci il nome del prodotto">
             {{ERR_NOME}}
         </div>
 
         <div class="form-group">
             <label for="descrizione">Descrizione:</label>
-            <textarea id="descrizione" name="descrizione" rows="3" maxlength="1000" required placeholder="Descrivi il prodotto...">{{VAL_DESCRIZIONE}}</textarea>
+            <textarea id="descrizione" name="descrizione" rows="3" maxlength="1000" required
+                      placeholder="Descrivi il prodotto...">{{VAL_DESCRIZIONE}}</textarea>
             {{ERR_DESCRIZIONE}}
         </div>
 
@@ -88,13 +91,15 @@
 
         <div class="form-group">
             <label for="prezzo">Prezzo (€):</label>
-            <input type="number" id="prezzo" name="prezzo" min="0.01" max="100" step="0.01" value="{{VAL_PREZZO}}" required placeholder="0.00">
+            <input type="number" id="prezzo" name="prezzo" min="0.01" max="100" step="0.01" value="{{VAL_PREZZO}}"
+                   required placeholder="0.00">
             {{ERR_PREZZO}}
         </div>
 
         <div class="form-group">
             <label for="disponibilita">Quantità (Stock):</label>
-            <input type="number" id="disponibilita" name="disponibilita" min="0" value="{{VAL_DISPONIBILITA}}" required placeholder="0">
+            <input type="number" id="disponibilita" name="disponibilita" min="0" value="{{VAL_DISPONIBILITA}}" required
+                   placeholder="0">
             {{ERR_DISPONIBILITA}}
         </div>
 
@@ -134,7 +139,8 @@
             </div>
             <div class="form-group">
                 <label>Scoop (Curiosità):</label>
-                <input type="text" name="scoop" value="{{VAL_SCOOP}}" maxlength="255" placeholder="Inserisci una curiosità sul tè">
+                <input type="text" name="scoop" value="{{VAL_SCOOP}}" maxlength="255"
+                       placeholder="Inserisci una curiosità sul tè">
             </div>
         </div>
 
@@ -142,7 +148,8 @@
             <h4>Dettagli Merch</h4>
             <div class="form-group">
                 <label>Materiale:</label>
-                <input type="text" name="materiale" maxlength="255" value="{{VAL_MATERIALE}}" placeholder="Es. Ceramica, Cotone...">
+                <input type="text" name="materiale" maxlength="255" value="{{VAL_MATERIALE}}"
+                       placeholder="Es. Ceramica, Cotone...">
                 {{ERR_MATERIALE}}
             </div>
             <div class="form-group">
@@ -194,7 +201,8 @@
 
             <div class="form-group">
                 <label>Percentuale Sconto (%):</label>
-                <input type="number" name="percent_sconto" value="{{VAL_SCONTO}}" min="0" max="100" placeholder="Es. 20">
+                <input type="number" name="percent_sconto" value="{{VAL_SCONTO}}" min="0" max="100"
+                       placeholder="Es. 20">
                 {{ERR_PERCENT_SCONTO}}
             </div>
         </div>
@@ -237,7 +245,7 @@
         <nav class="footer-column" aria-label="Mappa del sito">
             <h3>Naviga</h3>
             <ul>
-                <li><a href="../../index.html"><span lang="en-GB">Home</span></a></li>
+                <li><a href="../../index.php"><span lang="en-GB">Home</span></a></li>
                 <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
                 <li><a href="./tea-info.html">Il nostro Tè</a></li>
                 <li><a href="./about.html"><span lang="en-GB">About</span></a></li>

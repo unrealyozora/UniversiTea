@@ -22,7 +22,7 @@ try {
 function checkRequest(): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['register'])) {
-        header('Location: ../../../index.html');
+        header('Location: ../../../index.php');
         exit();
     }
 }
@@ -109,7 +109,7 @@ function RegisterUser(): void
 
         if ($stmt->execute()) {
             $success = "Utente registrato con successo";
-            header('Location: ../../../index.html');
+            header('Location: ../../../index.php');
             exit();
         } else {
             throw new Exception("Errore durante la registrazione");
