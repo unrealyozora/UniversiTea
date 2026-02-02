@@ -46,9 +46,6 @@
                     <li>
                         <a href="src/pages/about.html"><span lang="en-GB">About</span></a>
                     </li>
-                    <li>
-                        <a href="src/pages/dashboard.php">Il tuo profilo</a>
-                    </li>
                 </ul>
             </nav>
 
@@ -60,11 +57,7 @@
                             <span class="mobile-only-text">Carrello</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="src/pages/register.php" class="btn-join">
-                            Accedi Ora
-                        </a>
-                    </li>
+                    {{USER_ACTION}}
                 </ul>
             </nav>
         </div>
@@ -203,19 +196,24 @@
 
                 <article class="product-slide" id="product-1">
                     <div class="bestsellers-info">
-                        <h3 class="bestsellers-product-name">Tè Matcha Concentrato</h3>
-                        <p>Uno smeraldo in polvere, il Matcha è l'essenza stessa della cerimonia del tè. Ottenuto
-                            macinando a pietra le pregiate foglie di Tencha, regala un sapore intenso, ricco di umami e
-                            una texture vellutata. Un concentrato di antiossidanti per un rituale di benessere
-                            quotidiano.</p>
-                        <a href="src/pages/product.php?id=12490364-e3c2-44d0-9d8a-4885b76c8f25" class="bestsellers-cta">Compralo Ora</a>
+                        <h3 class="bestsellers-product-name">Te-orema di Sopravvivenza</h3>
+                        <p>
+                            <strong>Enunciato del Te-orema di Sopravvivenza:</strong> dato un volume infinito di
+                            appunti e un tempo prossimo alla scadenza, esiste sempre una bustina capace di invertire
+                            l'entropia mentale. Un blend pensato per chi non accetta la sconfitta davanti a una
+                            derivata o a un algoritmo ostinato. Una sferzata di freschezza verde che ripristina i
+                            parametri vitali e ti permette di dimostrare a tutti che la sopravvivenza al calcolo
+                            numerico non è solo un'ipotesi, ma un fatto compiuto.
+                        </p>
+                        <a href="src/pages/product.php?id=12490364-e3c2-44d0-9d8a-4885b76c8f25"
+                            class="bestsellers-cta">Compralo Ora</a>
                     </div>
                     <figure class="bestsellers-visual" aria-hidden="true">
                         <figcaption>Trascina per ruotare</figcaption>
                         <!-- Img visibile solo se JS disabilitato -->
-                        <img src="assets/images/matcha.jpg" alt="" class="model-fallback">
+                        <img src="assets/images/Sopravvivenza.webp" alt="" class="model-fallback">
                         <!-- Modello 3D visibile solo se JS attivato -->
-                        <model-viewer tabindex="-1" loading="lazy" src="assets/images/Mate.glb" alt="Matcha" auto-rotate
+                        <model-viewer tabindex="-1" loading="lazy" src="assets/images/bustina.glb" alt="" auto-rotate
                             camera-controls shadow-intensity="1" disable-zoom></model-viewer>
                     </figure>
                     <div class="slide-nav-container">
@@ -227,19 +225,26 @@
 
                 <article class="product-slide" id="product-2">
                     <div class="bestsellers-info">
-                        <h3 class="bestsellers-product-name">Earl Grey Imperiale</h3>
-                        <p>L'eleganza senza tempo del tè nero incontra la vibrante freschezza del bergamotto siciliano.
-                            Una miscela nobile, dal profumo agrumato inconfondibile, perfetta per accompagnare il
-                            pomeriggio con un tocco di raffinatezza aristocratica.</p>
-                        <a href="src/pages/product.php?id=918a14bf-ff9a-11f0-9176-df42ab94e2b3" class="bestsellers-cta">Compralo Ora</a>
+                        <h3 class="bestsellers-product-name">Tè del procrastinatore seriale</h3>
+                        <p>
+                            Il carburante ufficiale per chi crede che "domani" sia un concetto filosofico e non una
+                            scadenza reale. Se il tuo piano di studi prevede di condensare tre mesi di lezioni in una
+                            sola notte disperata, questa miscela al <strong>Tè Matcha concentrato</strong> è il tuo
+                            unico alleato credibile. Nonostante il gusto
+                            ingannevolmente delicato, agisce come un dilatatore temporale: una tazza garantisce sei ore
+                            di lucidità cristallina, trasformando il panico in produttività e rendendo
+                            l'impossibile... quantomeno probabile.
+                        </p>
+                        <a href="src/pages/product.php?id=918a14bf-ff9a-11f0-9176-df42ab94e2b3"
+                            class="bestsellers-cta">Compralo Ora</a>
                     </div>
                     <figure class="bestsellers-visual" aria-hidden="true">
                         <figcaption>Trascina per ruotare</figcaption>
                         <!-- Img visibile solo se JS disabilitato -->
-                        <img src="assets/images/earlGreyImperiale.jpg" alt="" class="model-fallback">
+                        <img src="assets/images/Procrastinatore.webp" alt="" class="model-fallback">
                         <!-- Modello 3D visibile solo se JS attivato -->
-                        <model-viewer tabindex="-1" loading="lazy" src="assets/images/tea_container.glb" alt="Earl Grey"
-                            auto-rotate camera-controls shadow-intensity="1" disable-zoom></model-viewer>
+                        <model-viewer tabindex="-1" loading="lazy" src="assets/images/Mate.glb" alt="" auto-rotate
+                            camera-controls shadow-intensity="1" disable-zoom></model-viewer>
                     </figure>
                     <div class="slide-nav-container">
                         <a href="#product-1" class="side-nav-btn prev" aria-label="Vai al precedente">
@@ -254,18 +259,24 @@
 
                 <article class="product-slide" id="product-3">
                     <div class="bestsellers-info">
-                        <h3 class="bestsellers-product-name">Infuso Frutti Rossi</h3>
-                        <p>Un'esplosione di dolcezza naturale che danza nel palato. Fragole di bosco, lamponi e karkadè
-                            si fondono in un abbraccio rubino, creando una tisana dissetante e priva di teina, ideale
-                            per coccolarsi in ogni momento della giornata.</p>
-                        <a href="src/pages/product.php?id=e28a6465-ff9a-11f0-9176-df42ab94e2b3" class="bestsellers-cta">Compralo Ora</a>
+                        <h3 class="bestsellers-product-name">Pace interiore</h3>
+                        <p>
+                            Quando il cervello entra in loop e la tachicardia da scadenza prende il sopravvento, l'unica
+                            soluzione è staccare la spina con la tisana <strong>Pace Interiore</strong>. Questa sinergia
+                            di camomilla, lavanda e melissa agisce come un pulsante di reset per il sistema nervoso,
+                            abbassando i giri del motore mentale surriscaldato. Un infuso essenziale per trasformare
+                            l'insonnia da ripasso in un sonno rigenerante e riscoprire che, sotto strati di ansia,
+                            esiste ancora una persona serena.
+                        </p>
+                        <a href="src/pages/product.php?id=e28a6465-ff9a-11f0-9176-df42ab94e2b3"
+                            class="bestsellers-cta">Compralo Ora</a>
                     </div>
                     <figure class="bestsellers-visual" aria-hidden="true">
                         <figcaption>Trascina per ruotare</figcaption>
                         <!-- Img visibile solo se JS disabilitato -->
-                        <img src="assets/images/infussoFruttiRossi.jpg" alt="" class="model-fallback">
+                        <img src="assets/images/PaceInteriore.webp" alt="" class="model-fallback">
                         <!-- Modello 3D visibile solo se JS attivato -->
-                        <model-viewer tabindex="-1" loading="lazy" src="assets/images/bustina.glb" alt="Infuso"
+                        <model-viewer tabindex="-1" loading="lazy" src="assets/images/tea_container.glb" alt=""
                             auto-rotate camera-controls shadow-intensity="1" disable-zoom></model-viewer>
                     </figure>
                     <div class="slide-nav-container">
@@ -354,7 +365,7 @@
             </ol>
 
             <footer class="loyalty-footer">
-                <a href="src/pages/register.php" class="btn-loyalty">Inizia a raccogliere</a>
+                {{LOYALTY_ACTION}}
             </footer>
         </section>
 
