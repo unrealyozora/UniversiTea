@@ -103,6 +103,22 @@ try {
         unset($_SESSION['msg_content']);
     }
 
+    $user_action = '';
+    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+        $user_action = '<li>
+                        <a href="dashboard.php" class="nav-profile-link">
+                             <img src="../../assets/images/user.png" alt="Il tuo profilo">
+                            <span class="mobile-only-text">Profilo</span>
+                        </a>
+                    </li>';
+    } else {
+        $user_action = '<li>
+                        <a href="register.php" class="btn-join" aria-label="Accedi ora al tuo account">
+                            Accedi Ora
+                        </a>
+                    </li>';
+    }
+
     // Caricamento Template
     $htmlContent = file_get_contents(__DIR__ . '/product.html');
 
@@ -120,7 +136,8 @@ try {
         '{{AVAILABILITY_TEXT}}' => $availText,
         '{{BTN_DISABLED}}' => $btnDisabled,
         '{{BTN_TEXT}}' => $btnText,
-        '{{SPECS}}' => $specsHtml
+        '{{SPECS}}' => $specsHtml,
+        '{{USER_ACTION}}' => $user_action,
     ];
 
     echo str_replace(

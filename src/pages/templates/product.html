@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>{{NAME}} - UniversiTea</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/print.css" media="print">
-    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
+    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/print.css" media="print">
+    <link rel="icon" type="image/svg+xml" href="../../../assets/images/logo-finestra.svg">
 </head>
 
 <body>
@@ -14,8 +14,8 @@
 
 
 <header class="main-header">
-    <a href="../../index.php">
-        <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
+    <a href="../../../index.php">
+        <img src="../../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
@@ -30,27 +30,22 @@
         <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi menù</span></label>
         <nav id="main-menu" aria-label="Menu principale">
             <ul>
-                <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
-                <li><a href="./tea-info.html">Il nostro Tè</a></li>
-                <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
-                <li><a href="./dashboard.php">Il tuo profilo</a></li>
+                <li><a href="../shop.php"><span lang="en-GB">Shop</span></a></li>
+                <li><a href="../tea-info.php">Il nostro Tè</a></li>
+                <li><a href="../about.php"><span lang="en-GB">About</span></a></li>
             </ul>
         </nav>
 
         <nav id="user-actions" aria-label="Menu utente">
             <ul>
                 <li>
-                    <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                    <a href="../cart.php" class="nav-text-link" aria-label="Visualizza carrello">
+                        <img src="../../../assets/images/shopping-cart.png" alt="" width="24" height="24"
                              aria-hidden="true">
                         <span class="mobile-only-text">Carrello</span>
                     </a>
                 </li>
-                <li>
-                    <a href="./register.php" class="btn-join">
-                        Accedi ora
-                    </a>
-                </li>
+                {{USER_ACTION}}
             </ul>
         </nav>
     </div>
@@ -58,8 +53,8 @@
 
 <nav id="breadcrumb" aria-label="Percorso di navigazione">
     <p>Ti trovi in:
-        <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt;
-        <a href="./shop.php"><span lang="en-GB">Shop</span></a> &gt;
+        <a href="../../../index.php"><span lang="en-GB">Home</span></a> &gt;
+        <a href="../shop.php"><span lang="en-GB">Shop</span></a> &gt;
         <span aria-current="page" id="breadcrumb-current">{{NAME}}</span>
     </p>
 </nav>
@@ -99,7 +94,7 @@
 
             {{FEEDBACK}}
 
-            <form class="add-to-cart-form" action="../config/add_to_cart.php" method="POST">
+            <form class="add-to-cart-form" action="../../config/add_to_cart.php" method="POST">
                 <input type="hidden" name="product_id" value="{{PRODUCT_ID}}">
                 <div class="qty-wrapper">
                     <label for="quantity" class="qty-label">Quantità</label>
@@ -120,7 +115,7 @@
 
             <!-- Colonna Brand -->
             <div class="footer-column brand-col">
-                <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
+                <img src="../../../assets/images/universitea_logo.svg" alt="UniversiTea" class="footer-logo">
                 <p class="footer-tagline">
                     Il tè che studia con te. Dalla natura incontaminata, direttamente nella tua tazza.
                 </p>
@@ -147,15 +142,15 @@
             <nav class="footer-column" aria-label="Mappa del sito">
                 <h3>Naviga</h3>
                 <ul>
-                    <li><a href="../../index.php"><span lang="en-GB">Home</span></a></li>
-                    <li><a href="./shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
+                    <li><a href="../../../index.php"><span lang="en-GB">Home</span></a></li>
+                    <li><a href="../shop.php"><span lang="en-GB">Shop (Ti trovi qui ora)</span></a></li>
                     <li><a href="./tea-info.html">Il nostro Tè</a></li>
                     <li><a href="./about.html"><span lang="en-GB">About</span></a></li>
-                    <li><a href="./dashboard.php">Il tuo profilo</a></li>
-                    <li><a href="./favorites.php">Preferiti</a></li>
-                    <li><a href="./cart.php">Carrello</a></li>
-                    <li><a href="./register.php">Registrati</a></li>
-                    <li><a href="./login.php">Accedi</a></li>
+                    <li><a href="../dashboard.php">Il tuo profilo</a></li>
+                    <li><a href="../favorites.php">Preferiti</a></li>
+                    <li><a href="../cart.php">Carrello</a></li>
+                    <li><a href="../register.php">Registrati</a></li>
+                    <li><a href="../login.php">Accedi</a></li>
                 </ul>
             </nav>
 
@@ -163,13 +158,13 @@
             <nav class="footer-column" aria-label="Categorie prodotti">
                 <h3>Prodotti</h3>
                 <ul>
-                    <li><a href="./shop.php?category=bevande">Tè & Infusi</a></li>
-                    <li><a href="./shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a>
+                    <li><a href="../shop.php?category=bevande">Tè & Infusi</a></li>
+                    <li><a href="../shop.php?category=merchandishing"><span lang="en-GB">Merch</span> & Accessori</a>
                     </li>
-                    <li><a href="./shop.php?category=servizi">I Servizi</a></li>
-                    <li><a href="./shop.php?category=bundle">I Bundle</a></li>
-                    <li><a href="./shop.php?filter=bestseller">I più venduti</a></li>
-                    <li><a href="./register.php">Programma Fedeltà</a></li>
+                    <li><a href="../shop.php?category=servizi">I Servizi</a></li>
+                    <li><a href="../shop.php?category=bundle">I Bundle</a></li>
+                    <li><a href="../shop.php?filter=bestseller">I più venduti</a></li>
+                    <li><a href="../register.php">Programma Fedeltà</a></li>
                 </ul>
             </nav>
 

@@ -16,7 +16,7 @@ function renderProductCard($product, $templateHtml)
     $categoria = htmlspecialchars($product['categoria'], ENT_QUOTES, 'UTF-8');
     $img_alt = htmlspecialchars($product['img_alt'], ENT_QUOTES, 'UTF-8');
 
-    $img_src=checkImage($product);
+    $img_src = checkImage($product);
 
     $replacements = [
         '{{ID}}' => $id,
@@ -94,7 +94,7 @@ try {
 
     if ($maxPrice < 100) { // Solo se diverso dal default
         $sql .= " AND P.prezzo <= :maxPrice";
-        $params[':maxPrice'] = (float)$maxPrice;
+        $params[':maxPrice'] = (float) $maxPrice;
     }
 
     if ($onlyAvailable) {
@@ -126,7 +126,7 @@ try {
 
 } catch (PDOException $e) {
     $statusMsg = "Errore nel caricamento dei prodotti. Riprova più tardi.";
-    $listaHtml = '<div class="error-msg"><p>Il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Non ti preoccupare, ricarica la pagina, riprova più tardi o <a href="./about.html">contattaci</a></p></div>';
+    $listaHtml = '<div class="error-msg"><p>Il magazziniere ha rabaltato qualcosa nel retrobottega.</p> <p>Non ti preoccupare, ricarica la pagina, riprova più tardi o <a href="./about.php">contattaci</a></p></div>';
     error_log("Errore database shop.php: " . $e->getMessage());
 
     $checkedTutti = 'checked';
@@ -147,8 +147,23 @@ if (isset($_SESSION['msg_content'])) {
     unset($_SESSION['msg_content']);
 }
 
+$user_action = '';
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    $user_action = '<li>
+                        <a href="dashboard.php" class="nav-profile-link">
+                             <img src="../../assets/images/user.png" alt="Il tuo profilo">
+                            <span class="mobile-only-text">Profilo</span>
+                        </a>
+                    </li>';
+} else {
+    $user_action = '<li>
+                        <a href="register.php" class="btn-join" aria-label="Accedi ora al tuo account">
+                            Accedi Ora
+                        </a>
+                    </li>';
+}
 
-$htmlContent = file_get_contents('./shop.html');
+$htmlContent = file_get_contents('templates/shop.html');
 
 $replacements = [
     '{{SEARCH_VALUE}}' => htmlspecialchars($searchValue, ENT_QUOTES, 'UTF-8'),
@@ -160,8 +175,9 @@ $replacements = [
     '{{USER_FEEDBACK}}' => $userFeedback,
     '{{STATUS_MSG}}' => htmlspecialchars($statusMsg, ENT_QUOTES, 'UTF-8'),
     '{{LISTA_PRODOTTI}}' => $listaHtml,
-    '{{MAX_PRICE}}' => number_format((int)$maxPrice),
+    '{{MAX_PRICE}}' => number_format((int) $maxPrice),
     '{{CHECKED_AVAILABILITY}}' => $onlyAvailable ? 'checked' : '',
+    '{{USER_ACTION}}' => $user_action,
 ];
 
 $finalHtml = str_replace(

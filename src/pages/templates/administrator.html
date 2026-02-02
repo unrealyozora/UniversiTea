@@ -3,18 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>I tuoi preferiti | UniversiTea</title>
-    <meta name="description" content="Pagina dedicata ai tuoi prodotti preferiti.">
-    <meta name="keywords" content="tè, università, tisane, preferiti, wishlist, negozio">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profilo Venditore | UniversiTea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/cart.css">
-    <link rel="stylesheet" href="../style/print.css" media="print">
+    <link rel="stylesheet" href="../style/adm.css">
 </head>
 
 <body>
-    <a href="#content" class="skip-link">Salta al contenuto principale</a>
+
+    <a href="#admin-content" class="skip-link">Salta al contenuto principale</a>
 
     <header class="main-header">
         <a href="../../index.php">
@@ -30,7 +28,7 @@
         </label>
 
         <div class="nav-wrapper">
-            <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi Menu</span></label>
+            <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi menù</span></label>
             <nav id="main-menu" aria-label="Menu principale">
                 <ul>
                     <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
@@ -43,8 +41,8 @@
                 <ul>
                     <li>
                         <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                            <img src="../../assets/images/shopping-cart.png" alt="" aria-hidden="true" width="24"
-                                height="24">
+                            <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                                aria-hidden="true">
                             <span class="mobile-only-text">Carrello</span>
                         </a>
                     </li>
@@ -55,31 +53,85 @@
     </header>
 
     <nav id="breadcrumb" aria-label="Percorso di navigazione">
-        <p>Ti trovi in: <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt; <span
-                aria-current="page">Preferiti</span>
+        <p>Ti trovi in: <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt;&gt; <span
+                aria-current="page">Il tuo profilo</span>
         </p>
     </nav>
 
-    <main id="content">
-        <div class="cart-container">
-            <div class="cart-header">
-                <h1>I Tuoi Preferiti</h1>
-                <div class="cart-stats">
-                    <div>
-                        <strong>{{TOTAL_ITEMS}}</strong> {{ITEMS_LABEL}}
-                    </div>
+    <main id="admin-content">
+        <h1>Il tuo Pannello di Controllo</h1>
+        <section id="intro-text">
+            <p>Commerciante, benvenuto nel tuo <span lang="en">Hub</span>, il Pannello di Controllo. </p>
+            <p>Potrai velocemente aggiungere nuovi prodotti al tuo catalogo.</p>
+            <p>Inoltre potrai vedere e modificare tutti i prodotti da te venduti. Cambia prezzo, disponibilità,
+                descrizione
+                e tutti parametri che vuoi.</p>
+        </section>
+
+        <section class="admin-dashboard-grid">
+
+            <div class="dashboard-card primary-card">
+                <div class="card-content">
+                    <h2>Espandi il Catalogo</h2>
+                    <p>Fai crescere il tuo business aggiungendo nuovi prodotti. Puoi definire categorie, prezzi e
+                        disponibilità per attirare nuovi clienti.</p>
+                </div>
+                <div class="card-action">
+                    <a href="edit_product.php" class="btn-add-new">
+                        + Aggiungi Prodotto
+                    </a>
                 </div>
             </div>
 
-            <div class="cart-content">
-                {{MESSAGE_HTML}}
-
-                <div id="cartContainer">
-                    {{ITEMS_HTML}}
+            <div class="dashboard-card secondary-card">
+                <div class="card-content">
+                    <h2>Gestione Sessione</h2>
+                    <p>Attualmente sei connesso come venditore. Se devi cambiare terminale o account, termina la
+                        sessione
+                        qui.</p>
+                </div>
+                <div class="card-action">
+                    <form action="../config/auth/logout.php" method="POST">
+                        <button type="submit" name='logout' class="btn-logout">
+                            Logout Sicuro
+                        </button>
+                    </form>
                 </div>
             </div>
-        </div>
+
+        </section>
+
+        {{USER_FEEDBACK}}
+        <section class="admin-table-container">
+            <h1>Tabella dei Prodotti</h1>
+            <p id="table-descr">La tabella mostra i dati principali per ogni prodotto venduto da te. É sviluppata per
+                righe,
+                una per ogni prodotto, e ha 6 colonne, una per ogni caratteristica mostrata. In particolare ogni
+                prodotto ha
+                un id, nome, prezzo, quantità in stock, categoria (bevanda, <span lang="en">merchandising</span>,
+                servizi o
+                <span lang="en">bundle</span>) e due azioni possibili: la modifica e la cancellazione.
+            </p>
+
+            <table class="product-table" aria-describedby="table-descr">
+                <caption>Tabella dei Prodotti Proprietari</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">Disponibilità</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{LISTA_PRODOTTI_ADMIN}}
+                </tbody>
+            </table>
+        </section>
     </main>
+
 
     <footer class="main-footer-area">
         <div class="footer-container">
@@ -100,7 +152,7 @@
                     <a href="#" aria-label="Seguici su Instagram" class="social-icon">
                         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
                     <a href="#" aria-label="Seguici su Twitter" class="social-icon">
@@ -120,8 +172,8 @@
                     <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
                     <li><a href="./tea-info.php">Il nostro Tè</a></li>
                     <li><a href="./about.php"><span lang="en-GB">About</span></a></li>
-                    <li><a href="./dashboard.php">Il tuo profilo</a></li>
-                    <li><a href="./favorites.php">Preferiti (Ti trovi qui ora)</a></li>
+                    <li><a href="./dashboard.php">Il tuo profilo (Ti trovi qui ora)</a></li>
+                    <li><a href="./favorites.php">Preferiti</a></li>
                     <li><a href="./cart.php">Carrello</a></li>
                     <li><a href="./register.php">Registrati</a></li>
                     <li><a href="./login.php">Accedi</a></li>
@@ -186,9 +238,9 @@
                     <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
                         <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                     </a>
-                    <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"
+                    <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"
                         rel="noopener noreferrer">
-                        <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                        <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
                             height="31">
                     </a>
                 </div>

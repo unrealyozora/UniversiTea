@@ -32,11 +32,11 @@ function renderCartItem($item, $templateHtml)
     $nome = htmlspecialchars($item['nome']);
     $prezzo = '€' . number_format($item['prezzo'], 2, ',', '.');
     $subtotale = '€' . number_format($item['subtotal'], 2, ',', '.');
-    $qty = (int)$item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
+    $qty = (int) $item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
 
     // Logica stock: se non hai colonna stock in Carrello, la prendiamo da Prodotti
     // Assumo stock 99 se non definito, oppure aggiungi la colonna nella query
-    $stock = isset($item['stock']) ? (int)$item['stock'] : 99;
+    $stock = isset($item['stock']) ? (int) $item['stock'] : 99;
 
     $replacements = [
         '{{ID}}' => $id,
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = $db->getConnection();
 
         if ($action === 'update_quantity') {
-            $qty = (int)$_POST['quantity'];
+            $qty = (int) $_POST['quantity'];
             if ($qty > 0) {
                 // Query adattata alla tua tabella 'Carrello'
                 $stmt = $conn->prepare("UPDATE Carrello SET quantita = :qty WHERE consumatore = :email AND prodotto = :pid");
@@ -160,7 +160,8 @@ try {
     if (count($items) > 0) {
         foreach ($items as $item) {
             // Se non hai recuperato lo stock dalla query, impostiamo un default per evitare errori PHP
-            if (!isset($item['stock'])) $item['stock'] = 100;
+            if (!isset($item['stock']))
+                $item['stock'] = 100;
 
             $cartItemsHtml .= renderCartItem($item, $itemTemplate);
             $totalAmount += $item['subtotal'];
@@ -184,15 +185,32 @@ if (isset($_SESSION['msg_content'])) {
     unset($_SESSION['msg_content']);
 }
 
-// 4. CARICAMENTO HTML
-$htmlContent = file_get_contents('./cart.html');
+$htmlContent = file_get_contents('templates/cart.html');
+
+$user_action = '';
+
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    $user_action = '<li>
+                        <a href="dashboard.php" class="nav-profile-link">
+                             <img src="../../assets/images/user.png" alt="Il tuo profilo">
+                            <span class="mobile-only-text">Profilo</span>
+                        </a>
+                    </li>';
+} else {
+    $user_action = '<li>
+                        <a href="register.php" class="btn-join" aria-label="Accedi ora al tuo account">
+                            Accedi Ora
+                        </a>
+                    </li>';
+}
 
 $replacements = [
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{TOTAL_AMOUNT}}' => '€' . number_format($totalAmount, 2, ',', '.'),
     '{{CART_CONTENT}}' => $cartItemsHtml,
     '{{USER_FEEDBACK}}' => $userFeedback,
-    '{{HIDDEN_IF_EMPTY}}' => ($totalItems === 0) ? 'hidden' : ''
+    '{{HIDDEN_IF_EMPTY}}' => ($totalItems === 0) ? 'hidden' : '',
+    '{{USER_ACTION}}' => $user_action,
 ];
 
 echo str_replace(array_keys($replacements), array_values($replacements), $htmlContent);

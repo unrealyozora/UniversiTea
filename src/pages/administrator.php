@@ -44,11 +44,11 @@ try {
     // 4. Genera le righe della tabella
     foreach ($prodotti as $prodotto) {
         $replacements = [
-            '{{ID}}'            => $prodotto['id'],
-            '{{NOME}}'          => htmlspecialchars($prodotto['nome']),
-            '{{PREZZO}}'        => number_format($prodotto['prezzo'], 2, ',', '.'),
+            '{{ID}}' => $prodotto['id'],
+            '{{NOME}}' => htmlspecialchars($prodotto['nome']),
+            '{{PREZZO}}' => number_format($prodotto['prezzo'], 2, ',', '.'),
             '{{DISPONIBILITA}}' => $prodotto['disponibilita'],
-            '{{CATEGORIA}}'     => $prodotto['categoria']
+            '{{CATEGORIA}}' => $prodotto['categoria']
         ];
 
         $listaHtml .= str_replace(

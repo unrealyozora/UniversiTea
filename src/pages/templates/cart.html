@@ -3,34 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>I tuoi preferiti | UniversiTea</title>
-    <meta name="description" content="Pagina dedicata ai tuoi prodotti preferiti.">
-    <meta name="keywords" content="tè, università, tisane, preferiti, wishlist, negozio">
+    <title>Il tuo carrello | UniversiTea</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/cart.css">
-    <link rel="stylesheet" href="../style/print.css" media="print">
+    <style>
+        .action-form {
+            display: inline;
+            margin: 0;
+        }
+
+        .cart-summary .action-form {
+            display: inline-block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Aggiungi qui CSS specifico se necessario */
+    </style>
 </head>
 
 <body>
-    <a href="#content" class="skip-link">Salta al contenuto principale</a>
 
     <header class="main-header">
         <a href="../../index.php">
             <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
         </a>
+
         <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
         <label for="menu-toggle" class="hamburger-btn">
-            <span class="sr-only">Apri menù</span>
+            <span class="sr-only">Apri menu</span>
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </label>
-
         <div class="nav-wrapper">
-            <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi Menu</span></label>
+
+            <label for="menu-toggle" class="close-menu-btn"><span class="sr-only">Chiudi Menù</span></label>
+
             <nav id="main-menu" aria-label="Menu principale">
                 <ul>
                     <li><a href="./shop.php"><span lang="en-GB">Shop</span></a></li>
@@ -41,12 +55,10 @@
 
             <nav id="user-actions" aria-label="Menu utente">
                 <ul>
-                    <li>
-                        <a href="./cart.php" class="nav-text-link" aria-label="Visualizza carrello">
-                            <img src="../../assets/images/shopping-cart.png" alt="" aria-hidden="true" width="24"
-                                height="24">
-                            <span class="mobile-only-text">Carrello</span>
-                        </a>
+                    <li id="current-link">
+                        <img src="../../assets/images/shopping-cart.png" alt="" width="24" height="24"
+                            aria-hidden="true">
+                        <span class="mobile-only-text">Carrello</span>
                     </li>
                     {{USER_ACTION}}
                 </ul>
@@ -54,28 +66,39 @@
         </div>
     </header>
 
-    <nav id="breadcrumb" aria-label="Percorso di navigazione">
-        <p>Ti trovi in: <a href="../../index.php"><span lang="en-GB">Home</span></a> &gt; <span
-                aria-current="page">Preferiti</span>
-        </p>
-    </nav>
 
-    <main id="content">
+    <main>
         <div class="cart-container">
             <div class="cart-header">
-                <h1>I Tuoi Preferiti</h1>
+                <h1>Il Tuo Carrello</h1>
                 <div class="cart-stats">
-                    <div>
-                        <strong>{{TOTAL_ITEMS}}</strong> {{ITEMS_LABEL}}
-                    </div>
+                    <div><strong>{{TOTAL_ITEMS}}</strong> Prodotti</div>
+                    <div>Totale: <strong>{{TOTAL_AMOUNT}}</strong></div>
                 </div>
             </div>
 
             <div class="cart-content">
-                {{MESSAGE_HTML}}
-
+                {{USER_FEEDBACK}}
                 <div id="cartContainer">
-                    {{ITEMS_HTML}}
+                    {{CART_CONTENT}}
+                </div>
+
+                <div class="cart-summary {{HIDDEN_IF_EMPTY}}">
+                    <div class="summary-row total">
+                        <span>Totale:</span>
+                        <span>{{TOTAL_AMOUNT}}</span>
+                    </div>
+                    <div class="checkout-actions">
+                        <form method="POST" action="cart.php" class="action-form"
+                            onsubmit="return handleCartAction(event, this)">
+                            <input type="hidden" name="action" value="clear">
+                            <button type="submit" class="clear-cart-btn">Svuota Carrello</button>
+                        </form>
+                        <form method="POST" action="cart.php" class="action-form">
+                            <input type="hidden" name="action" value="checkout">
+                            <button type="submit" class="checkout-btn">Procedi al Checkout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,8 +144,8 @@
                     <li><a href="./tea-info.php">Il nostro Tè</a></li>
                     <li><a href="./about.php"><span lang="en-GB">About</span></a></li>
                     <li><a href="./dashboard.php">Il tuo profilo</a></li>
-                    <li><a href="./favorites.php">Preferiti (Ti trovi qui ora)</a></li>
-                    <li><a href="./cart.php">Carrello</a></li>
+                    <li><a href="./favorites.php">Preferiti</a></li>
+                    <li><a href="./cart.php">Carrello (Ti trovi qui ora)</a></li>
                     <li><a href="./register.php">Registrati</a></li>
                     <li><a href="./login.php">Accedi</a></li>
                 </ul>
@@ -186,15 +209,17 @@
                     <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer">
                         <img src="https://www.w3.org/Icons/valid-xhtml10" alt="HTML Valido" width="88" height="31">
                     </a>
-                    <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"
+                    <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"
                         rel="noopener noreferrer">
-                        <img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
+                        <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valido" width="88"
                             height="31">
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script src="../config/cart.js"></script>
 </body>
 
 </html>
