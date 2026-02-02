@@ -62,9 +62,9 @@ function renderProductCard($product, $templateHtml, $isSeller=false)
 $searchValue = $_GET['search'] ?? '';
 
 $categoryFilter = $_GET['category'] ?? 'tutti';
-$maxPrice = $_GET['max-price'] ?? 100;
+$maxPrice = $_GET['max-price'] ?? 999;
 if (!is_numeric($maxPrice) || $maxPrice < 0) {
-    $maxPrice = 100;
+    $maxPrice = 999;
 }
 
 $onlyAvailable = isset($_GET['availability']) && $_GET['availability'] === 'on';

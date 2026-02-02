@@ -37,9 +37,23 @@ try {
     $stmtBev = $conn->query($sqlBev);
     $allBevande = $stmtBev->fetchAll(PDO::FETCH_ASSOC);
 
-    $sqlProd = "SELECT id, nome FROM Prodotti ORDER BY nome";
-    $stmtProd = $conn->query($sqlProd);
-    $allProducts = $stmtProd->fetchAll(PDO::FETCH_ASSOC);
+    $sqlProdVenditore = "SELECT p.id, p.nome, p.prezzo, p.disponibilita, 
+            CASE 
+                WHEN p.id IN (SELECT id FROM Bevande) THEN 'Bevanda'
+                WHEN p.id IN (SELECT id FROM March_Bevande) THEN 'Merch'
+                WHEN p.id IN (SELECT id FROM Servizi) THEN 'Servizio'
+                WHEN p.id IN (SELECT id_bundle FROM Bundle) THEN 'Bundle'
+                ELSE 'Altro'
+            END as categoria
+            FROM Prodotti p
+            INNER JOIN Vendita v ON p.id = v.prodotto
+            WHERE v.venditore = :email
+            ORDER BY p.id DESC";
+
+    $stmt = $conn->prepare($sqlProdVenditore);
+    $email_venditore = $_SESSION['email'];
+    $stmt->execute([':email' => $email_venditore]);
+    $allProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (!empty($oldInput)) {
         // Se torniamo da un errore, usiamo i dati che l'utente aveva appena scritto
@@ -113,9 +127,10 @@ try {
 
         $checked = (in_array($prod['id'], $productsInBundle)) ? 'checked' : '';
         $checkboxProdottiHtml .= "
-            <div style='margin-bottom: 5px;'>
+            <div class='checkbox-row'>
                 <input type='checkbox' id='prod_{$prod['id']}' name='prodotti_bundle[]' value='{$prod['id']}' $checked>
-                <label for='prod_{$prod['id']}' style='display:inline; font-weight:normal;'>" . htmlspecialchars($prod['nome']) . "</label>
+                <label for='prod_{$prod['id']}'>" . htmlspecialchars($prod['nome']) . "
+                </label>
             </div>";
     }
 

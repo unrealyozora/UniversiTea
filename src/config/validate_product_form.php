@@ -59,7 +59,7 @@ function validateProductData($postData) {
     if ($categoria === 'bevande') {
         $temp_consigliata = filter_var($postData['temp_consigliata'] ?? '', FILTER_VALIDATE_INT);
         if ($temp_consigliata === false || $temp_consigliata < 0) {
-            $addError('disponibilita', "Temperatura non valida, deve essere maggiore di 0.");
+            $addError('temp_consigliata', "Temperatura non valida, deve essere maggiore di 0.");
         }
         if(empty($postData['tipologia_bevanda'])) $addError('tipologia_bevanda', "Tipo mancante.");
         if (!empty($postData['scoop'])) {

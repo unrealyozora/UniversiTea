@@ -10,19 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let debounceTimer;
 
-    /**
-     * Aggiorna il testo del prezzo mentre si sposta lo slider
-     */
     if (priceRange && priceValue) {
         priceRange.addEventListener('input', () => {
             priceValue.textContent = `${priceRange.value}€`;
         });
     }
 
-    /**
-     * Esegue la chiamata AJAX per filtrare i prodotti
-     * Recupera l'intero HTML di shop.php e ne estrae solo la lista
-     */
     const updateProducts = () => {
         const formData = new FormData(filterForm);
         const params = new URLSearchParams(formData).toString();

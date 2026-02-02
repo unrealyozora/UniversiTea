@@ -15,8 +15,11 @@ function newFidelityPoints($oldPoints, $cartTotal): int
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$venditoreBanner='';
+$isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
+$isSeller ? $venditoreBanner=$banner = file_get_contents('templates/restriction.html') :'';
 
-// Verifica login (adattato alla tua logica di sessione)
+
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
     header('Location: login.php');
@@ -205,6 +208,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 }
 
 $replacements = [
+    '{{VENDITORE_BANNER}}' => $venditoreBanner,
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{TOTAL_AMOUNT}}' => '€' . number_format($totalAmount, 2, ',', '.'),
     '{{CART_CONTENT}}' => $cartItemsHtml,

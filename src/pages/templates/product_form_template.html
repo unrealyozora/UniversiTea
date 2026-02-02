@@ -66,6 +66,7 @@
 
         <div class="form-group">
             <label for="nome">Nome Prodotto:</label>
+            <p class="product-advice">Inserisci un nome di al massimo 100 caratteri. Tutti i tipi di caratteri sono accettati</p>
             <input type="text" id="nome" name="nome" value="{{VAL_NOME}}" maxlength="100" required
                    placeholder="Inserisci il nome del prodotto">
             {{ERR_NOME}}
@@ -73,6 +74,7 @@
 
         <div class="form-group">
             <label for="descrizione">Descrizione:</label>
+            <p class="product-advice">Inserisci una descrizione del prodotto al massimo 1000 caratteri. Tutti i tipi di caratteri sono accettati</p>
             <textarea id="descrizione" name="descrizione" rows="3" maxlength="1000" required
                       placeholder="Descrivi il prodotto...">{{VAL_DESCRIZIONE}}</textarea>
             {{ERR_DESCRIZIONE}}
@@ -85,18 +87,21 @@
 
         <div class="form-group">
             <label for="img_alt">Descrizione per l'immagine:</label>
+            <p class="product-advice">Inserisci una descrizione per l'immagine al massimo 255 caratteri. Tutti i tipi di caratteri sono accettati</p>
             <textarea id="img_alt" name="img_alt" rows="3" maxlength="255" placeholder="Descrivi il prodotto...">{{VAL_DESCRIZ_IMG}}</textarea>
         </div>
 
         <div class="form-group">
             <label for="prezzo">Prezzo (€):</label>
-            <input type="number" id="prezzo" name="prezzo" min="0.01" max="100" step="0.01" value="{{VAL_PREZZO}}"
+            <p class="product-advice">Inserisci un prezzo, tra 0,01 e 999</p>
+            <input type="number" id="prezzo" name="prezzo" min="0.01" max="999" step="0.01" value="{{VAL_PREZZO}}"
                    required placeholder="0.00">
             {{ERR_PREZZO}}
         </div>
 
         <div class="form-group">
             <label for="disponibilita">Quantità (Stock):</label>
+            <p class="product-advice">Inserisci una quantità maggiore uguale 0</p>
             <input type="number" id="disponibilita" name="disponibilita" min="0" value="{{VAL_DISPONIBILITA}}" required
                    placeholder="0">
             {{ERR_DISPONIBILITA}}
@@ -104,6 +109,7 @@
 
         <div class="form-group">
             <label for="categoria">Categoria:</label>
+            <p class="product-advice">Scegli una categoria tra quelle proposte</p>
             <select id="categoria" name="categoria" required>
                 <option value="">-- Seleziona Categoria --</option>
                 <option value="bevande" {{SELECTED_BEVANDE}}>Bevande</option>
@@ -112,22 +118,24 @@
                 <option value="bundle" {{SELECTED_BUNDLE}}>Bundle</option>
             </select>
             <noscript>
-                <button type="submit" name="action" value="update_category" class="btn-secondary">
+                <button type="submit" name="action" value="update_category" class="btn-update-category">
                     Aggiorna Campi
                 </button>
             </noscript>
             {{ERR_CATEGORIA}}
         </div>
 
-        <div id="fields-bevande" class="specific-fields {{BEVANDA}}">
+        <fieldset id="fields-bevande" class="specific-fields {{BEVANDA}}">
             <h4>Dettagli Bevanda</h4>
             <div class="form-group">
                 <label>Temperatura Consigliata:</label>
+                <p class="product-advice">Inserisci una temperatura maggiore di 0</p>
                 <input type="number" name="temp_consigliata" value="{{VAL_TEMP}}" placeholder="Es. 80">
                 {{ERR_TEMP_CONSIGLIATA}}
             </div>
             <div class="form-group">
                 <label>Tipologia Bevanda:</label>
+                <p class="product-advice">Scegli una tipologia di bevanda tra quelle proposte</p>
                 <select name="tipologia_bevanda">
                     <option value="">-- Seleziona Tipologia --</option>
                     <option value="Tè" {{SELECTED_TÈ}}>Tè</option>
@@ -138,21 +146,24 @@
             </div>
             <div class="form-group">
                 <label>Scoop (Curiosità):</label>
+                <p class="product-advice">Inserisci un scoop con al massimo 255 caratteri. Tutti i caratteri sono accettati</p>
                 <input type="text" name="scoop" value="{{VAL_SCOOP}}" maxlength="255"
                        placeholder="Inserisci una curiosità sul tè">
             </div>
-        </div>
+        </fieldset>
 
-        <div id="fields-merchandising" class="specific-fields {{MERCHANDISING}}">
+        <fieldset id="fields-merchandising" class="specific-fields {{MERCHANDISING}}">
             <h4>Dettagli Merch</h4>
             <div class="form-group">
                 <label>Materiale:</label>
+                <p class="product-advice">Inserisci un material con al massimo 255 caratteri. Tutti i caratteri sono accettati</p>
                 <input type="text" name="materiale" maxlength="255" value="{{VAL_MATERIALE}}"
                        placeholder="Es. Ceramica, Cotone...">
                 {{ERR_MATERIALE}}
             </div>
             <div class="form-group">
                 <label>Tipologia Merch:</label>
+                <p class="product-advice">Scegli una tipologia di <span lang="en">Merchandising</span> tra quelle proposte</p>
                 <select name="tipologia_march">
                     <option value="">-- Seleziona Tipologia --</option>
                     <option value="Accessori" {{SELECTED_ACCESSORI}}>Accessori</option>
@@ -163,18 +174,20 @@
             </div>
             <div class="form-group">
                 <label>Bevanda Associata (Obbligatorio):</label>
+                <p class="product-advice">Scegli una bevanda associata tra quelle proposte</p>
                 <select name="id_bevanda">
                     <option value="">-- Seleziona Bevanda --</option>
                     {{OPTIONS_BEVANDE}}
                 </select>
                 {{ERR_ID_BEVANDA}}
             </div>
-        </div>
+        </fieldset>
 
-        <div id="fields-servizi" class="specific-fields {{SERVIZI}}">
+        <fieldset id="fields-servizi" class="specific-fields {{SERVIZI}}">
             <h4>Dettagli Servizio</h4>
             <div class="form-group">
                 <label>Tipologia Servizio:</label>
+                <p class="product-advice">Scegli una tipologia di servizio tra quelle proposte</p>
                 <select name="tipologia_servizi">
                     {{OPTIONS_TIPO_SERVIZI}}
                 </select>
@@ -182,29 +195,31 @@
             </div>
             <div class="form-group">
                 <label>Livello Urgenza:</label>
+                <p class="product-advice">Scegli un livello di urgenza tra quelle proposte</p>
                 <select name="livello_urgenza">
                     {{OPTIONS_URGENZA}}
                 </select>
                 {{ERR_LIVELLO_URGENZA}}
             </div>
-        </div>
+        </fieldset>
 
-        <div id="fields-bundle" class="specific-fields {{BUNDLE}}">
-            <h4>Creazione Bundle</h4>
-            <p style="margin-bottom: 0.5rem; color: #ccc;">Seleziona i prodotti da includere:</p>
+        <fieldset id="fields-bundle" class="specific-fields {{BUNDLE}}">
+            <h4>Dettagli Bundle</h4>
+            <p class="product-advice">Seleziona i prodotti da includere, almeno uno:</p>
 
-            <div class="bundle-scroll-box">
+            <div class="bundle-container">
                 {{CHECKBOX_PRODOTTI}}
             </div>
             {{ERR_PRODOTTI_BUNDLE}}
 
             <div class="form-group">
                 <label>Percentuale Sconto (%):</label>
+                <p class="product-advice">Inserisci una percentuale di sconto tra 0 e 100</p>
                 <input type="number" name="percent_sconto" value="{{VAL_SCONTO}}" min="0" max="100"
                        placeholder="Es. 20">
                 {{ERR_PERCENT_SCONTO}}
             </div>
-        </div>
+        </fieldset>
 
         <div class="form-actions">
             <button type="submit" class="btn-save">{{TESTO_BOTTONE}}</button>
