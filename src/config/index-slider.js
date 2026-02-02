@@ -1,142 +1,88 @@
-// --- SLIDER SCRIPT (Invariato) ---
-const teaList = [
-    {
-        name: "Tè Verde Matcha",
-        desc: "Non un semplice tè, ma un antico rituale. Ottenuto dalla macinatura a pietra delle foglie più pregiate coltivate in ombra, questo \"oro verde\" offre un concentrato ineguagliabile di antiossidanti. Il suo sapore è un perfetto equilibrio tra dolcezza vegetale e note umami.",
-        model: "assets/images/Mate.glb"
-    },
-    {
-        name: "Earl Grey Imperiale",
-        desc: "Il classico tè nero aromatizzato con vero olio essenziale di bergamotto calabrese. Un blend aristocratico e profumato, perfetto per il pomeriggio, capace di trasformare ogni pausa in un momento di pura eleganza britannica.",
-        model: "assets/images/tea_container.glb"
-    },
-    {
-        name: "Infuso ai Frutti Rossi",
-        desc: "Una miscela dolce e dissetante, totalmente priva di teina. L'esplosione di fragole, lamponi e karkadè la rende perfetta sia come bevanda calda rinvigorente d'inverno, sia come dissetante tè freddo d'estate.",
-        model: "assets/images/bustina.glb"
-    }
-];
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('js-carousel-active');
 
-let currentIndex = 0;
-let isAnimating = false;
-const ANIMATION_DURATION = 700;
+    const track = document.getElementById('bestsellers-content');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const slides = document.querySelectorAll('.product-slide');
+    const rotCheck = document.getElementById('disable-rot');
 
-const wrapper = document.querySelector('.bestsellers-content-wrapper');
-const productName = document.querySelector('.bestsellers-product-name');
-const productDesc = document.querySelector('.bestsellers-info p');
-const modelViewer = document.querySelector('model-viewer');
-const btnPrev = document.querySelector('.bestsellers-nav-btn.prev');
-const btnNext = document.querySelector('.bestsellers-nav-btn.next');
-const animCheckbox = document.getElementById('disable-anim');
-const rotCheckbox = document.getElementById('disable-rot');
+    if (!track || !slides.length) return;
 
-function toggleButtons(enable) {
-    if (enable) {
-        btnPrev.disabled = false;
-        btnNext.disabled = false;
-        isAnimating = false;
-    } else {
-        btnPrev.disabled = true;
-        btnNext.disabled = true;
-        isAnimating = true;
-    }
-}
+    slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.ariaLabel = `Vai alla slide ${index + 1}`;
+        if (index === 0) dot.classList.add('active');
 
-function init() {
-    wrapper.setAttribute('data-direction', 'next');
+        dot.addEventListener('click', () => {
+            const targetSlide = slides[index];
+            targetSlide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' }); /* Scrolla fino a che l'elemento non è visibile. Scrolla con quelle proprietà */
+        });
 
-    // GENERAZIONE PALLINI (Semantica: DIV > SPAN generati via JS)
-    const header = document.querySelector('.bestsellers-header');
-
-    // 1. Crea contenitore
-    const dotsBox = document.createElement('div');
-    dotsBox.id = 'bestsellers-dots';
-    dotsBox.className = 'bestsellers-dots-container';
-    dotsBox.setAttribute('aria-hidden', 'true'); // Nascosto a Screen Reader (decorativo)
-
-    // 2. Crea pallini
-    teaList.forEach((_, index) => {
-        const dot = document.createElement('span'); // SPAN generico per decorazione
-        dot.classList.add('bestsellers-dot');
-        if (index === currentIndex) dot.classList.add('active');
-        dotsBox.appendChild(dot);
+        dotsContainer.appendChild(dot);
     });
 
-    // 3. Appendi nel posto giusto (dopo i pulsanti di navigazione, o centrato via CSS)
-    // Nota: Nel CSS il container è absolute (left: 50%), quindi basta appenderlo nell'header relativo
-    header.appendChild(dotsBox);
+    const dots = document.querySelectorAll('.carousel-dot');
 
-    btnPrev.addEventListener('click', () => changeTea(-1));
-    btnNext.addEventListener('click', () => changeTea(1));
+    const getCurrentSlideIndex = () => {
+        const scrollLeft = track.scrollLeft; /* Calcolo della distanza percorsa dal bordo sinistro della prima slide */
+        const slideWidth = slides[0].offsetWidth; /* Calcolo della larghezza di una slide */
+        return Math.round(scrollLeft / slideWidth); /* calcolo indice della slide corrente. Sarebbe "largezza slide" / "distanza percorsa" */
+    };
 
-    if (rotCheckbox) {
-        rotCheckbox.addEventListener('change', (e) => {
-            if (e.target.checked) modelViewer.removeAttribute('auto-rotate');
-            else modelViewer.setAttribute('auto-rotate', '');
+    nextBtn.addEventListener('click', () => {
+        const currentIndex = getCurrentSlideIndex();
+        const nextIndex = Math.min(currentIndex + 1, slides.length - 1); /* Calcolo della prossima slide. Sarebbe il minore tra "indice slide corrente + 1" e "numero di slide - 1". Serve per evitare di andare oltre l'ultima slide */
+        slides[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        const currentIndex = getCurrentSlideIndex();
+        const prevIndex = Math.max(currentIndex - 1, 0); /* Calcolo della slide precedente. Sarebbe il massimo tra "indice slide corrente - 1" e "0". Serve per evitare di andare oltre la prima slide */
+        slides[prevIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+
+    const updateActiveDot = () => {
+        const index = getCurrentSlideIndex();
+
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+
+        /* Questo mi serve per far ruotare solo il modello che sto visualizzando. Per risparmiare risorse */
+        if (rotCheck && !rotCheck.checked) {
+            slides.forEach((slide, slideIndex) => { /* Prendo l'elemento slides e lo chiamo slide con posizione slideIndex */
+                /* Prendo solo il model-viwer della slide che vedo, se esiste ed è quello che sto vedendo gli metto auto-rotate, agli altri tolgo quell'attributo */
+                const viewer = slide.querySelector('model-viewer');
+                if (viewer) {
+                    if (slideIndex === index) {
+                        viewer.setAttribute('auto-rotate', '');
+                    } else {
+                        viewer.removeAttribute('auto-rotate');
+                    }
+                }
+            });
+        }
+    };
+
+    track.addEventListener('scroll', updateActiveDot); /* Ad ogni scroll sul contenitore de prduct-slide avvio la funzione di aggiornamento pallini e controllo rotazione */
+
+    if (rotCheck) {
+        rotCheck.addEventListener('change', (e) => {
+            const viewers = document.querySelectorAll('model-viewer');
+            if (e.target.checked) { /* e.target è la mia checkbox, se questa è checked tolgo la rotazione a tutti*/
+                viewers.forEach(v => v.removeAttribute('auto-rotate'));
+            } else {
+                const currentIndex = getCurrentSlideIndex();
+                const currentViewer = slides[currentIndex].querySelector('model-viewer');
+                if (currentViewer) {
+                    currentViewer.setAttribute('auto-rotate', '');
+                }
+            }
         });
     }
-}
-
-function changeTea(direction) {
-    if (isAnimating) return;
-
-    const reduceMotion = animCheckbox && animCheckbox.checked;
-
-    let nextIndex = currentIndex + direction;
-    if (nextIndex >= teaList.length) nextIndex = 0;
-    else if (nextIndex < 0) nextIndex = teaList.length - 1;
-
-    if (reduceMotion) {
-        updateContent(nextIndex);
-        return;
-    }
-
-    toggleButtons(false);
-
-    wrapper.classList.add('no-transition');
-    wrapper.classList.remove('animating-in', 'animating-out');
-
-    const dirString = direction === 1 ? 'next' : 'prev';
-    wrapper.setAttribute('data-direction', dirString);
-
-    void wrapper.offsetWidth;
-
-    wrapper.classList.remove('no-transition');
-
-    requestAnimationFrame(() => {
-        wrapper.classList.add('animating-in');
-    });
-
-    setTimeout(() => {
-        updateContent(nextIndex);
-
-        wrapper.classList.remove('animating-in');
-        wrapper.classList.add('animating-out');
-
-        setTimeout(() => {
-            wrapper.classList.add('no-transition');
-            wrapper.classList.remove('animating-out');
-            void wrapper.offsetWidth;
-            wrapper.classList.remove('no-transition');
-            toggleButtons(true);
-        }, ANIMATION_DURATION);
-
-    }, ANIMATION_DURATION);
-}
-
-function updateContent(index) {
-    currentIndex = index;
-    const data = teaList[index];
-
-    if (productName) productName.textContent = data.name;
-    if (productDesc) productDesc.textContent = data.desc;
-    if (modelViewer) modelViewer.setAttribute('src', data.model);
-
-    const dots = document.querySelectorAll('.bestsellers-dot');
-    dots.forEach((dot, i) => {
-        if (i === index) dot.classList.add('active');
-        else dot.classList.remove('active');
-    });
-}
-
-document.addEventListener('DOMContentLoaded', init);
+});
