@@ -96,7 +96,7 @@ try {
             break;
     }
 
-// Correzione accesso variabile disponibilità
+    // Correzione accesso variabile disponibilità
     $isAvailable = $product['disponibilità'] > 0;
 
     if ($innerSpecs) {

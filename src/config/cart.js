@@ -22,12 +22,12 @@ async function handleCartAction(event, form) {
 
     if (action === 'remove') {
         url = '../config/cart_api/cart_remove.php'; // Adatta il percorso al tuo file
-        payload = { product_id: productId };
+        payload = {product_id: productId};
     } else if (action === 'update_quantity') {
         url = '../config/cart_api/cart_update.php'; // Devi creare questo file! (Vedi punto 4 sotto)
-        payload = { product_id: productId, quantity: quantity };
+        payload = {product_id: productId, quantity: quantity};
     } else if (action === 'clear') {
-        url = '../config/cart_api/cart_clear.php'; // Devi creare questo file!
+        url = '../config/cart_api/cart_clear.php';
         payload = {};
     }
 

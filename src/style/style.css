@@ -11,7 +11,7 @@
     --txtcolor: #E0E0E0;
     --breadcolor: #88a87d;
     --linkcolor: #9ddbad;
-    --link-visited: #cc2569;
+    --link-visited: #5E2B97;
     --error-bg: rgba(255, 68, 68, 0.08);
     --error-txtcolor: #ff4444;
     /*#cc2569;*/
@@ -89,36 +89,12 @@ section {
    GLOBAL BUTTONS STYLES (Classi Unificate)
 ========================================================================== */
 
-/* --- 1. PULSANTE PRIMARIO (Solo Hero "Join Now" e Header "Join" Iniziale) --- 
-   Stile: Verde pieno -> Hover: Bianco */
-
-.btn-join {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    background-color: var(--universitea-green);
-    color: #0f0e0e;
-    border: 2px solid var(--universitea-green);
-    border-radius: 3.125em;
-    padding: 0.6em 1.8em;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.3);
-}
-
-.btn-join:hover {
-    background-color: #fff;
-    border-color: #fff;
-    color: var(--darkbgcolor);
-    transform: translateY(-0.125em);
-}
-
-
+.btn-join,
 .hero-cta,
-body.homepage .main-header:not(.scrolled) .btn-join {
+.bestsellers-cta,
+.hero-cta-outline,
+.btn-primary-outline,
+.btn-loyalty {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -144,8 +120,12 @@ body.homepage .main-header:not(.scrolled) .btn-join {
 }
 
 /* HOVER: Diventa Bianco, Scritta Verde, Sale su */
+.btn-join:hover,
 .hero-cta:hover,
-body.homepage .main-header:not(.scrolled) .btn-join:hover {
+.bestsellers-cta:hover,
+.hero-cta-outline:hover,
+.btn-primary-outline:hover,
+.btn-loyalty:hover {
     background-color: #fff;
     border-color: #fff;
     color: var(--darkbgcolor);
@@ -153,49 +133,7 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     box-shadow: 0 0.5em 1.5625em rgba(0, 214, 159, 0.4);
 }
 
-
-/* --- 2. PULSANTI SECONDARI / OUTLINE (Best Sellers, Esplora, Shop, Favori, Loyalty) --- 
-   Stile: Trasparente con Bordo -> Hover: Verde Pieno */
-
-.bestsellers-cta,
-.hero-cta-outline,
-.btn-primary-outline,
-.btn-loyalty {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-
-    /* BASE: Trasparente, Bordo Verde, Scritta Verde */
-    background-color: transparent;
-    color: var(--universitea-green);
-    border: 2px solid var(--universitea-green);
-
-    /* Geometria */
-    border-radius: 3.125em;
-    padding: 0.8em 2.2em;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 0.03125em;
-    cursor: pointer;
-
-    /* Animazioni */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* HOVER: Diventa Verde Pieno, Scritta Nera, Sale su */
-.bestsellers-cta:hover,
-.hero-cta-outline:hover,
-.btn-primary-outline:hover,
-.btn-loyalty:hover {
-    background-color: var(--universitea-green);
-    border-color: var(--universitea-green);
-    color: #0f0e0e;
-    /* Nero per contrasto */
-    transform: translateY(-0.1875em);
-    box-shadow: 0 0.25em 0.9375em rgba(0, 214, 159, 0.4);
-}
+/* REMOVED: Section 2 - Pulsanti Secondari Outline (merged above) */
 
 .main-header.scrolled .btn-join,
 .main-header .btn-join {
@@ -240,7 +178,8 @@ body.homepage .main-header:not(.scrolled) .btn-join:hover {
     align-items: center;
     background: var(--universitea-green);
     padding: 1rem 5%;
-    box-shadow: 0 0.25em 1.25em rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25em 1.25em rgba(0, 0, 0, 0.2), inset 0 -1.25em 1.25em -1em #0f0e0e;
+    border-bottom: 1px solid #0f0e0e;
     box-sizing: border-box;
     transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
@@ -264,15 +203,6 @@ form.form-disabled {
     pointer-events: none;
 }
 
-
-body.homepage .main-header:not(.scrolled) {
-    background: rgba(15, 14, 14, 0.85);
-    padding: 1rem 5%;
-    box-shadow: none;
-    backdrop-filter: blur(0.625em);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
 img.logo {
     width: 9em;
     height: auto;
@@ -283,11 +213,6 @@ img.logo {
 
 body:not(.homepage) img.logo:hover {
     transform: scale(1.03);
-}
-
-body.homepage .main-header:not(.scrolled) img.logo {
-    filter: brightness(1);
-    /* In homepage, quando l'header non è scrollato ha sfondo scuro, quindi il logo deve tornare al suo colore originale verde */
 }
 
 /* --- MENU LINKS & CARRELLO --- */
@@ -332,6 +257,7 @@ body.homepage .main-header:not(.scrolled) img.logo {
 
 #main-menu a,
 .nav-text-link,
+.nav-profile-link,
 #main-menu ul,
 #user-actions ul li {
     text-decoration: none;
@@ -350,12 +276,10 @@ body.homepage .main-header:not(.scrolled) img.logo {
 ul li#current-link {
     position: relative;
     padding-left: 1.5em;
-    /* Spazio per l'icona */
     display: flex;
     align-items: center;
 }
 
-/* Creiamo l'icona come elemento separato virtuale */
 ul li#current-link::before {
     content: '';
     position: absolute;
@@ -370,21 +294,30 @@ ul li#current-link::before {
 }
 
 #main-menu a:visited,
-.nav-text-link:visited {
+.nav-text-link:visited,
+.nav-profile-link:visited {
     color: var(--link-visited);
 }
 
-/* Icona Carrello (Default: Nera) */
-.nav-text-link img {
-    filter: none;
+.nav-text-link img,
+.nav-profile-link img {
     transition: filter 0.3s ease;
     width: 2em;
     height: 2em;
 }
 
-/* Linea sotto (Default: Nera) */
+.nav-text-link img {
+    filter: none;
+}
+
+.nav-profile-link img,
+.nav-text-link img[src*="user.png"] {
+    filter: invert(1);
+}
+
 #main-menu a::after,
-.nav-text-link::after {
+.nav-text-link::after,
+.nav-profile-link::after {
     content: '';
     position: absolute;
     width: 0;
@@ -396,41 +329,15 @@ ul li#current-link::before {
 }
 
 #main-menu a:hover,
-.nav-text-link:hover {
+.nav-text-link:hover,
+.nav-profile-link:hover {
     text-shadow: none;
 }
 
 #main-menu a:hover::after,
-.nav-text-link:hover::after {
+.nav-text-link:hover::after,
+.nav-profile-link:hover::after {
     width: 100%;
-}
-
-/* Link del menu di navigazione bianchi su sfondo nero */
-body.homepage .main-header:not(.scrolled) #main-menu a,
-body.homepage .main-header:not(.scrolled) .nav-text-link {
-    color: #fff;
-}
-
-/* Metto il colore dei link visitati sul menu con sfondo nero */
-body.homepage .main-header:not(.scrolled) #main-menu a:visited,
-body.homepage .main-header:not(.scrolled) .nav-text-link:visited {
-    color: var(--link-visited);
-}
-
-/*Il carrello nell'header, di base è circa nero. Lo rendo totalmente nerpo e poi inverto il colore a bianco. Così ho il carrello bianco su sfondo nero*/
-body.homepage .main-header:not(.scrolled) .nav-text-link img {
-    filter: brightness(0) invert(1);
-}
-
-/* Linea e Hover Verde Neon */
-body.homepage .main-header:not(.scrolled) #main-menu a::after,
-body.homepage .main-header:not(.scrolled) .nav-text-link::after {
-    background-color: var(--universitea-green);
-}
-
-body.homepage .main-header:not(.scrolled) #main-menu a:hover,
-body.homepage .main-header:not(.scrolled) .nav-text-link:hover {
-    text-shadow: 0 0 12px var(--universitea-green);
 }
 
 /* ==========================================================================
@@ -457,9 +364,7 @@ body.homepage .main-header:not(.scrolled) .nav-text-link:hover {
     border-radius: 0.125em;
 }
 
-body.homepage .main-header:not(.scrolled) .hamburger-btn .bar {
-    background-color: #fff;
-}
+/* Removed white hamburger for scrolled header */
 
 /* Nascosto su desktop */
 
@@ -502,7 +407,6 @@ body.menu-open {
     overflow: hidden;
 }
 
-/* TASTO CHIUDI (X) */
 .close-menu-btn {
     display: none;
     position: absolute;
@@ -673,22 +577,12 @@ body.menu-open .mobile-nav-content ul {
     position: relative;
     z-index: 10;
     width: 100%;
-
-    /* 1. ALTEZZA FLUIDA: Usa dvh per gestire le barre del browser mobile */
     min-height: 100dvh;
-
-    /* 2. LAYOUT: Flexbox per centrare */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* 3. SPAZIO DI SICUREZZA FLUIDO (Il fix vero) */
-    /* Diciamo al contenuto: "Centrati, ma considera che i primi 15% dello schermo
-       sono zona proibita (header + breadcrumb)". */
     padding-top: max(6.25em, 15vh);
-
-    /* Padding di sicurezza laterale e inferiore */
     padding-bottom: 5vh;
     padding-left: 5%;
     padding-right: 5%;
@@ -700,12 +594,9 @@ body.menu-open .mobile-nav-content ul {
     width: 100%;
     max-width: 50em;
     padding: 2rem 2rem;
-
-    /* SFONDO E BLUR */
     background: rgba(15, 14, 14, 0.85);
     backdrop-filter: blur(0.75em);
     -webkit-backdrop-filter: blur(0.75em);
-    /* Per Safari */
 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.25em;
@@ -742,47 +633,30 @@ body.menu-open .mobile-nav-content ul {
     font-weight: 300;
 }
 
-/* Contenitore per affiancare i pulsanti */
 .hero-buttons {
     display: flex;
     justify-content: center;
     gap: 3.5rem;
-    /* Spazio tra i pulsanti */
     flex-wrap: wrap;
-    /* Su mobile vanno a capo se serve */
 }
-
-/* NOTA: Lo stile visivo di .hero-cta e .hero-cta-outline 
-   è ora gestito interamente nella sezione GLOBAL BUTTONS. */
-
 
 /* ==========================================================================
    BREADCRUMB (Configurazione Fluida & Unificata)
 ========================================================================== */
 
-/* 1. STILE BASE (Per Shop, Cart, Login, ecc.) 
-   Qui la breadcrumb occupa spazio fisico e spinge giù il contenuto. */
 #breadcrumb {
-    /* Posizionamento */
     position: relative;
     display: inline-block;
     width: max-content;
     z-index: 20;
-
-    /* Spaziatura */
     margin-top: 1.5rem;
     margin-left: 5%;
-    /* Allineato al 5% globale */
     margin-bottom: 2rem;
-
-    /* Stile Estetico */
     background: rgba(15, 14, 14, 0.6);
     padding: 0.5em 1.25em;
     border-radius: 3.125em;
     backdrop-filter: blur(0.3125em);
     border: 1px solid rgba(255, 255, 255, 0.1);
-
-    /* Tipografia */
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.8);
     text-transform: uppercase;
@@ -801,18 +675,9 @@ body.menu-open .mobile-nav-content ul {
     margin-left: 0.3em;
 }
 
-
-/* 2. ECCEZIONE HOMEPAGE (Galleggiante sulla Hero) */
 body.homepage #breadcrumb {
     position: absolute;
-
-    /* LOGICA CLAMP:
-       - Minimo 5.625em: Altezza fisica Header + aria (non va mai sotto il menu)
-       - Ideale 12vh: Si adatta all'altezza dello schermo
-       - Massimo 8.75em: Non scende troppo su schermi giganti
-    */
-    top: clamp(10em, 13vh, 12em);
-
+    top: 12em;
     left: 5%;
     margin: 0;
     z-index: 20;
@@ -844,15 +709,10 @@ body.homepage #breadcrumb {
         background-color: rgba(15, 14, 14, 0.98);
         backdrop-filter: blur(0.9375em);
         z-index: 10002;
-        /* Sopra l'header base */
-
-        /* Layout Mobile Verticale */
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 2rem;
-
-        /* Stato Iniziale: Nascosto */
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -860,7 +720,6 @@ body.homepage #breadcrumb {
         margin: 0;
     }
 
-    /* Disposizione liste interne */
     #main-menu ul,
     #user-actions ul {
         flex-direction: column;
@@ -869,7 +728,6 @@ body.homepage #breadcrumb {
         width: 100%;
     }
 
-    /* Animazione ingresso elementi */
     #main-menu ul,
     #user-actions ul {
         transform: translateY(1.875em);
@@ -884,46 +742,30 @@ body.homepage #breadcrumb {
         box-shadow: 0 0.25em 0.95em rgba(0, 214, 159, 0.3);
     }
 
-    /* Stile Link Mobile */
     #main-menu a,
     .nav-text-link,
     li#current-link,
     #current-link span,
     #user-actions ul li {
         font-size: 1.8rem;
-        color: #fff;
-        /* Forza bianco sempre */
+        color: var(--txtcolor);
         font-weight: 800;
         justify-content: center;
     }
 
-    ul li#current-link
-
-    /*, #user-actions ul li#current-link*/
-        {
+    ul li#current-link {
         justify-content: center;
-        /* Centra tutto il blocco */
         padding-left: 0;
-        /* Reset padding laterale */
         gap: 0.5em;
-        /* Spazio tra icona e testo */
     }
 
-    /* Coloriamo l'icona di VERDE usando il trucco drop-shadow */
-    ul li#current-link::before
-
-    /*, *#user-actions ul li#current-link::after*/
-        {
+    ul li#current-link::before {
         position: relative;
-        /* Cambia da absolute a relative per stare vicino al testo */
         left: auto;
-
-        /* IL TRUCCO: Sposto l'originale nera via e proietto un'ombra verde al suo posto */
         transform: translateX(-100vw);
         filter: drop-shadow(100vw 0 0 var(--universitea-green));
     }
 
-    /* Icone più grandi e bianche */
     .nav-text-link img,
     li#current-link .nav-text-link img,
     li#current-link img {
@@ -934,11 +776,9 @@ body.homepage #breadcrumb {
 
     .mobile-only-text {
         display: inline-block;
-        /* Mostra testo "Carrello" */
         margin-left: 0.625em;
     }
 
-    /* Tasto Chiudi (X) */
     .close-menu-btn {
         position: absolute;
         top: 1.5625em;
@@ -958,17 +798,12 @@ body.homepage #breadcrumb {
         content: '';
         position: absolute;
         width: 2rem;
-        /* Lunghezza delle linee */
         height: 3px;
-        /* Spessore delle linee */
         background-color: #fff;
-        /* Colore bianco */
         border-radius: 4px;
-        /* Punte arrotondate */
         transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    /* Rotazione geometrica perfetta */
     .close-menu-btn::before {
         transform: rotate(45deg);
     }
@@ -977,7 +812,6 @@ body.homepage #breadcrumb {
         transform: rotate(-45deg);
     }
 
-    /* Mostra hamburger button sul mobile */
     .hamburger-btn {
         display: block;
         width: 3.5rem;
@@ -996,16 +830,12 @@ body.homepage #breadcrumb {
         right: 1.25em;
     }
 
-    /* Animazione hamburger quando checked */
     #menu-toggle:checked~.hamburger-btn {
         opacity: 0;
         pointer-events: none;
-        /* Disabilita il click sull'hamburger nascosto */
         transition: opacity 0.3s ease;
     }
 
-    /* --- 3. CHECKBOX LOGIC (IL TRUCCO) --- */
-    /* Quando la checkbox è CHECKED... */
     #menu-toggle:checked~.nav-wrapper {
         opacity: 1;
         visibility: visible;
@@ -1018,19 +848,15 @@ body.homepage #breadcrumb {
         transform: translateY(0);
     }
 
-    /* Blocca scroll del body (supporto browser moderni) */
     body:has(#menu-toggle:checked) {
         overflow: hidden;
     }
 
-
-    /* Parallasse Mobile */
     .parallax-layer {
         width: 180%;
         max-width: none;
     }
 
-    /* Fix Layer 4 Mobile */
     .layer-4 {
         width: 100%;
         left: 0;
@@ -1046,7 +872,6 @@ body.homepage #breadcrumb {
         bottom: 0;
     }
 
-    /* BREADCRUMB MOBILE */
     #breadcrumb {
         font-size: 0.75rem;
         padding: 0.5em 1em;
@@ -1054,12 +879,9 @@ body.homepage #breadcrumb {
         margin-top: 1rem;
         margin-bottom: 1.5rem;
         margin-left: 5%;
-        /* Manteniamo coerenza */
     }
 
-    /* BREADCRUMB MOBILE (SOLO HOME) */
     body.homepage #breadcrumb {
-        /* Su mobile l'header è piccolo, fissiamo una posizione sicura */
         top: 9em;
         left: 5%;
         transform: none;
@@ -1081,27 +903,20 @@ body.homepage #breadcrumb {
    MEDIA QUERY "LAPTOP" (Per schermi bassi)
 ========================================================================== */
 @media (max-height: 850px) {
-
-    /* 1. BREADCRUMB: La forziamo in alto per lasciare spazio */
     body.homepage #breadcrumb {
         top: 8em;
-        /* Appena sotto l'header */
         transform: scale(0.9);
-        /* Ancora più piccola */
     }
 
-    /* 2. UI Content: Meno spazio sopra */
     .hero-ui-content {
         padding-top: 6.25em;
     }
 
-    /* 3. Hero Box: Compressione */
     .hero-text-box {
         padding: 1.5rem 2rem;
         max-width: 46.8em;
     }
 
-    /* 4. Tipografia ridotta */
     .hero-brand {
         font-size: 2.8rem;
         margin-bottom: 0;
@@ -1121,7 +936,6 @@ body.homepage #breadcrumb {
         overflow: hidden;
     }
 
-    /* 5. Bottoni */
     .hero-buttons {
         gap: 1rem;
     }
@@ -1131,12 +945,10 @@ body.homepage #breadcrumb {
         padding: 0.6rem 1.5rem;
     }
 
-    .main-header,
-    body.homepage .main-header:not(.scrolled) {
+    .main-header {
         padding: 0.8rem 5%;
     }
 
-    /* Logo leggermente più piccolo sui laptop, ma fisso */
     img.logo,
     .logo-img {
         width: 6.8em;
@@ -1167,14 +979,12 @@ body.homepage #breadcrumb {
     line-height: 1.5;
 }
 
-/* Sottotitolo (nel tag <header>) */
 .section-subtitle {
     font-size: 1.1rem;
     color: var(--universitea-green);
     font-weight: 500;
     letter-spacing: 0.0625em;
     margin: 0 auto 2rem auto;
-    /* Margine sotto per staccare dal contenuto */
     max-width: 37.5em;
 }
 
@@ -1201,7 +1011,6 @@ body.homepage #breadcrumb {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    /* Flex sizing simili a Loyalty Steps */
     flex: 1 1 300px;
     max-width: 400px;
     padding: 0 1rem;
@@ -1240,14 +1049,6 @@ body.homepage #breadcrumb {
 }
 
 .categories-list {
-    /*display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18.75em, 31.25em));
-    justify-content: center;
-    gap: 3rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;*/
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1265,7 +1066,6 @@ body.homepage #breadcrumb {
     display: block;
 }
 
-/* --- STILE CARD AGGIORNATO --- */
 .category-card {
     position: relative;
     border-radius: 1.25em;
@@ -1289,7 +1089,6 @@ body.homepage #breadcrumb {
     transition: transform 0.6s ease;
 }
 
-/* --- HOVER EFFECTS (Glow + Zoom, No Lift) --- */
 .category-card:hover {
     border-color: var(--universitea-green);
     box-shadow: 0 0 1.875em var(--universitea-green);
@@ -2348,14 +2147,17 @@ input:focus-visible {
 .teaintro {
     position: relative;
     width: 100%;
-    height: 70vh; /*occupa il 70% dello schermo*/
+    height: 70vh;
+    /*occupa il 70% dello schermo*/
     display: flex;
     align-items: center;
-    justify-content: flex-end; /*allinea a sinistra*/
+    justify-content: flex-end;
+    /*allinea a sinistra*/
     background-image: url('../../assets/images/tea-photo.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover; /*foto è al 100% dello schermo*/
+    background-size: cover;
+    /*foto è al 100% dello schermo*/
     padding: 3em;
 
 }
@@ -2363,9 +2165,12 @@ input:focus-visible {
 .teaintro-text {
     max-width: 50em;
     padding: 2em;
-    background: rgba(255, 255, 255, 0.1); /*questo dà la trasparenza*/
-    backdrop-filter: blur(12px); /*sfocato*/
-    -webkit-backdrop-filter: blur(12px); /*per Safari*/
+    background: rgba(255, 255, 255, 0.1);
+    /*questo dà la trasparenza*/
+    backdrop-filter: blur(12px);
+    /*sfocato*/
+    -webkit-backdrop-filter: blur(12px);
+    /*per Safari*/
     border: 1px solid var(--txtcolor);
     border-radius: 1em;
 }
@@ -2380,45 +2185,49 @@ input:focus-visible {
     font-weight: bold;
 }
 
-.teaintro-text p{
+.teaintro-text p {
     font-size: 2em;
     color: var(--txtcolor);
     line-height: 1.6;
     text-align: center;
 }
 
-.teaintro-text cite{
-    display: block; /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
+.teaintro-text cite {
+    display: block;
+    /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
     text-align: right;
 
 }
 
 @media (max-width: 768px) {
     .teaintro {
-        justify-content: center; /*sui telefoni mettiamo al centro*/
+        justify-content: center;
+        /*sui telefoni mettiamo al centro*/
         text-align: center;
     }
+
     .teaintro-text {
         max-width: 90%;
         padding: 1.5em;
     }
 }
 
-.indicetea{
+.indicetea {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     padding: 2em 2em 2em 4em;
 }
 
-.indicetea p{
+.indicetea p {
     font-size: 1.5em;
     line-height: 1.6;
     padding-bottom: 0.2em;
 }
 
-.tornasu{
-    display: inline-block; /*lo rendo un elemento singoletto*/
+.tornasu {
+    display: inline-block;
+    /*lo rendo un elemento singoletto*/
     text-transform: uppercase;
     padding: 0.6em;
     border-radius: 1.2em;
@@ -2435,12 +2244,15 @@ input:focus-visible {
     text-align: left;
 }
 
-.tornasu:hover{
+.tornasu:hover {
     transform: scale(1.1);
-    transition: all 0.3s ease; /*per avere una transizione più soft*/
+    transition: all 0.3s ease;
+    /*per avere una transizione più soft*/
 }
 
-.quiz-section h2, .tea-process h2, .tea-card h3 {
+.quiz-section h2,
+.tea-process h2,
+.tea-card h3 {
     color: var(--universitea-green);
     font-size: 2.5em;
     margin-bottom: 1.5em;
@@ -2449,7 +2261,7 @@ input:focus-visible {
     line-height: 1.6;
 }
 
-.tea-process h2{
+.tea-process h2 {
     text-align: center;
     text-transform: uppercase;
 }
@@ -2472,8 +2284,10 @@ input:focus-visible {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /*centra il contenuto orizzontalmente*/
-    align-items: center; /*centra il contenuto verticalmente*/
+    justify-content: center;
+    /*centra il contenuto orizzontalmente*/
+    align-items: center;
+    /*centra il contenuto verticalmente*/
     gap: 2em;
 }
 
@@ -2492,7 +2306,8 @@ input:focus-visible {
 }
 
 .curiosita-image {
-    flex: 0 1 auto; /*così l'immagine sta di fianco al testo*/
+    flex: 0 1 auto;
+    /*così l'immagine sta di fianco al testo*/
 }
 
 .curiosita-image img {
@@ -2508,7 +2323,7 @@ input:focus-visible {
     box-sizing: border-box;
 }
 
-.tea-process .table-container{
+.tea-process .table-container {
     width: 100%;
     padding: 0 1em 0 1em;
     margin-top: 2em;
@@ -2516,9 +2331,11 @@ input:focus-visible {
 
 .tea-process table {
     width: 100%;
-    border-collapse: collapse; /*tolgo la roba default dei bordi delle tabelle*/
+    border-collapse: collapse;
+    /*tolgo la roba default dei bordi delle tabelle*/
     border: 2px solid #ddd;
-    border-radius: 2em; /*bordi arrotondati*/
+    border-radius: 2em;
+    /*bordi arrotondati*/
 }
 
 .tea-process thead th {
@@ -2536,8 +2353,10 @@ input:focus-visible {
     color: var(--darkbgcolor);
     font-weight: bold;
     padding: 1em 1em;
-    border-bottom: 1px solid var(--navlink-color); /*bordino tra un th e l'altro*/
-    border-right: 3px solid #007d5d; /*bordo tra th e td*/
+    border-bottom: 1px solid var(--navlink-color);
+    /*bordino tra un th e l'altro*/
+    border-right: 3px solid #007d5d;
+    /*bordo tra th e td*/
 }
 
 .tea-process tbody td {
@@ -2548,35 +2367,38 @@ input:focus-visible {
     border: 1px solid var(--darkbgcolor);
 }
 
-.tea-process caption{
-    caption-side: bottom; /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
+.tea-process caption {
+    caption-side: bottom;
+    /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
     background-color: var(--darkbgcolor);
     color: var(--linkcolor);
     font-weight: bold;
-    border: none; /*tolgo bordo default sotto*/
+    border: none;
+    /*tolgo bordo default sotto*/
     padding-top: 1em;
     text-align: center;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-    .tea-process thead{
+    .tea-process thead {
         display: none;
     }
 
-    .tea-process tr, .tea-process td{
+    .tea-process tr,
+    .tea-process td {
         display: block;
         text-align: center;
         width: 100%;
     }
 
-    .tea-process th{
+    .tea-process th {
         text-transform: uppercase;
         text-align: center;
         width: 100%;
     }
 
-    .tea-process td::before{
+    .tea-process td::before {
         content: attr(datatitle);
         display: block;
         color: var(--graybgcolor);
@@ -2586,7 +2408,8 @@ input:focus-visible {
 
 .tea-card {
     display: flex;
-    flex-direction: row; /*foto e testo affiancati*/
+    flex-direction: row;
+    /*foto e testo affiancati*/
     justify-content: space-between;
     align-items: center;
     gap: 2em;
@@ -2630,6 +2453,7 @@ input:focus-visible {
 
 /*Per mobile*/
 @media (max-width: 767px) {
+
     .tea-card,
     .tea-card:nth-of-type(even) {
         flex-direction: column;
@@ -2647,7 +2471,7 @@ input:focus-visible {
         width: 100%;
     }
 
-    .tea-card h3{
+    .tea-card h3 {
         padding-bottom: 0.5em;
         border-bottom: 0.1em solid var(--universitea-green);
     }
@@ -2750,11 +2574,12 @@ fieldset {
 
 /*PAGINA ABOUT*/
 
-#about-content{
-    padding: 0 5%; /*spazio ai bordi*/
+#about-content {
+    padding: 0 5%;
+    /*spazio ai bordi*/
 }
 
-#about-content h1{
+#about-content h1 {
     text-transform: uppercase;
     font-size: 2.5em;
     color: var(--link-visited);
@@ -2764,7 +2589,11 @@ fieldset {
     padding: 0.5em 0.5em 0.5em 0.5em;
 }
 
-.about-stats h2, .about-intro h2, .chisiamo h2, .about-facts h2, .about-group h2{
+.about-stats h2,
+.about-intro h2,
+.chisiamo h2,
+.about-facts h2,
+.about-group h2 {
     font-size: 2.5em;
     color: var(--universitea-green);
     margin-bottom: 0.5em;
@@ -2772,17 +2601,21 @@ fieldset {
     line-height: 1.6;
 }
 
-.about-intro h2{
+.about-intro h2 {
     margin-top: 0;
 }
 
-.about-stats p, .about-intro p, .chisiamo p, .about-facts p, .about-group p{
+.about-stats p,
+.about-intro p,
+.chisiamo p,
+.about-facts p,
+.about-group p {
     text-align: left;
     font-size: 1.2em;
     line-height: 1.6;
 }
 
-.about-intro{
+.about-intro {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2807,7 +2640,7 @@ fieldset {
     }
 }
 
-.chisiamo h3{
+.chisiamo h3 {
     font-size: 1.7em;
     color: var(--linkcolor);
     line-height: 1.6;
@@ -2817,37 +2650,42 @@ fieldset {
     font-style: italic;
 }
 
-.about-statsbar{
+.about-statsbar {
     display: flex;
-    flex-direction: row; /*i blocchi stanno nella stessa riga*/
-    justify-content: space-around; /*distribuisce le stat così hanno lo stesso spazio tra loro*/
-    list-style: none; /*per togliere i pallini della lista*/
+    flex-direction: row;
+    /*i blocchi stanno nella stessa riga*/
+    justify-content: space-around;
+    /*distribuisce le stat così hanno lo stesso spazio tra loro*/
+    list-style: none;
+    /*per togliere i pallini della lista*/
     background-color: rgba(0, 214, 159, 0.3);
     border-radius: 20px;
     width: 100%;
     color: var(--txtcolor);
-    margin-bottom: 2em; /*margin bottom*/
+    margin-bottom: 2em;
+    /*margin bottom*/
     border: 2px solid var(--linkcolor);
 }
 
-.about-stats h2{
+.about-stats h2 {
     text-align: center;
 }
 
-.about-sta{
+.about-sta {
     display: flex;
-    flex-direction: column; /*numero e spiegazione stanno uno sotto l'altro*/
+    flex-direction: column;
+    /*numero e spiegazione stanno uno sotto l'altro*/
     align-items: center;
     text-align: center;
     padding: 1em 1em 1em 1em;
 }
 
-.stat-number{
+.stat-number {
     font-size: 1.7em;
     padding-bottom: 0.4em;
 }
 
-.about-group h3{
+.about-group h3 {
     color: var(--txtcolor);
     text-transform: uppercase;
     font-size: 1.5em;
@@ -2857,7 +2695,8 @@ fieldset {
 
 .about-values {
     display: flex;
-    align-items: center; /*centra verticalmente immagine e testo*/
+    align-items: center;
+    /*centra verticalmente immagine e testo*/
     justify-content: space-between;
     gap: 2em;
 }
@@ -2867,7 +2706,7 @@ fieldset {
     max-width: 60em;
 }
 
-.values-text{
+.values-text {
     border: 2px solid var(--universitea-green);
     border-radius: 2em;
     padding: 1em 1em 1em 1em;
@@ -2880,17 +2719,20 @@ fieldset {
 
 @media (max-width: 768px) {
     .about-values {
-        flex-direction: column-reverse; /*così l'immagine viene sopra la scritta*/
+        flex-direction: column-reverse;
+        /*così l'immagine viene sopra la scritta*/
         gap: 1em;
         text-align: center;
-        border: 2px solid var(--universitea-green); /*metto il bordo su tutto, non solo il testo*/
+        border: 2px solid var(--universitea-green);
+        /*metto il bordo su tutto, non solo il testo*/
         border-radius: 2em;
         margin-bottom: 2em;
     }
 
     .about-values:nth-of-type(even) {
         flex-direction: column-reverse;
-        padding-left: 0; /*rimuove il padding laterale che avevo messo che non serve*/
+        padding-left: 0;
+        /*rimuove il padding laterale che avevo messo che non serve*/
     }
 
     .about-values img {
@@ -2900,7 +2742,8 @@ fieldset {
 
     .values-text {
         width: 100%;
-        border: 0; /*tolgo il bordo dal testo così lo metto su tutto, vedi sopra*/
+        border: 0;
+        /*tolgo il bordo dal testo così lo metto su tutto, vedi sopra*/
         margin-bottom: 1em;
     }
 }
