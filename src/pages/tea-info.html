@@ -220,34 +220,45 @@
             <img src="../../assets/images/tepuehr.webp" alt="">
         </div>
     </section>
-
     <section id="quiz" class="quiz-section">
         <h2>Hai letto attentamente?</h2>
         <p>Metti alla prova le tue conoscenze e vediamo se passi questo esame sui tè!</p>
 
-        <form class="tea-quiz">
+        {{RESULT_MESSAGE}}
+
+        <form class="tea-quiz" method="POST" action="tea-info.php#quiz">
             <fieldset>
                 <legend class="question-text">1. Da quale pianta derivano tutti i veri tipi di tè?</legend>
-                <label for="q1-a"><input type="radio" name="q1" id="q1-a" value="wrong"> Rooibos</label>
-                <label for="q1-b"><input type="radio" name="q1" id="q1-b" value="correct"> Camellia sinensis</label>
-                <label for="q1-c"><input type="radio" name="q1" id="q1-c" value="wrong"> Camomilla</label>
+                <label for="q1-a" class="{{Q1_WRONG1_CLASS}}">
+                    <input type="radio" name="q1" id="q1-a" value="wrong1" {{Q1_WRONG1_CHECKED}}> Rooibos
+                </label>
+                <label for="q1-b" class="{{Q1_CORRECT_CLASS}}">
+                    <input type="radio" name="q1" id="q1-b" value="correct" {{Q1_CORRECT_CHECKED}}> Camellia sinensis
+                </label>
+                <label for="q1-c" class="{{Q1_WRONG2_CLASS}}">
+                    <input type="radio" name="q1" id="q1-c" value="wrong2" {{Q1_WRONG2_CHECKED}}> Camomilla
+                </label>
             </fieldset>
 
             <fieldset>
                 <legend class="question-text">2. Cosa determina la differenza tra i vari tè?</legend>
-                <label for="q2-a"><input type="radio" name="q2" id="q2-a" value="wrong"> L'altitudine</label>
-                <label for="q2-b"><input type="radio" name="q2" id="q2-b" value="correct"> La lavorazione delle
-                    foglie</label>
-                <label for="q2-c"><input type="radio" name="q2" id="q2-c" value="wrong"> Il tipo di acqua</label>
+                <label for="q2-a" class="{{Q2_WRONG1_CLASS}}">
+                    <input type="radio" name="q2" id="q2-a" value="wrong1" {{Q2_WRONG1_CHECKED}}> L'altitudine
+                </label>
+                <label for="q2-b" class="{{Q2_CORRECT_CLASS}}">
+                    <input type="radio" name="q2" id="q2-b" value="correct" {{Q2_CORRECT_CHECKED}}> La lavorazione delle
+                    foglie
+                </label>
+                <label for="q2-c" class="{{Q2_WRONG2_CLASS}}">
+                    <input type="radio" name="q2" id="q2-c" value="wrong2" {{Q2_WRONG2_CHECKED}}> Il tipo di acqua
+                </label>
             </fieldset>
 
-            <button type="button" id="submit-quiz" class="btn-join">Verifica risposte</button>
+            <button type="submit" name="submit_quiz" class="btn-join">Verifica risposte</button>
         </form>
 
-        <p id="quiz-result" class="hidden" aria-live="polite"></p>
         <p><a href="#indicetea">Torna sù</a></p>
     </section>
-
 </main>
 
 
