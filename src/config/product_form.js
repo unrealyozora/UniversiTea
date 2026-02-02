@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             validate('#nome', 'Il nome del prodotto è obbligatorio, al massimo 100 caratteri.');
             validate('#descrizione', 'Inserisci una descrizione, al massimo 1000 caratteri..');
-            validate('#prezzo', 'Inserisci un prezzo valido, compreso tra 0.01 e 100.');
+            validate('#prezzo', 'Inserisci un prezzo valido, compreso tra 0.01 e 999.');
             validate('#disponibilita', 'Specifica la quantità maggiore uguale a zero.');
             validate('#categoria', 'Seleziona una categoria.');
 

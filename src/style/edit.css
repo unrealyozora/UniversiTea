@@ -53,7 +53,9 @@
     margin-bottom: 1rem;
 }
 
-.form-group {
+fieldset div.form-group {
+    margin-top:0.5em;
+    display:block;
     margin-bottom: 1.5rem;
 }
 
@@ -141,16 +143,25 @@ select:focus{
     margin-bottom: 1.5rem;
 }
 
-/* Scrollbar custom per il box bundle */
-.bundle-scroll-box::-webkit-scrollbar {
-    width: 8px;
+/* La singola riga contenente checkbox + label */
+.checkbox-row {
+    display: block;
+    align-items: center; /* Allinea verticalmente checkbox e testo al centro */
+    gap: 10px; /* Spazio orizzontale tra la checkbox e l'etichetta */
 }
-.bundle-scroll-box::-webkit-scrollbar-thumb {
-    background: var(--universitea-green);
-    border-radius: 4px;
+
+/* Stile opzionale per rendere la label cliccabile e leggibile */
+.checkbox-row label {
+    cursor: pointer;
+    margin: 0; /* Rimuove margini di default che potrebbero disallineare */
+    font-size: 1rem;
 }
-.bundle-scroll-box::-webkit-scrollbar-track {
-    background: #0f0e0e;
+
+/* Stile opzionale per la checkbox stessa */
+.checkbox-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 
 /* Checkbox all'interno del bundle */
@@ -190,11 +201,26 @@ select:focus{
     font-size: 1rem;
     box-shadow: 0 0.25em 0.9em rgba(0, 214, 159, 0.3);
 }
+.btn-update-category {
+    margin-top: 1rem;
+    flex: 1;
+    background-color: var(--universitea-green);
+    color: #0f0e0e;
+    border: 2px solid var(--universitea-green);
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    box-shadow: 0 0.25em 0.9em rgba(0, 214, 159, 0.3);
+}
 
-.btn-save:hover {
+.btn-save:hover, .btn-update-category:hover {
     background-color: #fff;
     border-color: #fff;
-    color: var(--universitea-green);
+    color: var(--darkbgcolor);
     transform: translateY(-2px);
     box-shadow: 0 0.5em 1.5em rgba(0, 214, 159, 0.4);
 }

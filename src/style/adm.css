@@ -221,7 +221,7 @@
 
 /* --- Modifica (Verde Outline) --- */
 .btn-edit {
-    color: var(--lightbgcolor);
+    color: var(--darkbgcolor);
     border-color: var(--universitea-green);
     background: var(--universitea-green);
     width: auto;
@@ -236,7 +236,7 @@
 }
 
 .btn-delete {
-    color: var(--lightbgcolor);
+    color: var(--darkbgcolor);
     border-color: #ff4444;
     background: #ff4444;
     width: auto;
