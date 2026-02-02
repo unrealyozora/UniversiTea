@@ -44,220 +44,172 @@
 #intro-text p:last-child {
     margin-bottom: 0;
 }
+
 /* =========================================
-   DASHBOARD CARDS (Griglia Contestuale)
+   TOOLBAR AZIONI (Bottoni)
 ========================================= */
-
-.admin-dashboard-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr; /* La card "Aggiungi" è più grande (60% - 40%) */
-    gap: 2rem;
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
-/* Stile comune delle Card */
-.dashboard-card {
-    background-color: var(--card-bg-color); /* Usa le tue variabili esistenti */
-    border: 1px solid var(--card-border-color);
-    border-radius: 1.5rem;
-    padding: 2rem;
+/* Contenitore flessibile per allineare i bottoni */
+.admin-actions-toolbar {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Spinge il bottone in fondo se il testo è corto */
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--universitea-green);
-}
-
-/* Tipografia interna alle Card */
-.dashboard-card h2 {
-    color: var(--universitea-green);
-    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Su mobile va a capo */
     margin-bottom: 1rem;
-    margin-top: 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50px; /* Effetto "pillola" allungata */
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.dashboard-card p {
-    color: var(--txtcolor);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    font-size: 1rem;
-    opacity: 0.9;
-}
+/* --- Bottone Aggiungi Prodotto (PRIMARIO) --- */
+/* Stile pieno, verde neon */
+.admin-controls .btn-add-new {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 
-/* Allineamento bottone a destra o sinistra a piacere (qui inizio a sinistra) */
-.card-action {
-    margin-top: auto; /* Assicura che il bottone stia sempre in basso */
-}
-
-/* =========================================
-   REGOLE SPECIFICHE PER I BOTTONI (Aggiornamento)
-========================================= */
-
-/* Aggiungi Prodotto: Verde Pieno */
-.btn-add-new {
-    display: inline-block;
     background-color: var(--universitea-green);
     color: #0f0e0e;
-    padding: 0.8em 2em;
-    border-radius: 2em;
+    border: 2px solid var(--universitea-green);
+
+    border-radius: 3rem;
+    padding: 0.8rem 2.5rem;
     font-weight: 800;
     text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.btn-add-new:hover {
-    background-color: #fff;
-    box-shadow: 0 0 15px var(--universitea-green);
-}
-
-/* Logout: Outline Rosso (Meno invasivo) */
-.btn-logout {
-    display: inline-block;
-    background: transparent;
-    border: 2px solid rgba(255, 68, 68, 0.5);
-    color: #ff4444;
-    padding: 0.7em 2em;
-    border-radius: 2em;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: inherit;
-}
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 214, 159, 0.2);
 
-.btn-logout:hover {
-    background-color: #ff4444;
-    color: #fff;
-    border-color: #ff4444;
-}
-
-/* =========================================
-   RESPONSIVE MOBILE
-========================================= */
-@media (max-width: 900px) {
-    .admin-dashboard-grid {
-        grid-template-columns: 1fr; /* Una colonna sola */
-        gap: 1.5rem;
-    }
-
-    .dashboard-card {
-        padding: 1.5rem;
-        text-align: center; /* Testo centrato su mobile */
-    }
-
-    /* Bottoni a tutta larghezza su mobile per facilitare il tocco */
-    .btn-add-new,
-    .btn-logout {
-        display: block;
-        width: 100%;
-    }
-
-    .card-action form {
-        width: 100%;
-    }
-}
-
-
-/* =========================================
-   BOTTONI TABELLA (Azioni)
-========================================= */
-
-/* Contenitore flessibile dentro la cella */
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-start; /* Allinea a sinistra su desktop */
-    align-items: center;
-}
-.action-buttons form {
-    display: flex;
-    margin: 0;
-}
-
-/* Stile Base Bottoni Tabella */
-.btn-table {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    padding: 0.6em 0;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 1.825em;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 2px solid transparent; /* Riserva spazio per il bordo */
-    font-family: inherit;
-    min-width: 80px; /* Larghezza minima uniforme */
-}
-
-/* --- Modifica (Verde Outline) --- */
-.btn-edit {
-    color: var(--lightbgcolor);
-    border-color: var(--universitea-green);
-    background: var(--universitea-green);
+    /* Reset larghezze vecchie */
     width: auto;
     margin: 0;
 }
 
-.btn-edit:hover {
-    transform: translateY(-3px);
-    background-color: var(--darkbgcolor);
+.admin-controls .btn-add-new:hover {
+    background-color: #fff;
+    border-color: #fff;
     color: var(--universitea-green);
-    box-shadow: 0 0 10px rgba(0, 214, 159, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 0.8rem 2rem rgba(0, 214, 159, 0.4);
+}
+
+/* --- Bottone Logout (SECONDARIO) --- */
+/* Stile "Outline" (solo bordo) per dargli meno peso visivo rispetto all'aggiunta prodotti */
+.admin-logout .submit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    color: #ff6b6b; /* Un rosso leggero per indicare uscita/attenzione */
+    border: 2px solid #ff6b6b;
+
+    border-radius: 3rem;
+    padding: 0.8rem 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: none;
+
+    /* Reset larghezze vecchie */
+    width: auto;
+    margin: 0;
+}
+
+.admin-logout .submit-btn:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.5rem rgba(255, 107, 107, 0.3);
 }
 
 .btn-delete {
-    color: var(--lightbgcolor);
-    border-color: #ff4444;
-    background: #ff4444;
-    width: auto;
-    margin: 0;
+    background: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 0.5em 1em;
+    border-radius: 2em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .btn-delete:hover {
-    transform: translateY(-3px);
-    background-color: var(--darkbgcolor);
-    color: #ff4444;
+    background-color: #ff4444;
+    color: #fff;
     box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
 }
 
+.btn-edit{
+    width: 100%;
+    padding: 0.8rem;
+    background-color: transparent;
+    border: 2px solid var(--universitea-green);
+    color: var(--universitea-green);
+    border-radius: 2em;
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5em;
+}
+.btn-edit:active {
+    transform: scale(0.98);
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-edit:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 214, 159, 0.4);
+}
+
+.btn-edit:hover {
+    background-color: var(--universitea-green);
+    color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
+    box-shadow: 0 0 15px rgba(0, 214, 159, 0.4);
+}
+
+.btn-edit:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+/* RESPONSIVE */
 /* =========================================
-   RESPONSIVE (Mobile)
+   RESPONSIVE (MOBILE) - CARD VIEW
 ========================================= */
 @media (max-width: 768px) {
 
-
-    /* Tabella Mobile (Card View) - Allineamento Azioni */
-    .product-table td.actions {
-        display: block; /* O flex */
-        padding-top: 1.5rem;
-        margin-top: 1rem;
-        border-top: 1px dashed rgba(255,255,255,0.1);
-        background: transparent !important;
+    /* --- 1. Toolbar Bottoni (Già presente) --- */
+    .admin-actions-toolbar {
+        flex-direction: column-reverse;
+        border-radius: 1.5rem;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
     }
 
-    .action-buttons {
-        justify-content: center; /* Centra i bottoni nella card */
+    .admin-controls .btn-add-new,
+    .admin-logout .submit-btn {
         width: 100%;
-        gap: 1rem;
+        text-align: center;
     }
 
-    .btn-table {
-        flex: 1;
-        padding: 0.8em;
-    }
+    /* --- 2. Trasformazione Tabella in Cards --- */
+
+
 }
 
 /* =========================================
@@ -266,7 +218,6 @@
 
 /* Descrizione sopra la tabella */
 #table-descr {
-    padding-top:1.5em;
     max-width: 60rem;
     margin: 0 auto 1.5rem auto;
     text-align: center;
@@ -391,33 +342,13 @@
 
     /* Gestione specifica cella Azioni su mobile */
     .product-table td.actions {
-        display: block; /* Rimuove il flex laterale della cella */
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-        margin-top: 0;
-        border-top: 1px dashed rgba(0,0,0,0.1);
-        background-color: rgba(0,0,0,0.05);
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        background-color: rgba(0,0,0,0.05); /* Leggermente più scuro */
     }
 
     .product-table td.actions::before {
         display: none; /* Nascondi etichetta per le azioni */
-    }
-
-    .action-buttons {
-        display: flex;
-        flex-direction: column; /* QUESTA è la regola che li mette uno sotto l'altro */
-        gap: 1rem; /* Spazio verticale tra i bottoni */
-        width: 100%;
-    }
-
-    /* Il form deve allargarsi per permettere al bottone dentro di allargarsi */
-    .action-buttons form {
-        width: 100%;
-    }
-
-    /* Bottoni a piena larghezza su mobile */
-    .btn-table {
-        width: 100%;
-        padding: 0.8em;
     }
 }

@@ -13,7 +13,7 @@
     --linkcolor: #9ddbad;
     --link-visited: #cc2569;
     --error-bg: rgba(255, 68, 68, 0.08);
-    --error-txtcolor: #ff4444;
+    --error-txtcolor:#ff4444;
     /*#cc2569;*/
 
     --navlink-color: #0b3f3e;
@@ -28,7 +28,6 @@ body {
     font-size: 100%;
     font-family: "Lexend", "Roboto", sans-serif;
     line-height: 1.5em;
-    scroll-padding-top: 30vh;
 }
 
 body {
@@ -112,7 +111,7 @@ section {
 .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
-    color: var(--darkbgcolor);
+    color: var(--universitea-green);
     transform: translateY(-0.125em);
 }
 
@@ -148,7 +147,7 @@ body.homepage .main-header:not(.scrolled) .btn-join {
 body.homepage .main-header:not(.scrolled) .btn-join:hover {
     background-color: #fff;
     border-color: #fff;
-    color: var(--darkbgcolor);
+    color: var(--universitea-green);
     transform: translateY(-0.1875em);
     box-shadow: 0 0.5em 1.5625em rgba(0, 214, 159, 0.4);
 }
@@ -703,7 +702,7 @@ body.menu-open .mobile-nav-content ul {
 }
 
 .hero-brand {
-    font-size: 6rem;
+    font-size: clamp(2.5rem, 6vw, 6rem);
     font-weight: 800;
     line-height: 1.1;
     color: #fff;
@@ -1086,7 +1085,7 @@ body.homepage #breadcrumb {
     /* 3. Hero Box: Compressione */
     .hero-text-box {
         padding: 1.5rem 2rem;
-        max-width: 46.8em;
+        max-width: 46.875em;
     }
 
     /* 4. Tipografia ridotta */
@@ -1127,32 +1126,34 @@ body.homepage #breadcrumb {
     /* Logo leggermente più piccolo sui laptop, ma fisso */
     img.logo,
     .logo-img {
-        width: 6.8em;
+        width: 6.875em;
     }
 }
 
-/*
-=========================================
+/* =========================================
    GENERIC: STILE TITOLI SEZIONI
-=========================================
-*/
+   (Vale per Values, Categories, Loyalty, Spotlight)
+========================================= */
 
+/* Regola base per le sezioni standard */
 .values-section,
 .categories-section,
+.spotlight-section,
 .loyalty-section {
     padding: 6rem 5%;
     position: relative;
+    /* Assicuriamo che i titoli siano centrati */
     text-align: center;
 }
 
+/* Stile del Titolo H2 */
 .section-title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     margin-bottom: 0.5rem;
-    color: var(--txtcolor);
+    color: #fff;
     text-transform: uppercase;
     display: inline-block;
-    line-height: 1.5;
 }
 
 /* Sottotitolo (nel tag <header>) */
@@ -1161,7 +1162,7 @@ body.homepage #breadcrumb {
     color: var(--universitea-green);
     font-weight: 500;
     letter-spacing: 0.0625em;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 4rem auto;
     /* Margine sotto per staccare dal contenuto */
     max-width: 37.5em;
 }
@@ -1326,12 +1327,16 @@ body.homepage #breadcrumb {
 
 
 /* =========================================
-   4. SECTION FAVORI
+   4. SECTION FAVORI (Spotlight)
    Sfondo GRIGIO
 ========================================= */
-
+/* --- FAVORS SECTION (ex Spotlight) - REFATTORIZZATA FLEXBOX --- */
+/* --- FAVORS SECTION (ex Spotlight) - REFATTORIZZATA FLEXBOX --- */
 .favors-section {
+    /* La sezione ora è un contenitore verticale (Header + Wrapper Contenuto) */
     padding: 6rem 5%;
+
+    /* CAMBIO COLORE: Da Dark a Gray per alternanza */
     background-color: var(--graybgcolor);
     overflow: hidden;
 
@@ -1339,6 +1344,7 @@ body.homepage #breadcrumb {
     flex-direction: column;
     align-items: center;
     gap: 4rem;
+    /* Standard Section Gap */
 }
 
 /* WRAPPER SEMANTICO PER IL LAYOUT (Testo + Immagine) */
@@ -1388,6 +1394,8 @@ body.homepage #breadcrumb {
     /* Bordi sempre arrotondati */
     object-fit: cover;
     display: block;
+    box-shadow: 0 0.625em 1.875em rgba(0, 0, 0, 0.1);
+    /* Leggera ombra per profondità */
 }
 
 /* BOX TESTO (Destra) */
@@ -1407,7 +1415,7 @@ body.homepage #breadcrumb {
 /* SOTTOTITOLO VERDE */
 .favors-subtitle {
     color: var(--universitea-green);
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -1532,8 +1540,11 @@ body.homepage #breadcrumb {
 ========================================= */
 @media (max-width: 900px) {
 
+    /* Flexbox mobile per Favors */
+    /* Flexbox mobile per Favors */
     .favors-wrapper {
-        flex-direction: column-reverse;
+        flex-direction: column;
+        /* MOBILE: Ordine normale (HTML: Text first, then Image) = Testo Sopra, Immagine Sotto */
         gap: 3rem;
         width: 100%;
     }
@@ -1541,7 +1552,7 @@ body.homepage #breadcrumb {
     .favors-section {
         padding: 4rem 5%;
         text-align: center;
-        gap: 0;
+        /* Gap già gestito */
     }
 
     .favors-content {
@@ -1562,22 +1573,22 @@ body.homepage #breadcrumb {
     }
 }
 
-/*
-==========================================================================================================================================
-                                    SEZIONE BEST SELLERS
-==========================================================================================================================================
-*/
-
-/* ======================= CONTAINER + HEADER ======================= */
+/* ===========================================================
+   SEZIONE BEST SELLERS - FIXED & CLEAN
+   Sfondo NERO
+=========================================================== */
 
 .best-sellers-container {
     position: relative;
     padding: 4rem 5%;
     overflow: hidden;
+    /* Taglia la "tenda" verde quando esce dai bordi */
     box-sizing: border-box;
+    /* AGGIUNTO: Sfondo Nero per sicurezza alternanza */
     background-color: var(--darkbgcolor);
 }
 
+/* --- 1. HEADER SEZIONE --- */
 .bestsellers-header {
     display: flex;
     justify-content: space-between;
@@ -1590,36 +1601,86 @@ body.homepage #breadcrumb {
     z-index: 20;
 }
 
+/* Gruppo Sinistra */
+.header-left-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .bestsellers-section-title {
-    font-size: 3rem;
+    font-size: 2.2rem;
     text-transform: uppercase;
     letter-spacing: 0.125em;
-    font-weight: 800;
-    color: var(--txtcolor);
+    font-weight: 700;
+    color: #fff;
     margin: 0;
     line-height: 1;
-    /* Richiesta utente: centrato se non c'è JS */
-    text-align: center;
-    width: 100%;
 }
 
-.accessibility-controls {
-    display: none;
+/* Pulsanti Navigazione */
+.bestsellers-nav {
+    display: flex;
+    gap: 0.8rem;
 }
 
-.bestsellers-visual model-viewer,
-.bestsellers-visual figcaption {
-    display: none;
+.bestsellers-nav-btn {
+    background: transparent;
+    border: 1px solid #666;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.model-fallback {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1.5rem;
+.bestsellers-nav-btn img {
+    width: 1em;
+    height: 1em;
+    filter: invert(1);
 }
 
+.bestsellers-nav-btn:hover {
+    border-color: var(--universitea-green);
+    background-color: var(--universitea-green);
+}
+
+.bestsellers-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+    border-color: #444;
+}
+
+/* Pallini (Dots) */
+.bestsellers-dots-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.625em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bestsellers-dot {
+    width: 0.625em;
+    height: 0.625em;
+    background-color: #444;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.bestsellers-dot.active {
+    background-color: #fff;
+    transform: scale(1.3);
+}
+
+/* Controlli Accessibilità */
 .accessibility-controls fieldset {
     border: none;
     padding: 0;
@@ -1634,9 +1695,9 @@ body.homepage #breadcrumb {
     color: var(--txtcolor);
     font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.0625em;
     font-weight: 600;
-    margin-right: 0.3em;
+    margin-right: 0.3125em;
     padding: 0;
 }
 
@@ -1654,22 +1715,12 @@ body.homepage #breadcrumb {
 }
 
 .access-toggle:hover {
-    color: var(--universitea-green);
-    text-decoration: underline;
+    color: #fff;
 }
 
 .access-toggle input[type="checkbox"] {
-    /* Evito che venga usato il checkbox di default del browser*/
-
-    /*Per i browser più aggiornati e recenti*/
     appearance: none;
-    /* Per i browser con motore webkit (Chrome, Safari, Edge) */
     -webkit-appearance: none;
-    /* Per i browser con motore Trident (Internet Explorer) */
-    -ms-appearance: none;
-    /* Per i browser con motore Gecko (Firefox) */
-    -moz-appearance: none;
-
     width: 2.25em;
     height: 1.25em;
     background: #333;
@@ -1705,73 +1756,84 @@ body.homepage #breadcrumb {
 }
 
 
-/* ======================= STILE DI BASE + NAVIGAZIONE CAROSELLO SENZA JS ======================= */
+/* --- 2. LAYOUT CONTENUTO --- */
 
 .bestsellers-content-wrapper {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    /*scroll laterale mi va bene*/
-    overflow-y: hidden;
-    /*scroll verticale non lo voglio*/
-    width: 100%;
-    height: auto;
-    gap: 0;
-    padding-bottom: 4rem;
-
-    /* Dichiaro la presenza di punti di aggancio orizzontali in cui il browser deve obbligatoriamente fermarsi */
-    scroll-snap-type: x mandatory;
-
-    /* Movimento fluido quando clicco i pulsanti */
-    scroll-behavior: smooth;
-
-    /* Scorrimento per inerzia. Lo dichiaro apposta per iOS che solitamente lo disattiva per risparmiare risorse*/
-    -webkit-overflow-scrolling: touch;
-
-    /* Nasconde scrollbar dei browser con motori Gecko, tipo Firefox */
-    scrollbar-width: none;
-    /* Nasconde scrollbar dei vecchi browser con motore Trident/EdgeHTML, tipo Edge o Explorer */
-    -ms-overflow-style: none;
-}
-
-/* Nasconde scrollbar dei browser con motore Blink/WebKit, tipo Chrome, Safari, Opera, Brave ecc */
-.bestsellers-content-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-/* Disattiviamo l'animazione wipe vecchia che rompe lo scroll */
-.bestsellers-content-wrapper::after {
-    display: none;
-}
-
-.product-slide {
-    display: flex;
     flex-direction: row;
+    /* Default Desktop */
+    flex-wrap: nowrap;
+    /* Default Desktop */
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     gap: 2rem;
     position: relative;
-    scroll-margin-top: 100vh;
-
-    /* Per mostrare una slide alla volta ner carosello */
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 100%;
-    width: 100%;
-
-    /* Definisco che il punto di aggancio sia al centro di questo elemento con classe product-slide */
-    scroll-snap-align: center;
-
-    /* Si deve fermare per forza su ogni punto do aggancio senza saltarne con un singolo scroll */
-    scroll-snap-stop: always;
 }
 
+/* --- ANIMAZIONE WIPE (PASSANTE) --- */
+
+.bestsellers-content-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 100%;
+    background-color: var(--universitea-green);
+    z-index: 50;
+    pointer-events: none;
+    opacity: 1;
+
+    /* Stato base: Transizione attiva */
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+
+    /* Posizione base: Nascosto a sinistra */
+    transform: skewX(-15deg) translateX(-150%);
+}
+
+/* Classe RESET (Spegne animazione senza !important grazie alla specificità) */
+.bestsellers-content-wrapper.no-transition::after {
+    transition: none;
+}
+
+/* --- LOGICA DIREZIONI --- */
+
+/* NEXT (Clicco Destra -> Entra da SX, Esce a DX) */
+.bestsellers-content-wrapper[data-direction="next"]::after {
+    transform: skewX(-15deg) translateX(-150%);
+}
+
+.bestsellers-content-wrapper[data-direction="next"].animating-in::after {
+    transform: skewX(-15deg) translateX(-15%);
+    /* Centro */
+}
+
+.bestsellers-content-wrapper[data-direction="next"].animating-out::after {
+    transform: skewX(-15deg) translateX(120%);
+    /* Uscita a Destra */
+}
+
+/* PREV (Clicco Sinistra -> Entra da DX, Esce a SX) */
+.bestsellers-content-wrapper[data-direction="prev"]::after {
+    transform: skewX(-15deg) translateX(120%);
+}
+
+.bestsellers-content-wrapper[data-direction="prev"].animating-in::after {
+    transform: skewX(-15deg) translateX(-15%);
+    /* Centro */
+}
+
+.bestsellers-content-wrapper[data-direction="prev"].animating-out::after {
+    transform: skewX(-15deg) translateX(-150%);
+    /* Uscita a Sinistra */
+}
+
+
+/* --- COLONNE CONTENUTO --- */
 .bestsellers-info {
     flex: 1;
-    /* Prende tutto lo spazio disponibile, ma se lo spartisce con bestsellers-visual che anche lui ha flex 1 */
     min-width: 0;
-    /* Altrimenti le frasi lunghe fanno allargare il contenitore anziché andare a capo */
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1790,18 +1852,18 @@ body.homepage #breadcrumb {
 
 .bestsellers-info p {
     font-size: 1.1rem;
-    color: var(--txtcolor);
-    line-height: 1.5;
+    color: #ccc;
+    line-height: 1.6;
     margin-bottom: 2.5rem;
     max-width: 100%;
 }
 
+/* NOTA: Rimosso .bestsellers-cta perché ora è gestito da GLOBAL BUTTONS */
+
 .bestsellers-visual {
     flex: 1;
-    /* Per spartirsi lo spazio con la descrizione */
     min-width: 0;
-    /* Stesso motivo scritto su bestsellers-info */
-    height: 32em;
+    height: 31.25em;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -1816,191 +1878,16 @@ body.homepage #breadcrumb {
     height: 100%;
     object-fit: contain;
     outline: none;
-    /* Elimina eventuali contorni se selezionato */
     cursor: grab;
 }
 
-.slide-nav-container {
-    position: absolute;
-    bottom: -4rem;
-    left: 0;
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    pointer-events: none;
-}
-
-.side-nav-btn {
-    pointer-events: auto;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    z-index: 20;
-}
-
-.side-nav-btn img {
-    width: 1.2rem;
-    height: 1.2rem;
-    filter: invert(1);
-    pointer-events: none;
-}
-
-.side-nav-btn:hover {
-    background-color: var(--universitea-green);
-    border-color: var(--universitea-green);
-}
-
-.side-nav-btn.prev {
-    margin-right: auto;
-}
-
-.side-nav-btn.next {
-    margin-left: auto;
-}
-
-/* ================================== NAVIGAZIONE CAROSELLO CON JS ================================== */
-
-body.js-carousel-active .bestsellers-section-title {
-    text-align: left;
-    width: auto;
-}
-
-body.js-carousel-active .accessibility-controls {
-    display: block;
-}
-
-body.js-carousel-active .bestsellers-visual model-viewer,
-body.js-carousel-active .bestsellers-visual figcaption {
-    display: block;
-}
-
-body.js-carousel-active .model-fallback {
-    display: none;
-}
-
-.carousel-controls-container {
-    display: none;
-}
-
-/* Se js è usabile, devo nascondere i comandi del carosello solo con css (il body avrà quella nuova classe) */
-body.js-carousel-active .slide-nav-container {
-    display: none;
-}
-
-body.js-carousel-active .carousel-controls-container {
-    /* tolgo il display none ai comandi del carosello con js */
-    display: flex;
-
-    position: absolute;
-    bottom: 1em;
-    left: 0;
-    width: 100%;
-
-    /* Il container non deve coprirmi l'area cliccabile del modello se si sovrappongono */
-    pointer-events: none;
-
-    z-index: 20;
-    align-items: center;
-    padding: 0 12rem;
-    justify-content: center;
-}
-
-body.js-carousel-active .carousel-btn {
-    /* Devono essere cliccabii */
-    pointer-events: auto;
-
-    position: relative;
-    top: auto;
-    background: rgba(15, 14, 14, 0.6);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    width: 3.5rem;
-    height: 3.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    flex-shrink: 0;
-}
-
-body.js-carousel-active .prev-btn {
-    margin-right: auto;
-}
-
-body.js-carousel-active .next-btn {
-    margin-left: auto;
-}
-
-body.js-carousel-active .carousel-btn:hover {
-    background: var(--universitea-green);
-    border-color: var(--universitea-green);
-    transform: scale(1.1);
-}
-
-body.js-carousel-active .carousel-btn img {
-    width: 1.2rem;
-    height: 1.2rem;
-
-    /* L'immagine è nera di base, la faccio diventare bianca */
-    filter: invert(1);
-}
-
-body.js-carousel-active .carousel-btn:hover img {
-    filter: none;
-}
-
-body.js-carousel-active .carousel-dots {
-    pointer-events: auto;
-    display: flex;
-    gap: 0.8rem;
-    padding: 0.5rem 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 2rem;
-    backdrop-filter: blur(2px);
-    margin: 0 1rem;
-}
-
-body.js-carousel-active .carousel-dot {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-}
-
-body.js-carousel-active .carousel-dot:hover {
-    background: rgb(255, 255, 255);
-}
-
-body.js-carousel-active .carousel-dot.active {
-    background: var(--universitea-green);
-    transform: scale(1.2);
-}
-
-body.js-carousel-active .bestsellers-visual figcaption {
+/* Didascalia */
+.bestsellers-visual figcaption {
     margin-top: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5em;
+    gap: 0.625em;
     font-size: 0.75rem;
     color: var(--txtcolor);
     font-weight: 500;
@@ -2011,117 +1898,16 @@ body.js-carousel-active .bestsellers-visual figcaption {
     pointer-events: none;
 }
 
-body.js-carousel-active .bestsellers-visual figcaption::before {
+.bestsellers-visual figcaption::before {
     content: '';
     display: block;
-    width: 0.4em;
-    height: 0.4em;
+    width: 0.375em;
+    height: 0.375em;
     background-color: var(--universitea-green);
     border-radius: 50%;
     box-shadow: 0 0 5px var(--universitea-green);
-
-    /* Piccolo fix per allineamento ottico se il font lo richiede */
-    position: relative;
-    top: -1px;
 }
 
-/* =========================================
-   MEDIA QUERY MOBILE (FIX PRIORITÀ ID)
-   ========================================= */
-@media (max-width: 900px) {
-
-    #bestsellers-content {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        width: 100%;
-        gap: 0;
-        padding-bottom: 2rem;
-
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .product-slide {
-        flex: 0 0 100%;
-        width: 100%;
-        min-width: 100%;
-
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem 0;
-        margin: 0;
-        gap: 1.5rem;
-
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
-    }
-
-    .bestsellers-info {
-        width: 100%;
-        flex: unset;
-        /* Per eliminare il flex 1 che c'èera prima */
-        border-left: none;
-        padding-left: 0;
-        margin-left: 0;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .bestsellers-product-name {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .bestsellers-info p {
-        font-size: 1rem;
-        padding: 0 5rem;
-        max-width: 100rem;
-    }
-
-    .bestsellers-visual {
-        flex: unset;
-        /* Per eliminare il flex 1 che c'èera prima */
-        width: 100%;
-        height: 18rem;
-        margin: 0;
-    }
-
-    .bestsellers-nav {
-        display: none;
-    }
-
-    .bestsellers-header {
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .header-left-group {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .bestsellers-section-title {
-        text-align: center;
-        font-size: 1.8rem;
-    }
-
-    .slide-nav-container {
-        /* Su mobile li teniamo sempre in fondo */
-        bottom: 1rem;
-        padding: 0 1rem;
-        /* Le regole flex ereditate dal desktop funzionano anche qui per metterli ai lati */
-    }
-}
 
 /*====================================================================================================================================================
 
@@ -2337,30 +2123,24 @@ input:focus-visible {
 .teaintro {
     position: relative;
     width: 100%;
-    height: 70vh;
-    /*occupa il 70% dello schermo*/
+    height: 70vh; /*occupa il 70% dello schermo*/
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    /*allinea a sinistra*/
+    justify-content: flex-end; /*allinea a sinistra*/
     background-image: url('../../assets/images/tea-photo.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
-    /*foto è al 100% dello schermo*/
+    background-size: cover; /*foto è al 100% dello schermo*/ 
     padding: 3em;
-
+    
 }
 
 .teaintro-text {
     max-width: 50em;
     padding: 2em;
-    background: rgba(255, 255, 255, 0.1);
-    /*questo dà la trasparenza*/
-    backdrop-filter: blur(12px);
-    /*sfocato*/
-    -webkit-backdrop-filter: blur(12px);
-    /*per Safari*/
+    background: rgba(255, 255, 255, 0.1); /*questo dà la trasparenza*/
+    backdrop-filter: blur(12px); /*sfocato*/
+    -webkit-backdrop-filter: blur(12px); /*per Safari*/
     border: 1px solid var(--txtcolor);
     border-radius: 1em;
 }
@@ -2375,55 +2155,50 @@ input:focus-visible {
     font-weight: bold;
 }
 
-.teaintro-text p {
+.teaintro-text p{
     font-size: 2em;
     color: var(--txtcolor);
     line-height: 1.6;
     text-align: center;
 }
 
-.teaintro-text cite {
-    display: block;
-    /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
+.teaintro-text cite{
+    display: block; /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
     text-align: right;
 
 }
 
 @media (max-width: 768px) {
     .teaintro {
-        justify-content: center;
-        /*sui telefoni mettiamo al centro*/
+        justify-content: center; /*sui telefoni mettiamo al centro*/
         text-align: center;
     }
-
     .teaintro-text {
         max-width: 90%;
         padding: 1.5em;
     }
 }
 
-.indicetea {
+.indicetea{
     display: flex;
     align-items: left;
     flex-direction: column;
     padding: 2em 2em 2em 4em;
 }
 
-.indicetea p {
+.indicetea p{
     font-size: 1.5em;
     line-height: 1.6;
     padding-bottom: 0.2em;
 }
 
-.indicetea a {
+.indicetea a{
     font-size: 1em;
     line-height: 1.6;
     padding: 0.2em;
 }
 
-.quiz-section h2,
-.tea-process h2,
-.tea-card h3 {
+.quiz-section h2, .tea-process h2, .tea-card h3 {
     color: var(--universitea-green);
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -2432,7 +2207,7 @@ input:focus-visible {
     line-height: 1.6;
 }
 
-.tea-process h2 {
+.tea-process h2{
     text-align: center;
     text-transform: uppercase;
 }
@@ -2455,15 +2230,13 @@ input:focus-visible {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    /*centra il contenuto orizzontalmente*/
-    align-items: center;
-    /*centra il contenuto verticalmente*/
+    justify-content: center; /*centra il contenuto orizzontalmente*/
+    align-items: center; /*centra il contenuto verticalmente*/
     gap: 2em;
 }
 
 .curiosita h2 {
-    flex: 0 0 100%;
+    flex: 0 0 100%; 
     color: var(--universitea-green);
     font-size: 2.5em;
     text-align: center;
@@ -2473,12 +2246,11 @@ input:focus-visible {
 }
 
 .curiosita-content {
-    flex: 1 1 300px;
+    flex: 1 1 300px; 
 }
 
 .curiosita-image {
-    flex: 0 1 auto;
-    /*così l'immagine sta di fianco al testo*/
+    flex: 0 1 auto; /*così l'immagine sta di fianco al testo*/
 }
 
 .curiosita-image img {
@@ -2496,7 +2268,7 @@ input:focus-visible {
 }
 
 /*contenitore tabella*/
-.tea-process .table-container {
+.tea-process .table-container{
     width: 100%;
     padding: 0 1em 0 1em;
     margin-top: 2em;
@@ -2505,11 +2277,9 @@ input:focus-visible {
 /*tabella effettiva*/
 .tea-process table {
     width: 100%;
-    border-collapse: collapse;
-    /*tolgo la roba default dei bordi delle tabelle*/
+    border-collapse: collapse; /*tolgo la roba default dei bordi delle tabelle*/
     border: 2px solid #ddd;
-    border-radius: 2em;
-    /*bordi arrotondati*/
+    border-radius: 2em; /*bordi arrotondati*/
 }
 
 .tea-process thead th {
@@ -2527,10 +2297,8 @@ input:focus-visible {
     color: var(--darkbgcolor);
     font-weight: bold;
     padding: 1em 1em;
-    border-bottom: 1px solid var(--navlink-color);
-    /*bordino tra un th e l'altro*/
-    border-right: 3px solid #007d5d;
-    /*bordo tra th e td*/
+    border-bottom: 1px solid var(--navlink-color); /*bordino tra un th e l'altro*/
+    border-right: 3px solid #007d5d; /*bordo tra th e td*/
 }
 
 .tea-process tbody td {
@@ -2541,38 +2309,35 @@ input:focus-visible {
     border: 1px solid black;
 }
 
-.tea-process caption {
-    caption-side: bottom;
-    /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
+.tea-process caption{
+    caption-side: bottom; /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
     background-color: var(--darkbgcolor);
     color: var(--linkcolor);
     font-weight: bold;
-    border: none;
-    /*tolgo bordo default sotto*/
+    border: none; /*tolgo bordo default sotto*/
     padding-top: 1em;
     text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px){
 
-    .tea-process thead {
+    .tea-process thead{
         display: none;
     }
 
-    .tea-process tr,
-    .tea-process td {
+    .tea-process tr, .tea-process td{
         display: block;
         text-align: center;
         width: 100%;
     }
 
-    .tea-process th {
+    .tea-process th{
         text-transform: uppercase;
         text-align: center;
         width: 100%;
     }
 
-    .tea-process td::before {
+    .tea-process td::before{
         content: attr(datatitle);
         display: block;
         color: var(--graybgcolor);
@@ -2582,8 +2347,7 @@ input:focus-visible {
 
 .tea-card {
     display: flex;
-    flex-direction: row;
-    /*foto e testo affiancati*/
+    flex-direction: row; /*foto e testo affiancati*/
     justify-content: space-between;
     align-items: center;
     gap: 2em;
@@ -2628,12 +2392,10 @@ input:focus-visible {
 
 /* --- LAYOUT MOBILE (Sotto i 768px) --- */
 @media (max-width: 767px) {
-
-    .tea-card,
+    .tea-card, 
     .tea-card:nth-of-type(even) {
-        flex-direction: column;
-        /*ora sono uno sopra l'altro e non alternati come prima*/
-        text-align: center;
+        flex-direction: column; /*ora sono uno sopra l'altro e non alternati come prima*/
+        text-align: center; 
     }
 
     .card-text {
@@ -2647,7 +2409,7 @@ input:focus-visible {
         width: 100%;
     }
 
-    .tea-card h3 {
+    .tea-card h3{
         padding-bottom: 0.5em;
         border-bottom: 0.1em solid var(--universitea-green);
     }
@@ -2674,7 +2436,7 @@ fieldset {
     width: 100%;
 }
 
-.quiz-section p {
+.quiz-section p{
     font-size: 1.2em;
 }
 
@@ -2748,48 +2510,7 @@ fieldset {
     text-align: center;
 }
 
-/*PAGINA ABOUT*/
 
-#about-content {
-    padding: 0 5%;
-    /*spazio ai bordi*/
-}
-
-.about-statsbar {
-    display: flex;
-    flex-direction: row;
-    /*i blocchi stanno nella stessa riga*/
-    justify-content: space-around;
-    /*distribuisce le stat così hanno lo stesso spazio tra loro*/
-    list-style: none;
-    /*per togliere i pallini della lista*/
-    background-color: rgba(0, 214, 159, 0.5);
-    width: 100%;
-    color: var(--txtcolor);
-}
-
-.about-stats h2,
-.about-intro h2,
-.chisiamo h2 {
-    font-size: 2.5em;
-    color: var(--universitea-green);
-    margin-bottom: 0.7em;
-    margin-top: 0.7em;
-}
-
-.about-sta {
-    display: flex;
-    flex-direction: column;
-    /*numero e spiegazione stanno uno sotto l'altro*/
-    align-items: center;
-    text-align: center;
-    padding: 1em 1em 1em 1em;
-}
-
-.stat-number {
-    font-size: 1.7em;
-    padding-bottom: 0.4em;
-}
 
 /*ERRORPAGES*/
 .errorpage {
@@ -2971,7 +2692,8 @@ fieldset {
         order: 2;
         flex-grow: 1;
         text-align: center;
-        font-size: 3rem;
+        font-size: 1.4rem;
+        word-wrap: break-word;
     }
 
     .bestsellers-nav-btn.next {
@@ -3364,7 +3086,7 @@ fieldset input[type="radio"]:checked+label {
 }
 
 .error-msg,
-.error-message {
+.error-message{
     background: var(--error-bg);
     color: var(--error-txtcolor);
     border-left: 4px solid var(--error-txtcolor);
@@ -3383,15 +3105,8 @@ fieldset input[type="radio"]:checked+label {
 }
 
 @keyframes fadeInError {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .submit-btn {
@@ -3411,16 +3126,14 @@ fieldset input[type="radio"]:checked+label {
     letter-spacing: 0.05em;
 }
 
-.submit-btn:hover,
-.admin-controls:hover {
+.submit-btn:hover, .admin-controls:hover {
     background-color: #fff;
     color: var(--darkbgcolor);
     transform: translateY(-2px);
     box-shadow: 0 0.75rem 2rem rgba(0, 214, 159, 0.3);
 }
 
-.submit-btn:active,
-.admin-controls:active {
+.submit-btn:active, .admin-controls:active {
     transform: translateY(0);
 }
 
@@ -3434,7 +3147,7 @@ fieldset input[type="radio"]:checked+label {
     }
 
     #content h1 {
-        font-size: 3.5rem;
+        font-size: 2.2rem;
     }
 
     fieldset {
@@ -3557,197 +3270,5 @@ fieldset input[type="radio"]:checked+label {
         grid-column: 1 / -1;
         text-align: center;
         margin-bottom: 1rem;
-    }
-}
-
-
-/* ==========================================================================
-   DASHBOARD / PROFILO UTENTE - MODERN STYLE
-   (Targeting: dashboard.html)
-========================================================================== */
-
-/* 1. LAYOUT CENTRALE E SFONDO */
-/* Centra la card nella pagina e aggiunge lo sfondo animato */
-#dashboard-content {
-    position: relative;
-    max-width: 40rem;
-    /* Larghezza massima contenuta */
-    margin: 4rem auto;
-    /* Spazio sopra e sotto */
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    /* Effetto Vetro (Glassmorphism) */
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.5rem;
-
-    padding: 3rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-/* Glow Ambientale Verde dietro/dentro la card */
-#dashboard-content::before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(0, 214, 159, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-    top: 0;
-    right: 0;
-    transform: translate(30%, -30%);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* 2. TITOLO E STATUS */
-#dashboard-content h1 {
-    font-size: 2.5rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    font-weight: 800;
-    line-height: 1.2;
-}
-
-/* Badge "Account Attivo" */
-div.status-badge {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-span.status-badge {
-    display: inline-block;
-    padding: 0.4em 1em;
-    background: rgba(0, 214, 159, 0.15);
-    color: var(--universitea-green);
-    border: 1px solid var(--universitea-green);
-    border-radius: 2em;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 0 15px rgba(0, 214, 159, 0.2);
-}
-
-/* 3. RIGHE INFORMAZIONI (.info-row) */
-.info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.info-row:last-of-type {
-    border-bottom: none;
-    margin-bottom: 1rem;
-}
-
-.info-row:hover {
-    background-color: rgba(255, 255, 255, 0.02);
-    border-radius: 0.5rem;
-}
-
-.info-label {
-    color: #aaa;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.info-label a {
-    color: var(--universitea-green);
-    text-decoration: none;
-    position: relative;
-    transition: text-shadow 0.3s ease;
-}
-
-.info-label a:hover {
-    text-shadow: 0 0 10px rgba(0, 214, 159, 0.6);
-}
-
-.info-value {
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-align: right;
-}
-
-/* 4. TASTO LOGOUT E NAV-LINKS */
-.nav-links {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    order: 10;
-    /* Sposta il logout in fondo se necessario */
-}
-
-.nav-links form {
-    width: 100%;
-}
-
-.nav-links button.submit-btn {
-    background-color: transparent;
-    border: 2px solid #ff4444;
-    color: #ff4444;
-    box-shadow: none;
-    margin-top: 0;
-    width: 100%;
-}
-
-.nav-links button.submit-btn:hover {
-    background-color: #ff4444;
-    color: #fff;
-    border-color: #ff4444;
-    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
-    transform: translateY(-2px);
-}
-
-/* 5. INFO SESSIONE (Footer della card) */
-.session-info {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
-    text-align: center;
-    line-height: 1.6;
-}
-
-.session-info strong {
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-}
-
-/* RESPONSIVE PER MOBILE */
-@media (max-width: 600px) {
-    #dashboard-content {
-        padding: 2rem 1.5rem;
-        margin: 2rem 5%;
-        width: 90%;
-    }
-
-    .info-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3rem;
-    }
-
-    .info-value {
-        align-self: flex-start;
-        color: var(--universitea-green);
-        /* Evidenzia il dato su mobile */
     }
 }
