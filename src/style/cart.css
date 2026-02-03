@@ -9,10 +9,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 20000; /* Molto alto per stare sopra l'header sticky (che ha 10000) */
+    z-index: 20000;
+    /* Molto alto per stare sopra l'header sticky (che ha 10000) */
 
-    background-color: rgba(15, 14, 14, 0.90); /* --darkbgcolor con opacità */
-    backdrop-filter: blur(10px); /* Sfocatura della pagina sottostante */
+    background-color: rgba(15, 14, 14, 0.90);
+    /* --darkbgcolor con opacità */
+    backdrop-filter: blur(10px);
+    /* Sfocatura della pagina sottostante */
     -webkit-backdrop-filter: blur(10px);
 
     display: flex;
@@ -25,7 +28,8 @@
 /* 2. La Card (Stile Login) */
 .restricted-modal {
     width: 100%;
-    max-width: 35em; /* Leggermente più piccola della login full page */
+    max-width: 35em;
+    /* Leggermente più piccola della login full page */
     background: var(--card-bg-color);
     border-radius: 25px;
     padding: 3rem 2rem;
@@ -94,6 +98,7 @@
     text-shadow: 0 0 10px rgba(0, 214, 159, 0.5);
     text-decoration: underline;
 }
+
 .cart-container {
     max-width: 75em;
     margin: 2rem auto 6rem auto;
@@ -131,14 +136,17 @@
 /* --- CARD PRODOTTO NEL CARRELLO (.cart-item) --- */
 .cart-item {
     display: flex;
-    flex-wrap: wrap; /* Per gestire mobile */
+    flex-wrap: wrap;
+    /* Per gestire mobile */
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
 
     /* Stile "Glass" coerente con .product-card e .step-card */
-    background-color: var(--card-bg-color); /* rgba(255, 255, 255, 0.03) */
-    border: 1px solid var(--card-border-color); /* rgba(255, 255, 255, 0.05) */
+    background-color: var(--card-bg-color);
+    /* rgba(255, 255, 255, 0.03) */
+    border: 1px solid var(--card-border-color);
+    /* rgba(255, 255, 255, 0.05) */
     border-radius: 1.25em;
     padding: 1.5rem 2rem;
     margin-bottom: 1.25rem;
@@ -151,7 +159,8 @@
 .cart-item:hover {
     border-color: rgba(0, 214, 159, 0.3);
     box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(0, 214, 159, 0.1); /* glow interno */
+        0 0 0 1px rgba(0, 214, 159, 0.1);
+    /* glow interno */
     transform: translateY(-2px);
 }
 
@@ -258,7 +267,8 @@
 .cart-summary {
     margin-top: 3rem;
     padding: 2rem;
-    background: rgba(0, 214, 159, 0.05); /* Verde molto tenue */
+    background: rgba(0, 214, 159, 0.05);
+    /* Verde molto tenue */
     border: 1px solid rgba(0, 214, 159, 0.2);
     border-radius: 1.25em;
     display: flex;
@@ -291,7 +301,8 @@
 }
 
 .clear-cart-btn {
-    width: 100%; /* Bottone a larghezza piena */
+    width: 100%;
+    /* Bottone a larghezza piena */
     text-align: center;
     background: #ff4444;
     border: none;
@@ -310,12 +321,14 @@
 .clear-cart-btn:hover {
     background-color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 0.5em 1.5em  #C82909;
+    box-shadow: 0 0.5em 1.5em #C82909;
 }
 
 /* Bottone Checkout (Stile .btn-join ma adattato) */
-.checkout-btn {
-    width: 100%; /* Bottone a larghezza piena */
+.checkout-btn,
+.fidelity-payment-btn {
+    width: 100%;
+    /* Bottone a larghezza piena */
     text-align: center;
     background-color: var(--universitea-green);
     color: #0f0e0e;
@@ -331,17 +344,20 @@
     box-shadow: 0 0.25em 0.9em rgba(0, 214, 159, 0.3);
 }
 
-.checkout-btn:hover {
+.checkout-btn:hover,
+.fidelity-payment-btn:hover {
     background-color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 0.5em 1.5em rgba(0, 214, 159, 0.5);
 }
+
 .cart-content {
     display: grid;
     /* Colonna 1: Flessibile (1fr), Colonna 2: Fissa (380px) */
     grid-template-columns: 1fr 380px;
     gap: 2rem;
-    align-items: start; /* Importante: impedisce al box di destra di allungarsi quanto la lista prodotti */
+    align-items: start;
+    /* Importante: impedisce al box di destra di allungarsi quanto la lista prodotti */
     position: relative;
 }
 
@@ -352,10 +368,12 @@
 
     /* Rendiamolo "Sticky" così ti segue mentre scorri */
     position: sticky;
-    top: 8.5rem; /* Distanza dall'alto (regola in base all'altezza del tuo Header fisso) */
+    top: 8.5rem;
+    /* Distanza dall'alto (regola in base all'altezza del tuo Header fisso) */
 
     /* Stile "Card" coerente */
-    background: rgba(0, 214, 159, 0.03); /* Verde chiarissimo trasparente */
+    background: rgba(0, 214, 159, 0.03);
+    /* Verde chiarissimo trasparente */
     border: 1px solid rgba(0, 214, 159, 0.2);
     border-radius: 1.25em;
     padding: 2rem;
@@ -380,7 +398,8 @@
 
 .checkout-actions {
     display: flex;
-    flex-direction: column; /* Su colonna laterale, i bottoni stanno meglio impilati */
+    flex-direction: column;
+    /* Su colonna laterale, i bottoni stanno meglio impilati */
     gap: 1rem;
     width: 100%;
 }
@@ -401,12 +420,14 @@
     }
 
     .checkout-actions {
-        flex-direction: row; /* Su mobile tornano affiancati se c'è spazio */
+        flex-direction: row;
+        /* Su mobile tornano affiancati se c'è spazio */
         justify-content: space-between;
         align-items: center;
     }
 
-    .checkout-btn {
+    .checkout-btn,
+    .fidelity-payment-btn {
         width: auto;
     }
 }
@@ -449,7 +470,8 @@
         width: 100%;
     }
 
-    .checkout-btn {
+    .checkout-btn,
+    .fidelity-payment-btn {
         width: 100%;
     }
 }
@@ -459,7 +481,22 @@
     .checkout-actions {
         flex-direction: column;
     }
-    .checkout-btn {
+
+    .checkout-btn,
+    .fidelity-payment-btn {
         width: 100%;
     }
+}
+
+/* Fidelity Info Message */
+.fidelity-info {
+    font-size: 0.9em;
+    color: #ccc;
+    text-align: center;
+    margin-top: 0.5em;
+    width: 100%;
+}
+
+.fidelity-info strong {
+    color: var(--universitea-green);
 }

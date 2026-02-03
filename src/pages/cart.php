@@ -15,9 +15,9 @@ function newFidelityPoints($oldPoints, $cartTotal): int
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$venditoreBanner='';
+$venditoreBanner = '';
 $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
-$isSeller ? $venditoreBanner=$banner = file_get_contents('templates/restriction.html') :'';
+$isSeller ? $venditoreBanner = $banner = file_get_contents('templates/restriction.html') : '';
 
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -35,11 +35,11 @@ function renderCartItem($item, $templateHtml)
     $nome = htmlspecialchars($item['nome']);
     $prezzo = '€' . number_format($item['prezzo'], 2, ',', '.');
     $subtotale = '€' . number_format($item['subtotal'], 2, ',', '.');
-    $qty = (int)$item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
+    $qty = (int) $item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
 
     // Logica stock: se non hai colonna stock in Carrello, la prendiamo da Prodotti
     // Assumo stock 99 se non definito, oppure aggiungi la colonna nella query
-    $stock = isset($item['stock']) ? (int)$item['stock'] : 99;
+    $stock = isset($item['stock']) ? (int) $item['stock'] : 99;
 
 
     $replacements = [
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if ($action === 'update_quantity') {
-            $qty = (int)$_POST['quantity'];
+            $qty = (int) $_POST['quantity'];
             if ($qty > 0) {
                 // Query adattata alla tua tabella 'Carrello'
                 $stmt = $conn->prepare("UPDATE Carrello SET quantita = :qty WHERE consumatore = :email AND prodotto = :pid");
@@ -162,7 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // 3. RECUPERO DATI E RENDERING (GET)
 $cartItemsHtml = '';
 $totalAmount = 0;
+$totalAmount = 0;
 $totalItems = 0;
+$fidelityMsg = '';
 
 try {
     $db = new Database();
@@ -212,6 +214,7 @@ try {
         if ($fidelityResult['punti_fedelta'] >= $totalAmount * 5) {
             $disabledFidelityCheck = '';
         }
+        $fidelityMsg = '<p class="fidelity-info">Al momento hai: <strong>' . $fidelityResult['punti_fedelta'] . '</strong> punti fedeltà</p>';
     } else {
         $cartItemsHtml = '<div class="empty-cart"><h2>Il tuo carrello è vuoto</h2><a href="./shop.php" class="btn-join">Vai allo Shop</a></div>';
     }
@@ -256,6 +259,7 @@ $replacements = [
     '{{CART_CONTENT}}' => $cartItemsHtml,
     '{{USER_FEEDBACK}}' => $userFeedback,
     '{{DISABLED_FIDELITY_CHECK}}' => $disabledFidelityCheck,
+    '{{FIDELITY_MSG}}' => $fidelityMsg,
     '{{HIDDEN_IF_EMPTY}}' => ($totalItems === 0) ? 'hidden' : '',
     '{{USER_ACTION}}' => $user_action,
 ];

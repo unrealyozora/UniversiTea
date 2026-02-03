@@ -7,9 +7,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 
-$venditoreBanner='';
+$venditoreBanner = '';
 $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
-$isSeller ? $venditoreBanner=$banner = file_get_contents('templates/restriction.html') :'';
+$isSeller ? $venditoreBanner = $banner = file_get_contents('templates/restriction.html') : '';
 
 $email = $_SESSION['email'];
 

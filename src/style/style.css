@@ -2735,7 +2735,7 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
+    z-index: 30000;
     /*lo tiene sopra tabelle e immagini*/
     text-decoration: none;
     /*per togliere il potenziale sottolineato del link che è un a*/
