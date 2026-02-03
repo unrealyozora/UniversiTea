@@ -229,8 +229,6 @@ body:not(.homepage) img.logo:hover {
     gap: 3rem;
     flex: 1;
     justify-content: space-between;
-    margin-left: 3rem;
-
 }
 
 #main-menu {
@@ -746,6 +744,7 @@ body.homepage #breadcrumb {
 
     #main-menu a,
     .nav-text-link,
+    .nav-profile-link,
     li#current-link,
     #current-link span,
     #user-actions ul li {
@@ -769,6 +768,7 @@ body.homepage #breadcrumb {
     }
 
     .nav-text-link img,
+    .nav-profile-link img,
     li#current-link .nav-text-link img,
     li#current-link img {
         width: 1.875em;
@@ -2737,10 +2737,8 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 30000;
-    /*lo tiene sopra tabelle e immagini*/
+    z-index: 500;
     text-decoration: none;
-    /*per togliere il potenziale sottolineato del link che è un a*/
     transition: all 0.3s ease;
 }
 

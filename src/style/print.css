@@ -10,7 +10,8 @@
     *::before,
     *::after {
         background: transparent !important;
-        color: #000 !important;
+        color: #000;
+        /* Removed !important to allow specific colors */
         box-shadow: none !important;
         text-shadow: none !important;
         filter: none !important;
@@ -42,48 +43,14 @@
 
     /* --- 2. NASCONDI ELEMENTI INUTILI IN STAMPA --- */
 
-    /* Navigazione e Menu */
-    .menu-checkbox,
-    .hamburger-btn,
-    .nav-wrapper,
-    #main-menu,
-    #user-actions,
-    .skip-link,
-    .close-menu-btn,
-    .mobile-menu-overlay,
-
-    /* Elementi Grafici Pesanti e 3D */
-    .hero-section,
-    /* Troppo inchiostro */
-    .parallax-scene,
-    .liquid-svg,
-    model-viewer,
-    /* RIMOSSO MODELLO 3D */
-    .bestsellers-visual,
-    /* Spesso contiene il 3D o immagini grandi */
-
-    /* Interfaccia Utente e Form */
     .action-form,
-    /* Pulsanti checkout/svuota */
     .add-to-cart-form,
-    /* Form aggiunta carrello */
     aside#shop-filter-section,
-    /* Filtri laterali shop */
-    .btn-join,
     .btn-add-cart,
     .btn-add-preferiti,
     .btn-filter,
-    .social-links,
-    .accessibility-controls,
-    .bestsellers-nav,
-    /* Frecce navigazione */
-
-    /* Elementi Footer superflui */
-    .footer-column nav,
-    /* Nasconde le colonne "Naviga" e "Prodotti" */
-    .validators,
-    .disclaimer {
-        display: none !important;
+    .accessibility-controls:not(.accessibility-controls) {
+        display: none;
     }
 
     .product-card img,
@@ -91,34 +58,14 @@
     .cart-item img,
     .product-gallery img {
         width: 30px !important;
-        /* Dimensione ridotta a 30px */
         height: 30px !important;
         object-fit: contain;
         border: 1px solid #666;
         margin-right: 8px;
-        /* Filtro B/N + leggero contrasto per definizione su carta */
         filter: grayscale(100%) contrast(1.2) !important;
     }
 
-    /* --- 3. HEADER SEMPLIFICATO --- */
-    .main-header {
-        position: static !important;
-        /* Niente sticky header */
-        display: block;
-        text-align: center;
-        border-bottom: 2px solid #000;
-        padding: 10px 0;
-        background-color: #fff !important;
-    }
 
-    .main-header .logo {
-        width: 150px;
-        /* Logo più piccolo */
-        height: auto;
-        margin: 0 auto;
-        filter: brightness(0) !important;
-        /* Forza logo nero */
-    }
 
     /* --- 4. PAGINA SHOP (Layout Compatto) --- */
 
@@ -132,18 +79,13 @@
         padding: 0;
     }
 
-    /* Modifica principale: Card con bordo e spazi ridotti */
     .product-item {
         display: block;
         width: 100% !important;
         margin-bottom: 8px !important;
-        /* Molto vicini tra loro */
         padding: 8px !important;
-        /* Spazio interno ridotto */
         border: 1px solid #666 !important;
-        /* Bordo grigio scuro per leggibilità */
         page-break-inside: avoid;
-        /* Evita il taglio a metà pagina */
         box-sizing: border-box;
     }
 
@@ -151,34 +93,24 @@
         display: flex !important;
         flex-direction: row !important;
         align-items: center;
-        /* Allinea immagine e testo al centro verticalmente */
         background: transparent !important;
         border: none !important;
-        /* Il bordo è gestito da .product-item */
         box-shadow: none !important;
         gap: 15px;
-        /* Spazio ridotto tra immagine e testo */
     }
 
     .product-card a {
         flex: 0 0 60px;
-        /* Immagine più piccola fissa */
         margin: 0;
     }
 
     .product-card img {
         width: 40px !important;
-        /* Rende l'immagine piccola */
         height: auto !important;
-        /* Mantiene le proporzioni */
         filter: grayscale(100%) !important;
-        /* Converte in bianco e nero */
         border: 1px solid #ccc;
-        /* Opzionale: aggiunge un bordo leggero */
     }
 
-    /* 2. Nascondere i Bottoni */
-    /* Nasconde specificamente i bottoni di aggiunta carrello e preferiti */
     .btn-add-cart,
     .btn-add-preferiti {
         display: none !important;
@@ -213,7 +145,6 @@
     .product-info h3 {
         margin: 0;
         font-size: 11pt;
-        /* Font leggermente più piccolo */
         font-weight: bold;
         color: #000;
         line-height: 1.2;
@@ -221,7 +152,6 @@
 
     .product-info .category-tag {
         display: none !important;
-        /* Nascondiamo la categoria per risparmiare spazio */
     }
 
     .product-info .price {
@@ -239,16 +169,14 @@
         line-height: 1.2;
         display: -webkit-box;
         -webkit-line-clamp: 2;
-        /* Limita a 2 righe se supportato */
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
 
-    /* --- 5. PAGINA PRODOTTO DETTAGLIO --- */
+    /* ================================================ PAGINA PRODOTTO DETTAGLIO ================================================ */
 
     .product-detail-container {
         display: block !important;
-        /* Colonna singola */
         margin: 20px 0;
         padding: 0;
     }
@@ -287,18 +215,15 @@
         text-align: justify;
     }
 
-    /* Specifiche tecniche */
     .product-specs {
         margin-top: 20px;
         border: 1px solid #000;
         border-left: 5px solid #000 !important;
-        /* Sostituisce il verde */
         padding: 10px;
         clear: both;
-        /* Va sotto l'immagine floattata */
     }
 
-    /* --- 6. CARRELLO & PREFERITI --- */
+    /* ================================================ CARRELLO & PREFERITI ================================================ */
 
     .cart-container {
         width: 100%;
@@ -310,7 +235,6 @@
         margin-bottom: 20px;
     }
 
-    /* Assumendo che gli elementi del carrello siano in una lista o div */
     #cartContainer>div,
     li.cart-item {
         border: 1px solid #ddd;
@@ -319,13 +243,12 @@
         page-break-inside: avoid;
     }
 
-    /* --- 7. PAGINA ABOUT & INFO TE --- */
+    /* ================================================ PAGINA ABOUT & INFO TE ================================================ */
 
     .statsbar {
         display: flex;
         justify-content: space-between;
         border: 1px solid #666;
-        /* Bordo attorno a tutta la barra */
         padding: 10px;
         margin: 15px 0;
     }
@@ -335,14 +258,11 @@
         font-weight: bold;
     }
 
-    /* Card informative racchiuse e vicine */
     .tea-card {
         flex-direction: row !important;
         border: 1px solid #666 !important;
-        /* Bordo completo */
         padding: 10px !important;
         margin-bottom: 10px !important;
-        /* Ravvicinate */
         gap: 15px;
         page-break-inside: avoid;
         align-items: flex-start;
@@ -354,7 +274,6 @@
 
     .tea-card img {
         max-width: 100px;
-        /* Immagine ridotta */
         height: auto;
         margin: 0;
         border: 1px solid #eee;
@@ -381,24 +300,321 @@
         color: #000 !important;
     }
 
-    /* --- 8. FOOTER MINIMALE --- */
+    /* ================================================ HOMEPAGE + HEADER + FOOTER ================================================ */
+
+    .liquid-svg,
+    model-viewer,
+    .bestsellers-visual,
+    .btn-join,
+    .social-links,
+    .accessibility-controls,
+    .menu-checkbox,
+    .hamburger-btn,
+    .nav-wrapper,
+    #main-menu,
+    #user-actions,
+    .skip-link,
+    .close-menu-btn,
+    .mobile-menu-overlay,
+    .parallax-scene,
+    .footer-column nav,
+    .validators,
+    .disclaimer {
+        display: none;
+    }
+
+    /* HEADER */
+    body .main-header {
+        position: static;
+        display: block;
+        text-align: center;
+        border-bottom: 2px solid #000;
+        padding: 10px 0;
+        background-color: #fff;
+        box-shadow: none;
+    }
+
+    body .main-header .logo {
+        width: 150px;
+        height: auto;
+        margin: 0 auto;
+        filter: brightness(0);
+    }
+
+    /* HOMEPAGE */
+    body.homepage .main-header {
+        border-bottom: none;
+    }
+
+    body.homepage .tornasu {
+        display: none;
+    }
+
+    body.homepage .categories-section,
+    body.homepage .best-sellers-container,
+    body.homepage .favors-section,
+    body.homepage .loyalty-section,
     .main-footer-area {
+        page-break-before: always;
+        break-before: page;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: auto;
+        min-height: 0;
+    }
+
+    body.homepage img,
+    body.homepage .parallax-scene,
+    body.homepage .category-img,
+    body.homepage .hero-buttons {
+        display: none;
+    }
+
+    body.homepage .value-icon {
+        display: block;
+        width: 80px;
+        height: auto;
+        margin: 0 auto 10px;
+        filter: grayscale(100%);
+    }
+
+    body.homepage .values-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 0;
+        list-style: none;
+    }
+
+    body.homepage .value-item {
+        flex: 0 0 45%;
+        text-align: center;
+        break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    /* Categories Section */
+    body.homepage .categories-list {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 0;
+        list-style: none;
+    }
+
+    body.homepage .categories-list li {
+        flex: 0 0 45%;
+        border: 1px solid #ccc;
+        padding: 20px;
+        text-align: center;
+        page-break-inside: avoid;
+    }
+
+    body.homepage .category-card a {
+        text-decoration: none;
+        border: none;
+    }
+
+    body.homepage .category-img {
+        display: none;
+    }
+
+    body.homepage .category-content {
+        display: block;
+    }
+
+    body.homepage .category-content h3 {
+        margin-top: 0;
+        font-size: 14pt;
+        text-transform: uppercase;
+    }
+
+    body.homepage .hero-section {
+        display: block;
+        border-bottom: 2px solid #000;
+        margin-bottom: 20px;
+        text-align: center;
+        height: auto;
+        min-height: 0;
+        padding: 20px 0;
+    }
+
+    body.homepage .hero-brand {
+        font-size: 24pt;
+        color: #000;
+        margin-bottom: 0;
+    }
+
+    body.homepage .hero-slogan {
+        font-size: 14pt;
+        font-style: italic;
+        margin-top: 0;
+        color: var(--universitea-green, #00d69f);
+    }
+
+    body.homepage .hero-description {
+        font-size: 11pt;
+        max-width: 100%;
+        color: #000;
+        border-bottom: none;
+    }
+
+    body.homepage .section-header,
+    body.homepage .bestsellers-header {
+        border-bottom: 2px solid var(--navlink-color, #0b3f3e);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    body.homepage .values-section .section-title {
+        border-bottom: 2px solid var(--navlink-color, #0b3f3e);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        display: block;
+        color: #000;
+    }
+
+    body.homepage .section-title,
+    body.homepage .bestsellers-section-title {
+        border-bottom: none;
+        color: #000;
+    }
+
+    body.homepage .value-item h3,
+    body.homepage .value-item h3 span {
+        color: var(--universitea-green, #00d69f);
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    body.homepage .step-number {
+        color: var(--universitea-green, #00d69f);
+    }
+
+    body.homepage .bestsellers-info p,
+    body.homepage .favors-desc,
+    body.homepage .step-card p {
+        color: #000;
+    }
+
+    body.homepage .value-item p {
+        color: #000;
+        font-size: 10pt;
+    }
+
+    body.homepage .section-subtitle {
+        color: var(--universitea-green, #00d69f);
+        font-weight: bold;
+    }
+
+    body.homepage .section-title,
+    body.homepage .bestsellers-section-title {
+        border-bottom: none;
+    }
+
+    body.homepage .loyalty-footer {
+        display: none;
+    }
+
+    body.homepage .loyalty-steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    body.homepage .loyalty-steps li {
+        break-inside: avoid;
+    }
+
+    body.homepage .favors-content .btn-primary-outline {
+        display: none;
+    }
+
+    /* Bestsellers Section */
+    body.homepage .carousel-controls-container,
+    body.homepage .slide-nav-container,
+    body.homepage .bestsellers-header .accessibility-controls {
+        display: none;
+    }
+
+    body.homepage .bestsellers-product-name {
+        color: var(--universitea-green, #00d69f);
+    }
+
+    #bestsellers-content {
+        display: block;
+        overflow: visible;
+        overflow-x: visible;
+        height: auto;
+        scroll-snap-type: none;
+        white-space: normal;
+    }
+
+    body.homepage .product-slide {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+        border-bottom: none;
+        flex: none;
+        scroll-snap-align: none;
+        opacity: 1;
+        transform: none;
+        padding: 10px;
+    }
+
+    body.homepage .product-slide:nth-of-type(odd) {
+        border-left: 5px solid #000;
+        padding-left: 20px;
+    }
+
+    body.homepage .product-slide:nth-of-type(even) {
+        border-right: 5px solid #000;
+        padding-right: 20px;
+        text-align: right;
+    }
+
+    body.homepage .bestsellers-cta {
+        display: none;
+    }
+
+    /* FOOTER */
+    body .main-footer-area {
         margin-top: 40px;
         border-top: 2px solid #000;
         padding-top: 20px;
-        background: transparent !important;
+        background: transparent;
+        color: #000;
     }
 
     .footer-container {
         display: grid;
-        /* Rimuove grid */
     }
 
     .footer-column {
         margin-bottom: 10px;
+        color: #000;
     }
 
-    /* Mantiene solo contatti e copyright */
+    .footer-column h3,
+    .footer-column a,
+    .footer-bottom-content,
+    .footer-column {
+        margin-bottom: 10px;
+    }
+
+    .footer-column h3 {
+        color: var(--universitea-green, #00d69f);
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+
     .contact-list li {
         display: inline-block;
         margin: 0 10px;
@@ -409,6 +625,8 @@
         margin-top: 20px;
         padding-top: 10px;
         text-align: center;
+        background: transparent;
+        color: #000;
     }
 
     .legal-info p {
