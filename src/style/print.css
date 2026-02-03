@@ -414,4 +414,158 @@
     .legal-info p {
         font-size: 9pt;
     }
+
+    /*print tè*/
+    .tea-info-page .main-header,
+    .tea-info-page .main-footer-area,
+    .tea-info-page .tornasu,
+    .tea-info-page #breadcrumb,
+    .tea-info-page .skip-link {
+        display: none;
+    }
+
+    body .tea-info-page #tea-content {
+        background: transparent;
+        color: var(--darkbgcolor);
+        text-shadow: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tea-info-page #tea-content {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tea-info-page .teaintro {
+        height: auto;
+        display: block;
+        background-image: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tea-info-page .teaintro-text {
+        max-width: 100%;
+        padding: 0;
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+    }
+
+    .tea-info-page .teaintro-text h1 {
+        font-size: 24pt;
+        text-align: left;
+    }
+
+    .tea-info-page .teaintro-text p {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tea-info-page .curiosita{
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
+
+    .tea-info-page .curiosita img{
+        display: none;
+    }
+
+    .tea-info-page .curiosita h2, .tea-info-page .tea-card h2, .tea-info-page .tea-process h2{
+        font-size: 22pt;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tea-card h3{
+        font-size: 20pt;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tea-info-page .teaintro p, .tea-info-page .curiosita p, .tea-info-page .tea-card p, .tea-info-page .tea-process p, .tea-card p{
+        font-size: 18pt;
+        color: var(--darkbgcolor);
+    }
+
+    .tea-info-page .tea-process table {
+        border-collapse: collapse;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tea-info-page .tea-process thead th {
+        background-color: var(--lightbgcolor); /* Grigio chiaro invece del verde scuro */
+        color: var(--darkbgcolor);
+        border: 1px solid var(--darkbgcolor);
+    }
+
+    .tea-info-page .tea-process tbody th,
+    .tea-info-page .tea-process tbody td {
+        background-color: var(--lightbgcolor);
+        color: var(--darkbgcolor);
+        border: 1px solid var(--darkbgcolor);
+        padding: 0.5em;
+    }
+
+    .tea-info-page .tea-card {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tea-info-page .tea-card:nth-of-type(even) {
+        flex-direction: row;
+    }
+
+    .tea-info-page .card-text h3{
+        border: 0;
+    }
+
+    .tea-info-page .card-text {
+        border: 0;
+        padding: 0;
+        margin:0;
+    }
+
+    .tea-info-page .tea-card img {
+        max-width: 5cm;
+        float: right;
+        margin-left: 1cm;
+    }
+
+    .tea-info-page .quiz-section,
+    .tea-info-page .tea-quiz,
+    .tea-info-page #quiz-result,
+    .tea-info-page .indicetea {
+        display: none;
+    }
+
+    /*print about*/
+    .tea-info-page .curiosita-image img {
+        max-width: 4cm;
+    }
+
+    .about-page .main-header,
+    .about-page .main-footer-area,
+    .about-page .tornasu,
+    .about-page #breadcrumb,
+    .about-page .skip-link{
+        display: none;
+    }
+
+    .about-page .about-intro-img img{
+        max-width: 10cm;
+    }
+
+    .about-page .about-values img{
+        display: none;
+    }
 }
