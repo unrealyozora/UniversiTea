@@ -1775,8 +1775,6 @@ input:focus-visible {
     /*questo dà la trasparenza*/
     backdrop-filter: blur(12px);
     /*sfocato*/
-    -webkit-backdrop-filter: blur(12px);
-    /*per Safari*/
     border: 1px solid var(--txtcolor);
     border-radius: 1em;
 }
