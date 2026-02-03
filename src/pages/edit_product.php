@@ -61,8 +61,7 @@ try {
         if (isset($oldInput['prodotti_bundle']) && is_array($oldInput['prodotti_bundle'])) {
             $productsInBundle = $oldInput['prodotti_bundle'];
         }
-    }
-    elseif ($isEditing) {
+    } elseif ($isEditing) {
         $stmt = $conn->prepare("SELECT * FROM Prodotti WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -108,7 +107,7 @@ try {
 
                 $data['percent_sconto'] = $sconto;
 
-                foreach($bundleRows as $bRow) {
+                foreach ($bundleRows as $bRow) {
                     $productsInBundle[] = $bRow['contenuto'];
                 }
             }
@@ -158,50 +157,52 @@ try {
         $optionsUrgenza .= "<option value=\"$liv\" $sel>$liv</option>";
     }
 
-} catch (PDOException $e) { die("Errore DB: " . $e->getMessage()); }
+} catch (PDOException $e) {
+    die("Errore DB: " . $e->getMessage());
+}
 
 $template = file_get_contents(__DIR__ . '/templates/product_form_template.html');
 
 $replacements = [
-    '{{TITOLO_PAGINA}}'   => $pageTitle,
-    '{{TESTO_BOTTONE}}'   => $btnText,
-    '{{VAL_ID}}'          => $data['id'],
-    '{{VAL_NOME}}'        => htmlspecialchars($data['nome']),
+    '{{TITOLO_PAGINA}}' => $pageTitle,
+    '{{TESTO_BOTTONE}}' => $btnText,
+    '{{VAL_ID}}' => $data['id'],
+    '{{VAL_NOME}}' => htmlspecialchars($data['nome']),
     '{{BREADCRUMB}}'        => htmlspecialchars($data['nome'])!==''? htmlspecialchars($data['nome']) : 'NUOVO PRODOTTO',
     '{{VAL_DESCRIZIONE}}' => htmlspecialchars($data['descrizione']),
-    '{{VAL_PREZZO}}'      => $data['prezzo'],
-    '{{VAL_DISPONIBILITA}}'=> $data['disponibilita'],
-    '{{VAL_DESCRIZ_IMG}}'=>htmlspecialchars($data['img_alt']),
+    '{{VAL_PREZZO}}' => $data['prezzo'],
+    '{{VAL_DISPONIBILITA}}' => $data['disponibilita'],
+    '{{VAL_DESCRIZ_IMG}}' => htmlspecialchars($data['img_alt']),
 
     '{{SELECTED_BEVANDE}}' => ($data['categoria'] === 'bevande') ? 'selected' : '',
-    '{{SELECTED_MERCH}}'   => ($data['categoria'] === 'merchandising') ? 'selected' : '',
+    '{{SELECTED_MERCH}}' => ($data['categoria'] === 'merchandising') ? 'selected' : '',
     '{{SELECTED_SERVIZI}}' => ($data['categoria'] === 'servizi') ? 'selected' : '',
-    '{{SELECTED_BUNDLE}}'  => ($data['categoria'] === 'bundle') ? 'selected' : '',
+    '{{SELECTED_BUNDLE}}' => ($data['categoria'] === 'bundle') ? 'selected' : '',
     '{{BEVANDA}}' => ($data['categoria'] === 'bevande') ? 'selected-field' : '',
     '{{MERCHANDISING}}' => ($data['categoria'] === 'merchandising') ? 'selected-field' : '',
     '{{SERVIZI}}' => ($data['categoria'] === 'servizi') ? 'selected-field' : '',
     '{{BUNDLE}}' => ($data['categoria'] === 'bundle') ? 'selected-field' : '',
 
 
-    '{{SELECTED_ACCESSORI}}'     => ($data['tipologia_march'] === 'Accessori') ? 'selected' : '',
+    '{{SELECTED_ACCESSORI}}' => ($data['tipologia_march'] === 'Accessori') ? 'selected' : '',
     '{{SELECTED_ABBIGLIAMENTO}}' => ($data['tipologia_march'] === 'Abbigliamento') ? 'selected' : '',
-    '{{SELECTED_CASA}}'          => ($data['tipologia_march'] === 'Prodotti per la casa') ? 'selected' : '',
+    '{{SELECTED_CASA}}' => ($data['tipologia_march'] === 'Prodotti per la casa') ? 'selected' : '',
 
-    '{{SELECTED_TÈ}}'         => ($data['tipologia_bevanda'] === 'Tè') ? 'selected' : '',
+    '{{SELECTED_TÈ}}' => ($data['tipologia_bevanda'] === 'Tè') ? 'selected' : '',
     '{{SELECTED_CIOCCOLATO}}' => ($data['tipologia_bevanda'] === 'Cioccolato') ? 'selected' : '',
-    '{{SELECTED_INFUSO}}'     => ($data['tipologia_bevanda'] === 'Infuso') ? 'selected' : '',
+    '{{SELECTED_INFUSO}}' => ($data['tipologia_bevanda'] === 'Infuso') ? 'selected' : '',
 
 
-    '{{VAL_TEMP}}'        => htmlspecialchars($data['temp_consigliata']),
-    '{{VAL_SCOOP}}'       => htmlspecialchars($data['scoop']),
-    '{{VAL_MATERIALE}}'   => htmlspecialchars($data['materiale']),
-    '{{VAL_TIPO_MERCH}}'  => htmlspecialchars($data['tipologia_march']),
-    '{{VAL_TIPO_SERV}}'   => htmlspecialchars($data['tipologia_servizi']),
-    '{{VAL_URGENZA}}'     => htmlspecialchars($data['livello_urgenza']),
-    '{{VAL_SCONTO}}'      => htmlspecialchars($data['percent_sconto']),
+    '{{VAL_TEMP}}' => htmlspecialchars($data['temp_consigliata']),
+    '{{VAL_SCOOP}}' => htmlspecialchars($data['scoop']),
+    '{{VAL_MATERIALE}}' => htmlspecialchars($data['materiale']),
+    '{{VAL_TIPO_MERCH}}' => htmlspecialchars($data['tipologia_march']),
+    '{{VAL_TIPO_SERV}}' => htmlspecialchars($data['tipologia_servizi']),
+    '{{VAL_URGENZA}}' => htmlspecialchars($data['livello_urgenza']),
+    '{{VAL_SCONTO}}' => htmlspecialchars($data['percent_sconto']),
 
     '{{OPTIONS_BEVANDE}}' => $optionsBevandeHtml,
-    '{{CHECKBOX_PRODOTTI}}'=> $checkboxProdottiHtml,
+    '{{CHECKBOX_PRODOTTI}}' => $checkboxProdottiHtml,
     '{{OPTIONS_TIPO_SERVIZI}}' => $optionsServizi,
     '{{OPTIONS_URGENZA}}' => $optionsUrgenza
 ];
@@ -209,7 +210,7 @@ $replacements = [
 
 $errorPlaceholders = [];
 $fieldNames = [
-    'nome', 'descrizione', 'prezzo', 'disponibilita', 'categoria',
+    'nome', 'descrizione', 'prezzo', 'immagine', 'alt', 'disponibilita', 'categoria',
     'temp_consigliata', 'tipologia_bevanda', 'materiale',
     'tipologia_march', 'id_bevanda', 'tipologia_servizi', 'livello_urgenza',
     'percent_sconto', 'prodotti_bundle'

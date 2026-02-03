@@ -67,13 +67,14 @@
 
     <h2>{{TITOLO_PAGINA}}</h2>
 
-    <form action="../config/save_product.php" method="POST" id="productForm" novalidate>
+    <form action="../config/save_product.php" method="POST" id="productForm" enctype="multipart/form-data" novalidate>
 
         <input type="hidden" name="id" value="{{VAL_ID}}">
 
         <div class="form-group">
             <label for="nome">Nome Prodotto:</label>
-            <p class="product-advice">Inserisci un nome di al massimo 100 caratteri. Tutti i tipi di caratteri sono accettati</p>
+            <p class="product-advice">Inserisci un nome di al massimo 100 caratteri. Tutti i tipi di caratteri sono
+                accettati</p>
             <input type="text" id="nome" name="nome" value="{{VAL_NOME}}" maxlength="100" required
                    placeholder="Inserisci il nome del prodotto">
             {{ERR_NOME}}
@@ -81,7 +82,8 @@
 
         <div class="form-group">
             <label for="descrizione">Descrizione:</label>
-            <p class="product-advice">Inserisci una descrizione del prodotto al massimo 1000 caratteri. Tutti i tipi di caratteri sono accettati</p>
+            <p class="product-advice">Inserisci una descrizione del prodotto al massimo 1000 caratteri. Tutti i tipi di
+                caratteri sono accettati</p>
             <textarea id="descrizione" name="descrizione" rows="3" maxlength="1000" required
                       placeholder="Descrivi il prodotto...">{{VAL_DESCRIZIONE}}</textarea>
             {{ERR_DESCRIZIONE}}
@@ -89,13 +91,16 @@
 
         <div class="form-group">
             <label for="img_src">Selezione un'immagine:</label>
-            <input type="file" id="img_src" name="img_src">
+            <input type="file" id="img_src" name="img_src" accept="image/*">
+            {{ERR_IMMAGINE}}
         </div>
 
         <div class="form-group">
             <label for="img_alt">Descrizione per l'immagine:</label>
-            <p class="product-advice">Inserisci una descrizione per l'immagine al massimo 255 caratteri. Tutti i tipi di caratteri sono accettati</p>
+            <p class="product-advice">Inserisci una descrizione per l'immagine al massimo 255 caratteri. Tutti i tipi di
+                caratteri sono accettati</p>
             <textarea id="img_alt" name="img_alt" rows="3" maxlength="255" placeholder="Descrivi il prodotto...">{{VAL_DESCRIZ_IMG}}</textarea>
+            {{ERR_ALT}}
         </div>
 
         <div class="form-group">
