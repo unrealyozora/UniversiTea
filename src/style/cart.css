@@ -2,7 +2,7 @@
    STILE CARRELLO & CARD (Basato su UniversiTea Design System)
    ========================================================================== */
 
-/* Contenitore principale (per allineamento) */
+/* Contenitore principale (per allineamento) *//*
 .restricted-overlay {
     position: fixed;
     top: 0;
@@ -10,12 +10,9 @@
     width: 100%;
     height: 100%;
     z-index: 20000;
-    /* Molto alto per stare sopra l'header sticky (che ha 10000) */
 
     background-color: rgba(15, 14, 14, 0.90);
-    /* --darkbgcolor con opacità */
     backdrop-filter: blur(10px);
-    /* Sfocatura della pagina sottostante */
     -webkit-backdrop-filter: blur(10px);
 
     display: flex;
@@ -23,37 +20,31 @@
     align-items: center;
     padding: 1rem;
     box-sizing: border-box;
-}
+}*/
 
-/* 2. La Card (Stile Login) */
+/* 2. La Card (Stile Login) *//*
 .restricted-modal {
     width: 100%;
     max-width: 35em;
-    /* Leggermente più piccola della login full page */
     background: var(--card-bg-color);
     border-radius: 25px;
     padding: 3rem 2rem;
-
-    /* Effetto Neon Verde come nel Login */
     box-shadow: 0 0 20px rgba(0, 214, 159, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.05);
-
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* Animazione di entrata */
     animation: popIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
-/* Icona/Logo in alto */
+*/
+/* Icona/Logo in alto *//*
 .modal-icon {
     margin-bottom: 1.5rem;
     filter: drop-shadow(0 0 8px var(--universitea-green));
 }
 
-/* Tipografia */
+
 .restricted-modal h2 {
     font-size: 2rem;
     color: #fff;
@@ -68,7 +59,7 @@
     margin-bottom: 2rem;
 }
 
-/* Pulsanti */
+
 .modal-actions {
     width: 100%;
     display: flex;
@@ -77,7 +68,7 @@
     margin-bottom: 1.5rem;
 }
 
-/* Riutilizziamo la classe .submit-btn ma la adattiamo al contesto modale */
+
 .btn-modal {
     text-decoration: none;
     display: inline-block;
@@ -97,8 +88,7 @@
 .register-link-modal:hover {
     text-shadow: 0 0 10px rgba(0, 214, 159, 0.5);
     text-decoration: underline;
-}
-
+}*/
 .cart-container {
     max-width: 75em;
     margin: 2rem auto 6rem auto;
@@ -113,16 +103,15 @@
     justify-content: space-between;
     align-items: flex-end;
 }
-
+/*
 .cart-header h1 {
     font-size: 2.5rem;
     color: #fff;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    line-height: 1.5em;
 }
-
+*/
 .cart-stats {
     font-size: 1.1rem;
     color: #aaa;
@@ -137,17 +126,14 @@
 /* --- CARD PRODOTTO NEL CARRELLO (.cart-item) --- */
 .cart-item {
     display: flex;
-    flex-wrap: wrap;
-    /* Per gestire mobile */
+    flex-wrap: wrap; /* Per gestire mobile */
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
 
     /* Stile "Glass" coerente con .product-card e .step-card */
-    background-color: var(--card-bg-color);
-    /* rgba(255, 255, 255, 0.03) */
-    border: 1px solid var(--card-border-color);
-    /* rgba(255, 255, 255, 0.05) */
+    background-color: var(--card-bg-color); /* rgba(255, 255, 255, 0.03) */
+    border: 1px solid var(--card-border-color); /* rgba(255, 255, 255, 0.05) */
     border-radius: 1.25em;
     padding: 1.5rem 2rem;
     margin-bottom: 1.25rem;
@@ -160,8 +146,7 @@
 .cart-item:hover {
     border-color: rgba(0, 214, 159, 0.3);
     box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(0, 214, 159, 0.1);
-    /* glow interno */
+    0 0 0 1px rgba(0, 214, 159, 0.1); /* glow interno */
     transform: translateY(-2px);
 }
 
@@ -243,11 +228,11 @@
     font-size: 1rem;
 }
 
-/* --- BOTTONE RIMUOVI --- */
+/* --- BOTTONE RIMUOVI --- *//*
 .remove-btn {
     background: transparent;
-    border: 1px solid #ff4444;
-    color: #ff4444;
+    border: 1px solid var(--error-txtcolor);
+    color: var(--error-txtcolor);
     padding: 0.5em 1em;
     border-radius: 2em;
     font-size: 0.85rem;
@@ -259,17 +244,16 @@
 }
 
 .remove-btn:hover {
-    background-color: #ff4444;
+    background-color: var(--error-txtcolor);
     color: #fff;
     box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
-}
+}*/
 
 /* --- SEZIONE RIEPILOGO FINALE --- */
 .cart-summary {
     margin-top: 3rem;
     padding: 2rem;
-    background: rgba(0, 214, 159, 0.05);
-    /* Verde molto tenue */
+    background: rgba(0, 214, 159, 0.05); /* Verde molto tenue */
     border: 1px solid rgba(0, 214, 159, 0.2);
     border-radius: 1.25em;
     display: flex;
@@ -302,10 +286,9 @@
 }
 
 .clear-cart-btn {
-    width: 100%;
-    /* Bottone a larghezza piena */
+    width: 100%; /* Bottone a larghezza piena */
     text-align: center;
-    background: #ff4444;
+    background: var(--error-txtcolor);
     border: none;
     color: #0f0e0e;
     padding: 1em 2.5em;
@@ -322,14 +305,13 @@
 .clear-cart-btn:hover {
     background-color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 0.5em 1.5em #C82909;
+    box-shadow: 0 0.5em 1.5em  #C82909;
 }
 
 /* Bottone Checkout (Stile .btn-join ma adattato) */
 .checkout-btn,
-.fidelity-payment-btn {
-    width: 100%;
-    /* Bottone a larghezza piena */
+.fidelity-payment-btn  {
+    width: 100%; /* Bottone a larghezza piena */
     text-align: center;
     background-color: var(--universitea-green);
     color: #0f0e0e;
@@ -351,14 +333,12 @@
     transform: translateY(-2px);
     box-shadow: 0 0.5em 1.5em rgba(0, 214, 159, 0.5);
 }
-
 .cart-content {
     display: grid;
     /* Colonna 1: Flessibile (1fr), Colonna 2: Fissa (380px) */
     grid-template-columns: 1fr 380px;
     gap: 2rem;
-    align-items: start;
-    /* Importante: impedisce al box di destra di allungarsi quanto la lista prodotti */
+    align-items: start; /* Importante: impedisce al box di destra di allungarsi quanto la lista prodotti */
     position: relative;
 }
 
@@ -369,12 +349,10 @@
 
     /* Rendiamolo "Sticky" così ti segue mentre scorri */
     position: sticky;
-    top: 8.5rem;
-    /* Distanza dall'alto (regola in base all'altezza del tuo Header fisso) */
+    top: 8.5rem; /* Distanza dall'alto (regola in base all'altezza del tuo Header fisso) */
 
     /* Stile "Card" coerente */
-    background: rgba(0, 214, 159, 0.03);
-    /* Verde chiarissimo trasparente */
+    background: rgba(0, 214, 159, 0.03); /* Verde chiarissimo trasparente */
     border: 1px solid rgba(0, 214, 159, 0.2);
     border-radius: 1.25em;
     padding: 2rem;
@@ -399,105 +377,9 @@
 
 .checkout-actions {
     display: flex;
-    flex-direction: column;
-    /* Su colonna laterale, i bottoni stanno meglio impilati */
+    flex-direction: column; /* Su colonna laterale, i bottoni stanno meglio impilati */
     gap: 1rem;
     width: 100%;
 }
 
 /* --- RESPONSIVE MOBILE --- */
-@media (max-width: 950px) {
-    .cart-content {
-        /* Torna a una sola colonna impilata */
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .cart-summary {
-        /* Disabilita sticky su mobile */
-        position: static;
-        width: 100%;
-        margin-top: 1rem;
-    }
-
-    .checkout-actions {
-        flex-direction: row;
-        /* Su mobile tornano affiancati se c'è spazio */
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .checkout-btn,
-    .fidelity-payment-btn {
-        width: auto;
-    }
-}
-
-@media (max-width: 700px) {
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .item-actions {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 0.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        padding-top: 1rem;
-    }
-
-    .item-subtotal {
-        order: 1;
-        text-align: left;
-    }
-
-    .quantity-controls {
-        order: 2;
-    }
-
-    .remove-btn {
-        order: 3;
-        width: 100%;
-        text-align: center;
-        margin-top: 0.5rem;
-    }
-
-    .checkout-actions {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .checkout-btn,
-    .fidelity-payment-btn {
-        width: 100%;
-    }
-}
-
-/* Mobile stretto */
-@media (max-width: 500px) {
-    .checkout-actions {
-        flex-direction: column;
-    }
-
-    .checkout-btn,
-    .fidelity-payment-btn {
-        width: 100%;
-    }
-}
-
-/* Fidelity Info Message */
-.fidelity-info {
-    font-size: 0.9em;
-    color: #ccc;
-    text-align: center;
-    margin-top: 0.5em;
-    width: 100%;
-}
-
-.fidelity-info strong {
-    color: var(--universitea-green);
-}
