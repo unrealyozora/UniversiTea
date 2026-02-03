@@ -72,10 +72,11 @@ if (isset($_SESSION['msg_content'])) {
 }
 
 // 6. Carica e Renderizza la pagina completa
-$pageTemplate = file_get_contents(__DIR__ . '/templates/administrator.html');
+$pageTemplate = file_get_contents('templates/administrator.html');
 
-echo str_replace(
+$html = str_replace(
     ['{{LISTA_PRODOTTI_ADMIN}}', '{{USER_FEEDBACK}}'],
     [$listaHtml, $userFeedback],
     $pageTemplate
 );
+echo $html;

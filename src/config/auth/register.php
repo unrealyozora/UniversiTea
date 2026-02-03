@@ -51,8 +51,8 @@ function checkValidData(): void
     if (strlen($user->getUsername()) < 3 || strlen($user->getUsername()) > 32) {
         redirectWithError("Username deve essere compreso tra 3 e 32 caratteri", "username");
     }
-    if (strlen($user->getPassword()) < 6 || strlen($user->getPassword()) > 32) {
-        redirectWithError("La password deve essere compresa tra 6 e 32 caratteri", "password");
+    if (strlen($user->getPassword()) < 5 || strlen($user->getPassword()) > 32) {
+        redirectWithError("La password deve essere compresa tra 5 e 32 caratteri", "password");
     }
     if ($user->getPassword() != $user->getConfirmPassword()) {
         redirectWithError("Le due password non corrispondono", "confirmPassword");
