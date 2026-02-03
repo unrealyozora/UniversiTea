@@ -335,6 +335,11 @@ I dettagli specifici del tipo di prodotto vengono mostrati in base alla categori
 Al fine di non limitare l' utilizzo del sito a coloro che non utilizzano JavaScript all' interno del loro browser, abbiamo 
 cercato di implementare tutte funzionalità legate al negozio, quali registrazione, accesso, aggiunta al carrello e ai preferiti, indipendenti da codice JavaScript.
 
+== Gestione pagine di errore
+Le pagine di errore sono posizionate al path _src/pages/errors_, per poter renderle disponibili a prescindere dalla posizione
+della pagina che genera l'errore, abbiamo dovuto creare un file _.htaccess_ indicante il path delle pagine di errore corrispondenti 
+e utilizzare path assoluti per i link e i file CSS, seppur sia una scelta non ottimale che non siamo però riusciti a mitigare.
+
 = 8. Uso dell'AI nel progetto
 Durante lo sviluppo del progetto, l'Intelligenza Artificiale è stata utilizzata in modo limitato e mirato. In particolare, sono stati impiegati strumenti di AI per:
 - Generazione delle immagini per evitare di incappare in problemi di copyright.
