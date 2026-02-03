@@ -8,24 +8,26 @@
         <div class="item-subtotal">{{SUBTOTALE}}</div>
 
         <div class="quantity-controls">
-            <form method="POST" action="./cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+            <form method="POST" action="./cart.php" class="action-form" data-cart-action>
                 <input type="hidden" name="action" value="update_quantity">
                 <input type="hidden" name="product_id" value="{{ID}}">
                 <input type="hidden" name="quantity" value="{{QTY_MINUS}}">
-                <button type="submit" class="quantity-btn" {{DISABLED_MINUS}} aria-label="Diminuisci quantità: -1">-</button>
+                <button type="submit" class="quantity-btn" {{DISABLED_MINUS}} aria-label="Diminuisci quantità: -1">-
+                </button>
             </form>
 
             <span class="quantity-display">{{QTY}}</span>
 
-            <form method="POST" action="./cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+            <form method="POST" action="./cart.php" class="action-form" data-cart-action>
                 <input type="hidden" name="action" value="update_quantity">
                 <input type="hidden" name="product_id" value="{{ID}}">
                 <input type="hidden" name="quantity" value="{{QTY_PLUS}}">
-                <button type="submit" class="quantity-btn" {{DISABLED_PLUS}} aria-label="Aumenta quantità: +1">+</button>
+                <button type="submit" class="quantity-btn" {{DISABLED_PLUS}} aria-label="Aumenta quantità: +1">+
+                </button>
             </form>
         </div>
 
-        <form method="POST" action="./cart.php" class="action-form" onsubmit="return handleCartAction(event, this)">
+        <form method="POST" action="./cart.php" class="action-form" data-cart-action>
             <input type="hidden" name="action" value="remove">
             <input type="hidden" name="product_id" value="{{ID}}">
             <button type="submit" class="remove-btn">Rimuovi</button>

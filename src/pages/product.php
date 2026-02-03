@@ -81,7 +81,7 @@ try {
             break;
 
         case 'bundle':
-            // Per i bundle potresti voler mostrare lo sconto applicato
+            // Per i bundle mostreiamo lo sconto applicato
             $innerSpecs .= "<div class='spec-item'><strong>Percentuale Sconto:</strong> Prodotto incluso in un pacchetto speciale.</div>";
             $items = getBundleItems($conn, $productId);
             if (!empty($items)) {

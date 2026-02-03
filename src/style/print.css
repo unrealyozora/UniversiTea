@@ -9,22 +9,22 @@
     *,
     *::before,
     *::after {
-        background: transparent !important;
+        background: transparent;
         color: #000;
         /* Removed !important to allow specific colors */
-        box-shadow: none !important;
-        text-shadow: none !important;
-        filter: none !important;
+        box-shadow: none;
+        text-shadow: none;
+        filter: none;
         /* Rimuove filtri di inversione colori */
-        transition: none !important;
-        animation: none !important;
+        transition: none;
+        animation: none;
     }
 
     body {
         font-family: "Helvetica", "Arial", sans-serif;
         font-size: 11pt;
         line-height: 1.3;
-        background-color: #fff !important;
+        background-color: #fff;
         color: #000;
         margin: 0;
         padding: 0;
@@ -32,8 +32,8 @@
 
     a {
         text-decoration: underline;
-        color: #000 !important;
-        border: none !important;
+        color: #000;
+        border: none;
     }
 
     a[href^="http"]::after {
@@ -54,7 +54,6 @@
     }
 
     .product-card img,
-    .tea-card img,
     .cart-item img,
     .product-gallery img {
         width: 30px !important;
@@ -241,63 +240,6 @@
         margin-bottom: 10px;
         padding: 10px;
         page-break-inside: avoid;
-    }
-
-    /* ================================================ PAGINA ABOUT & INFO TE ================================================ */
-
-    .statsbar {
-        display: flex;
-        justify-content: space-between;
-        border: 1px solid #666;
-        padding: 10px;
-        margin: 15px 0;
-    }
-
-    .stat-number {
-        font-size: 14pt;
-        font-weight: bold;
-    }
-
-    .tea-card {
-        flex-direction: row !important;
-        border: 1px solid #666 !important;
-        padding: 10px !important;
-        margin-bottom: 10px !important;
-        gap: 15px;
-        page-break-inside: avoid;
-        align-items: flex-start;
-    }
-
-    .tea-card:nth-of-type(even) {
-        flex-direction: row !important;
-    }
-
-    .tea-card img {
-        max-width: 100px;
-        height: auto;
-        margin: 0;
-        border: 1px solid #eee;
-        box-shadow: none !important;
-    }
-
-    .card-text {
-        border: none !important;
-        padding: 0 !important;
-        flex: 1;
-    }
-
-    .card-text h2 {
-        margin-top: 0;
-        margin-bottom: 5px;
-        font-size: 12pt;
-        color: #000 !important;
-    }
-
-    .card-text p {
-        margin: 0;
-        font-size: 10pt;
-        line-height: 1.3;
-        color: #000 !important;
     }
 
     /* ================================================ HOMEPAGE + HEADER + FOOTER ================================================ */
@@ -633,7 +575,7 @@
         font-size: 9pt;
     }
 
-    /*print tè*/
+    /* ================================================ PAGINA ABOUT & INFO TE ================================================ */
     .tea-info-page .main-header,
     .tea-info-page .main-footer-area,
     .tea-info-page .tornasu,
@@ -651,13 +593,13 @@
         margin: 0;
     }
 
-    .tea-info-page #tea-content {
+    body .tea-info-page #tea-content {
         max-width: 100%;
         margin: 0;
         padding: 0;
     }
 
-    .tea-info-page .teaintro {
+    body .tea-info-page .teaintro {
         height: auto;
         display: block;
         background-image: none;
@@ -665,7 +607,7 @@
         margin: 0;
     }
 
-    .tea-info-page .teaintro-text {
+    body .tea-info-page .teaintro-text {
         max-width: 100%;
         padding: 0;
         background: none;
@@ -674,100 +616,99 @@
         border: none;
     }
 
-    .tea-info-page .teaintro-text h1 {
+    body .tea-info-page .teaintro-text h1 {
         font-size: 24pt;
         text-align: left;
     }
 
-    .tea-info-page .teaintro-text p {
+    body .tea-info-page .teaintro-text p {
         text-align: left;
         padding: 0;
         margin: 0;
     }
 
-    .tea-info-page .curiosita{
+    body .tea-info-page .curiosita{
         padding: 0;
         margin: 0;
         display: block;
     }
 
-    .tea-info-page .curiosita img{
+    body .tea-info-page .curiosita img{
         display: none;
     }
 
-    .tea-info-page .curiosita h2, .tea-info-page .tea-card h2, .tea-info-page .tea-process h2{
+    body.tea-info-page .curiosita h2, .tea-info-page .tea-card h2, .tea-info-page .tea-process h2{
         font-size: 22pt;
         padding: 0;
         margin: 0;
     }
 
-    .tea-card h3{
+    body .tea-info-page .tea-card h3{
         font-size: 20pt;
         padding: 0;
         margin: 0;
     }
 
-    .tea-info-page .teaintro p, .tea-info-page .curiosita p, .tea-info-page .tea-card p, .tea-info-page .tea-process p, .tea-card p{
+    body .tea-info-page .teaintro p, .tea-info-page .curiosita p, .tea-info-page .tea-card p, .tea-info-page .tea-process p, .tea-card p{
         font-size: 18pt;
         color: var(--darkbgcolor);
     }
 
-    .tea-info-page .tea-process table {
+    body .tea-info-page .tea-process table {
         border-collapse: collapse;
         width: 100%;
         padding: 0;
         margin: 0;
     }
 
-    .tea-info-page .tea-process thead th {
+    body .tea-info-page .tea-process thead th {
         background-color: var(--lightbgcolor); /* Grigio chiaro invece del verde scuro */
         color: var(--darkbgcolor);
         border: 1px solid var(--darkbgcolor);
     }
 
-    .tea-info-page .tea-process tbody th,
-    .tea-info-page .tea-process tbody td {
+    body .tea-info-page .tea-process tbody th,
+    body .tea-info-page .tea-process tbody td {
         background-color: var(--lightbgcolor);
         color: var(--darkbgcolor);
         border: 1px solid var(--darkbgcolor);
         padding: 0.5em;
     }
 
-    .tea-info-page .tea-card {
+    body .tea-info-page .tea-card {
         display: block;
         margin: 0;
         padding: 0;
     }
 
-    .tea-info-page .tea-card:nth-of-type(even) {
+    body .tea-info-page .tea-card:nth-of-type(even) {
         flex-direction: row;
     }
 
-    .tea-info-page .card-text h3{
+    body .tea-info-page .card-text h3{
         border: 0;
     }
 
-    .tea-info-page .card-text {
+    body .tea-info-page .card-text {
         border: 0;
         padding: 0;
         margin:0;
     }
 
-    .tea-info-page .tea-card img {
+    body .tea-info-page .tea-card img {
         max-width: 5cm;
         float: right;
         margin-left: 1cm;
     }
 
-    .tea-info-page .quiz-section,
-    .tea-info-page .tea-quiz,
-    .tea-info-page #quiz-result,
-    .tea-info-page .indicetea {
+    body .tea-info-page .quiz-section,
+    body .tea-info-page .tea-quiz,
+    body .tea-info-page #quiz-result,
+    body .tea-info-page .indicetea {
         display: none;
     }
 
-    /*print about*/
-    .tea-info-page .curiosita-image img {
+    body .tea-info-page .curiosita-image img {
         max-width: 4cm;
     }
 
@@ -786,4 +727,21 @@
     .about-page .about-values img{
         display: none;
     }
+
+    /* ================================================ PAGINA ABOUT & INFO TE ================================================ */
+    .error-page .error-image img{
+        display: none;
+    }
+
+    /*pagina register*/
+    .register-body .main-footer-area, .login-body .main-footer-area{
+        display: none;
+    }
+
+    .login-body #login-content .login-card, .register-body #register-content .register-card{
+        box-shadow: 0;
+        padding: 0;
+        margin: 0;
+    }
+
 }
