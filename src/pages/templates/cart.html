@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/mini.css">
     <link rel="stylesheet" href="../style/cart.css">
     <style>
         .action-form {
@@ -87,8 +88,7 @@
                     <span>{{TOTAL_AMOUNT}}</span>
                 </div>
                 <div class="checkout-actions">
-                    <form method="POST" action="cart.php" class="action-form"
-                          onsubmit="return handleCartAction(event, this)">
+                    <form method="POST" action="cart.php" class="action-form">
                         <input type="hidden" name="action" value="clear">
                         <button type="submit" class="clear-cart-btn">Svuota Carrello</button>
                     </form>

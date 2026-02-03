@@ -27,7 +27,7 @@ html,
 body {
     font-size: 100%;
     font-family: "Lexend", "Roboto", sans-serif;
-    line-height: 1.5em;
+    line-height: 1.6em;
     scroll-padding-top: 30vh;
 }
 
@@ -94,6 +94,7 @@ section {
 .bestsellers-cta,
 .hero-cta-outline,
 .btn-primary-outline,
+.btn-add-new,
 .btn-loyalty {
     display: inline-flex;
     justify-content: center;
@@ -125,6 +126,7 @@ section {
 .bestsellers-cta:hover,
 .hero-cta-outline:hover,
 .btn-primary-outline:hover,
+.btn-add-new:hover,
 .btn-loyalty:hover {
     background-color: #fff;
     border-color: #fff;
@@ -424,7 +426,7 @@ body.menu-open {
     align-items: center;
     justify-content: center;
     padding: 0;
-    line-height: 1;
+    line-height: 1.6;
 }
 
 .mobile-nav-content {
@@ -610,7 +612,7 @@ body.menu-open .mobile-nav-content ul {
 .hero-brand {
     font-size: 6rem;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.6;
     color: #fff;
     margin-bottom: 0.5rem;
 }
@@ -661,8 +663,7 @@ body.menu-open .mobile-nav-content ul {
     color: #0f0e0e;
     text-transform: uppercase;
     letter-spacing: 0.0625em;
-    line-height: 1;
-    box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.6;
 }
 
 #breadcrumb p {
@@ -700,268 +701,6 @@ body.homepage #breadcrumb {
     }
 }
 
-
-/* ==========================================================================
-   5. MEDIA QUERIES (MOBILE) - Sotto 900px
-========================================================================== */
-@media (max-width: 900px) {
-    .nav-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(15, 14, 14, 0.98);
-        backdrop-filter: blur(0.9375em);
-        z-index: 10002;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: all 0.3s ease;
-        margin: 0;
-    }
-
-    #main-menu ul,
-    #user-actions ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        width: 100%;
-    }
-
-    #main-menu ul,
-    #user-actions ul {
-        transform: translateY(1.875em);
-        transition: transform 0.3s ease;
-    }
-
-
-    body .main-header .nav-wrapper .btn-join {
-        background-color: var(--universitea-green);
-        color: #0f0e0e;
-        border-color: var(--universitea-green);
-        box-shadow: 0 0.25em 0.95em rgba(0, 214, 159, 0.3);
-    }
-
-    #main-menu a,
-    .nav-text-link,
-    .nav-profile-link,
-    li#current-link,
-    #current-link span,
-    #user-actions ul li {
-        font-size: 1.8rem;
-        color: var(--txtcolor);
-        font-weight: 800;
-        justify-content: center;
-    }
-
-    ul li#current-link {
-        justify-content: center;
-        padding-left: 0;
-        gap: 0.5em;
-    }
-
-    ul li#current-link::before {
-        position: relative;
-        left: auto;
-        transform: translateX(-100vw);
-        filter: drop-shadow(100vw 0 0 var(--universitea-green));
-    }
-
-    .nav-text-link img,
-    .nav-profile-link img,
-    li#current-link .nav-text-link img,
-    li#current-link img {
-        width: 1.875em;
-        height: 1.875em;
-        filter: brightness(0) invert(1) !important;
-    }
-
-    .mobile-only-text {
-        display: inline-block;
-        margin-left: 0.625em;
-    }
-
-    .close-menu-btn {
-        position: absolute;
-        top: 1.5625em;
-        right: 5%;
-        width: 3.5rem;
-        height: 3.5rem;
-        color: #fff;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .close-menu-btn::before,
-    .close-menu-btn::after {
-        content: '';
-        position: absolute;
-        width: 2rem;
-        height: 3px;
-        background-color: #fff;
-        border-radius: 4px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .close-menu-btn::before {
-        transform: rotate(45deg);
-    }
-
-    .close-menu-btn::after {
-        transform: rotate(-45deg);
-    }
-
-    .hamburger-btn {
-        display: block;
-        width: 3.5rem;
-        height: 3.5rem;
-    }
-
-    .menu-checkbox {
-        display: block;
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        width: 3.5em;
-        height: 3.5em;
-        z-index: 10003;
-        top: 1.25em;
-        right: 1.25em;
-    }
-
-    #menu-toggle:checked ~ .hamburger-btn {
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-
-    #menu-toggle:checked ~ .nav-wrapper {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
-    /* ...gli elementi salgono su */
-    #menu-toggle:checked ~ .nav-wrapper #main-menu ul,
-    #menu-toggle:checked ~ .nav-wrapper #user-actions ul {
-        transform: translateY(0);
-    }
-
-    body:has(#menu-toggle:checked) {
-        overflow: hidden;
-    }
-
-    .parallax-layer {
-        width: 180%;
-        max-width: none;
-    }
-
-    .layer-4 {
-        width: 100%;
-        left: 0;
-        transform: none;
-        bottom: 5%;
-    }
-
-    .layer-7 {
-        bottom: -2%;
-    }
-
-    .layer-8 {
-        bottom: 0;
-    }
-
-    #breadcrumb {
-        font-size: 0.75rem;
-        padding: 0.5em 1em;
-        white-space: nowrap;
-        margin-top: 1rem;
-        margin-bottom: 1.5rem;
-        margin-left: 5%;
-    }
-
-    body.homepage #breadcrumb {
-        top: 9em;
-        left: 5%;
-        transform: none;
-        bottom: auto;
-    }
-
-    .hero-text-box {
-        padding: 2rem 1.5rem;
-        width: 95%;
-    }
-
-    .hero-brand {
-        font-size: 3rem;
-    }
-}
-
-
-/* ==========================================================================
-   MEDIA QUERY "LAPTOP" (Per schermi bassi)
-========================================================================== */
-@media (max-height: 850px) {
-    body.homepage #breadcrumb {
-        top: 8em;
-        transform: scale(0.9);
-    }
-
-    .hero-ui-content {
-        padding-top: 6.25em;
-    }
-
-    .hero-text-box {
-        padding: 1.5rem 2rem;
-        max-width: 46.8em;
-    }
-
-    .hero-brand {
-        font-size: 2.8rem;
-        margin-bottom: 0;
-    }
-
-    .hero-slogan {
-        font-size: 1rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .hero-description {
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .hero-buttons {
-        gap: 1rem;
-    }
-
-    .hero-cta,
-    .hero-cta-outline {
-        padding: 0.6rem 1.5rem;
-    }
-
-    .main-header {
-        padding: 0.8rem 5%;
-    }
-
-    img.logo,
-    .logo-img {
-        width: 6.8em;
-    }
-}
-
 /*
 =========================================
    GENERIC: STILE TITOLI SEZIONI
@@ -983,7 +722,7 @@ body.homepage #breadcrumb {
     color: var(--txtcolor);
     text-transform: uppercase;
     display: inline-block;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .section-subtitle {
@@ -995,7 +734,7 @@ body.homepage #breadcrumb {
     max-width: 37.5em;
 }
 
-.values-section > .section-title {
+.values-section>.section-title {
     margin-bottom: 6rem;
 }
 
@@ -1063,7 +802,7 @@ body.homepage #breadcrumb {
     list-style: none;
 }
 
-.categories-list > li {
+.categories-list>li {
     flex: 1 1 28rem;
     max-width: 38rem;
 }
@@ -1112,10 +851,10 @@ body.homepage #breadcrumb {
     z-index: 2;
     width: 100%;
     background: linear-gradient(to top,
-    rgba(15, 14, 14, 1) 0%,
-    rgba(15, 14, 14, 1) 40%,
-    rgba(15, 14, 14, 0.8) 70%,
-    transparent 100%);
+            rgba(15, 14, 14, 1) 0%,
+            rgba(15, 14, 14, 1) 40%,
+            rgba(15, 14, 14, 0.8) 70%,
+            transparent 100%);
 
     padding: 5rem 2rem 1.5rem 2rem;
     color: #fff;
@@ -1228,7 +967,7 @@ body.homepage #breadcrumb {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    line-height: 1.2;
+    line-height: 1.6;
     text-transform: uppercase;
     letter-spacing: 0.0625em;
 }
@@ -1248,7 +987,7 @@ body.homepage #breadcrumb {
     font-size: 3rem;
     color: #fff;
     margin-bottom: 1.5rem;
-    line-height: 1.1;
+    line-height: 1.6;
 }
 
 .favors-desc {
@@ -1308,7 +1047,7 @@ body.homepage #breadcrumb {
     font-size: 3rem;
     font-weight: 900;
     color: var(--step-number);
-    line-height: 1;
+    line-height: 1.6;
 }
 
 .step-card h3 {
@@ -1344,40 +1083,6 @@ body.homepage #breadcrumb {
     text-align: center;
 }
 
-/* =========================================
-   MEDIA QUERIES (Mobile Adjustment)
-========================================= */
-@media (max-width: 900px) {
-
-    .favors-wrapper {
-        flex-direction: column-reverse;
-        gap: 3rem;
-        width: 100%;
-    }
-
-    .favors-section {
-        padding: 4rem 5%;
-        text-align: center;
-        gap: 0;
-    }
-
-    .favors-content {
-        text-align: center;
-        /* Su mobile rimuoviamo la linea laterale verde */
-        border-left: none;
-        padding-left: 0;
-        flex: 1 1 auto;
-    }
-
-    .favors-desc {
-        margin: 0 auto 2rem auto;
-    }
-
-    .favors-visual {
-        width: 100%;
-        flex: 1 1 auto;
-    }
-}
 
 /*
 ==========================================================================================================================================
@@ -1414,7 +1119,7 @@ body.homepage #breadcrumb {
     font-weight: 800;
     color: var(--txtcolor);
     margin: 0;
-    line-height: 1;
+    line-height: 1.6;
     /* Richiesta utente: centrato se non c'è JS */
     text-align: center;
     width: 100%;
@@ -1599,7 +1304,7 @@ body.homepage #breadcrumb {
 
 .bestsellers-product-name {
     font-size: 3.5rem;
-    line-height: 1.1;
+    line-height: 1.6;
     font-weight: 700;
     color: var(--universitea-green);
     margin: 0 0 1.5rem 0;
@@ -1608,7 +1313,7 @@ body.homepage #breadcrumb {
 .bestsellers-info p {
     font-size: 1.1rem;
     color: var(--txtcolor);
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 2.5rem;
     max-width: 100%;
 }
@@ -1841,109 +1546,6 @@ body.js-carousel-active .bestsellers-visual figcaption::before {
     position: relative;
     top: -1px;
 }
-
-/* =========================================
-   MEDIA QUERY MOBILE (FIX PRIORITÀ ID)
-   ========================================= */
-@media (max-width: 900px) {
-
-    #bestsellers-content {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        width: 100%;
-        gap: 0;
-        padding-bottom: 2rem;
-
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .product-slide {
-        flex: 0 0 100%;
-        width: 100%;
-        min-width: 100%;
-
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem 0;
-        margin: 0;
-        gap: 1.5rem;
-
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
-    }
-
-    .bestsellers-info {
-        width: 100%;
-        flex: unset;
-        /* Per eliminare il flex 1 che c'èera prima */
-        border-left: none;
-        padding-left: 0;
-        margin-left: 0;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .bestsellers-product-name {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .bestsellers-info p {
-        font-size: 1rem;
-        padding: 0 5rem;
-        max-width: 100rem;
-    }
-
-    .bestsellers-visual {
-        flex: unset;
-        /* Per eliminare il flex 1 che c'èera prima */
-        width: 100%;
-        height: 18rem;
-        margin: 0;
-    }
-
-    .bestsellers-nav {
-        display: none;
-    }
-
-    .bestsellers-header {
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .header-left-group {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .bestsellers-section-title {
-        text-align: center;
-        font-size: 1.8rem;
-    }
-
-    .slide-nav-container {
-        /* Su mobile li teniamo sempre in fondo */
-        bottom: 1rem;
-        padding: 0 1rem;
-        /* Le regole flex ereditate dal desktop funzionano anche qui per metterli ai lati */
-    }
-}
-
-/*====================================================================================================================================================
-
-
-
 /* =========================================
    STILE PAGINA PRODOTTO (WCAG AA & STICKY)
 ========================================= */
@@ -1983,7 +1585,7 @@ body.js-carousel-active .bestsellers-visual figcaption::before {
 /* Tipografia e Contrasto */
 .product-info-sticky h1 {
     font-size: clamp(2rem, 3.5vw, 3rem);
-    line-height: 1.1;
+    line-height: 1.6;
     color: #fff;
     margin: 0.5rem 0;
 }
@@ -2036,8 +1638,8 @@ body.js-carousel-active .bestsellers-visual figcaption::before {
 
 /* Variante non disponibile */
 .availability.out-of-stock .status-dot {
-    background-color: #ff4444;
-    box-shadow: 0 0 8px #ff4444;
+    background-color: var(--error-txtcolor);
+    box-shadow: 0 0 8px var(--error-txtcolor);
 }
 
 /* Immagine */
@@ -2124,21 +1726,7 @@ input:focus-visible {
 }
 
 /* MOBILE RESPONSIVE */
-@media (max-width: 900px) {
-    .product-detail-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
 
-    .product-info-sticky {
-        position: static;
-        padding: 1.5rem;
-    }
-
-    .product-gallery {
-        order: -1;
-    }
-}
 
 
 /*--------------------------*/
@@ -2182,8 +1770,18 @@ input:focus-visible {
     border-radius: 1em;
 }
 
-.teaintro-text h1 {
-    color: var(--universitea-green);
+.teaintro-text {
+    color: var(--lightbgcolor);
+    text-align: center;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    font-size: 1.5em;
+    line-height: 1.6;
+    font-weight: bold;
+}
+#about-content h1, #admin-content h1, .cart-header {
+    text-transform: uppercase;
+    color: var(--lightbgcolor);
     text-align: center;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
@@ -2201,23 +1799,10 @@ input:focus-visible {
 
 .teaintro-text cite {
     display: block;
-    /*occupa tutta la larghezza del box, perchè cite è inline e sennò non andrebbe il textalign left*/
     text-align: right;
 
 }
 
-@media (max-width: 768px) {
-    .teaintro {
-        justify-content: center;
-        /*sui telefoni mettiamo al centro*/
-        text-align: center;
-    }
-
-    .teaintro-text {
-        max-width: 90%;
-        padding: 1.5em;
-    }
-}
 
 .indicetea {
     display: flex;
@@ -2231,15 +1816,10 @@ input:focus-visible {
     padding-bottom: 0.2em;
 }
 
-@media (max-width: 768px) {
-    .indicetea {
-        margin-left: 2em;
-    }
-}
 
 .quiz-section h2,
 .tea-process h2,
-.tea-card h3 {
+.tea-card h3, #tè {
     color: var(--universitea-green);
     font-size: 2.5em;
     margin-bottom: 1.5em;
@@ -2315,89 +1895,12 @@ input:focus-visible {
     margin-bottom: 4em;
     box-sizing: border-box;
 }
+/*QUI */
 
-.tea-process .table-container {
-    width: 100%;
-    padding: 0 1em 0 1em;
-    margin-top: 2em;
-}
 
-.tea-process table {
-    width: 100%;
-    border-collapse: collapse;
-    /*tolgo la roba default dei bordi delle tabelle*/
-    border: 2px solid #ddd;
-    border-radius: 2em;
-    /*bordi arrotondati*/
-}
 
-.tea-process thead th {
-    background-color: #007d5d;
-    color: var(--lightbgcolor);
-    padding: 1.2em;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.05em;
-}
 
-.tea-process tbody th {
-    background-color: var(--linkcolor);
-    color: var(--darkbgcolor);
-    font-weight: bold;
-    padding: 1em 1em;
-    border-bottom: 1px solid var(--navlink-color);
-    /*bordino tra un th e l'altro*/
-    border-right: 3px solid #007d5d;
-    /*bordo tra th e td*/
-}
 
-.tea-process tbody td {
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid var(--navlink-color);
-    color: var(--graybgcolor);
-    background-color: var(--txtcolor);
-    border: 1px solid var(--darkbgcolor);
-}
-
-.tea-process caption {
-    caption-side: bottom;
-    /*non è un problema per screenreader, legge la caption nell'ordine in cui è nell'html*/
-    background-color: var(--darkbgcolor);
-    color: var(--linkcolor);
-    font-weight: bold;
-    border: none;
-    /*tolgo bordo default sotto*/
-    padding-top: 1em;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-
-    .tea-process thead {
-        display: none;
-    }
-
-    .tea-process tr,
-    .tea-process td {
-        display: block;
-        text-align: center;
-        width: 100%;
-    }
-
-    .tea-process th {
-        text-transform: uppercase;
-        text-align: center;
-        width: 100%;
-    }
-
-    .tea-process td::before {
-        content: attr(datatitle);
-        display: block;
-        color: var(--graybgcolor);
-        font-weight: bold;
-    }
-}
 
 .tea-card {
     display: flex;
@@ -2432,31 +1935,6 @@ input:focus-visible {
     max-width: 25em;
 }
 
-/*Per mobile*/
-@media (max-width: 767px) {
-
-    .tea-card,
-    .tea-card:nth-of-type(even) {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .card-text {
-        border-left: none;
-        border-top: none;
-        padding-left: 0;
-        padding-top: 1.5em;
-    }
-
-    .card-image {
-        width: 100%;
-    }
-
-    .tea-card h3 {
-        padding-bottom: 0.5em;
-        border-bottom: 0.1em solid var(--universitea-green);
-    }
-}
 
 /*--QUIZ--*/
 .quiz-section {
@@ -2559,16 +2037,16 @@ fieldset {
     padding: 0;
     /*spazio ai bordi*/
 }
-
+/*
 #about-content h1 {
     text-transform: uppercase;
     font-size: 2.5em;
-    color: var(--link-visited);
+    color: var(--lightbgcolor);
     border: 2px solid var(--universitea-green);
     text-align: center;
     margin-top: 0.2em;
     padding: 0.5em 0.5em 0.5em 0.5em;
-}
+}*/
 
 .about-stats h2,
 .about-intro h2,
@@ -2606,16 +2084,6 @@ fieldset {
 }
 
 /*Per mobile*/
-@media (max-width: 768px) {
-    .about-intro {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-intro-img {
-        margin-top: 0.5em;
-    }
-}
 
 .chisiamo h3 {
     font-size: 1.7em;
@@ -2696,39 +2164,6 @@ fieldset {
     flex-direction: row-reverse;
 }
 
-@media (max-width: 768px) {
-    .about-values {
-        flex-direction: column-reverse;
-        /*così l'immagine viene sopra la scritta*/
-        gap: 1em;
-        text-align: center;
-        border-radius: 2em;
-        margin-bottom: 2em;
-    }
-
-    .about-values h3 {
-        padding-bottom: 0.5em;
-        border-bottom: 0.1em solid var(--universitea-green);
-    }
-
-    .about-values:nth-of-type(even) {
-        flex-direction: column-reverse;
-        padding-left: 0;
-        /*rimuove il padding laterale che avevo messo che non serve*/
-    }
-
-    .about-values img {
-        width: 80%;
-        max-width: 15em;
-    }
-
-    .values-text {
-        width: 100%;
-        border: 0;
-        /*tolgo il bordo left del desktop e lo metto bottom*/
-        margin-bottom: 1em;
-    }
-}
 
 /*freccetta per tornare sù*/
 .tornasu {
@@ -2742,7 +2177,8 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 500;
+    z-index: 2000;
+    /*lo tiene sopra tabelle e immagini*/
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -2777,7 +2213,7 @@ fieldset {
 .errorpage h1 {
     font-size: 8rem;
     margin: 0;
-    line-height: 1;
+    line-height: 1.6;
     color: var(--universitea-green);
     position: relative;
     z-index: 2;
@@ -2788,7 +2224,7 @@ fieldset {
     font-weight: bold;
     color: var(--lightbgcolor);
     margin-bottom: 1.5em;
-    line-height: 1.2;
+    line-height: 1.6;
 }
 
 .errorpage p {
@@ -2859,157 +2295,7 @@ fieldset {
     transform: translate(-130%, -40%);
 }
 
-@media (max-width: 1024px) {
 
-    .errorpage .error-image {
-        position: relative;
-        transform: none;
-        left: auto;
-        top: auto;
-        width: 18em;
-        /* Dimensione per tablet */
-        margin-bottom: 1.5em;
-        z-index: 2;
-    }
-
-    .errorpage .error-image img {
-        transform: rotate(0deg);
-    }
-
-    .errorpage h1 {
-        font-size: 6rem;
-        margin-top: 0;
-    }
-
-    .errorpage h2 {
-        font-size: 1.7rem;
-    }
-}
-
-/*Mobile*/
-/*Qui modifichiamo solo ciò che deve cambiare ulteriormente rispetto al tablet.*/
-@media (max-width: 768px) {
-    .errorpage .error-image {
-        width: 14em;
-    }
-
-    .errorpage h1 {
-        font-size: 4.5rem;
-    }
-
-    .errorpage h2 {
-        font-size: 1.5rem;
-    }
-}
-
-
-/* --- RESPONSIVE MOBILE --- */
-/* Le regole qui sotto sovrascrivono quelle sopra grazie alla cascata CSS */
-@media (max-width: 900px) {
-    .best-sellers-container {
-        padding: 3rem 1.5rem;
-        width: 100%;
-    }
-
-    .bestsellers-header {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-        width: 100%;
-        padding-bottom: 1rem;
-    }
-
-    .header-left-group {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .bestsellers-nav {
-        display: contents;
-    }
-
-    .bestsellers-nav-btn.prev {
-        order: 1;
-    }
-
-    .bestsellers-section-title {
-        order: 2;
-        flex-grow: 1;
-        text-align: center;
-        font-size: 3rem;
-    }
-
-    .bestsellers-nav-btn.next {
-        order: 3;
-    }
-
-    .accessibility-controls fieldset {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.625em;
-        width: 100%;
-    }
-
-    @media (min-width: 400px) {
-        .accessibility-controls fieldset {
-            flex-direction: row;
-            justify-content: center;
-        }
-    }
-
-    .accessibility-controls legend {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 0.3125em;
-    }
-
-    .bestsellers-dots-container {
-        position: static;
-        transform: none;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Layout Mobile: Cambiamo direzione senza usare !important */
-    .bestsellers-content-wrapper {
-        flex-direction: column;
-        gap: 3rem;
-        text-align: center;
-        width: 100%;
-    }
-
-    .bestsellers-info {
-        width: 100%;
-        padding: 0;
-        margin-left: 0;
-        align-items: center;
-        border-left: none;
-        order: 1;
-    }
-
-    .bestsellers-visual {
-        order: 2;
-        width: 100%;
-        margin: 0;
-        display: block;
-        height: auto;
-        min-height: auto;
-        position: relative;
-    }
-
-    .bestsellers-visual model-viewer {
-        width: 100%;
-        height: 21.875em;
-        display: block;
-    }
-
-    .bestsellers-visual figcaption {
-        margin-top: 1rem;
-        justify-content: center;
-    }
-}
 
 /* --- FOOTER --- */
 /* =========================================
@@ -3140,38 +2426,7 @@ fieldset {
     filter: grayscale(0) opacity(1);
 }
 
-/* Responsività Mobile */
-@media (max-width: 900px) {
-    .footer-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-    }
 
-    .brand-col {
-        grid-column: span 2;
-        text-align: center;
-    }
-
-    .footer-logo {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .footer-bottom-content {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-@media (max-width: 500px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-
-    .brand-col {
-        grid-column: span 1;
-    }
-}
 
 /*
 ==========================================================================================================================================
@@ -3190,7 +2445,7 @@ fieldset {
     background-color: var(--darkbgcolor);
 }
 
-/* Titoli */
+/* Titoli *//*
 #register-content h1,
 #login-content h1 {
     color: #fff;
@@ -3199,7 +2454,7 @@ fieldset {
     text-align: center;
     font-weight: 800;
     line-height: 1;
-}
+}*/
 
 section.register-card h2,
 section.login-card h2 {
@@ -3208,7 +2463,7 @@ section.login-card h2 {
     margin-bottom: 0.5rem;
     text-align: center;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.6;
 }
 
 .login-prompt,
@@ -3287,7 +2542,7 @@ fieldset input[type="radio"] {
     cursor: pointer;
 }
 
-fieldset input[type="radio"]:checked + label {
+fieldset input[type="radio"]:checked+label {
     color: var(--universitea-green);
 }
 
@@ -3362,7 +2617,7 @@ fieldset input[type="radio"]:checked + label {
     }
 }
 
-.submit-btn {
+.submit-btn, .btn-logout, .remove-btn {
     width: 100%;
     margin-top: 1rem;
     padding: 1rem;
@@ -3392,141 +2647,6 @@ fieldset input[type="radio"]:checked + label {
     transform: translateY(0);
 }
 
-@media (max-width: 900px) {
-    #registrationForm {
-        padding: 2rem 1.25rem;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        backdrop-filter: none;
-    }
-
-    #content h1 {
-        font-size: 3.5rem;
-    }
-
-    fieldset {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-}
-
-/* --- OPTIMIZATION FOR SHORT SCREENS (e.g. Landscape Mobile / Small Laptops) --- */
-@media (max-height: 850px) {
-
-    /* --- LAYOUT DEL CONTENITORE --- */
-    #register-content,
-    #login-content {
-        padding: 0.5rem 1rem;
-        margin-bottom: 2rem;
-        justify-content: flex-start;
-        min-height: auto;
-    }
-
-    /* Titoli più piccoli */
-    #register-content h1,
-    #login-content h1 {
-        font-size: 2.2rem;
-        margin-bottom: 0.8rem;
-        margin-top: 0.5rem;
-    }
-
-    /* Card più snella */
-    section.register-card,
-    section.login-card {
-        padding: 1.5rem 2rem;
-        border-radius: 1.5em;
-        /* Un po' più tondo */
-        max-width: 55em;
-        /* Più larga per far stare comode le colonne */
-    }
-
-    section.register-card h2,
-    section.login-card h2 {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-    }
-
-    .login-prompt,
-    .register-link {
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-    }
-
-    /* --- GRIGLIA FORM (REGISTER & LOGIN) --- */
-    #registrationForm,
-    #loginForm {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        /* Due colonne uguali */
-        column-gap: 2rem;
-        row-gap: 1rem;
-        align-items: start;
-    }
-
-    /* --- FIELDSET (RADIO BUTTONS) --- */
-    /* Deve stare in alto e al centro, occupando tutto lo spazio */
-    #registrationForm fieldset {
-        grid-column: 1 / -1;
-        /* Occupa tutta la riga */
-        display: flex;
-        justify-content: center;
-        /* Centra i radio buttons orizzontalmente */
-        align-items: center;
-        gap: 2rem;
-        /* Distanzia le opzioni */
-        margin-bottom: 0.5rem;
-        margin-top: 0;
-    }
-
-    /* --- CAMPI INPUT --- */
-    .form-group {
-        margin-bottom: 0;
-        /* Gestito dal gap della griglia */
-    }
-
-    .form-group label {
-        font-size: 0.9rem;
-        text-align: center;
-    }
-
-    .form-group p.register-advice,
-    .form-group p.login-advice {
-        font-size: 0.9rem;
-        text-align: center;
-    }
-
-    .form-group input {
-        padding: 0.7rem 1rem;
-        /* Meno alto */
-        font-size: 0.9rem;
-    }
-
-    /* Specifico LOGIN */
-    #loginForm .form-group {
-        margin-bottom: 0;
-    }
-
-    /* --- SUBMIT BUTTON --- */
-    /* Deve stare in basso e al centro, occupando tutto lo spazio */
-    #registrationForm .submit-btn,
-    #loginForm .submit-btn {
-        grid-column: 1 / -1;
-        /* Occupa tutta la riga */
-        width: 100%;
-        margin-top: 0.5rem;
-        padding: 0.8rem;
-    }
-
-    /* Gestione errori generici */
-    #loginForm .error-message,
-    #registrationForm > .error-message {
-        grid-column: 1 / -1;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-}
 
 
 /* ==========================================================================
@@ -3582,7 +2702,7 @@ fieldset input[type="radio"]:checked + label {
     margin-bottom: 0.5rem;
     text-align: center;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.6;
 }
 
 /* Badge "Account Attivo" */
@@ -3603,6 +2723,7 @@ span.status-badge {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     box-shadow: 0 0 15px rgba(0, 214, 159, 0.2);
+
 }
 
 /* 3. RIGHE INFORMAZIONI (.info-row) */
@@ -3663,19 +2784,19 @@ span.status-badge {
     width: 100%;
 }
 
-.nav-links button.submit-btn {
+.nav-links button.submit-btn, .btn-logout, .remove-btn{
     background-color: transparent;
-    border: 2px solid #ff4444;
-    color: #ff4444;
+    border: 2px solid var(--error-txtcolor);
+    color: var(--error-txtcolor);
     box-shadow: none;
     margin-top: 0;
     width: 100%;
 }
 
-.nav-links button.submit-btn:hover {
-    background-color: #ff4444;
-    color: #fff;
-    border-color: #ff4444;
+.nav-links button.submit-btn:hover, .btn-logout:hover, .remove-btn:hover {
+    background-color: var(--error-txtcolor);
+    color: var(--lightbgcolor);
+    border-color: var(--error-txtcolor);
     box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
     transform: translateY(-2px);
 }
@@ -3698,23 +2819,284 @@ span.status-badge {
     letter-spacing: 0.1em;
 }
 
-/* RESPONSIVE PER MOBILE */
-@media (max-width: 600px) {
-    #dashboard-content {
-        padding: 2rem 1.5rem;
-        margin: 2rem 5%;
-        width: 90%;
-    }
+/* =========================================
+   PAGINA ADMINISTRATOR qui .
+========================================= */
+#admin-content {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 3rem 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+#intro-text {
+    text-align: center;
+    max-width: 50rem;
+    margin: 0 auto;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    padding: 2rem;
+    border-radius: 1.25em;
+    backdrop-filter: blur(5px);
+}
 
-    .info-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3rem;
-    }
+#intro-text p {
+    font-size: 1.1rem;
+    color: var(--txtcolor);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
 
-    .info-value {
-        align-self: flex-start;
-        color: var(--universitea-green);
-        /* Evidenzia il dato su mobile */
-    }
+#intro-text p:last-child {
+    margin-bottom: 0;
+}
+
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--universitea-green);
+}
+
+.dashboard-card h2 {
+    color: var(--universitea-green);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.dashboard-card p {
+    color: var(--txtcolor);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.card-action {
+    margin-top: auto;
+}
+
+
+
+#table-descr {
+    padding-top: 1.5em;
+    max-width: 60rem;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #aaa;
+}
+
+.process-title, .product-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 1.5em;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.tea-process thead th, .product-table thead th {
+    background-color: #007d5d;
+    color: #ffffff;
+    padding: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-bottom: none;
+}
+
+.tea-process tbody th, .product-table tbody th {
+    background-color: var(--linkcolor);
+    color: var(--darkbgcolor);
+    font-weight: bold;
+    padding: 1em 1em;
+    border-bottom: 1px solid var(--navlink-color);
+    border-right: 3px solid #007d5d;
+    text-align: left;
+}
+
+.tea-process tbody td, .product-table tbody td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--navlink-color);
+    color: var(--graybgcolor);
+    background-color: var(--txtcolor);
+    border-right: 1px solid #000;
+    vertical-align: middle;
+}
+
+.product-table tbody td:last-child {
+    border-right: none;
+}
+
+.tea-process caption, .product-table caption {
+    padding-bottom: 1em;
+    color: var(--linkcolor);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+.btn-table {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 0.6em 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 1.825em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    font-family: inherit;
+    min-width: 80px;
+}
+
+.btn-edit {
+    color: var(--darkbgcolor);
+    border-color: var(--universitea-green);
+    background: var(--universitea-green);
+    width: auto;
+    margin: 0;
+}
+
+.btn-edit:hover {
+    transform: translateY(-3px);
+    background-color: var(--darkbgcolor);
+    color: var(--universitea-green);
+    box-shadow: 0 0 10px rgba(0, 214, 159, 0.2);
+}
+
+.btn-delete {
+    color: var(--darkbgcolor);
+    border-color: var(--error-txtcolor);
+    background: var(--error-txtcolor);
+    width: auto;
+    margin: 0;
+}
+
+.btn-delete:hover {
+    transform: translateY(-3px);
+    background-color: var(--darkbgcolor);
+    color: var(--error-txtcolor);
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-buttons form {
+    display: flex;
+    margin: 0;
+}
+
+/*CART*/
+.restricted-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20000;
+    background-color: rgba(15, 14, 14, 0.90);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.restricted-modal {
+    width: 100%;
+    max-width: 35em;
+    background: var(--card-bg-color);
+    border-radius: 25px;
+    padding: 3rem 2rem;
+    box-shadow: 0 0 20px rgba(0, 214, 159, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: popIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.modal-icon {
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 8px var(--universitea-green));
+}
+
+
+.restricted-modal h2 {
+    font-size: 2rem;
+    color: var(--lightbgcolor);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.restricted-modal p {
+    color: var(--txtcolor);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+.modal-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-modal {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.register-link-modal {
+    color: var(--universitea-green);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: text-shadow 0.3s ease;
+}
+
+.register-link-modal:hover {
+    text-shadow: 0 0 10px rgba(0, 214, 159, 0.5);
+    text-decoration: underline;
 }
