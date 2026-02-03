@@ -4,7 +4,7 @@ session_start();
 header('Content-Type: application/json');
 require_once '../database/database_conn.php'; // Verifica percorso
 
-if (!isset($_SESSION['email'])) { // Verifica login come nel tuo sistema
+if (!isset($_SESSION['email'])) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'Non autorizzato']);
     exit();
