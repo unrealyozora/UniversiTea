@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <title>UniversiTea - Registrazione</title>
     <meta name="description" content="Pagina dedicata alla registrazione di un nuovo utente">
-    <meta name="keywords" content="tè, università, tisane, negozio, login, signup, registrazione, accesso">
+    <meta name="keywords"
+          content="tè, università, tisane, negozio, login, signup, registrazione, accesso, utente, profilo">
     <link rel="icon" type="image/svg+xml" href="../../assets/images/logo-finestra.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../style/style.css">
@@ -105,12 +106,12 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <p class="register-advice">Deve avere almeno 4 caratteri. Tutti i tipi di caratteri sono accettati</p>
-                <input type="text" id="password" name="password" aria-required="true">
+                <input type="password" id="password" name="password" aria-required="true">
                 {{PASSWORD_ERROR}}
             </div>
             <div class="form-group">
                 <label for="confirm_password">Conferma password</label>
-                <input type="text" id="confirm_password" name="confirm_password" aria-required="true">
+                <input type="password" id="confirm_password" name="confirm_password" aria-required="true">
                 {{CONFIRM_PWD_ERROR}}
             </div>
 
