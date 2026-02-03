@@ -30,7 +30,7 @@ function renderProductCard($product, $templateHtml, $isSeller = false)
     } else {
         $actionCart = '../config/add_to_cart.php';
         $actionFav = '../config/add_favorite.php';
-        $formClass = '';
+        $formClass = 'cart-btn-enabled';
         $btnDisabledClass = '';
         $btnState = '';
         $btnCartText = 'Aggiungi al carrello';
@@ -122,7 +122,7 @@ try {
 
     if ($maxPrice < 100) { // Solo se diverso dal default
         $sql .= " AND P.prezzo <= :maxPrice";
-        $params[':maxPrice'] = (float) $maxPrice;
+        $params[':maxPrice'] = (float)$maxPrice;
     }
 
     if ($onlyAvailable) {
@@ -204,7 +204,7 @@ $replacements = [
     '{{USER_FEEDBACK}}' => $userFeedback,
     '{{STATUS_MSG}}' => htmlspecialchars($statusMsg, ENT_QUOTES, 'UTF-8'),
     '{{LISTA_PRODOTTI}}' => $listaHtml,
-    '{{MAX_PRICE}}' => number_format((int) $maxPrice),
+    '{{MAX_PRICE}}' => number_format((int)$maxPrice),
     '{{CHECKED_AVAILABILITY}}' => $onlyAvailable ? 'checked' : '',
     '{{USER_ACTION}}' => $user_action,
 ];
