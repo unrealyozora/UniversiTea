@@ -88,7 +88,7 @@
 .register-link-modal:hover {
     text-shadow: 0 0 10px rgba(0, 214, 159, 0.5);
     text-decoration: underline;
-}*/
+}
 .cart-container {
     max-width: 75em;
     margin: 2rem auto 6rem auto;
@@ -103,7 +103,7 @@
     justify-content: space-between;
     align-items: flex-end;
 }
-/*
+
 .cart-header h1 {
     font-size: 2.5rem;
     color: #fff;
@@ -111,7 +111,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
-*/
+
 .cart-stats {
     font-size: 1.1rem;
     color: #aaa;
@@ -123,17 +123,16 @@
     font-size: 1.3rem;
 }
 
-/* --- CARD PRODOTTO NEL CARRELLO (.cart-item) --- */
+
 .cart-item {
     display: flex;
-    flex-wrap: wrap; /* Per gestire mobile */
+    flex-wrap: wrap; 
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
 
-    /* Stile "Glass" coerente con .product-card e .step-card */
-    background-color: var(--card-bg-color); /* rgba(255, 255, 255, 0.03) */
-    border: 1px solid var(--card-border-color); /* rgba(255, 255, 255, 0.05) */
+    background-color: var(--card-bg-color); 
+    border: 1px solid var(--card-border-color); 
     border-radius: 1.25em;
     padding: 1.5rem 2rem;
     margin-bottom: 1.25rem;
@@ -142,15 +141,15 @@
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Hover Effect: Glow verde sottile come nello Shop */
+
 .cart-item:hover {
     border-color: rgba(0, 214, 159, 0.3);
     box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(0, 214, 159, 0.1); /* glow interno */
+    0 0 0 1px rgba(0, 214, 159, 0.1);
     transform: translateY(-2px);
-}
+}*/
 
-/* Dettagli Prodotto (Sinistra) */
+/* Dettagli Prodotto (Sinistra) *//*
 .item-details {
     flex: 1;
     min-width: 200px;
@@ -170,7 +169,7 @@
     color: #888;
 }
 
-/* Azioni e Controlli (Destra) */
+/* Azioni e Controlli (Destra) *//*
 .item-actions {
     display: flex;
     align-items: center;
@@ -185,7 +184,7 @@
     text-align: right;
 }
 
-/* --- CONTROLLI QUANTITÀ (+ / -) --- */
+
 .quantity-controls {
     display: flex;
     align-items: center;
@@ -227,7 +226,7 @@
     color: #fff;
     font-size: 1rem;
 }
-
+*/
 /* --- BOTTONE RIMUOVI --- *//*
 .remove-btn {
     background: transparent;
@@ -243,17 +242,15 @@
     letter-spacing: 0.05em;
 }
 
-.remove-btn:hover {
+.remove-btn:hover {\\
     background-color: var(--error-txtcolor);
     color: #fff;
     box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
-}*/
-
-/* --- SEZIONE RIEPILOGO FINALE --- */
+}
 .cart-summary {
     margin-top: 3rem;
     padding: 2rem;
-    background: rgba(0, 214, 159, 0.05); /* Verde molto tenue */
+    background: rgba(0, 214, 159, 0.05);
     border: 1px solid rgba(0, 214, 159, 0.2);
     border-radius: 1.25em;
     display: flex;
@@ -264,7 +261,7 @@
 
 .summary-row.total {
     font-size: 1.5rem;
-    color: #fff;
+    color: var(--lightbgcolor);
     display: flex;
     gap: 2rem;
     padding-bottom: 1rem;
@@ -277,8 +274,8 @@
     color: var(--universitea-green);
     font-weight: 800;
     font-size: 2rem;
-}
-
+}*/
+/*
 .checkout-actions {
     display: flex;
     gap: 1rem;
@@ -286,7 +283,7 @@
 }
 
 .clear-cart-btn {
-    width: 100%; /* Bottone a larghezza piena */
+    width: 100%;
     text-align: center;
     background: var(--error-txtcolor);
     border: none;
@@ -307,11 +304,11 @@
     transform: translateY(-2px);
     box-shadow: 0 0.5em 1.5em  #C82909;
 }
-
-/* Bottone Checkout (Stile .btn-join ma adattato) */
+*/
+/* Bottone Checkout (Stile .btn-join ma adattato) *//*
 .checkout-btn,
 .fidelity-payment-btn  {
-    width: 100%; /* Bottone a larghezza piena */
+    width: 100%; 
     text-align: center;
     background-color: var(--universitea-green);
     color: #0f0e0e;
@@ -335,51 +332,17 @@
 }
 .cart-content {
     display: grid;
-    /* Colonna 1: Flessibile (1fr), Colonna 2: Fissa (380px) */
     grid-template-columns: 1fr 380px;
     gap: 2rem;
-    align-items: start; /* Importante: impedisce al box di destra di allungarsi quanto la lista prodotti */
+    align-items: start;
     position: relative;
-}
-
-/* 2. Stile del Box laterale (Riepilogo) */
-.cart-summary {
-    /* Resetta il vecchio margine superiore se c'era */
-    margin-top: 0;
-
-    /* Rendiamolo "Sticky" così ti segue mentre scorri */
-    position: sticky;
-    top: 8.5rem; /* Distanza dall'alto (regola in base all'altezza del tuo Header fisso) */
-
-    /* Stile "Card" coerente */
-    background: rgba(0, 214, 159, 0.03); /* Verde chiarissimo trasparente */
-    border: 1px solid rgba(0, 214, 159, 0.2);
-    border-radius: 1.25em;
-    padding: 2rem;
-
-    /* Layout interno del box */
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    /* Effetto vetro */
-    backdrop-filter: blur(5px);
-}
-
-/* 3. Aggiustiamo l'allineamento interno del box riepilogo */
-.summary-row.total {
-    /* Ora che è in una colonna stretta, meglio flex space-between */
-    justify-content: space-between;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 1rem;
 }
 
 .checkout-actions {
     display: flex;
-    flex-direction: column; /* Su colonna laterale, i bottoni stanno meglio impilati */
+    flex-direction: column;
     gap: 1rem;
     width: 100%;
-}
+}*/
 
 /* --- RESPONSIVE MOBILE --- */

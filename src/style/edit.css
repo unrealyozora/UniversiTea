@@ -29,12 +29,10 @@
 /* Contenitore principale (Card stile Login) */
 .form-container {
     width: 100%;
-    max-width: 45em; /* Circa 720px */
+    max-width: 45em;
     margin: 4rem auto;
     padding: 2.5rem 2rem;
-
-    /* Stile Vetro Scuro */
-    background: var(--card-bg-color); /* Definito in style.css */
+    background: var(--card-bg-color);
     backdrop-filter: blur(0.625em);
     border: 1px solid var(--card-border-color);
     border-radius: 1.5em;
@@ -62,10 +60,10 @@ fieldset div.form-group {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--txtcolor); /* Grigio chiaro */
+    color: var(--txtcolor);
     font-weight: 600;
     font-size: 0.95rem;
-    margin-left: 0.5rem; /* Allineamento visivo con la stondatura input */
+    margin-left: 0.5rem;
 }
 
 /* Stile Input, Select e Textarea */
