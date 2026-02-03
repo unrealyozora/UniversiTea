@@ -227,7 +227,7 @@ body:not(.homepage) img.logo:hover {
 .menu-checkbox,
 .hamburger-btn,
 .close-menu-btn,
-.mobile-only-text {
+.mobile-only-text, .hidden-when-wide {
     display: none;
 }
 
