@@ -351,7 +351,6 @@ Le pagine di errore sono posizionate al path _src/pages/errors_, per poter rende
 della pagina che genera l'errore, abbiamo dovuto creare un file _.htaccess_ indicante il path delle pagine di errore corrispondenti
 e utilizzare path assoluti per i link e i file CSS, seppur sia una scelta non ottimale che non siamo però riusciti a mitigare.
 
-= 8. Uso dell'AI nel progetto
 = 8. CSS
 Per quanto riguarda il CSS, l’obiettivo principale è stato uniformare lo stile dell’intero sito, prestando particolare attenzione alla scelta coerente di colori, font e dimensioni del testo, così da garantire un’esperienza di navigazione chiara, accessibile e piacevole per tutti gli utenti. Si è cercato di centralizzare e riutilizzare il più possibile le regole di stile, riducendo le ripetizioni e mantenendo il codice ordinato, leggibile e facilmente manutenibile. Inoltre, il foglio di stile è stato organizzato in tre file distinti in base alla destinazione d’uso: style.css per gli stili generali del sito, mini.css dedicato all’adattamento per dispositivi mobili e print.css per la gestione della visualizzazione in fase di stampa tramite media query specifiche.
 
