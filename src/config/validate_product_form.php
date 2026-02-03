@@ -9,15 +9,17 @@ function validateField($value, $fieldName, &$errors)
 }
 
 
-function validateProductData($postData) {
+function validateProductData($postData)
+{
     $errors = [];
-    $addError = function($field, $msg) use (&$errors) {
+    $addError = function ($field, $msg) use (&$errors) {
         if (!isset($errors[$field])) {
             $errors[$field] = $msg;
         }
     };
 
-    function validateLength($value, $fieldName, $maxLength, &$errors, $key) {
+    function validateLength($value, $fieldName, $maxLength, &$errors, $key)
+    {
         if (strlen(trim($value)) > $maxLength) {
             if (!isset($errors[$key])) {
                 $errors[$key] = "Il campo '$fieldName' non può superare i $maxLength caratteri.";
@@ -33,7 +35,7 @@ function validateProductData($postData) {
         $addError('nome', "Il nome del prodotto è obbligatorio.");
     }
 
-    if($postData['img_src']){
+    if ($postData['img_src']) {
         if (!empty(trim($postData['img_alt'] ?? ''))) {
             validateLength($postData['img_alt'], 'Descrizione', 1000, $errors, 'descrizione');
         } else {
@@ -61,25 +63,22 @@ function validateProductData($postData) {
         if ($temp_consigliata === false || $temp_consigliata < 0) {
             $addError('temp_consigliata', "Temperatura non valida, deve essere maggiore di 0.");
         }
-        if(empty($postData['tipologia_bevanda'])) $addError('tipologia_bevanda', "Tipo mancante.");
+        if (empty($postData['tipologia_bevanda'])) $addError('tipologia_bevanda', "Tipo mancante.");
         if (!empty($postData['scoop'])) {
             validateLength($postData['scoop'], 'Scoop', 255, $errors, 'scoop');
         }
-    }
-    elseif ($categoria === 'merchandising') {
+    } elseif ($categoria === 'merchandising') {
         if (empty(trim($postData['materiale'] ?? ''))) {
             $addError('materiale', "Materiale mancante.");
         } else {
             validateLength($postData['materiale'], 'Materiale', 255, $errors, 'materiale');
         }
-        if(empty($postData['tipologia_march'])) $addError('tipologia_march', "Tipo merch mancante.");
-        if(empty($postData['id_bevanda'])) $addError('id_bevanda', "Associa una bevanda.");
-    }
-    elseif ($categoria === 'servizi') {
+        if (empty($postData['tipologia_march'])) $addError('tipologia_march', "Tipo merch mancante.");
+        if (empty($postData['id_bevanda'])) $addError('id_bevanda', "Associa una bevanda.");
+    } elseif ($categoria === 'servizi') {
         validateField($postData['tipologia_servizi'] ?? '', 'Tipologia Servizio', $errors);
         validateField($postData['livello_urgenza'] ?? '', 'Livello Urgenza', $errors);
-    }
-    elseif ($categoria === 'bundle') {
+    } elseif ($categoria === 'bundle') {
         $sconto = filter_var($postData['percent_sconto'] ?? '', FILTER_VALIDATE_INT);
         if ($sconto === false || $sconto < 0 || $sconto > 100) {
             $errors[] = "Inserisci una percentuale di sconto valida (tra 0 e 100).";
@@ -92,4 +91,11 @@ function validateProductData($postData) {
     }
 
     return $errors;
+}
+
+function addError($errorMsg, $field, $errors): void
+{
+    if (!isset($errors[$field])) {
+        $errors[$field] = $errorMsg;
+    }
 }
