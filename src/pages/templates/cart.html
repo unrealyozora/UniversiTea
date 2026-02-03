@@ -26,7 +26,10 @@
 </head>
 
 <body>
+<a href="#cart-content" class="skip-link">Salta al contenuto principale</a>
+
 {{VENDITORE_BANNER}}
+<div id="page-wrapper" {{INERT_ATTR}}>
 <header class="main-header">
     <a href="../../index.php">
         <img src="../../assets/images/universitea_logo.svg" alt="UniversiTea" class="logo">
@@ -67,7 +70,7 @@
 </header>
 
 
-<main>
+<main id="cart-content">
     <div class="cart-container">
         <div class="cart-header">
             <h1>Il Tuo Carrello</h1>
@@ -224,7 +227,7 @@
         </div>
     </div>
 </footer>
-
+</div>
 <script src="../config/cart.js"></script>
 </body>
 

@@ -16,8 +16,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $venditoreBanner = '';
+$inertAttr = '';
 $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
-$isSeller ? $venditoreBanner = $banner = file_get_contents('templates/restriction.html') : '';
+if($isSeller){
+    $venditoreBanner = $banner = file_get_contents('templates/restriction.html');
+    $inertAttr ='inert';
+}
 
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -250,6 +254,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 $replacements = [
     '{{VENDITORE_BANNER}}' => $venditoreBanner,
+    '{{INERT_ATTR}}' => $inertAttr,
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{TOTAL_AMOUNT}}' => '€' . number_format($totalAmount, 2, ',', '.'),
     '{{CART_CONTENT}}' => $cartItemsHtml,
