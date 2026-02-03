@@ -300,7 +300,8 @@ ul li#current-link::before {
 }
 
 .nav-text-link img,
-.nav-profile-link img {
+.nav-profile-link img,
+#current-link img {
     transition: filter 0.3s ease;
     width: 2em;
     height: 2em;
@@ -311,7 +312,8 @@ ul li#current-link::before {
 }
 
 .nav-profile-link img,
-.nav-text-link img[src*="user.png"] {
+.nav-text-link img[src*="user.png"],
+#current-link img[src*="user.png"] {
     filter: invert(1);
 }
 
