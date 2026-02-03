@@ -109,10 +109,8 @@ try {
         $msgClass = ($_SESSION['msg_type'] == 'success') ? 'success-msg' : 'error-msg';
         $msgContent = htmlspecialchars($_SESSION['msg_content']);
 
-        // Creiamo l'HTML
         $feedbackHtml = '<div class="' . $msgClass . '" role="alert">' . htmlspecialchars($_SESSION['msg_content']) . '</div>';
 
-        // PULIZIA: Rimuoviamo il messaggio dalla sessione così non appare di nuovo al refresh
         unset($_SESSION['msg_type']);
         unset($_SESSION['msg_content']);
     }

@@ -4,7 +4,6 @@ require_once '../config/database/database_conn.php';
 require_once '../config/shop_functions.php'; // Se hai funzioni utili qui
 
 // 1. CONTROLLO SICUREZZA: Solo gli admin possono vedere questa pagina
-// (Adatta 'ruolo' in base alla tua tabella Utenti/Consumatori)
 if (!isset($_SESSION['logged_in']) || $_SESSION['tipo_utente'] !== 'Venditore') {
     header('Location: login.php');
     exit();

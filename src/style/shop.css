@@ -1,7 +1,7 @@
 /* --- LAYOUT PAGINA SHOP --- */
 
 /* Wrapper principale per affiancare filtri e prodotti su desktop */
-/* Messaggi di feedback (Successo/Errore) */
+/* Messaggi di feedback (Successo/Errore) *//*
 .success-msg, .error-msg {
     align-self: center;
     padding: 2em;
@@ -12,44 +12,43 @@
     width: 40%;
     box-sizing: border-box;
     animation: fadeAndCollapse 3s forwards;
-}
-
+}*/
+/*
 .success-msg {
     background-color: var(--universitea-green);
     color: var(--lightbgcolor);
-    border: 2px solid #0b3f3e;
+    border: 2px solid var(--darkborder-success);
 }
 
 .error-msg {
     background-color: #721c24;
     color: var(--lightbgcolor);
     border: 1px solid var(--error-txtcolor);
-}
-
+}*/
+/*
 @keyframes fadeAndCollapse {
     0% {
         opacity: 1;
-        max-height: 6.25em; /* Altezza sufficiente a contenerlo */
+
         margin-bottom: 1.25em;
         padding: 0.9375em;
-        opacity: 1;
     }
     70% {
-        /* Resta visibile fino al 70% del tempo (circa 3.5 secondi) */
+
         opacity: 1;
         max-height: 6.25em;
         margin-bottom: 1.25em;
         padding: 0.9375em;
     }
     85% {
-        /* Inizia a svanire */
+
         opacity: 0;
         max-height: 6.25em;
         margin-bottom: 1.25em;
         padding: 0.9375em;
     }
     100% {
-        /* Sparito completamente e collassa lo spazio */
+
         opacity: 0;
         max-height: 0;
         margin-bottom: 0;
@@ -57,15 +56,15 @@
         border: 0;
     }
 }
-
-
+*/
+/*
 .shop-layout {
     display: grid;
-    grid-template-columns: 17.5em 1fr; /* Colonna filtri fissa, prodotti flessibile */
+    grid-template-columns: 17.5em 1fr;
     gap: 3rem;
     margin-top: 2rem;
-}
-
+}*/
+/*
 .shop-header {
     text-align: center;
     max-width: 50em;
@@ -74,7 +73,7 @@
 
 .shop-header h1 {
     font-size: 2.5rem;
-    color: #fff;
+    color: var(--lightbgcolor);
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.125em;
@@ -82,12 +81,11 @@
 }
 
 .shop-header p {
-    color: #ccc;
+    color: var(--lightbgcolor);
     font-size: 1.1rem;
     line-height: 1.6;
 }
 
-/* --- FILTRI (ASIDE) --- */
 #shop-filter-section {
     background: var(--card-bg-color);
     border: 1px solid var(--card-border-color);
@@ -106,7 +104,6 @@
     letter-spacing: 0.0625em;
 }
 
-/* Input Ricerca */
 .filter-group-vertical input[type="search"] {
     width: 100%;
     padding: 0.8em 1em;
@@ -120,21 +117,18 @@
 }
 
 #search-input::-webkit-search-cancel-button {
-    -webkit-appearance: none; /* Rimuove lo stile di default */
+    -webkit-appearance: none;
     height: 1.5em;
     width: 1.5em;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='red'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
     cursor: pointer;
 }
 
-
-/* FOCUS VISIBILE (Accessibilità) */
 .filter-group-vertical input[type="search"]:focus {
     border-color: var(--universitea-green);
     box-shadow: 0 0 0 3px rgba(0, 214, 159, 0.2);
 }
 
-/* Gruppi Filtri */
 .filter-group {
     border: none;
     padding: 0;
@@ -158,7 +152,6 @@
     gap: 0.8rem;
 }
 
-/* Radio Buttons stilizzati */
 .radio-wrapper {
     position: relative;
 }
@@ -183,14 +176,12 @@
     transition: all 0.3s ease;
 }
 
-/* Stati Radio Button */
 .radio-wrapper input[type="radio"]:checked + label {
     background-color: var(--universitea-green);
     border-color: var(--universitea-green);
-    color: var(--darkbgcolor); /* Testo scuro su sfondo verde per contrasto */
+    color: var(--darkbgcolor);
 }
 
-/* Focus da tastiera sui radio */
 .radio-wrapper input[type="radio"]:focus-visible + label {
     outline: 2px solid #fff;
     outline-offset: 4px;
@@ -201,7 +192,6 @@
     border-color: var(--universitea-green);
 }
 
-/* Range Slider e Checkbox */
 .filter-settings {
     display: flex;
     flex-direction: column;
@@ -209,28 +199,26 @@
 }
 
 #price-range {
-    -webkit-appearance: none; /* Rimuove lo stile di default */
+    -webkit-appearance: none;
     width: 100%;
     height: 0.5em;
-    background: #ddd; /* Colore della parte non selezionata */
+    background: var(--lightbgcolor);
     border-radius: 0.3125em;
     outline: none;
 }
 
-/* 2. Stile del cursore (Thumb) per Chrome, Safari, Edge */
 #price-range::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 1.25em;
     height: 1.25em;
-    background: #00d69f; /* Il tuo colore verde */
+    background: #00d69f;
     cursor: pointer;
     border-radius: 50%;
-    border: 2px solid #ffffff; /* Un bordino bianco lo fa risaltare */
+    border: 2px solid var(--lightbgcolor);
     box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 
-/* 3. Stile del cursore per Firefox */
 #price-range::-moz-range-thumb {
     width: 1.25em;
     height: 1.25em;
@@ -256,7 +244,6 @@
     cursor: pointer;
 }
 
-/* --- GRIGLIA PRODOTTI --- */
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16.25em, 1fr));
@@ -269,10 +256,9 @@
 }
 .product-list.loading-fade {
     opacity: 0.2;
-    pointer-events: none; /* Impedisce click accidentali durante il caricamento */
+    pointer-events: none;
 }
 
-/* --- CARD PRODOTTO --- */
 .product-card {
     position: relative;
     background-color: var(--card-bg-color);
@@ -281,7 +267,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Assicura altezza uniforme nella riga */
+    height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     backdrop-filter: blur(5px);
 }
@@ -301,7 +287,6 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Immagine */
 .product-card img {
     width: 100%;
     height: 13.75em;
@@ -315,7 +300,6 @@
     transform: scale(1.08);
 }
 
-/* Info Prodotto */
 .product-info {
     padding: 1.5rem;
     display: flex;
@@ -364,7 +348,6 @@
     margin-bottom: 1.2rem;
 }
 
-/* Bottone Action */
 .btn-add-cart, .btn-filter {
     width: 100%;
     padding: 0.8rem;
@@ -394,7 +377,7 @@
 
 .btn-add-cart:hover, .btn-filter:hover {
     background-color: var(--universitea-green);
-    color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
+    color: var(--darkbgcolor);
     box-shadow: 0 0 15px rgba(0, 214, 159, 0.4);
 }
 
@@ -403,7 +386,6 @@
     outline-offset: 2px;
 }
 
-/* Aggiungi in style.css se non lo hai fatto */
 .alert-success {
     background-color: #d4edda;
     color: #155724;
@@ -443,7 +425,7 @@
 
 .btn-add-preferiti:hover {
     background-color: #fc03ad;
-    color: var(--darkbgcolor); /* CONTRASTO CORRETTO: Testo scuro su sfondo verde */
+    color: var(--darkbgcolor);
     box-shadow: 0 0 15px #5c1044;
 }
 

@@ -2,8 +2,8 @@
 // cart.php
 
 // 1. SETUP E CONNESSIONE
-require_once '../config/auth/check_auth.php'; // Adatta il percorso se necessario
-require_once '../config/database/database_conn.php'; // Percorso basato sui tuoi file caricati
+require_once '../config/auth/check_auth.php';
+require_once '../config/database/database_conn.php';
 
 function newFidelityPoints($oldPoints, $cartTotal): int
 {
@@ -26,7 +26,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
-$userEmail = $_SESSION['email']; // I tuoi file usano l'email come ID nel DB
+$userEmail = $_SESSION['email'];
 
 // Helper per template (non toccare)
 function renderCartItem($item, $templateHtml)
@@ -169,8 +169,6 @@ try {
     $db = new Database();
     $conn = $db->getConnection();
 
-    // Query corretta basata sul tuo file cart_get.php e add_to_cart.php
-    // Recuperiamo anche 'stock' dalla tabella Prodotti se esiste, altrimenti toglilo
     $query = "
         SELECT 
             p.id, 
@@ -195,7 +193,6 @@ try {
 
     if (count($items) > 0) {
         foreach ($items as $item) {
-            // Se non hai recuperato lo stock dalla query, impostiamo un default per evitare errori PHP
             if (!isset($item['stock']))
                 $item['stock'] = 100;
 

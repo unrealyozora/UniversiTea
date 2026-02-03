@@ -4,12 +4,10 @@ require_once('user.php');
 
 session_start();
 
-//TODO controllare variabili $error e $success (sono inutilizzate)
 $error = '';
 $success = '';
 $user = new User();
 
-//TODO raggruppare in funzione separata
 if (isset($_SESSION['username']) && $_SESSION['logged_in']) {
     header('Location: ../../../index.php');
     exit();

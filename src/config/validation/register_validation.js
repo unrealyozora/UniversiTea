@@ -32,7 +32,7 @@ function validateRegistrationForm(e) {
             element: document.getElementById('password'),
             rules: [
                 {check: (val) => !val, message: "Campo obbligatorio"},
-                {check: (val) => val.length < 6, message: "Password deve essere almeno 6 caratteri"},
+                {check: (val) => val.length < 4, message: "Password deve essere almeno 4 caratteri"},
             ]
         },
         confirm_password: {
@@ -50,7 +50,7 @@ function validateRegistrationForm(e) {
         }
     };
     clearAllErrors();
-    
+
     Object.values(fields).forEach(field => field.element.classList.remove('error'));
     let hasError = false;
     for (const [fieldName, field] of Object.entries(fields)) {
