@@ -23,7 +23,7 @@
 .error-msg {
     background-color: #721c24;
     color: var(--lightbgcolor);
-    border: 1px solid #ff4444;
+    border: 1px solid var(--error-txtcolor);
 }
 
 @keyframes fadeAndCollapse {
@@ -450,18 +450,4 @@
 .btn-add-preferiti:focus-visible {
     outline: 3px solid #fff;
     outline-offset: 2px;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 900px) {
-    .shop-layout {
-        grid-template-columns: 1fr; /* Colonna singola su mobile */
-        gap: 2rem;
-    }
-
-
-    /* Layout orizzontale dei filtri su mobile per risparmiare spazio */
-    .filter-group-vertical {
-        margin-bottom: 1rem;
-    }
 }

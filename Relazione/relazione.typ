@@ -346,13 +346,19 @@ I dettagli specifici del tipo di prodotto vengono mostrati in base alla categori
 Al fine di non limitare l' utilizzo del sito a coloro che non utilizzano JavaScript all' interno del loro browser, abbiamo 
 cercato di implementare tutte funzionalità legate al negozio, quali registrazione, accesso, aggiunta al carrello e ai preferiti, indipendenti da codice JavaScript.
 
+== Gestione pagine di errore
+Le pagine di errore sono posizionate al path _src/pages/errors_, per poter renderle disponibili a prescindere dalla posizione
+della pagina che genera l'errore, abbiamo dovuto creare un file _.htaccess_ indicante il path delle pagine di errore corrispondenti
+e utilizzare path assoluti per i link e i file CSS, seppur sia una scelta non ottimale che non siamo però riusciti a mitigare.
+
+= 8. Uso dell'AI nel progetto
 = 8. CSS
 Per quanto riguarda il CSS, l’obiettivo principale è stato uniformare lo stile dell’intero sito, prestando particolare attenzione alla scelta coerente di colori, font e dimensioni del testo, così da garantire un’esperienza di navigazione chiara, accessibile e piacevole per tutti gli utenti. Si è cercato di centralizzare e riutilizzare il più possibile le regole di stile, riducendo le ripetizioni e mantenendo il codice ordinato, leggibile e facilmente manutenibile. Inoltre, il foglio di stile è stato organizzato in tre file distinti in base alla destinazione d’uso: style.css per gli stili generali del sito, mini.css dedicato all’adattamento per dispositivi mobili e print.css per la gestione della visualizzazione in fase di stampa tramite media query specifiche.
 
 == Flexbox
-Per la gestione del layout è stato fatto ampio uso di Flexbox, che ha permesso di organizzare in modo flessibile e responsivo gli elementi nelle varie sezioni del sito. L’utilizzo di display: flex ha facilitato l’allineamento, la distribuzione degli spazi e l’adattamento dei contenuti a diverse dimensioni di schermo, riducendo il ricorso a soluzioni più complesse o a strutture rigide. Questo approccio ha contribuito a rendere il codice più pulito e modulare, migliorando al tempo stesso la coerenza visiva e la responsività generale del sito. 
+Per la gestione del layout è stato fatto ampio uso di Flexbox, che ha permesso di organizzare in modo flessibile e responsivo gli elementi nelle varie sezioni del sito. L’utilizzo di display: flex ha facilitato l’allineamento, la distribuzione degli spazi e l’adattamento dei contenuti a diverse dimensioni di schermo, riducendo il ricorso a soluzioni più complesse o a strutture rigide. Questo approccio ha contribuito a rendere il codice più pulito e modulare, migliorando al tempo stesso la coerenza visiva e la responsività generale del sito.
 
-In particolare è stato impiegato, ad esempio, nella sezione delle statistiche (pagina About) per distribuire in modo uniforme i vari blocchi informativi sulla stessa riga, garantendo equilibrio visivo e adattabilità alle diverse dimensioni di schermo. 
+In particolare è stato impiegato, ad esempio, nella sezione delle statistiche (pagina About) per distribuire in modo uniforme i vari blocchi informativi sulla stessa riga, garantendo equilibrio visivo e adattabilità alle diverse dimensioni di schermo.
 Flexbox è stato inoltre utilizzato nelle sezioni con immagini e testi affiancati (come le tard-card dei tè nella pagina "Il nostro tè" e le about-values nella pagina About), permettendo di allineare verticalmente i contenuti, gestire gli spazi tra gli elementi tramite gap e alternare facilmente la disposizione degli elementi. Questo approccio ha reso più semplice il passaggio alla visualizzazione mobile, dove la direzione del layout è stata modificata in colonna tramite media query. L’uso di Flexbox ha quindi contribuito a ottenere un design più flessibile, ordinato e responsivo, migliorando sia la struttura del codice sia l’esperienza utente.
 
 = 9. Uso dell'AI nel progetto
