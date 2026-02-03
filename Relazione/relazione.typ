@@ -158,14 +158,8 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
     "Attributi alt presenti su logo e prodotti. Modelli 3D nascosti agli screen reader."
   ),
   ..wcag-row(
-    "1.2.1 Solo audio/video (preregistrato)", "A", 
-    text(fill: rgb("#888888"), "N/A"), "placeholder",
-    "Il sito non presenta contenuti multimediali temporali."
-  ),
-  ..wcag-row(
     "1.3.1 Informazioni e correlazioni", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
-    "Struttura semantica (header, main, footer, nav, article) corretta."
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale", "Struttura semantica (header, main, footer, nav, article) corretta."
   ),
   ..wcag-row(
     "1.3.2 Sequenza significativa", "A", 
@@ -179,7 +173,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ),
   ..wcag-row(
     "1.4.1 Uso del colore", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "WCAG Contrast Checker",
     "I link sono distinguibili non solo per colore ma anche tramite sottolineatura, icone e/o aspetto da bottone."
   ),
   ..wcag-row(
@@ -189,17 +183,17 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ),
   ..wcag-row(
     "1.4.4 Ridimensionamento del testo", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
-    "Layout fluido, supporta zoom fino al 200% senza perdita di contenuto."
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale e W3C Css Validator",
+    "Layout fluido, supporta zoom senza perdita di contenuto."
   ),
   ..wcag-row(
     "1.4.11 Contrasto contenuti non testuali", "AA", 
-    text(fill: rgb("#d97706"), strong("Parziale")), "placeholder",
+    text(fill: rgb("#d97706"), strong("Parziale")), "WCAG Contrast Checker",
     "Icone social nel footer migliorate, verificata visibilità focus outline."
   ),
   ..wcag-row(
     "1.4.12 Spaziatura del testo", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Nessuna altezza fissa sui contenitori di testo, line-height impostato a 1.6."
   ),
 
@@ -209,42 +203,42 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
 
   ..wcag-row(
     "2.1.1 Tastiera", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Intero sito navigabile via Tab. Il carrello è attivabile via Enter."
   ),
   ..wcag-row(
     "2.1.2 Nessuna trappola da tastiera", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Il menu mobile e i modali permettono la chiusura via tastiera (Esc)."
   ),
   ..wcag-row(
     "2.4.1 Salto di blocchi", "A", 
-    text(fill: rgb("#d97706"), strong("ToDo")), "placeholder",
-    "Manca un link 'Skip to content' all'inizio della pagina."
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
+    "Link che riporta all'inizio della pagina in basso a destra e indice nella pagina Il nostro tè"
   ),
   ..wcag-row(
     "2.4.2 Titolazione della pagina", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Ogni pagina ha un tag <title> unico e descrittivo (es. 'Shop - UniversiTea')."
   ),
   ..wcag-row(
     "2.4.3 Ordine del focus", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "L'apertura del menu mobile sposta correttamente il focus al suo interno."
   ),
   ..wcag-row(
     "2.4.4 Scopo del collegamento", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Link generici 'Scopri di più' integrati con aria-label descrittivi."
   ),
   ..wcag-row(
     "2.4.6 Intestazioni ed etichette", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Gerarchia H1-H6 rispettata, label dei form chiare e visibili."
   ),
   ..wcag-row(
     "2.4.7 Focus visibile", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Outline CSS personalizzato (verde chiaro) su tutti gli elementi interattivi."
   ),
 
@@ -254,27 +248,27 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
 
   ..wcag-row(
     "3.1.1 Lingua della pagina", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Attributo lang='it' impostato sul tag html."
   ),
   ..wcag-row(
     "3.1.2 Lingua di parti", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Termini inglesi (es. 'Join Now') marcati con <span lang='en'>."
   ),
   ..wcag-row(
     "3.2.1 Al focus", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Nessun elemento avvia azioni o cambi di contesto al solo focus."
   ),
   ..wcag-row(
     "3.3.1 Identificazione errori", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Errori nei form segnalati testualmente vicino al campo errato."
   ),
   ..wcag-row(
     "3.3.2 Etichette o istruzioni", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Campi obbligatori segnalati chiaramente prima dell'invio."
   ),
 
@@ -290,12 +284,12 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ),
   ..wcag-row(
     "4.1.2 Nome, ruolo, valore", "A", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Componenti custom (es. carrello) usano ARIA roles corretti."
   ),
   ..wcag-row(
     "4.1.3 Messaggi di stato", "AA", 
-    text(fill: rgb("#2d4f1e"), strong("Pass")), "placeholder",
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
     "Feedback aggiunta al carrello gestito con aria-live='polite'."
   ),
 )
@@ -303,6 +297,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
 == Note aggiuntive sull'Accessibilità
 Per verificare i contrasti cromatici è stato utilizzato lo strumento *WebAIM Contrast Checker*. Le icone puramente decorative sono state nascoste agli screen reader utilizzando `aria-hidden="true"`.\
 Il controllo della correttezza del codice è stato validato in due modalità automatiche. La prima l'utilizzo di *TotalValidator*, la seconda l'utilizzo di *PHPStorm* il quale indica errori formali, link non funzionanti (a livello statico) e _best practice_ non rispettate. Particolarità di PHPStorm è inoltre la possibilità di impostare un server remoto su cui riversare il progetto, rendendo automatico il caricamento sul server _tecweb_.
+Inoltre, sono stati fatti ulteriori check anche con W3C Css Validator e W3C HTML Validator.
 
 
 = 6. Suddivisione dei compiti
@@ -315,6 +310,7 @@ La suddivisione dei compiti è stata gestita cercando di coniugare gli impegni e
 - Pagina Aggiunta/Modifica Prodotto: HTML, PHP, JS e CSS
 - Menù Mobile
 - Controllo con NVDA
+- Relazione
 
 == Ceron Tommaso
 - Pagina Registrazione: HTML, JS, PHP
@@ -323,6 +319,21 @@ La suddivisione dei compiti è stata gestita cercando di coniugare gli impegni e
 - Gestione logica login/logout/registrazione e sessioni PHP
 - Gestione logica aggiunta al carrello/ aggiunta ai preferiti
 - Pagina carrello: HTML, JS, PHP
+- Relazione
+
+== Parolin Dennis
+- Pagina Home: HTML, CSS, contenuto
+- Pagina Login/logout/registrazione: HTML, CSS
+- Relazione
+
+== Marchioro Elisa
+- Pagina Il nostro tè: HTML, CSS, contenuto
+- Pagina About: HTML, CSS
+- Pagine Errori: HTML, CSS, contenuto
+- Controllo con W3C Css Validator
+- Controllo con W3C Html Validator
+- Relazione
+
 
 = 7. Funzionalità Aggiuntive
 == Filtri Shop
@@ -335,10 +346,21 @@ I dettagli specifici del tipo di prodotto vengono mostrati in base alla categori
 Al fine di non limitare l' utilizzo del sito a coloro che non utilizzano JavaScript all' interno del loro browser, abbiamo 
 cercato di implementare tutte funzionalità legate al negozio, quali registrazione, accesso, aggiunta al carrello e ai preferiti, indipendenti da codice JavaScript.
 
-= 8. Uso dell'AI nel progetto
+= 8. CSS
+Per quanto riguarda il CSS, l’obiettivo principale è stato uniformare lo stile dell’intero sito, prestando particolare attenzione alla scelta coerente di colori, font e dimensioni del testo, così da garantire un’esperienza di navigazione chiara, accessibile e piacevole per tutti gli utenti. Si è cercato di centralizzare e riutilizzare il più possibile le regole di stile, riducendo le ripetizioni e mantenendo il codice ordinato, leggibile e facilmente manutenibile. Inoltre, il foglio di stile è stato organizzato in tre file distinti in base alla destinazione d’uso: style.css per gli stili generali del sito, mini.css dedicato all’adattamento per dispositivi mobili e print.css per la gestione della visualizzazione in fase di stampa tramite media query specifiche.
+
+== Flexbox
+Per la gestione del layout è stato fatto ampio uso di Flexbox, che ha permesso di organizzare in modo flessibile e responsivo gli elementi nelle varie sezioni del sito. L’utilizzo di display: flex ha facilitato l’allineamento, la distribuzione degli spazi e l’adattamento dei contenuti a diverse dimensioni di schermo, riducendo il ricorso a soluzioni più complesse o a strutture rigide. Questo approccio ha contribuito a rendere il codice più pulito e modulare, migliorando al tempo stesso la coerenza visiva e la responsività generale del sito. 
+
+In particolare è stato impiegato, ad esempio, nella sezione delle statistiche (pagina About) per distribuire in modo uniforme i vari blocchi informativi sulla stessa riga, garantendo equilibrio visivo e adattabilità alle diverse dimensioni di schermo. 
+Flexbox è stato inoltre utilizzato nelle sezioni con immagini e testi affiancati (come le tard-card dei tè nella pagina "Il nostro tè" e le about-values nella pagina About), permettendo di allineare verticalmente i contenuti, gestire gli spazi tra gli elementi tramite gap e alternare facilmente la disposizione degli elementi. Questo approccio ha reso più semplice il passaggio alla visualizzazione mobile, dove la direzione del layout è stata modificata in colonna tramite media query. L’uso di Flexbox ha quindi contribuito a ottenere un design più flessibile, ordinato e responsivo, migliorando sia la struttura del codice sia l’esperienza utente.
+
+= 9. Uso dell'AI nel progetto
 Durante lo sviluppo del progetto, l'Intelligenza Artificiale è stata utilizzata in modo limitato e mirato. In particolare, sono stati impiegati strumenti di AI per:
 - Generazione delle immagini per evitare di incappare in problemi di copyright.
 - Codice per la gestione del Parallasse nella pagina HOME.
+- Eventuale supporto per CSS.
 L'uso dell'AI è stato sempre supervisionato e integrato con il lavoro manuale del team, assicurando che il prodotto finale rispecchiasse le competenze acquisite durante il corso e rispettasse gli standard di qualità richiesti.
-= 7. Conclusioni
+
+= 10. Conclusioni
 Il progetto ha permesso di approfondire le tecnologie HTML, CSS e JavaScript, con un focus particolare sull'inclusività. Il sito risultante è non solo esteticamente gradevole, ma utilizzabile da una vasta gamma di utenti, rispettando gli standard universitari e internazionali.
