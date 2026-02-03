@@ -1,8 +1,6 @@
 <?php
 function getImagePlaceholder($categoria)
 {
-    // Nota: Aggiusta il path in base a dove includi il file.
-    // Se lo includi in pages/product.php, il path relativo è corretto così.
     $basePath = '../../assets/images/';
     switch ($categoria) {
         case 'bevande':
@@ -23,12 +21,13 @@ function getBasePath(): string
     return '../../assets/images/';
 }
 
-function checkImage($product){
+function checkImage($product)
+{
     $basePath = getBasePath();
     $imageFile = $product['img_src'];
     $fullPath = $basePath . $imageFile;
 
-    if ($product['img_src'] === '' || !file_exists(__DIR__ . '/' . $fullPath) ){
+    if ($product['img_src'] === '' || !file_exists(__DIR__ . '/' . $fullPath)) {
         $img_src = getImagePlaceholder($product['categoria']);
     } else {
         $fullPath = $basePath . $product['img_src'];

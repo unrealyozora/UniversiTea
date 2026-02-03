@@ -2,8 +2,8 @@
 // cart.php
 
 // 1. SETUP E CONNESSIONE
-require_once '../config/auth/check_auth.php'; // Adatta il percorso se necessario
-require_once '../config/database/database_conn.php'; // Percorso basato sui tuoi file caricati
+require_once '../config/auth/check_auth.php';
+require_once '../config/database/database_conn.php';
 
 function newFidelityPoints($oldPoints, $cartTotal): int
 {
@@ -16,8 +16,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $venditoreBanner = '';
+$inertAttr = '';
 $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
-$isSeller ? $venditoreBanner = $banner = file_get_contents('templates/restriction.html') : '';
+if($isSeller){
+    $venditoreBanner = $banner = file_get_contents('templates/restriction.html');
+    $inertAttr ='inert';
+}
 
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -26,7 +30,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
-$userEmail = $_SESSION['email']; // I tuoi file usano l'email come ID nel DB
+$userEmail = $_SESSION['email'];
 
 // Helper per template (non toccare)
 function renderCartItem($item, $templateHtml)
@@ -169,8 +173,6 @@ try {
     $db = new Database();
     $conn = $db->getConnection();
 
-    // Query corretta basata sul tuo file cart_get.php e add_to_cart.php
-    // Recuperiamo anche 'stock' dalla tabella Prodotti se esiste, altrimenti toglilo
     $query = "
         SELECT 
             p.id, 
@@ -195,7 +197,6 @@ try {
 
     if (count($items) > 0) {
         foreach ($items as $item) {
-            // Se non hai recuperato lo stock dalla query, impostiamo un default per evitare errori PHP
             if (!isset($item['stock']))
                 $item['stock'] = 100;
 
@@ -253,6 +254,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 $replacements = [
     '{{VENDITORE_BANNER}}' => $venditoreBanner,
+    '{{INERT_ATTR}}' => $inertAttr,
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{TOTAL_AMOUNT}}' => '€' . number_format($totalAmount, 2, ',', '.'),
     '{{CART_CONTENT}}' => $cartItemsHtml,

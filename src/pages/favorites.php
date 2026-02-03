@@ -8,8 +8,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 $venditoreBanner = '';
+$inertAttr = '';
 $isSeller = (isset($_SESSION['tipo_utente']) && $_SESSION['tipo_utente'] === 'Venditore');
-$isSeller ? $venditoreBanner = $banner = file_get_contents('templates/restriction.html') : '';
+if($isSeller){
+    $venditoreBanner = $banner = file_get_contents('templates/restriction.html');
+    $inertAttr ='inert';
+}
 
 $email = $_SESSION['email'];
 
@@ -199,6 +203,7 @@ $template = file_get_contents('templates/favorites.html');
 
 $replacements = [
     '{{VENDITORE_BANNER}}' => $venditoreBanner,
+    '{{INERT_ATTR}}' => $inertAttr,
     '{{TOTAL_ITEMS}}' => $totalItems,
     '{{ITEMS_LABEL}}' => $totalItems === 1 ? 'Prodotto' : 'Prodotti',
     '{{MESSAGE_HTML}}' => $message_html,
