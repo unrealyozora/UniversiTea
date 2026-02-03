@@ -35,11 +35,11 @@ function renderCartItem($item, $templateHtml)
     $nome = htmlspecialchars($item['nome']);
     $prezzo = '€' . number_format($item['prezzo'], 2, ',', '.');
     $subtotale = '€' . number_format($item['subtotal'], 2, ',', '.');
-    $qty = (int) $item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
+    $qty = (int)$item['quantita']; // Nota: 'quantita' senza accento come nel tuo DB
 
     // Logica stock: se non hai colonna stock in Carrello, la prendiamo da Prodotti
     // Assumo stock 99 se non definito, oppure aggiungi la colonna nella query
-    $stock = isset($item['stock']) ? (int) $item['stock'] : 99;
+    $stock = isset($item['stock']) ? (int)$item['stock'] : 99;
 
 
     $replacements = [
@@ -56,7 +56,6 @@ function renderCartItem($item, $templateHtml)
     return str_replace(array_keys($replacements), array_values($replacements), $templateHtml);
 }
 
-// 2. GESTIONE AZIONI POST (FALLBACK PER QUANDO MANCA JS)
 $disabledFidelityCheck = 'disabled';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -68,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if ($action === 'update_quantity') {
-            $qty = (int) $_POST['quantity'];
+            $qty = (int)$_POST['quantity'];
             if ($qty > 0) {
                 // Query adattata alla tua tabella 'Carrello'
                 $stmt = $conn->prepare("UPDATE Carrello SET quantita = :qty WHERE consumatore = :email AND prodotto = :pid");
