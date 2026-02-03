@@ -75,12 +75,12 @@
   title: "UniversiTea",
   course: "Tecnologie Web - A.A. 2025/2026",
   authors: (
-    "Ceron Tommaso (Matr. 2101045)",
+    "Ceron Tommaso (Matr. 2101045) tommaso.ceron@studenti.unipd.it",
     "Marchioro Elisa (Matr. 2111941)",
     "Parolin Dennis (Matr. 2113203)",
     "Soligo Lorenzo (Matr. 2101057)",
   ),
-  date: "30 Dicembre 2025",
+  date:"2026 Febbraio 3",
   login: ("Link: tecweb.studenti.math.unipd.it/tceron/", "Venditore: admin  admin", "Utente: user  user"),
 
   doc,
@@ -170,11 +170,9 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
     "L'ordine del DOM rispecchia l'ordine visivo anche nei layout grid/flex.",
   ),
   ..wcag-row(
-    "1.3.5 Identificazione dello scopo degli input",
-    "AA",
-    text(fill: rgb("#2d4f1e"), strong("Pass")),
-    "placeholder",
-    "I campi dei form (login/register) usano l'attributo autocomplete appropriato.",
+    "1.3.5 Identificazione dello scopo degli input", "AA", 
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale",
+    "I campi dei form (login/register) usano l'attributo autocomplete appropriato."
   ),
   ..wcag-row(
     "1.4.1 Uso del colore",
@@ -186,9 +184,9 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ..wcag-row(
     "1.4.3 Contrasto minimo",
     "AA",
-    text(fill: rgb("#2d4f1e"), strong("Pass")),
+    text(fill: rgb("#d97706"), strong("Parziale")),
     "WCAG Contrast Checker",
-    "Testo su sfondo scuro verificato (Ratio > 4.5:1 per testo normale).",
+    "Testo su sfondo scuro verificato (Ratio > 4.5:1 per testo normale). L'unico punto in cui il contrasto non è rispettato è una sezione in cui i link visitati risultano non sufficientemente contrastati (Ratio < 3:1).",
   ),
   ..wcag-row(
     "1.4.4 Ridimensionamento del testo",
@@ -200,7 +198,7 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
   ..wcag-row(
     "1.4.11 Contrasto contenuti non testuali",
     "AA",
-    text(fill: rgb("#d97706"), strong("Parziale")),
+    text(fill: rgb("#2d4f1e"), strong("Pass")),
     "WCAG Contrast Checker",
     "Icone social nel footer migliorate, verificata visibilità focus outline.",
   ),
@@ -258,18 +256,14 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
     "Link generici 'Scopri di più' integrati con aria-label descrittivi.",
   ),
   ..wcag-row(
-    "2.4.6 Intestazioni ed etichette",
-    "AA",
-    text(fill: rgb("#2d4f1e"), strong("Pass")),
-    "Controllo manuale",
-    "Gerarchia H1-H6 rispettata, label dei form chiare e visibili.",
+    "2.4.6 Intestazioni ed etichette", "AA", 
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale/TotalValidator",
+    "Gerarchia H1-H6 rispettata, label dei form chiare e visibili."
   ),
   ..wcag-row(
-    "2.4.7 Focus visibile",
-    "AA",
-    text(fill: rgb("#2d4f1e"), strong("Pass")),
-    "Controllo manuale",
-    "Outline CSS personalizzato (verde chiaro) su tutti gli elementi interattivi.",
+    "2.4.7 Focus visibile", "AA", 
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale/SilkTide",
+    "Outline CSS personalizzato (verde chiaro) su tutti gli elementi interattivi."
   ),
 
   // 3. COMPRENSIBILE
@@ -284,11 +278,9 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
     "Attributo lang='it' impostato sul tag html.",
   ),
   ..wcag-row(
-    "3.1.2 Lingua di parti",
-    "AA",
-    text(fill: rgb("#2d4f1e"), strong("Pass")),
-    "Controllo manuale",
-    "Termini inglesi (es. 'Join Now') marcati con <span lang='en'>.",
+    "3.1.2 Lingua di parti", "AA", 
+    text(fill: rgb("#2d4f1e"), strong("Pass")), "Controllo manuale/NVDA",
+    "Termini inglesi (es. 'Join Now') marcati con <span lang='en'>."
   ),
   ..wcag-row(
     "3.2.1 Al focus",
@@ -345,8 +337,16 @@ Per verificare i contrasti cromatici è stato utilizzato lo strumento *WebAIM Co
 Il controllo della correttezza del codice è stato validato in due modalità automatiche. La prima l'utilizzo di *TotalValidator*, la seconda l'utilizzo di *PHPStorm* il quale indica errori formali, link non funzionanti (a livello statico) e _best practice_ non rispettate. Particolarità di PHPStorm è inoltre la possibilità di impostare un server remoto su cui riversare il progetto, rendendo automatico il caricamento sul server _tecweb_.
 Inoltre, sono stati fatti ulteriori check anche con W3C Css Validator e W3C HTML Validator.
 
+= 6. Ottimizzazione Ranking (SEO)
+Il sito è stato ottimizzato per i motori di ricerca seguendo le best practices SEO, al fine di migliorare la visibilità e l'indicizzazione. Le principali strategie adottate includono:
+- L'inserimento di keyword tra i metadati delle pagine.
+- L'uso di immagini leggere e ottimizzate per il web, con attributi alt descrittivi.
+- La divisione completa tra struttura (HTML), presentazione (CSS) e comportamento (PHP/JavaScript) per garantire una migliore indicizzazione da parte dei motori di ricerca.
+- L'uso dei tag H1-H3 in modo strutturato per evidenziare i contenuti principali e facilitare la comprensione del sito da parte dei crawler.
+- Aderenza tra target, contenuti e parole chiave per migliorare il posizionamento nei risultati di ricerca.
 
-= 6. Suddivisione dei compiti
+
+= 7. Suddivisione dei compiti
 La suddivisione dei compiti è stata gestita cercando di coniugare gli impegni e le preferenze di ognuno dei membri del team. In particolare la spartizione da seguito questa struttura:
 == Soligo Lorenzo
 - Design del Database
@@ -384,7 +384,7 @@ La suddivisione dei compiti è stata gestita cercando di coniugare gli impegni e
 - Relazione
 
 
-= 7. Funzionalità Aggiuntive
+= 8. Funzionalità Aggiuntive
 == Filtri Shop
 Nella pagina _Shop_ sono stati implementati filtri per categoria e prezzo, permettendo agli utenti di restringere i risultati in base alle proprie preferenze. I filtri sono realizzati utilizzando PHP come base di partenza e JavaScript per aggiornare dinamicamente la visualizzazione dei prodotti senza ricaricare la pagina, rispettando il principio di _*Progressive Enhancement*_.
 == Gestione attenta della creazione dei prodotti
@@ -441,7 +441,7 @@ Anche in questo caso, era tutto puramente accademico e per cercare di capire com
 Sappiamo del fatto che non si deve usare solo il colore per veicolare l'informazione. Per questo motivo ai link visitati, oltre che cambiare il colore, volevamo aggiungere a lato una spunta dello stesso colore del link visitato. In questo progetto però questa funzionalità non è presente. Sappiamo della grave mancanza ma non siamo riusciti a ovviare al problema. Abbiamo provato a fare questa cosa tramite CSS con il content:'', ma non funzionava. Abbiamo provato ad aggiungere l'immagine direttamente nell'html e gestirla con CSS dandogli un display none di base e poi un display block quando il link era visitato, ma non funzionava. Non siamo riusciti ad implementarla.
 D'altro canto però, funziona il fatto che il link a cui mi trovo è contrassegnato dall'immagine di un pin, per far capire all'utente dove si trova (oltre che alla breadcrumb). Questo nell'header. Non abbiamo capito come mai questo funzioni e l'icona di check dei link visitati no. Perché il pin è già presente nell'html e viene gestito con display none dal CSS.
 
-= 8. CSS
+= 9. CSS
 Per quanto riguarda il CSS, l’obiettivo principale è stato uniformare lo stile dell’intero sito, prestando particolare attenzione alla scelta coerente di colori, font e dimensioni del testo, così da garantire un’esperienza di navigazione chiara, accessibile e piacevole per tutti gli utenti. Si è cercato di centralizzare e riutilizzare il più possibile le regole di stile, riducendo le ripetizioni e mantenendo il codice ordinato, leggibile e facilmente manutenibile. Inoltre, il foglio di stile è stato organizzato in tre file distinti in base alla destinazione d’uso: style.css per gli stili generali del sito, mini.css dedicato all’adattamento per dispositivi mobili e print.css per la gestione della visualizzazione in fase di stampa tramite media query specifiche.
 
 == Flexbox
@@ -450,12 +450,25 @@ Per la gestione del layout è stato fatto ampio uso di Flexbox, che ha permesso 
 In particolare è stato impiegato, ad esempio, nella sezione delle statistiche (pagina About) per distribuire in modo uniforme i vari blocchi informativi sulla stessa riga, garantendo equilibrio visivo e adattabilità alle diverse dimensioni di schermo.
 Flexbox è stato inoltre utilizzato nelle sezioni con immagini e testi affiancati (come le tard-card dei tè nella pagina "Il nostro tè" e le about-values nella pagina About), permettendo di allineare verticalmente i contenuti, gestire gli spazi tra gli elementi tramite gap e alternare facilmente la disposizione degli elementi. Questo approccio ha reso più semplice il passaggio alla visualizzazione mobile, dove la direzione del layout è stata modificata in colonna tramite media query. L’uso di Flexbox ha quindi contribuito a ottenere un design più flessibile, ordinato e responsivo, migliorando sia la struttura del codice sia l’esperienza utente.
 
-= 9. Uso dell'AI nel progetto
+= 10. Uso dell'AI nel progetto
 Durante lo sviluppo del progetto, l'Intelligenza Artificiale è stata utilizzata in modo limitato e mirato. In particolare, sono stati impiegati strumenti di AI per:
 - Generazione delle immagini per evitare di incappare in problemi di copyright.
 - Codice per la gestione del Parallasse nella pagina HOME.
 - Eventuale supporto per CSS.
 L'uso dell'AI è stato sempre supervisionato e integrato con il lavoro manuale del team, assicurando che il prodotto finale rispecchiasse le competenze acquisite durante il corso e rispettasse gli standard di qualità richiesti.
 
-= 10. Conclusioni
+= 11. Strumenti comuni utilizzati
+Durante lo sviluppo del progetto sono stati utilizzati diversi strumenti comuni per facilitare la collaborazione e migliorare l'efficienza del team. Tra questi:
+- **Git e GitHub:** Per il versionamento del codice e la gestione delle modifiche.
+- **Visual Studio Code:** Come ambiente di sviluppo principale, grazie alle sue estensioni utili per HTML, CSS e PHP.
+- **PHPStorm:** Per la validazione del codice e il deploy sul server remoto.
+Inoltre per la validazione del codice e il controllo dell'accessibilità sono stati utilizzati:
+- **W3C HTML Validator:** Per assicurare la correttezza del codice HTML.
+- **W3C CSS Validator:** Per la validazione del CSS.
+- **TotalValidator:** Per un controllo completo dell'accessibilità e della conformità alle linee guida WCAG 2.1.
+- **NVDA:** Per testare l'accessibilità del sito con uno screen reader.
+- **SilkTide:** Per ulteriori verifiche sull'accessibilità e le best practices.
+- **WAVE Evaluation Tool** : Per l'analisi dell'accessibilità delle pagine web.
+
+= 12. Conclusioni
 Il progetto ha permesso di approfondire le tecnologie HTML, CSS e JavaScript, con un focus particolare sull'inclusività. Il sito risultante è non solo esteticamente gradevole, ma utilizzabile da una vasta gamma di utenti, rispettando gli standard universitari e internazionali.

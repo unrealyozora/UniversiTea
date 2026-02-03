@@ -753,10 +753,7 @@
         max-width: 90%;
         padding: 1.5em;
     }
-
-    .indicetea {
-        margin-left: 2em;
-    }
+    
 
     .tea-card,
     .tea-card:nth-of-type(even) {
