@@ -654,13 +654,13 @@ body.menu-open .mobile-nav-content ul {
     margin-top: 1.5rem;
     margin-left: 5%;
     margin-bottom: 2rem;
-    background: rgba(15, 14, 14, 0.6);
+    background: var(--universitea-green);
     padding: 0.5em 1.25em;
     border-radius: 3.125em;
     backdrop-filter: blur(0.3125em);
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #0f0e0e;
     text-transform: uppercase;
     letter-spacing: 0.0625em;
     line-height: 1.6;
@@ -672,9 +672,13 @@ body.menu-open .mobile-nav-content ul {
 }
 
 #breadcrumb span[aria-current="page"] {
-    color: var(--universitea-green);
+    color: #0f0e0e;
     font-weight: 700;
     margin-left: 0.3em;
+}
+
+#breadcrumb a {
+    color: #0f0e0e;
 }
 
 body.homepage #breadcrumb {
