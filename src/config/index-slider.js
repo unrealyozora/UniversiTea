@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextBtn.addEventListener('click', () => {
         const currentIndex = getCurrentSlideIndex();
-        const nextIndex = Math.min(currentIndex + 1, slides.length - 1); /* Calcolo della prossima slide. Sarebbe il minore tra "indice slide corrente + 1" e "numero di slide - 1". Serve per evitare di andare oltre l'ultima slide */
+        const nextIndex = (currentIndex + 1 >= slides.length) ? 0 : currentIndex + 1;
         slides[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     });
 
     prevBtn.addEventListener('click', () => {
         const currentIndex = getCurrentSlideIndex();
-        const prevIndex = Math.max(currentIndex - 1, 0); /* Calcolo della slide precedente. Sarebbe il massimo tra "indice slide corrente - 1" e "0". Serve per evitare di andare oltre la prima slide */
+        const prevIndex = (currentIndex - 1 < 0) ? slides.length - 1 : currentIndex - 1;
         slides[prevIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     });
 
