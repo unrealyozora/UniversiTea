@@ -2609,7 +2609,7 @@ fieldset input[type="radio"]:checked+label {
     text-align: center;
     width: 40%;
     box-sizing: border-box;
-    animation: fadeAndCollapse 3s forwards;
+    animation: fadeIn 2s forwards;
 }
 
 .success-msg {
@@ -2634,11 +2634,11 @@ fieldset input[type="radio"]:checked+label {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    animation: fadeAndCollapse 3s forwards;
+    animation: fadeIn 2s forwards;
     width: 100%;
 }
 
-@keyframes fadeAndCollapse {
+@keyframes fadeIn {
     0% {
         opacity: 1;
         max-height: 6.25em;
@@ -3796,9 +3796,11 @@ select.input-error:focus {
     height: 1.2em;
     cursor: pointer;
 }
- .product-area{
-     padding-bottom: 2em;
- }
+
+.product-area {
+    padding-bottom: 2em;
+}
+
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16.25em, 1fr));
