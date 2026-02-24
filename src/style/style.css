@@ -3122,7 +3122,7 @@ select:focus {
     border-color: var(--error-txtcolor);
     box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.2);
     /* Glow rosso */
-    background-color: rgba(255, 68, 68, 0.05);
+    background-color: var(--lightbgcolor);
 }
 
 select.input-error:focus {
