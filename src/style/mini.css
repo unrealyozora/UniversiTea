@@ -915,7 +915,7 @@
 
     .tea-process td::before,
     .product-table td::before {
-        content: attr(datatitle);
+        content: attr(data-title);
         font-weight: bold;
         color: var(--graybgcolor);
         text-transform: uppercase;

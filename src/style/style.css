@@ -2902,7 +2902,7 @@ textarea,
 select {
     width: 100%;
     padding: 1rem 1.5rem;
-    background-color: var(--darkbgcolor);
+    background-color: var(--lightbgcolor);
     /* Nero profondo */
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 3rem;

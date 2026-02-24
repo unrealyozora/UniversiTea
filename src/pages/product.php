@@ -100,7 +100,7 @@ try {
     $isAvailable = $product['disponibilità'] > 0;
 
     if ($innerSpecs) {
-        $specsHtml = "<div class='product-specs'><h3>Scheda Tecnica</h3>" . $innerSpecs . "</div>";
+        $specsHtml = "<div class='product-specs'><h2>Scheda Tecnica</h2>" . $innerSpecs . "</div>";
     }
 
     $feedbackHtml = '';
