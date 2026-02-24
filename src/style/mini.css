@@ -10,6 +10,10 @@
     .filter-group-vertical {
         margin-bottom: 1rem;
     }
+
+    .products-area h2, .products-area p{
+        margin-left: 1em;
+    }
 }
 
 
