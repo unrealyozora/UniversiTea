@@ -2,7 +2,7 @@
 class Database{
     private $host = "localhost";
     private $user = "tceron";
-    private $pass = "oofoebei8oxaiB7t";
+    private $pass = "faiPeemaiphi6fei";
     private $charset = "utf8mb4";
     public  $conn;
 
