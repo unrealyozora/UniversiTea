@@ -2234,7 +2234,7 @@ fieldset {
     line-height: 1.6;
     color: var(--universitea-green);
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .errorpage h2 {
@@ -2243,6 +2243,7 @@ fieldset {
     color: var(--lightbgcolor);
     margin-bottom: 1.5em;
     line-height: 1.6;
+    z-index: 1;
 }
 
 .errorpage p {
@@ -2250,7 +2251,7 @@ fieldset {
     color: var(--txtcolor);
     max-width: 31.25em;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 /*Per vedere meglio il link usando tab per scorrere la pagina, per accessibilità*/
@@ -2262,7 +2263,6 @@ fieldset {
 
 .error-image {
     position: absolute;
-    z-index: 1;
     /*Immagine sta sempre dietro al testo.*/
     pointer-events: none;
     /*Immagine non coprirà mai i link*/
