@@ -2902,12 +2902,12 @@ textarea,
 select {
     width: 100%;
     padding: 1rem 1.5rem;
-    background-color: var(--lightbgcolor);
+    background-color: var(--txtcolor);
     /* Nero profondo */
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 3rem;
     /* Stondatura forte come nel login */
-    color: #fff;
+    color: var(--darkbgcolor);
     font-family: inherit;
     font-size: 1rem;
     outline: none;
@@ -2958,7 +2958,7 @@ select:focus {
 }
 
 .specific-fields.selected-field {
-    display: block !important;
+    display: block;
 }
 
 /* Scrollbox per i Bundle */
@@ -3109,10 +3109,10 @@ select:focus {
 
 /* Bordo rosso per l'input mancante */
 .input-error {
-    border-color: var(--error-txtcolor) !important;
-    box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.2) !important;
+    border-color: var(--error-txtcolor);
+    box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.2);
     /* Glow rosso */
-    background-color: rgba(255, 68, 68, 0.05) !important;
+    background-color: rgba(255, 68, 68, 0.05);
 }
 
 select.input-error:focus {
