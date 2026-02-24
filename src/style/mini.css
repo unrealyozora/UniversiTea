@@ -1,7 +1,8 @@
 /*SHOP*/
 @media (max-width: 900px) {
     .shop-layout {
-        grid-template-columns: 1fr; /* Colonna singola su mobile */
+        grid-template-columns: 1fr;
+        /* Colonna singola su mobile */
         gap: 2rem;
     }
 
@@ -9,6 +10,10 @@
     /* Layout orizzontale dei filtri su mobile per risparmiare spazio */
     .filter-group-vertical {
         margin-bottom: 1rem;
+    }
+
+    .products-area h2, .products-area p{
+        margin-left: 1em;
     }
 }
 
@@ -212,10 +217,11 @@
         box-shadow: 0 0.25em 0.95em rgba(0, 214, 159, 0.3);
     }
 
-    .main-hearder{
+    .main-hearder {
         z-index: 999999;
         position: sticky;
     }
+
     .menu-checkbox {
         z-index: 1000000;
     }
@@ -228,7 +234,10 @@
     .nav-text-link,
     li#current-link,
     #current-link span,
-    #user-actions ul li, .nav-profile-link, .mobile-only-text, .hidden-when-wide  {
+    #user-actions ul li,
+    .nav-profile-link,
+    .mobile-only-text,
+    .hidden-when-wide {
         font-size: 1.8rem;
         color: var(--darkbgcolor);
         font-weight: 800;
@@ -255,7 +264,8 @@
         height: 1.875em;
     }
 
-    .mobile-only-text, .hidden-when-wide {
+    .mobile-only-text,
+    .hidden-when-wide {
         display: inline-block;
         margin-left: 0.625em;
     }
@@ -753,7 +763,7 @@
         max-width: 90%;
         padding: 1.5em;
     }
-    
+
 
     .tea-card,
     .tea-card:nth-of-type(even) {
@@ -870,7 +880,8 @@
         width: 100%;
     }
 
-    .tea-process thead, .product-table thead {
+    .tea-process thead,
+    .product-table thead {
         display: none;
     }
 
@@ -885,7 +896,8 @@
         text-align: center;
     }
 
-    .tea-process tr, .product-table tr {
+    .tea-process tr,
+    .product-table tr {
         margin-bottom: 2rem;
         background-color: var(--txtcolor);
         border: 2px solid #ddd;
@@ -893,7 +905,8 @@
         overflow: hidden;
     }
 
-    .tea-process th, .product-table th {
+    .tea-process th,
+    .product-table th {
         background-color: var(--linkcolor);
         color: var(--darkbgcolor);
         border-right: none;
@@ -902,7 +915,8 @@
         font-size: 1.2rem;
     }
 
-    .tea-process td, .product-table td {
+    .tea-process td,
+    .product-table td {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1054,7 +1068,9 @@
     .form-actions {
         flex-direction: column;
     }
-    .btn-save, .btn-cancel {
+
+    .btn-save,
+    .btn-cancel {
         width: 100%;
     }
 }
