@@ -322,3 +322,11 @@ In questa sezione viene analizzata la conformità del sito alle linee guida WCAG
 Per verificare i contrasti cromatici è stato utilizzato lo strumento *WebAIM Contrast Checker*. Le icone puramente decorative sono state nascoste agli screen reader utilizzando `aria-hidden="true"`.\
 Il controllo della correttezza del codice è stato validato in due modalità automatiche. La prima l'utilizzo di *TotalValidator*, la seconda l'utilizzo di *PHPStorm* il quale indica errori formali, link non funzionanti (a livello statico) e _best practice_ non rispettate. Particolarità di PHPStorm è inoltre la possibilità di impostare un server remoto su cui riversare il progetto, rendendo automatico il caricamento sul server _tecweb_.
 Inoltre, sono stati fatti ulteriori check anche con W3C Css Validator e W3C HTML Validator.
+
+== 4. Modifiche dalla Consegna iniziale
+- Correzione della gerarchia dei titoli nella pagina Products, ora rispettano l'ordine H1-H2-H3.
+- Tolti i br in più, mantenuti solo quelli nel footer per la mail e telefono.
+- Corretto il contrasto nei widget di inserimento di tutte le pagine
+- Messaggi di errore nel form di login e registrazione ora rimangono e non spariscono dopo pochi secondi.
+- Carosello alla home page ora funziona correttamente anche per corner case (spostamento a destra quando si è all'ultima slide, a sinistra quando si è alla prima).
+
