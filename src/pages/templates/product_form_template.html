@@ -77,7 +77,7 @@
             <input type="hidden" name="id" value="{{VAL_ID}}">
 
             <div class="form-group">
-                <label for="nome">Nome Prodotto:</label>
+                <label for="nome">Nome Prodotto(Obbligatorio):</label>
                 <p class="product-advice">Inserisci un nome di al massimo 100 caratteri. Tutti i tipi di caratteri sono
                     accettati</p>
                 <input type="text" id="nome" name="nome" value="{{VAL_NOME}}" maxlength="100" required
@@ -86,7 +86,7 @@
             </div>
 
             <div class="form-group">
-                <label for="descrizione">Descrizione:</label>
+                <label for="descrizione">Descrizione(Obbligatorio):</label>
                 <p class="product-advice">Inserisci una descrizione del prodotto al massimo 1000 caratteri. Tutti i tipi
                     di
                     caratteri sono accettati</p>
@@ -96,13 +96,13 @@
             </div>
 
             <div class="form-group">
-                <label for="img_src">Selezione un'immagine:</label>
+                <label for="img_src">Selezione un'immagine(Obbligatorio):</label>
                 <input type="file" id="img_src" name="img_src" accept="image/*">
                 {{ERR_IMMAGINE}}
             </div>
 
             <div class="form-group">
-                <label for="img_alt">Descrizione per l'immagine:</label>
+                <label for="img_alt">Descrizione per l'immagine(Obbligatorio):</label>
                 <p class="product-advice">Inserisci una descrizione per l'immagine al massimo 255 caratteri. Tutti i
                     tipi di
                     caratteri sono accettati</p>
@@ -112,7 +112,7 @@
             </div>
 
             <div class="form-group">
-                <label for="prezzo">Prezzo (€):</label>
+                <label for="prezzo">Prezzo (€)(Obbligatorio):</label>
                 <p class="product-advice">Inserisci un prezzo, tra 0,01 e 999</p>
                 <input type="number" id="prezzo" name="prezzo" min="0.01" max="999" step="0.01" value="{{VAL_PREZZO}}"
                     required placeholder="0.00">
@@ -120,7 +120,7 @@
             </div>
 
             <div class="form-group">
-                <label for="disponibilita">Quantità (Stock):</label>
+                <label for="disponibilita">Quantità (Obbligatorio):</label>
                 <p class="product-advice">Inserisci una quantità maggiore uguale 0</p>
                 <input type="number" id="disponibilita" name="disponibilita" min="0" value="{{VAL_DISPONIBILITA}}"
                     required placeholder="0">
@@ -128,7 +128,7 @@
             </div>
 
             <div class="form-group">
-                <label for="categoria">Categoria:</label>
+                <label for="categoria">Categoria(Obbligatorio):</label>
                 <p class="product-advice">Scegli una categoria tra quelle proposte</p>
                 <select id="categoria" name="categoria" required>
                     <option value="">-- Seleziona Categoria --</option>
@@ -148,14 +148,14 @@
             <fieldset id="fields-bevande" class="specific-fields {{BEVANDA}}">
                 <legend>Dettagli Bevanda</legend>
                 <div class="form-group">
-                    <label for="temp_consigliata">Temperatura Consigliata:</label>
+                    <label for="temp_consigliata">Temperatura Consigliata(Obbligatorio):</label>
                     <p class="product-advice">Inserisci una temperatura maggiore di 0</p>
                     <input id="temp_consigliata" type="number" name="temp_consigliata" value="{{VAL_TEMP}}"
                         placeholder="Es. 80">
                     {{ERR_TEMP_CONSIGLIATA}}
                 </div>
                 <div class="form-group">
-                    <label for="tipologia_bevanda">Tipologia Bevanda:</label>
+                    <label for="tipologia_bevanda">Tipologia Bevanda(Obbligatorio):</label>
                     <p class="product-advice">Scegli una tipologia di bevanda tra quelle proposte</p>
                     <select id="tipologia_bevanda" name="tipologia_bevanda">
                         <option value="">-- Seleziona Tipologia --</option>
@@ -185,7 +185,7 @@
                     {{ERR_MATERIALE}}
                 </div>
                 <div class="form-group">
-                    <label for="tipologia_march">Tipologia Merch:</label>
+                    <label for="tipologia_march">Tipologia Merch(Obbligatorio):</label>
                     <p class="product-advice">Scegli una tipologia di <span lang="en">Merchandising</span> tra quelle
                         proposte</p>
                     <select id="tipologia_march" name="tipologia_march">
@@ -213,7 +213,7 @@
             <fieldset id="fields-servizi" class="specific-fields {{SERVIZI}}">
                 <legend>Dettagli Servizio</legend>
                 <div class="form-group">
-                    <label for="tipologia_servizi">Tipologia Servizio:</label>
+                    <label for="tipologia_servizi">Tipologia Servizio(Obbligatorio):</label>
                     <p class="product-advice">Scegli una tipologia di servizio tra quelle proposte</p>
                     <select id="tipologia_servizi" name="tipologia_servizi">
                         {{OPTIONS_TIPO_SERVIZI}}
@@ -221,7 +221,7 @@
                     {{ERR_TIPOLOGIA_SERVIZI}}
                 </div>
                 <div class="form-group">
-                    <label for="livello_urgenza">Livello Urgenza:</label>
+                    <label for="livello_urgenza">Livello Urgenza(Obbligatorio):</label>
                     <p class="product-advice">Scegli un livello di urgenza tra quelle proposte</p>
                     <select id="livello_urgenza" name="livello_urgenza">
                         {{OPTIONS_URGENZA}}
@@ -240,7 +240,7 @@
                 {{ERR_PRODOTTI_BUNDLE}}
 
                 <div class="form-group">
-                    <label for="percent_sconto">Percentuale Sconto (%):</label>
+                    <label for="percent_sconto">Percentuale Sconto (%)(Obbligatorio):</label>
                     <p class="product-advice">Inserisci una percentuale di sconto tra 0 e 100</p>
                     <input type="number" id="percent_sconto" name="percent_sconto" value="{{VAL_SCONTO}}" min="0"
                         max="100" placeholder="Es. 20">

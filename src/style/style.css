@@ -3646,6 +3646,7 @@ select.input-error:focus {
     height: fit-content;
     backdrop-filter: blur(5px);
     margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 #filter-form h2 {
@@ -3795,7 +3796,9 @@ select.input-error:focus {
     height: 1.2em;
     cursor: pointer;
 }
-
+ .product-area{
+     padding-bottom: 2em;
+ }
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16.25em, 1fr));
@@ -3804,6 +3807,7 @@ select.input-error:focus {
     padding: 0;
     margin-top: 1em;
     margin-right: 1rem;
+    margin-left: 1rem;
     transition: opacity 0.1s ease;
 }
 
